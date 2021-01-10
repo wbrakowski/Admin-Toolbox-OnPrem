@@ -27,7 +27,7 @@ table 50001 "Record Deletion Rel. Error"
         {
             Caption = 'Field Name';
             FieldClass = FlowField;
-            CalcFormula = Lookup (Field.FieldName where(TableNo = field("Table ID"), "No." = field("Field No.")));
+            CalcFormula = Lookup(Field.FieldName where(TableNo = field("Table ID"), "No." = field("Field No.")));
             Editable = false;
         }
         field(20; "Error"; Text[250])

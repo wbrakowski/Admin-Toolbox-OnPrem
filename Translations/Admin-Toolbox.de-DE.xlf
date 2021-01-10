@@ -237,11 +237,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control View - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 1126547218 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Records</source>
-          <target state="translated">Anzahl Datensätze</target>
+        <trans-unit id="Page 3768843830 - Control 1061736343 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables</source>
+          <target state="translated">Tabellen</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control NoOfRecords - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Tables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License</source>
+          <target state="translated">Lizenz</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control License - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 419426744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Information</source>

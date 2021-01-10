@@ -198,10 +198,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control View - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 1126547218 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No. of Records</source>
+        <trans-unit id="Page 3768843830 - Control 1061736343 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control NoOfRecords - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Tables - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 419426744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Information</source>

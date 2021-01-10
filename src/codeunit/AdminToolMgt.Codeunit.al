@@ -261,11 +261,6 @@ codeunit 50000 "Admin Tool Mgt."
         exit(false);
     end;
 
-    internal procedure OpenHowToPage()
-    begin
-        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
-    end;
-
     internal procedure OpenTable(TableId: Integer)
     var
         WebUrl: Text;

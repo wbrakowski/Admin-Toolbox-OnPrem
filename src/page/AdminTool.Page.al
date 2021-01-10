@@ -6,7 +6,6 @@ page 50000 "Admin Toolbox"
     PageType = ListPlus;
     SourceTable = "Record Deletion";
     UsageCategory = Lists;
-
     layout
     {
         area(content)
@@ -22,7 +21,7 @@ page 50000 "Admin Toolbox"
 
                     trigger OnDrillDown()
                     begin
-                        AdminToolMgt.OpenHowToPage();
+                        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
                     end;
                 }
             }
@@ -40,37 +39,49 @@ page 50000 "Admin Toolbox"
                     end;
                 }
             }
-            repeater(General)
+            group(Tables)
             {
-                Visible = not HideDeletionArea;
-                field("Table ID"; "Table ID")
+                Caption = 'Tables';
+                repeater(General)
                 {
-                    ApplicationArea = All;
-                }
-                field("Table Name"; "Table Name")
-                {
-                    ApplicationArea = All;
-                }
-                field(NoOfRecords; AdminToolMgt.CalcRecordsInTable("Table ID"))
-                {
-                    ApplicationArea = All;
-                    Caption = 'No. of Records';
+                    Visible = not HideDeletionArea;
+                    field("Table ID"; "Table ID")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Table Name"; "Table Name")
+                    {
+                        ApplicationArea = All;
+                    }
+                    // field(NoOfRecords; AdminToolMgt.CalcRecordsInTable("Table ID"))
+                    // field(NoOfRecords; AdminToolMgt.CalcRecordsInTable("Table ID"))
+                    // {
+                    //     ApplicationArea = All;
+                    //     Caption = 'No. of Records';
 
-                }
-                field("No. of Table Relation Errors"; "No. of Table Relation Errors")
-                {
-                    ApplicationArea = All;
-                }
-                field("Delete Records"; "Delete Records")
-                {
-                    ApplicationArea = All;
+                    // }
+
+                    field("No. of Table Relation Errors"; "No. of Table Relation Errors")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("No. of Records"; Rec."No. of Records")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Delete Records"; "Delete Records")
+                    {
+                        ApplicationArea = All;
+                    }
                 }
             }
+
             part(LicenseInformation; "License Information")
             {
                 ApplicationArea = All;
                 Visible = not HideLicenseArea;
             }
+
             group(Information)
             {
                 Caption = 'Information';
