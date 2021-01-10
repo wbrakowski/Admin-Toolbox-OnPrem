@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "path": "C:\\Users\\wbrakowski8911\\Documents\\AL\\Admin-Tool"
+        }
+    ],
+    "settings": {
+        "al.assemblyProbingPaths": [
+            "./.netpackages"
+        ]
+    }
+}
