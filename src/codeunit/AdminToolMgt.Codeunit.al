@@ -261,7 +261,7 @@ codeunit 50000 "Admin Tool Mgt."
         exit(false);
     end;
 
-    internal procedure OpenTable(TableId: Integer)
+    procedure OpenTable(TableId: Integer)
     var
         WebUrl: Text;
     begin
