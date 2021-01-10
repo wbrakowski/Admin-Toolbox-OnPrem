@@ -41,10 +41,10 @@ page 50000 "Admin Toolbox"
             }
             group(Tables)
             {
+                Visible = not HideDeletionArea;
                 Caption = 'Tables';
                 repeater(General)
                 {
-                    Visible = not HideDeletionArea;
                     field("Table ID"; "Table ID")
                     {
                         ApplicationArea = All;
