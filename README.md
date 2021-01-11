@@ -16,7 +16,7 @@ In addition, I have created a How To for consultants so that they can upload the
 To enable consultants to use this app, I compiled it for the different Business Central versions. </br>
 You can download these different apps from a separate [GitHub Repository](https://github.com/wbrakowski/Admin-Toolbox-Apps "GitHub Repository"). </br> 
 
-The [readme of the repository](https://github.com/wbrakowski/Admin-Toolbox-Apps/blob/main/README.md "readme of the repository") describes the individual steps for the installation. </br> </br>
+The [readme of the repository](https://github.com/wbrakowski/Admin-Toolbox-Apps/blob/main/README.md "readme of the repository") describes the individual steps for the installation. </br>
 
 Currently the following object numbers are used by the Admin Toolbox:
 - Codeunits 50000, 50001
@@ -53,7 +53,7 @@ If you change the view to "License", only the license information and the corres
 ### Record Deletion Tool
 
 The Tables area shows you all the tables in the system except the system tables. </br>
-It also contains functionalities to delete records from these tables. </br> </br>
+It also contains functionalities to delete records from these tables. </br> 
 
 Part of the following descriptions were copied from [Olof Simren's original post](http://www.olofsimren.com/record-deletion-tool-for-dynamics-nav-2015/ "Olof Simren's original post") for the Record Deletion Tool. </br>
 He created the original version for Microsoft Dynamics NAV. </br>
@@ -141,11 +141,12 @@ When selecting "View Records" the table will be run to show all the records and 
 
 When looking at the records it is typically quite easy to see if they should have been deleted or not. </br>
 If the records has an entry number, document number, etc. it is most likely transactional data that should be deleted. </br>
-The number of records in the table could sometimes also give you a hint if it should be deleted or not. </br> </br>
+The number of records in the table could sometimes also give you a hint if it should be deleted or not. </br>
 
 The next option when reviewing the remaining data is to use the "Check Table Relations" function. </br>
 This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations. </br>
 It does so by just looking if the related record is in the database or not. </br>
+
 Note that this only checks the very basic relations where a field has a table relation to a field in another table. </br>
 This is similar to the table relations you find in the FactBox in the configuration worksheet. </br>
 It does not check table relations that involve multiple fields or conditional table relations. </br>
