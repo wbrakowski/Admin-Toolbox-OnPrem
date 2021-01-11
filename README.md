@@ -42,7 +42,7 @@ The toolbox is divided into four areas:
 
 The link in the FastTab "How To" will take you directly to the readme you are reading right now. </br>
 
-![Howto](images/HowTo.png)
+![Howto](images/Howto.png)
 
 You can use the "View" field to control the visibility of the controls in the page. </br>
 When you open the page, all controls are displayed at first. </br>
