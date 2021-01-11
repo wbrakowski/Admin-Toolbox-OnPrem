@@ -7,14 +7,14 @@ I've combined features from a few blog posts into one single app called "Admin-T
 - [Not out of the box information for consultants, Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/ "Not out of the box information for consultants, Waldo") </br>
 
 Currently this page is only for OnPrem, because license information can only be displayed OnPrem and for the license import DotNet is used. </br>
-If there is enough demand, I can create a SaaS version without the license area. </br> </br>
+If there is enough demand, I can create a SaaS version without the license area. </br> 
 
 In addition, I have created a How To for consultants so that they can upload the app themselves without the help of developers. </br>
 
 ## How To Install the Toolbox
 
 To enable consultants to use this app, I compiled it for the different Business Central versions. </br>
-You can download these different apps from a separate [GitHub Repository](https://github.com/wbrakowski/Admin-Toolbox-Apps "GitHub Repository"). </br> </br>
+You can download these different apps from a separate [GitHub Repository](https://github.com/wbrakowski/Admin-Toolbox-Apps "GitHub Repository"). </br> 
 
 The [readme of the repository](https://github.com/wbrakowski/Admin-Toolbox-Apps/blob/main/README.md "readme of the repository") describes the individual steps for the installation. </br> </br>
 
@@ -57,11 +57,11 @@ It also contains functionalities to delete records from these tables. </br> </br
 
 Part of the following descriptions were copied from [Olof Simren's original post](http://www.olofsimren.com/record-deletion-tool-for-dynamics-nav-2015/ "Olof Simren's original post") for the Record Deletion Tool. </br>
 He created the original version for Microsoft Dynamics NAV. </br>
-I rebuilt the tool and added some new functions to it. </br> </br>
+I rebuilt the tool and added some new functions to it. </br> 
 
 This data deletion tool is useful if you want to 'clean' a company from transactional data. </br>
 It could for example be that you have been testing transactions in a company that you want to use for a go-live. </br>
-It is also useful if you just want to have a clean company without transactions for a demo, training or testing session. </br> </br>
+It is also useful if you just want to have a clean company without transactions for a demo, training or testing session. </br> 
 
 Use the PageAction "Insert/Update Tables". This will populate the list with all the tables that are in the database. </br>
 System tables are excluded here. If you afterwards add new tables you can run this function again to have them added. </br>
@@ -88,7 +88,7 @@ After you have suggested the records, you need to import the developer license t
 ![SuggestOptions](images/SuggestOptions.png)
 
 <b>Note that the suggestion of tables may be incomplete or the logic faulty, but for my cases it worked. </br>
-You should always check the suggested records manually afterwards and select additional tables if necessary! </b> </br> </br>
+You should always check the suggested records manually afterwards and select additional tables if necessary! </b> </br> 
 
 Also note that I am not responsible if this suggestion selects something you don’t want to delete or skips something that you do want to delete. </br>
 
@@ -100,7 +100,7 @@ Use the "Clear Records to Delete" function to remove all the selections. </br>
 
 When you are happy with the selection you press "Delete Records". </br>
 Business Central now goes through the tables and deletes all records from each of the selected tables. </br>
-</b>It might make sense to do a backup of the data before you do this. </b> </br> </br>
+</b>It might make sense to do a backup of the data before you do this. </b> </br> 
 
 I typically just copy the company before this step, so at least you have a company that can easily be restored or copy/paste data from. </br>
 
