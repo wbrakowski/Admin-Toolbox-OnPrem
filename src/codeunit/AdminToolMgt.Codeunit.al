@@ -265,7 +265,7 @@ codeunit 50000 "Admin Tool Mgt."
     var
         WebUrl: Text;
     begin
-        WebUrl := StrSubstNo('%1&table=%2', System.GetUrl(ClientType::Web), TableId);
+        WebUrl := StrSubstNo('%1/?table=%2', System.GetUrl(ClientType::Web), TableId);
         Hyperlink(WebUrl);
     end;
 
