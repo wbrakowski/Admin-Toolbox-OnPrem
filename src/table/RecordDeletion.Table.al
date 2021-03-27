@@ -1,4 +1,4 @@
-table 50000 "Record Deletion"
+table 51000 "Record Deletion"
 {
     DataClassification = ToBeClassified;
 

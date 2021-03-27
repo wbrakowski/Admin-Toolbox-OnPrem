@@ -1,9 +1,13 @@
-codeunit 50000 "Admin Tool Mgt."
+codeunit 51000 "Admin Tool Mgt."
 {
-    Permissions = TableData "17" = IMD, Tabledata "36" = IMD, Tabledata "37" = IMD, Tabledata "38" = IMD, Tabledata "39" = IMD, Tabledata "81" = IMD, Tabledata "21" = IMD, Tabledata "25" = IMD, Tabledata "32" = IMD, Tabledata "110" = IMD, TableData "111" = IMD, TableData "112" = IMD, TableData "113" = IMD, TableData "114" = IMD, TableData "115" = IMD, TableData "120" = IMD, Tabledata "121" = IMD, Tabledata "122" = IMD, Tabledata "123" = IMD, Tabledata "124" = IMD, Tabledata "125" = IMD, Tabledata "169" = IMD, Tabledata "379" = IMD, Tabledata "380" = IMD, Tabledata "271" = IMD, Tabledata "5802" = IMD, tabledata "6650" = IMD, tabledata "6660" = IMD;
+    Permissions = TableData "17" = IMD, Tabledata "21" = IMD, Tabledata "25" = IMD, Tabledata "32" = IMD, Tabledata "36" = IMD,
+                  Tabledata "37" = IMD, Tabledata "38" = IMD, Tabledata "39" = IMD, Tabledata "45" = IMD, Tabledata "46" = IMD,
+                  Tabledata "81" = IMD, Tabledata "110" = IMD, TableData "111" = IMD, TableData "112" = IMD, TableData "113" = IMD,
+                  TableData "114" = IMD, TableData "115" = IMD, TableData "120" = IMD, Tabledata "121" = IMD, Tabledata "122" = IMD,
+                  Tabledata "123" = IMD, Tabledata "124" = IMD, Tabledata "125" = IMD, Tabledata "169" = IMD, Tabledata "253" = IMD,
+                  Tabledata "254" = IMD, Tabledata "271" = IMD, Tabledata "339" = IMD, Tabledata "379" = IMD, Tabledata "380" = IMD,
+                  Tabledata "5802" = IMD, tabledata "6650" = IMD, tabledata "6660" = IMD;
 
-    var
-        CancelledByUserErr: Label 'The operation was cancelled by the user.';
 
     procedure CalcRecordsInTable(TableNoToCheck: Integer): Integer
     var
@@ -44,7 +48,7 @@ codeunit 50000 "Admin Tool Mgt."
         if not Confirm(CheckRelationsQst, false) then
             exit;
 
-        Window.OPEN(CheckingRelationsTxt);
+        Window.Open(CheckingRelationsTxt);
 
         RecordDeletionRelError.DeleteAll();
 
@@ -55,48 +59,48 @@ codeunit 50000 "Admin Tool Mgt."
                 TableMetadata.SetRange(ID, RecordDeletion."Table ID");
                 TableMetadata.SetRange(TableType, TableMetadata.TableType::Normal);
                 if not TableMetadata.IsEmpty then begin
-                    RecRef.OPEN(RecordDeletion."Table ID");
+                    RecRef.Open(RecordDeletion."Table ID");
                     if RecRef.FindSet() then
                         repeat
-                            field.SetRange(TableNo, RecordDeletion."Table ID");
-                            field.SetRange(Class, field.Class::Normal);
-                            field.SetFilter(RelationTableNo, '<>0');
-                            if field.FindSet() then
+                            Field.SetRange(TableNo, RecordDeletion."Table ID");
+                            Field.SetRange(Class, Field.Class::Normal);
+                            Field.SetFilter(RelationTableNo, '<>0');
+                            if Field.FindSet() then
                                 repeat
-                                    FieldRef := RecRef.field(field."No.");
-                                    if (Format(FieldRef.VALUE) <> '') and (FORMAT(FieldRef.VALUE) <> '0') then begin
-                                        RecRef2.OPEN(field.RelationTableNo);
+                                    FieldRef := RecRef.Field(Field."No.");
+                                    if (Format(FieldRef.Value) <> '') and (FORMAT(FieldRef.Value) <> '0') then begin
+                                        RecRef2.Open(Field.RelationTableNo);
                                         SkipCheck := false;
-                                        if field.RelationFieldNo <> 0 then begin
-                                            FieldRef2 := RecRef2.field(field.RelationFieldNo)
+                                        if Field.RelationFieldNo <> 0 then begin
+                                            FieldRef2 := RecRef2.Field(Field.RelationFieldNo)
                                         end else begin
-                                            KeyRec.Get(field.RelationTableNo, 1);  // PK
-                                            Field2.SetRange(TableNo, field.RelationTableNo);
+                                            KeyRec.Get(Field.RelationTableNo, 1);  // PK
+                                            Field2.SetRange(TableNo, Field.RelationTableNo);
                                             Field2.SetFilter(FieldName, CopyStr(KeyRec.Key, 1, 30));
                                             if Field2.FindFirst() then // No Match if Dual PK
-                                                FieldRef2 := RecRef2.field(Field2."No.")
+                                                FieldRef2 := RecRef2.Field(Field2."No.")
                                             else
                                                 SkipCheck := true;
                                         end;
-                                        if (FieldRef.TYPE = FieldRef2.TYPE) and (FieldRef.LENGTH = FieldRef2.LENGTH) and (not SkipCheck) then begin
-                                            FieldRef2.SetRange(FieldRef.VALUE);
+                                        if (FieldRef.Type = FieldRef2.Type) and (FieldRef.Length = FieldRef2.Length) and (not SkipCheck) then begin
+                                            FieldRef2.SetRange(FieldRef.Value);
                                             if not RecRef2.FindFirst() then begin
-                                                RecordDeletionRelError.SetRange("Table ID", RecRef.NUMBER);
+                                                RecordDeletionRelError.SetRange("Table ID", RecRef.Number);
                                                 if RecordDeletionRelError.FindLast() then
                                                     EntryNo := RecordDeletionRelError."Entry No." + 1
                                                 else
                                                     EntryNo := 1;
                                                 RecordDeletionRelError.Init();
-                                                RecordDeletionRelError."Table ID" := RecRef.NUMBER;
+                                                RecordDeletionRelError."Table ID" := RecRef.Number;
                                                 RecordDeletionRelError."Entry No." := EntryNo;
-                                                RecordDeletionRelError."Field No." := FieldRef.NUMBER;
-                                                RecordDeletionRelError.Error := CopyStr(StrSubstNo(NotExistsTxt, Format(RecRef.GETPOSITION()), Format(FieldRef2.NAME), Format(FieldRef.VALUE), Format(RecRef2.NAME)), 1, 250);
+                                                RecordDeletionRelError."Field No." := FieldRef.Number;
+                                                RecordDeletionRelError.Error := CopyStr(StrSubstNo(NotExistsTxt, Format(RecRef.GetPosition()), Format(FieldRef2.Name), Format(FieldRef.Value), Format(RecRef2.Name)), 1, 250);
                                                 RecordDeletionRelError.Insert();
                                             end;
                                         end;
                                         RecRef2.Close();
                                     end;
-                                until field.Next() = 0;
+                                until Field.Next() = 0;
                         until RecRef.Next() = 0;
                     RecRef.Close();
                 end;
@@ -107,8 +111,10 @@ codeunit 50000 "Admin Tool Mgt."
     procedure ClearRecordsToDelete();
     var
         RecordDeletion: Record "Record Deletion";
+        MarkDeletionRemovedMsg: Label 'The checkbox %1 was succesfully reset for the tables.';
     begin
         RecordDeletion.ModifyAll("Delete Records", false);
+        Message(MarkDeletionRemovedMsg, RecordDeletion.FieldCaption("Delete Records"));
     end;
 
     procedure DeleteRecords();
@@ -122,13 +128,15 @@ codeunit 50000 "Admin Tool Mgt."
         DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?';
         Options: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
         DeletingRecordsTxt: Label 'Deleting Records!\Table: #1#######', Comment = '%1 = Table ID';
+        NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.';
+        CancelledByUserErr: Label 'The operation was cancelled by the user.';
         DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.';
-        NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the field %1 in the tables where you want to delete records before you run this operation.';
     begin
         Selection := StrMenu(Options, 1);
         case Selection of
             0: // Cancelled
-                Error(CancelledByUserErr);
+               //     Error(CancelledByUserErr);
+                exit;
             1: // Without trigger
                 Clear(Runtrigger);
             2: // With trigger
@@ -148,7 +156,7 @@ codeunit 50000 "Admin Tool Mgt."
         if RecordDeletion.FindSet() then
             repeat
                 Window.Update(1, Format(RecordDeletion."Table ID"));
-                RecRef.OPEN(RecordDeletion."Table ID");
+                RecRef.Open(RecordDeletion."Table ID");
                 RecRef.DeleteAll(RunTrigger);
                 RecRef.Close();
                 RecordDeletionRelError.SetRange("Table ID", RecordDeletion."Table ID");
@@ -164,18 +172,71 @@ codeunit 50000 "Admin Tool Mgt."
     var
         AllObjWithCaption: Record AllObjWithCaption;
         RecordDeletion: Record "Record Deletion";
+        Window: Dialog;
+        CurrRec: Integer;
+        NoOfRecs: Integer;
+        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.';
+        NoRecordFoundMsg: Label 'No record could be found in table %1.';
+        ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
     begin
         AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
         // Do not include system tables
         AllObjWithCaption.SetFilter("Object ID", '< %1', 2000000001);
-        if AllObjWithCaption.FindSet() then
+        if AllObjWithCaption.FindSet() then begin
+            Window.Open(ProcessingDataTxt);
+            NoOfRecs := AllObjWithCaption.Count();
             repeat
+                CurrRec += 1;
+                if NoOfRecs <= 100 then
+                    Window.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
+                else
+                    if CurrRec mod (NoOfRecs div 100) = 0 then
+                        Window.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
+
                 RecordDeletion.Init();
                 RecordDeletion."Table ID" := AllObjWithCaption."Object ID";
                 RecordDeletion.Company := CompanyName;
                 if RecordDeletion.Insert() then;
             until AllObjWithCaption.Next() = 0;
+            Message(UpdateFinishedMsg, CurrRec);
+        end else
+            Message(NoRecordFoundMsg, AllObjWithCaption.TableCaption());
+    end;
 
+    procedure OpenTable(TableId: Integer)
+    var
+        WebUrl: Text;
+    begin
+        WebUrl := System.GetUrl(ClientType::Web);
+        if WebUrl.Contains('?') then
+            WebUrl := StrSubstNo('%1&table=%2', WebUrl, TableId)
+        else
+            WebUrl := StrSubstNo('%1/?table=%2', WebUrl, TableId);
+        Hyperlink(WebUrl);
+    end;
+
+    procedure PublishApp()
+    var
+        WebUrl: Text;
+        Selection: Integer;
+        Options: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
+        Instructions: Label 'The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.';
+    begin
+        Selection := StrMenu(Options, 1, Instructions);
+        case Selection of
+            1:
+                begin
+                    WebUrl := StrSubstNo('%1/?page=%2', System.GetUrl(ClientType::Web), 2507);
+                    Hyperlink(WebUrl);
+                end;
+            2:
+                begin
+                    OpenDeployerReadme();
+                end;
+            else
+                exit;
+        // Error(CancelledByUserErr);
+        end;
     end;
 
     procedure SetSuggestedTable(TableID: Integer);
@@ -195,8 +256,8 @@ codeunit 50000 "Admin Tool Mgt."
     begin
         Selection := StrMenu(Options, 1);
         case Selection of
-            0: // Cancelled
-                Error(CancelledByUserErr);
+            // 0: // Cancelled
+            //     Error(CancelledByUserErr);
             1: // Transactional
                 SuggestTransactionalRecordsToDelete();
             2: // Unlicensed
@@ -208,8 +269,15 @@ codeunit 50000 "Admin Tool Mgt."
     var
         RecordDeletion: Record "Record Deletion";
         RecsSuggestedCount: Integer;
-        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 number of unlicensed records';
+        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 Number of unlicensed records';
+        ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
+        ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
+        PowershellMgt: Codeunit "Powershell Mgt.";
     begin
+        if IsDeveloperLicense() then
+            if Confirm(ImportCustLicenseQst, false) then
+                PowershellMgt.ImportLicense();
+
         RecordDeletion.SetFilter("Table ID", '> %1', 49999);
         if RecordDeletion.FindSet(false) then
             repeat
@@ -221,11 +289,21 @@ codeunit 50000 "Admin Tool Mgt."
             until RecordDeletion.Next() = 0;
 
         Message(RecordsSuggestedMsg, RecsSuggestedCount);
+        if Confirm(ImportLicenseQst, false) then
+            PowershellMgt.ImportLicense();
     end;
 
     procedure ViewRecords(RecordDeletion: Record "Record Deletion");
     begin
         Hyperlink(GetUrl(ClientType::Current, CompanyName, ObjectType::Table, RecordDeletion."Table ID"));
+    end;
+
+    local procedure IsDeveloperLicense(): Boolean
+    var
+        LicenseInformation: Record "License Information";
+    begin
+        LicenseInformation.SetFilter(Text, '@*solution developer*');
+        exit(not LicenseInformation.IsEmpty());
     end;
 
     local procedure IsRecordInLicense(TableID: Integer): Boolean
@@ -248,7 +326,8 @@ codeunit 50000 "Admin Tool Mgt."
     local procedure IsRecordStandardTable(TableID: Integer): Boolean
     begin
         case true of
-            //5005270 - 5005363
+            // 5005270 - 5005363
+            //German Localization?
             (TableID >= Database::"Delivery Reminder Header") and (TableID <= Database::"Phys. Invt. Diff. List Buffer"):
                 exit(true);
             //99000750 - 99008535
@@ -261,12 +340,15 @@ codeunit 50000 "Admin Tool Mgt."
         exit(false);
     end;
 
-    procedure OpenTable(TableId: Integer)
-    var
-        WebUrl: Text;
+    local procedure OpenDeployerReadme()
     begin
-        WebUrl := StrSubstNo('%1/?table=%2', System.GetUrl(ClientType::Web), TableId);
-        Hyperlink(WebUrl);
+        // TODO Update link
+        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
+    end;
+
+    internal procedure OpenReadme()
+    begin
+        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
     end;
 
     local procedure SuggestTransactionalRecordsToDelete()
@@ -274,7 +356,7 @@ codeunit 50000 "Admin Tool Mgt."
         RecordDeletion: Record "Record Deletion";
         AfterSuggestionDeleteCount: Integer;
         BeforeSuggestionDeleteCount: Integer;
-        RecordsWereSuggestedMsg: Label '%1 records to delete were suggested.', Comment = '%1 = number of suggested records';
+        RecordsWereSuggestedMsg: Label '%1 records to delete were suggested.', Comment = '%1 = Number of suggested records';
     begin
         RecordDeletion.SetRange("Delete Records", true);
         BeforeSuggestionDeleteCount := RecordDeletion.Count();
@@ -331,6 +413,8 @@ codeunit 50000 "Admin Tool Mgt."
         SetSuggestedTable(Database::"Email Item");
         SetSuggestedTable(Database::"Employee Absence");
         SetSuggestedTable(Database::"Error Buffer");
+        SetSuggestedTable(Database::"Error Message");
+        SetSuggestedTable(Database::"Error Message Register");
         SetSuggestedTable(Database::"Exch. Rate Adjmt. Reg.");
         SetSuggestedTable(Database::"FA G/L Posting Buffer");
         SetSuggestedTable(Database::"FA Ledger Entry");
@@ -378,6 +462,8 @@ codeunit 50000 "Admin Tool Mgt."
         SetSuggestedTable(Database::"Incoming Document");
         SetSuggestedTable(Database::"Ins. Coverage Ledger Entry");
         SetSuggestedTable(Database::"Insurance Register");
+        SetSuggestedTable(Database::"Integration Record");
+        SetSuggestedTable(Database::"Integration Record Archive");
         SetSuggestedTable(Database::"Inter. Log Entry Comment Line");
         SetSuggestedTable(Database::"Interaction Log Entry");
         SetSuggestedTable(Database::"Internal Movement Header");
@@ -425,6 +511,7 @@ codeunit 50000 "Admin Tool Mgt."
         SetSuggestedTable(Database::"Lot No. Information");
         SetSuggestedTable(Database::"Maintenance Ledger Entry");
         SetSuggestedTable(Database::"Maintenance Registration");
+        SetSuggestedTable(Database::"My Notifications");
         SetSuggestedTable(Database::"Opportunity Entry");
         SetSuggestedTable(Database::"Order Promising Line");
         SetSuggestedTable(Database::"Order Tracking Entry");
@@ -567,6 +654,7 @@ codeunit 50000 "Admin Tool Mgt."
         SetSuggestedTable(Database::"Value Entry");
         SetSuggestedTable(Database::"VAT Entry");
         SetSuggestedTable(Database::"VAT Rate Change Log Entry");
+        SetSuggestedTable(Database::"VAT Registration Log");
         SetSuggestedTable(Database::"VAT Report Header");
         SetSuggestedTable(Database::"VAT Report Line");
         SetSuggestedTable(Database::"VAT Report Line Relation");
@@ -597,8 +685,28 @@ codeunit 50000 "Admin Tool Mgt."
         SetSuggestedTable(Database::Job);
         SetSuggestedTable(Database::Opportunity);
 
+        // COSMO Tables
+        // DMS
+        SetSuggestedTable(5306025); // CCS DMS Metadata 
+        SetSuggestedTable(5306030); // CCS DMS Document Entry
+
+        // Mobile Solution
+        SetSuggestedTable(5307960); // MS - Mobile Scan Log Entry
+
         RecordDeletion.SetRange("Delete Records", true);
         AfterSuggestionDeleteCount := RecordDeletion.Count();
         Message(RecordsWereSuggestedMsg, AfterSuggestionDeleteCount - BeforeSuggestionDeleteCount);
+    end;
+
+    internal procedure UpdateTablesIfEmpty()
+    var
+        RecordDeletion: Record "Record Deletion";
+        UpdateTablesQst: Label 'The overview of all tables is empty so so far. Do you want to get the current state of all tables in the database?';
+    begin
+        if not RecordDeletion.IsEmpty() then
+            exit;
+
+        // if Confirm(UpdateTablesQst, true) then
+        InsertUpdateTables();
     end;
 }

@@ -1,4 +1,4 @@
-codeunit 50001 "License Mgt."
+codeunit 51001 "Powershell Mgt."
 {
     procedure ImportLicense()
     var
@@ -11,14 +11,13 @@ codeunit 50001 "License Mgt."
         BusyDlg: Label 'Busy importing......';
         FileFilter: Label 'License (*.flf)|*.flf|All Files (*.*)|*.*';
         NAVAdminTool: Label 'NavAdminTool.ps1';
-        CancelledErr: Label 'Operation cancelled by user.';
         SelectFileTxt: Label 'Select License File';
         FileName: Text;
     begin
         FileName := FileMgt.BLOBImportWithFilter(TempBlob, SelectFileTxt, '', FileFilter, AllFilesFilterTxt);
 
         if FileName = '' then
-            Error(CancelledErr);
+            exit;
 
         FileName := TemporaryPath + FileName;
 
@@ -26,23 +25,23 @@ codeunit 50001 "License Mgt."
             Erase(FileName);
 
         FileMgt.BLOBExportToServerFile(TempBlob, FileName);
+
+
         ActiveSession.Get(ServiceInstanceId(), SessionId());
 
-        PowerShellRunner := PowerShellRunner.CreateInSandbox;
+        PowerShellRunner := PowerShellRunner.CreateInSandbox();
         PowerShellRunner.WriteEventOnError := true;
         PowerShellRunner.ImportModule(ApplicationPath + NAVAdminTool);
         PowerShellRunner.AddCommand('Import-NAVServerLicense');
         Powershellrunner.AddParameter('ServerInstance', ActiveSession."Server Instance Name");
         PowerShellRunner.AddParameter('LicenseFile', FileName);
-        PowerShellRunner.BeginInvoke;
+        PowerShellRunner.BeginInvoke();
 
         Window.Open(BusyDlg);
 
-        while not PowerShellRunner.IsCompleted do
+        while not PowerShellRunner.IsCompleted() do
             Sleep(1000);
 
         Window.Close();
     end;
-
-
 }

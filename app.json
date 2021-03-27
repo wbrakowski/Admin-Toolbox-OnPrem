@@ -17,11 +17,11 @@
   "application": "17.0.0.0",
   "idRanges": [
     {
-      "from": 50000,
-      "to": 50099
+      "from": 51000,
+      "to": 51010
     }
   ],
-  "contextSensitiveHelpUrl": "https://Record-Deletion-Tool.com/help/",
+  "contextSensitiveHelpUrl": "https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md",
   "showMyCode": true,
   "runtime": "5.0",
   "target": "OnPrem",

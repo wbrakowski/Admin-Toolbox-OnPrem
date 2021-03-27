@@ -1,4 +1,4 @@
-page 50002 "License Information"
+page 51002 "License Information"
 {
     ApplicationArea = All;
     Caption = 'License Information';
@@ -35,9 +35,9 @@ page 50002 "License Information"
 
                 trigger OnAction()
                 var
-                    LicenseMgt: Codeunit "License Mgt.";
+                    PowershellMgt: Codeunit "Powershell Mgt.";
                 begin
-                    LicenseMgt.ImportLicense();
+                    PowershellMgt.ImportLicense();
                 end;
             }
         }

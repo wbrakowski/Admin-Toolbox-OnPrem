@@ -1,11 +1,13 @@
-page 50000 "Admin Toolbox"
+page 51001 "Admin Toolbox"
 {
     ApplicationArea = All;
     Caption = 'Admin Toolbox';
-    DataCaptionFields = "Table Name";
-    PageType = ListPlus;
-    SourceTable = "Record Deletion";
+    PageType = Document;
+    SourceTable = Integer;
     UsageCategory = Lists;
+    InsertAllowed = false;
+    SaveValues = true;
+    DataCaptionExpression = '';
     layout
     {
         area(content)
@@ -21,72 +23,27 @@ page 50000 "Admin Toolbox"
 
                     trigger OnDrillDown()
                     begin
-                        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
+                        AdminToolMgt.OpenReadme();
                     end;
                 }
             }
-            group(Options)
+            part(Tables; "Record Deletion")
             {
-                Caption = 'Options';
-                field(View; Appearance)
-                {
-                    ApplicationArea = All;
-                    Caption = 'View';
-
-                    trigger OnValidate()
-                    begin
-                        UpdateControlVisibilities();
-                    end;
-                }
-            }
-            group(Tables)
-            {
-                Visible = not HideDeletionArea;
-                Caption = 'Tables';
-                repeater(General)
-                {
-                    field("Table ID"; "Table ID")
-                    {
-                        ApplicationArea = All;
-                    }
-                    field("Table Name"; "Table Name")
-                    {
-                        ApplicationArea = All;
-                    }
-                    // field(NoOfRecords; AdminToolMgt.CalcRecordsInTable("Table ID"))
-                    // field(NoOfRecords; AdminToolMgt.CalcRecordsInTable("Table ID"))
-                    // {
-                    //     ApplicationArea = All;
-                    //     Caption = 'No. of Records';
-
-                    // }
-
-                    field("No. of Table Relation Errors"; "No. of Table Relation Errors")
-                    {
-                        ApplicationArea = All;
-                    }
-                    field("No. of Records"; Rec."No. of Records")
-                    {
-                        ApplicationArea = All;
-                    }
-                    field("Delete Records"; "Delete Records")
-                    {
-                        ApplicationArea = All;
-                    }
-                }
+                ApplicationArea = All;
+                // Visible = ShowLicenseArea;
             }
 
             part(LicenseInformation; "License Information")
             {
                 ApplicationArea = All;
-                Visible = not HideLicenseArea;
+                // Visible = ShowLicenseArea;
             }
 
             group(Information)
             {
                 Caption = 'Information';
                 Editable = false;
-                Visible = not HideInformationArea;
+                // Visible = ShowInformationArea;
                 group(Session)
                 {
                     Caption = 'Session';
@@ -261,6 +218,59 @@ page 50000 "Admin Toolbox"
                         end;
                     }
                 }
+                group(License)
+                {
+                    Caption = 'License';
+                    field(LicensePermissionLbl; LicensePermissionLbl)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Editable = false;
+                        ShowCaption = false;
+
+                        trigger OnDrillDown()
+                        begin
+                            AdminToolMgt.OpenTable(Database::"License Permission");
+                        end;
+                    }
+                }
+                group(Select)
+                {
+                    Caption = 'Table Selector';
+                    field(SelectedTableNoText; SelectedTableNoText)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Editable = false;
+                        ShowCaption = false;
+
+                        trigger OnAssistEdit()
+                        var
+                            AllObjWithCaption: Record AllObjWithCaption;
+                            TableObjects: Page "Table Objects";
+                        begin
+                            if Page.RunModal(Page::"Table Objects", AllObjWithCaption) = Action::LookupOK then begin
+                                SelectedTableNo := AllObjWithCaption."Object ID";
+                                SelectedTableNoText := Format(SelectedTableNo);
+                                SelectedTableTxt := AllObjWithCaption."Object Caption";
+                            end;
+                        end;
+                    }
+                    field(SelectedTableTxt; SelectedTableTxt)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Editable = false;
+                        ShowCaption = false;
+
+                        trigger OnDrillDown()
+                        var
+                            NoTableNoSelectedErr: Label 'Please select a "Table No." before running this link.';
+                        begin
+                            if SelectedTableNo <> 0 then
+                                AdminToolMgt.OpenTable(SelectedTableNo)
+                            else
+                                Error(NoTableNoSelectedErr);
+                        end;
+                    }
+                }
             }
         }
     }
@@ -277,11 +287,11 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
 
                 trigger OnAction()
                 begin
                     AdminToolMgt.InsertUpdateTables();
+                    CurrPage.Update(false);
                 end;
             }
             action(SuggestsRecords)
@@ -293,10 +303,10 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
                 trigger OnAction()
                 begin
                     AdminToolMgt.SuggestRecordsToDelete();
+                    CurrPage.Update(false);
                 end;
             }
             action(ClearRecords)
@@ -308,10 +318,10 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
                 trigger OnAction()
                 begin
                     AdminToolMgt.ClearRecordsToDelete();
+                    CurrPage.Update(false);
                 end;
             }
             action(DeleteRecords)
@@ -323,10 +333,10 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
                 trigger OnAction()
                 begin
                     AdminToolMgt.DeleteRecords();
+                    CurrPage.Update(false);
                 end;
             }
             action(CheckTableRelations)
@@ -338,10 +348,10 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
                 trigger OnAction()
                 begin
                     AdminToolMgt.CheckTableRelations();
+                    CurrPage.Update(false);
                 end;
             }
             action(ViewRecords)
@@ -353,10 +363,29 @@ page 50000 "Admin Toolbox"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                Visible = not HideDeletionArea;
                 trigger OnAction()
+                var
+                    RecordDeletion: Record "Record Deletion";
                 begin
-                    AdminToolMgt.ViewRecords(Rec);
+                    CurrPage.Tables.Page.GetRecord(RecordDeletion);
+                    AdminToolMgt.ViewRecords(RecordDeletion);
+                end;
+            }
+            action(PublishApp)
+            {
+                ApplicationArea = All;
+                Caption = 'Publish App';
+                Image = Installments;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+
+                trigger OnAction()
+                var
+                    AdminToolMgt: Codeunit "Admin Tool Mgt.";
+                begin
+                    AdminToolMgt.PublishApp();
                 end;
             }
         }
@@ -364,61 +393,32 @@ page 50000 "Admin Toolbox"
     }
     var
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
-        HideDeletionArea: Boolean;
-        HideInformationArea: Boolean;
-        HideLicenseArea: Boolean;
-        Appearance: Enum Appearance;
-        LastAppearance: Enum Appearance;
+        SelectedTableNo: Integer;
         ActiveSessionLbl: Label 'Active Session';
-        SessionEventLbl: Label 'Session Event';
-        EventSubscriptionLbl: Label 'Event Subscription';
-        TableMetadataLbl: Label 'Table Metadata';
-        CodeunitMetadataLbl: Label 'Codeunit Metadata';
-        PageMetadataLbl: Label 'Page Metadata';
         AllObjectsLbl: Label 'All Objects';
+        APIWebhookNotificationLbl: Label 'API Webhook Notification';
+        APIWebhookSubscriptionLbl: Label 'API Webhook Subscription';
+        CodeunitMetadataLbl: Label 'Codeunit Metadata';
+        EventSubscriptionLbl: Label 'Event Subscription';
         FieldLbl: Label 'Field';
         KeyLbl: Label 'Key';
-        RecordLinkLbl: Label 'Record Link';
-        APIWebhookSubscriptionLbl: Label 'API Webhook Subscription';
-        APIWebhookNotificationLbl: Label 'API Webhook Notification';
         HowToLbl: Label 'Learn how to use this tool';
+        LicensePermissionLbl: Label 'License Permission';
+        PageMetadataLbl: Label 'Page Metadata';
+        RecordLinkLbl: Label 'Record Link';
+        SessionEventLbl: Label 'Session Event';
         SessionInformationLbl: Label 'Session Information';
+        TableMetadataLbl: Label 'Table Metadata';
+        SelectedTableNoText: Text;
+        SelectedTableTxt: Text;
 
-    trigger OnAfterGetCurrRecord()
+    trigger OnOpenPage()
+    var
+        NoTableSelectedLbl: Label 'No table to run selected';
+        ThreeDotsLbl: Label 'Use the three dots on the right to select a table that you want to run';
     begin
-        Appearance := LastAppearance;
-    end;
-
-    local procedure UpdateControlVisibilities()
-    begin
-        LastAppearance := Appearance;
-        case Appearance of
-            Appearance::All:
-                begin
-                    Clear(HideDeletionArea);
-                    Clear(HideLicenseArea);
-                    Clear(HideInformationArea);
-                end;
-            Appearance::License:
-                begin
-                    Clear(HideLicenseArea);
-                    HideDeletionArea := true;
-                    HideInformationArea := true;
-                end;
-            Appearance::Tables:
-                begin
-                    Clear(HideDeletionArea);
-                    HideLicenseArea := true;
-                    HideInformationArea := true;
-                end;
-            Appearance::Information:
-                begin
-                    Clear(HideInformationArea);
-                    HideLicenseArea := true;
-                    HideDeletionArea := true;
-                end;
-            else
-        // Here be dragons
-        end;
+        SelectedTableTxt := NoTableSelectedLbl;
+        SelectedTableNoText := ThreeDotsLbl;
+        AdminToolMgt.UpdateTablesIfEmpty();
     end;
 }
