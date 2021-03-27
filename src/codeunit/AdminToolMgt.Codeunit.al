@@ -326,9 +326,11 @@ codeunit 51000 "Admin Tool Mgt."
     local procedure IsRecordStandardTable(TableID: Integer): Boolean
     begin
         case true of
-            // 5005270 - 5005363
-            //German Localization?
-            (TableID >= Database::"Delivery Reminder Header") and (TableID <= Database::"Phys. Invt. Diff. List Buffer"):
+            //5005270 - 5005363 'de' localization
+            (TableID >= 5005270) and (TableID <= 5005363):
+                exit(true);
+            //7000002 - 7000024 'es' localization
+            (TableID >= 7000002) and (TableID <= 7000024):
                 exit(true);
             //99000750 - 99008535
             (TableID >= Database::"Work Shift") and (TableID <= Database::TempBlob):
