@@ -54,7 +54,7 @@ It could for example be that you have been testing transactions in a company tha
 It is also useful if you just want to have a clean company without transactions for a demo, training or testing session. </br> 
 
 Use the PageAction "Insert/Update Tables". This will populate the list with all the tables that are in the database. </br>
-The "Insert/Update Tables" function will be automatically executed the first time you open the page to insert the tables. </br>
+The "Insert/Update Tables" function will be automatically executed the first time you open the page. </br>
 System tables are excluded here. If you afterwards add new tables you can run this function again to have them added. </br>
 
 ![InsertTables](images/InsertTables.png)
@@ -215,3 +215,32 @@ By clicking on a link a new tab will be created that leads you to the page. </br
 ![SessionInformation](images/SessionInformation.png) 
 
 ![SessionInformationTable](images/SessionInformationTable.png) 
+
+### How to Install the External Deployer
+
+The following content is copied from waldo's original blog post. [More info about the external deployer: Deploying from DevOps the right way: enabling External Deployment in OnPrem Business Central environments](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/ "More info about the external deployer: Deploying from DevOps the right way: enabling External Deployment in OnPrem Business Central environments")
+
+>Disclaimer
+>The tool is a hack, nothing more than that. We simulate the behavior of what we think happens on the SaaS environment when you upload an Extension through the Automation API. </br> 
+>So, the tool is “as is”, there is no official support other than me not want you to suffer problems with it ;-). </br>
+>There is a github where you can share your feedback. </br>
+>The tool is dependent on how Business Central will evolve in this matter – and we hope this will “just work” for many updates to come. </br>
+>It will work on an decent install of >Business Central. Not on any kind of Copy/Paste or other non-standard installation. </br>
+
+>So, we created a PowerShell module, that makes it pretty easy to enable the External Deployer on any OnPrem environment. </br>
+>In fact, with 4 lines of PowerShell, you’ll have it >up-and-running! </br>
+>Run this PowerShell on the environment that is running your NST where you would like to deploy to. </br>
+
+>1. Install ALOps.ExternalDeployer: this will install the PowerShell module on the machine </br>
+
+>install-module ALOps.ExternalDeployer -Force </br>
+>2. Load the module: this will simply load the necessary commandlets in memory: </br>
+
+>import-module ALOps.ExternalDeployer </br>
+>3. Install the External Deployer: this will install an agent that will take care of the app-publish and install whenever you upload an app through the Automation API, or the >upload page.
+
+>Install-ALOpsExternalDeployer </br>
+>4. Link the ExternalDeployer to right NST: it will update and restart the NST with the settings needed for the External Deployer. </br>
+
+>New-ALOpsExternalDeployer -ServerInstance BC"
+
