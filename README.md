@@ -233,14 +233,14 @@ The following content is copied from waldo's original blog post. [More info abou
 
 >1. Install ALOps.ExternalDeployer: this will install the PowerShell module on the machine </br>
 
->install-module ALOps.ExternalDeployer -Force </br>
+><b>install-module ALOps.ExternalDeployer -Force </b></br>
 >2. Load the module: this will simply load the necessary commandlets in memory: </br>
 
->import-module ALOps.ExternalDeployer </br>
+><b>import-module ALOps.ExternalDeployer </b></br>
 >3. Install the External Deployer: this will install an agent that will take care of the app-publish and install whenever you upload an app through the Automation API, or the >upload page.
 
->Install-ALOpsExternalDeployer </br>
+><b>Install-ALOpsExternalDeployer </b></br>
 >4. Link the ExternalDeployer to right NST: it will update and restart the NST with the settings needed for the External Deployer. </br>
 
->New-ALOpsExternalDeployer -ServerInstance BC"
+><b>New-ALOpsExternalDeployer -ServerInstance BC" </b>
 
