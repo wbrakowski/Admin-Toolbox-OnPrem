@@ -4,7 +4,8 @@ I've combined features from a few blog posts into one single app called "Admin-T
 - [Record Deletion Tool, Waldemar Brakowski](https://navinsights.net/2020/04/02/record-deletion-tool/ "Record Deletion Tool, Waldemar Brakowski")
 - [View License Information, Waldo](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/ "View License Information, Waldo")
 - [Import Licenses, Neil Roberts](https://www.imbatman.info/post/using-powershell-in-microsoft-al-for-business-central-onprem "Import Licenses, Neil Roberts")
-- [Not out of the box information for consultants, Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/ "Not out of the box information for consultants, Waldo") </br>
+- [Not out of the box information for consultants, Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/ "Not out of the box information for consultants, Waldo") 
+- [Enabling External Deployment in OnPrem Business Central Environments](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/ "Enabling External Deployment in OnPrem Business Central Environments") </br>
 
 Currently this page is only for OnPrem, because license information can only be displayed OnPrem and for the license import DotNet is used. </br>
 If there is enough demand, I can create a SaaS version without the license area. </br> 
@@ -13,16 +14,12 @@ In addition, I have created a How To for consultants so that they can upload the
 
 ## How To Install the Toolbox
 
-To enable consultants to use this app, I compiled it for the different Business Central versions. </br>
-You can download these different apps from a separate [GitHub Repository](https://github.com/wbrakowski/Admin-Toolbox-Apps "GitHub Repository"). </br> 
-
-The [readme of the repository](https://github.com/wbrakowski/Admin-Toolbox-Apps/blob/main/README.md "readme of the repository") describes the individual steps for the installation. </br>
+Clone this repository. Modify the app.json so it fits your Business Central version. Move the correct powershell runner from the folder "powershellrunners" to the folder ".netpackages". Make sure that there is only one powershell runner dll in the folder ".netpackages" to avoid weird errors.
 
 Currently the following object numbers are used by the Admin Toolbox:
-- Codeunits 50000, 50001
-- Enum 50000
-- Table 50000, 50001
-- Page 50000-50002 </br>
+- Codeunits 51000, 51001
+- Table 51000, 51001
+- Page 51000-51003 </br>
 
 In the toolbox, the languages German and English are maintained.
 
@@ -32,9 +29,8 @@ After successful installation you will find the toolbox under the search term "A
 
 ![Search Toolbox](images/SearchToolbox.png)
 
-The toolbox is divided into four areas:
+The toolbox is divided into 3 areas:
 - How To
-- Options
 - License Information
 - Information </br>
 
@@ -43,12 +39,6 @@ The toolbox is divided into four areas:
 The link in the FastTab "How To" will take you directly to the readme you are reading right now. </br>
 
 ![Howto](images/Howto.png)
-
-You can use the "View" field to control the visibility of the controls in the page. </br>
-When you open the page, all controls are displayed at first. </br>
-If you change the view to "License", only the license information and the corresponding PageActions are displayed. </br>
-
-![ViewOptions](images/ViewOptions.png)
 
 ### Record Deletion Tool
 
@@ -64,6 +54,7 @@ It could for example be that you have been testing transactions in a company tha
 It is also useful if you just want to have a clean company without transactions for a demo, training or testing session. </br> 
 
 Use the PageAction "Insert/Update Tables". This will populate the list with all the tables that are in the database. </br>
+The "Insert/Update Tables" function will be automatically executed the first time you open the page to insert the tables. </br>
 System tables are excluded here. If you afterwards add new tables you can run this function again to have them added. </br>
 
 ![InsertTables](images/InsertTables.png)
@@ -77,15 +68,19 @@ The PageActrion "Suggest Records to Delete" can suggest records for you to delet
 - Suggest all transactional records to delete
 - Suggest unlicensed partner or custom records to delete
 
+![SuggestOptions](images/SuggestOptions.png)
+
 Use the first option to select the tables you typically want to delete records from when cleaning a company from transactional data. </br>
 
 Use the second option to suggest unlicensed partner or custom records to delete. </br>
 This may be useful if you used a developer license in the system at some point and created records with that license. </br>
 Now you want to switch back to the customer license and have errors in the system because of these still existing records.
 <b>Note:</b> This second option must be used with the customer license. </br>
-After you have suggested the records, you need to import the developer license to delete the records. </br>
+If the tool detects that you are currently using a developer license, it will ask you if you want to import a customer license instead. </br>
+![DeveloperLicenseIsImported](images/DeveloperLicenseIsImported.png)
 
-![SuggestOptions](images/SuggestOptions.png)
+After you have suggested the records, you need to import the developer license to delete the records. </br>
+![ImportAnotherLicense](images/ImportAnotherLicense.png)
 
 <b>Note that the suggestion of tables may be incomplete or the logic faulty, but for my cases it worked. </br>
 You should always check the suggested records manually afterwards and select additional tables if necessary! </b> </br> 
@@ -177,6 +172,22 @@ After the check on the table relations has run you can set a filter on the "No. 
 
  As mentioned above, the table relation check is only doing a basic check, so don’t rely too much on it. </br>
  If you have a large amount of master data it might also take a while to run. </br>
+ 
+ ![PublishApp](images/PublishApp.png)
+
+You can publish apps from the Admin Toolbox. This functionality is disabled by default in OnPrem installations. </br>
+In order to publish an app, you first need to install the external deployer. </br>
+For this reason, a dialog opens. It asks you if you want to learn how to install the deployer or simply publish an app. </br>
+By clicking "Learn how to install the external deployer", a new tab will open that leads to the how-to guide. </br>
+If you have not already installed the deployer, you should first to this before you publish an app. </br>
+Otherwise you will run into errors when trying to publish the app. </br>
+
+![PublishAppDialog](images/PublishAppDialog.png)
+
+Once you have installed the deployer, run the "Publish App" PageAction again and select "Continue publishing app (a new tab will be opened)". </br>
+This will open the default "publish app" dialog like shown below: </br>
+
+![UploadAndDeploy](images/UploadAndDeploy.png)
 
  ### License Overview and Import
 
