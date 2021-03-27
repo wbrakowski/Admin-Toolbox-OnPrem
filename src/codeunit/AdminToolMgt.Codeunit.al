@@ -344,8 +344,7 @@ codeunit 51000 "Admin Tool Mgt."
 
     local procedure OpenDeployerReadme()
     begin
-        // TODO Update link
-        Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
+        Hyperlink('https://github.com/wbrakowski/Admin-Toolbox-OnPrem/blob/main/README.md#how-to-install-the-external-deployer');
     end;
 
     internal procedure OpenReadme()
