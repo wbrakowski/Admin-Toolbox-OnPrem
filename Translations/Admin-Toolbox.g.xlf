@@ -3,15 +3,15 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="Admin-Toolbox">
     <body>
       <group id="body">
-        <trans-unit id="Table 3025933651 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table ID</source>
+        <trans-unit id="Table 3025933651 - Field 3133801257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Table ID - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Company - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3025933651 - Field 3808951907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table Name</source>
+        <trans-unit id="Table 3025933651 - Field 2558632233 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Records</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Table Name - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Delete Records - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3025933651 - Field 2065755396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. of Records</source>
@@ -23,75 +23,40 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field No. of Table Relation Errors - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3025933651 - Field 2558632233 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete Records</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Delete Records - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3025933651 - Field 3133801257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Company</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Company - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3025933651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Tables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 3576430184 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Table 3025933651 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Table ID - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3025933651 - Field 3808951907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Field Table Name - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3576430184 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Entry No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Entry No. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3576430184 - Field 3531868071 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Field No.</source>
+        <trans-unit id="Table 3576430184 - Field 2248886284 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Field No. - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Error - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3576430184 - Field 3070320983 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field Name</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Field Name - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3576430184 - Field 2248886284 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Error</source>
+        <trans-unit id="Table 3576430184 - Field 3531868071 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Error - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Field No. - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3576430184 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Record Deletion Rel. Error</source>
+        <trans-unit id="Table 3576430184 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3576430184 - Control 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the Entry No.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Entry No. - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3576430184 - Control 2248886284 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the error text if an error occured</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Error - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3576430184 - Control 3070320983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the Field Name</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Field Name - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3576430184 - Control 3531868071 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the Field No.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Field No. - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3576430184 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the Table ID</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Table ID - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Table ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 1761793071" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 =&gt; %2 = '%3' does not exist in the '%4' table</source>
@@ -173,6 +138,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestRecordsToDelete - NamedType Options</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3094011 - NamedType 1104668713" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 records to delete were suggested.</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Number of suggested records</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestTransactionalRecordsToDelete - NamedType RecordsWereSuggestedMsg</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 2880885934" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 unlicensed partner or custom records were suggested.</source>
           <note from="Developer" annotates="general" priority="2">%1 Number of unlicensed records</note>
@@ -187,11 +157,6 @@
           <source>It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportCustLicenseQst</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3094011 - NamedType 1104668713" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 records to delete were suggested.</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Number of suggested records</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestTransactionalRecordsToDelete - NamedType RecordsWereSuggestedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1563965746 - NamedType 2339166430" size-unit="char" translate="yes" xml:space="preserve">
           <source>The overview of all tables is empty so so far. Do you want to get the current state of all tables in the database?</source>
@@ -228,91 +193,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 1498101029 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>How To</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Howto - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 419426744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Information</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Information - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 381004922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Session</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Session - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 1821775217 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Event</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Events - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 4138364935 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Metadata</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Metadata - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 2123958759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Object</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Object - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 3526110884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>API</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control API - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>License</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control License - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 3117446396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table Selector</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Select - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 2846103777 - Method 1845446376 - NamedType 1108583558" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please select a "Table No." before running this link.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableTxt - Method OnDrillDown - NamedType NoTableNoSelectedErr</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 529433861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Insert/Update Tables</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Suggest Records to Delete</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 666624329 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Clear Records to Delete</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3327007977 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete Records</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Check Table Relations</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2549815061 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>View Records</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Publish App</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3768843830 - NamedType 717117876" size-unit="char" translate="yes" xml:space="preserve">
           <source>Active Session</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -348,15 +228,15 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType FieldLbl</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - NamedType 3446133255" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Key</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType KeyLbl</note>
-        </trans-unit>
         <trans-unit id="Page 3768843830 - NamedType 868925555" size-unit="char" translate="yes" xml:space="preserve">
           <source>Learn how to use this tool</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType HowToLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - NamedType 3446133255" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Key</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType KeyLbl</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - NamedType 2192953510" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Permission</source>
@@ -398,6 +278,91 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method OnOpenPage - NamedType ThreeDotsLbl</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1498101029 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>How To</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Howto - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 419426744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Information</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Information - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3526110884 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>API</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control API - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1821775217 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Event</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Events - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control License - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 4138364935 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Metadata</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Metadata - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2123958759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Object - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3117446396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Selector</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Select - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2846103777 - Method 1845446376 - NamedType 1108583558" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please select a "Table No." before running this link.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableTxt - Method OnDrillDown - NamedType NoTableNoSelectedErr</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 381004922 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Session - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Table Relations</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 666624329 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clear Records to Delete</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3327007977 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Records</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 529433861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert/Update Tables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish App</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suggest Records to Delete</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2549815061 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Records</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1725951601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Information</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -407,6 +372,41 @@
           <source>Import License</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ImportLicense - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record Deletion Rel. Error</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Control 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Control 2248886284 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the error text if an error occured</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Error - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Control 3070320983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Field Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Control 3531868071 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Field No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3576430184 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Table ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Table ID - Property ToolTip</note>
         </trans-unit>
       </group>
     </body>
