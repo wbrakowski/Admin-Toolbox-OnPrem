@@ -688,11 +688,11 @@ codeunit 51000 "Admin Tool Mgt."
 
         // COSMO Tables
         // DMS
-        SetSuggestedTable(5306025); // CCS DMS Metadata 
-        SetSuggestedTable(5306030); // CCS DMS Document Entry
+        // SetSuggestedTable(5306025); // CCS DMS Metadata 
+        // SetSuggestedTable(5306030); // CCS DMS Document Entry
 
         // Mobile Solution
-        SetSuggestedTable(5307960); // MS - Mobile Scan Log Entry
+        // SetSuggestedTable(5307960); // MS - Mobile Scan Log Entry
 
         RecordDeletion.SetRange("Delete Records", true);
         AfterSuggestionDeleteCount := RecordDeletion.Count();
