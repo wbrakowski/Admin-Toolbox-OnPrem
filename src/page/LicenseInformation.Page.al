@@ -5,7 +5,7 @@ page 51002 "License Information"
     PageType = ListPart;
     SourceTable = "License Information";
     UsageCategory = Lists;
-    Editable = false;
+    Editable = true;
 
     layout
     {
@@ -15,9 +15,18 @@ page 51002 "License Information"
             {
                 field(Text; Rec.Text)
                 {
+                    Editable = false;
                     ApplicationArea = All;
                     ShowCaption = false;
+                    ToolTip = 'Specifies the value of the Text field';
                 }
+            }
+            field(DeveloperLicense; AdminToolMgt.IsDeveloperLicense())
+            {
+                Caption = 'Developer License';
+                ApplicationArea = All;
+                Editable = false;
+                ToolTip = 'Specifies if the active license is a developer license.';
             }
         }
     }
@@ -32,6 +41,7 @@ page 51002 "License Information"
                 Caption = 'Import License';
                 Image = Import;
                 Promoted = true;
+                ToolTip = 'Imports the selected license.';
 
                 trigger OnAction()
                 var
@@ -42,4 +52,6 @@ page 51002 "License Information"
             }
         }
     }
+    var
+        AdminToolMgt: Codeunit "Admin Tool Mgt.";
 }

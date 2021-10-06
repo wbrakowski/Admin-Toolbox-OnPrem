@@ -28,16 +28,13 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure CheckTableRelations();
     var
-        Field: Record Field;
-        Field2: Record Field;
+        Field, Field2 : Record Field;
         KeyRec: Record "Key";
         RecordDeletion: Record "Record Deletion";
         RecordDeletionRelError: Record "Record Deletion Rel. Error";
         TableMetadata: Record "Table Metadata";
-        RecRef: RecordRef;
-        RecRef2: RecordRef;
-        FieldRef: FieldRef;
-        FieldRef2: FieldRef;
+        RecRef, RecRef2 : RecordRef;
+        FieldRef, FieldRef2 : FieldRef;
         SkipCheck: Boolean;
         Window: Dialog;
         EntryNo: Integer;
@@ -173,8 +170,7 @@ codeunit 51000 "Admin Tool Mgt."
         AllObjWithCaption: Record AllObjWithCaption;
         RecordDeletion: Record "Record Deletion";
         Window: Dialog;
-        CurrRec: Integer;
-        NoOfRecs: Integer;
+        CurrRec, NoOfRecs : Integer;
         UpdateFinishedMsg: Label '%1 tables have succesfully been updated.';
         NoRecordFoundMsg: Label 'No record could be found in table %1.';
         ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
@@ -298,10 +294,23 @@ codeunit 51000 "Admin Tool Mgt."
         Hyperlink(GetUrl(ClientType::Current, CompanyName, ObjectType::Table, RecordDeletion."Table ID"));
     end;
 
-    local procedure IsDeveloperLicense(): Boolean
+    internal procedure GetTableCaption(TableID: Integer): Text[249]
+    var
+        AllObjWithCaption: Record AllObjWithCaption;
+    begin
+        AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
+        AllObjWithCaption.SetRange("Object ID", TableID);
+        AllObjWithCaption.FindFirst();
+        exit(AllObjWithCaption."Object Caption");
+    end;
+
+    internal procedure IsDeveloperLicense(): Boolean
     var
         LicenseInformation: Record "License Information";
+        EnvironmentInformation: Codeunit "Environment Information";
     begin
+        if not EnvironmentInformation.IsOnPrem() then
+            exit(false);
         LicenseInformation.SetFilter(Text, '@*solution developer*');
         exit(not LicenseInformation.IsEmpty());
     end;
@@ -333,7 +342,7 @@ codeunit 51000 "Admin Tool Mgt."
             (TableID >= 7000002) and (TableID <= 7000024):
                 exit(true);
             //99000750 - 99008535
-            (TableID >= Database::"Work Shift") and (TableID <= Database::TempBlob):
+            (TableID >= Database::"Work Shift") and (TableID <= 99008535):
                 exit(true);
             // Microsoft Localizations
             (TableID >= 100000) and (TableID <= 999999):
@@ -352,11 +361,31 @@ codeunit 51000 "Admin Tool Mgt."
         Hyperlink('https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md');
     end;
 
+    internal procedure OpenTableEditor(TableNo: Integer)
+    var
+        TableEditor: Page "Table Editor";
+    begin
+        TableEditor.SetParameters(TableNo);
+        TableEditor.Run();
+    end;
+
+    internal procedure ShowDevLicenseMessageIfNeeded()
+    var
+        AdminToolSetup: Record "Admin Toolbox Setup";
+        AdminToolMgt: Codeunit "Admin Tool Mgt.";
+        DevLicenseMsg: Label 'Attention, the developer license is currently active.';
+    begin
+        if not AdminToolSetup.Get() then
+            exit;
+
+        if AdminToolMgt.IsDeveloperLicense() and AdminToolSetup."Developer License Warning" then
+            Message(DevLicenseMsg);
+    end;
+
     local procedure SuggestTransactionalRecordsToDelete()
     var
         RecordDeletion: Record "Record Deletion";
-        AfterSuggestionDeleteCount: Integer;
-        BeforeSuggestionDeleteCount: Integer;
+        AfterSuggestionDeleteCount, BeforeSuggestionDeleteCount : Integer;
         RecordsWereSuggestedMsg: Label '%1 records to delete were suggested.', Comment = '%1 = Number of suggested records';
     begin
         RecordDeletion.SetRange("Delete Records", true);
@@ -463,8 +492,10 @@ codeunit 51000 "Admin Tool Mgt."
         SetSuggestedTable(Database::"Incoming Document");
         SetSuggestedTable(Database::"Ins. Coverage Ledger Entry");
         SetSuggestedTable(Database::"Insurance Register");
+#pragma warning disable AL0432
         SetSuggestedTable(Database::"Integration Record");
         SetSuggestedTable(Database::"Integration Record Archive");
+#pragma warning restore AL0432
         SetSuggestedTable(Database::"Inter. Log Entry Comment Line");
         SetSuggestedTable(Database::"Interaction Log Entry");
         SetSuggestedTable(Database::"Internal Movement Header");
@@ -709,5 +740,12 @@ codeunit 51000 "Admin Tool Mgt."
 
         // if Confirm(UpdateTablesQst, true) then
         InsertUpdateTables();
+    end;
+
+    internal procedure UserHasPermissions(): Boolean
+    var
+        AdminToolSetup: Record "Admin Toolbox Setup";
+    begin
+        exit(AdminToolSetup.ReadPermission());
     end;
 }
