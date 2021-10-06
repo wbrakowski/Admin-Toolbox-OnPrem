@@ -1,6 +1,6 @@
 # Admin-Toolbox-OnPrem
 
-I've combined features from different people into one single app called "Admin-Toolbox": </br>
+I've combined features from different blog posts into one single app called "Admin-Toolbox": </br>
 - [Record Deletion Tool, Waldemar Brakowski](https://navinsights.net/2020/04/02/record-deletion-tool/ "Record Deletion Tool, Waldemar Brakowski")
 - Table Editor, Yuri Mishin
 - [View License Information, Waldo](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/ "View License Information, Waldo")
