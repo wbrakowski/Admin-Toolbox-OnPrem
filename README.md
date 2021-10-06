@@ -12,6 +12,8 @@ I've combined features from different people into one single app called "Admin-T
 Currently this page is only for OnPrem, because license information can only be displayed OnPrem and for the license import DotNet is used. </br>
 If there is enough demand, I can create a SaaS version without the license area. </br> 
 
+<b>IMPORTANT: This app contains very powerful features. Be careful when using them. If not used with care, you may lose data or create a mess in your system. Please make sure to create backups of your company before deleting or modifying records with this app!</b>
+
 ## How To Install the Toolbox
 
 Clone this repository. Modify the app.json so it fits your Business Central version. Move the correct powershell runner from the folder "powershellrunners" to the folder ".netpackages". Make sure that there is only one powershell runner dll in the folder ".netpackages" to avoid weird errors.
