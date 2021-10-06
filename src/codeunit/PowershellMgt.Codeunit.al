@@ -1,5 +1,6 @@
 codeunit 51001 "Powershell Mgt."
 {
+    [Scope('OnPrem')]
     procedure ImportLicense()
     var
         ActiveSession: Record "Active Session";

@@ -3,6 +3,24 @@
   <file datatype="xml" source-language="en-US" target-language="de-DE" original="Admin-Toolbox">
     <body>
       <group id="body">
+        <trans-unit id="Table 3103611735 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Admin Toolbox Setup</source>
+          <target state="translated">Admin Toolbox Einrichtung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 1415170785 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Developer License Warning</source>
+          <target state="translated">Entwicklerlizenz Warnung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Developer License Warning - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target state="translated">Primärschlüssel</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3025933651 - Field 3133801257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Company</source>
           <target state="translated">Mandant</target>
@@ -159,6 +177,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType Instructions</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 1304378668 - NamedType 705934383" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Attention, the developer license is currently active.</source>
+          <target state="translated">Achtung, die Entwicklerlizenz ist derzeit aktiv.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowDevLicenseMessageIfNeeded - NamedType DevLicenseMsg</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 542369812 - NamedType 2346885236" size-unit="char" translate="yes" xml:space="preserve">
           <source>Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete</source>
           <target state="translated">Alle transaktionalen Datensätze zum Löschen vorschlagen,Alle nicht lizenzierten Partner- oder Customdatensätze vorschlagen.</target>
@@ -224,6 +248,18 @@
           <target state="translated">Wählen Sie die Lizenzdatei</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType SelectFileTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About the Admin Toolbox</source>
+          <target state="translated">Informationen zur Admin Toolbox</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This toolbox assists you with the following tasks: deleting or editing records, viewing or importing licenses, running tables, publishing apps.</source>
+          <target state="translated">Diese Toolbox unterstützt Sie bei folgenden Aufgaben: Löschen oder Bearbeiten von Datensätzen, Anzeigen oder Importieren von Lizenzen, Ausführen von Tabellen, Veröffentlichen von Apps.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Admin Toolbox</source>
@@ -327,6 +363,12 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method OnOpenPage - NamedType NoTableSelectedLbl</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 716454850 - NamedType 3139662988" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This page can only be accessed by users with super rights. If you want to see the information of this page, please contact your it department to grant you super rights.</source>
+          <target state="translated">Diese Seite kann nur von Benutzern mit Superrechten aufgerufen werden. Wenn Sie die Informationen dieser Seite sehen möchten, wenden Sie sich bitte an Ihre IT-Abteilung, um Ihnen Superrechte zu gewähren.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method OnOpenPage - NamedType NoAccessErr</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Method 716454850 - NamedType 375350412" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use the three dots on the right to select a table that you want to run</source>
           <target state="translated">Nutzen Sie die drei Punkte rechts, um eine Tabelle für die Ausführung auszuwählen</target>
@@ -338,6 +380,36 @@
           <target state="translated">How To</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Howto - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>How to use this app</source>
+          <target state="translated">So verwenden Sie diese App</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that opens the documentation.</source>
+          <target state="translated">Gibt den Link an, über den die Dokumentation geöffnet wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Click on the link to open the documentation for the Admin Toolbox.</source>
+          <target state="translated">Klicken Sie auf den Link, um die Dokumentation für die Admin Toolbox zu öffnen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 419426744 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About information</source>
+          <target state="translated">Über Informationen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Information - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 419426744 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The links in this fast tab will run the different tables.</source>
+          <target state="translated">Über die Links in dieser schnellen Registerkarte können Sie die verschiedenen Tabellen aufrufen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Information - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 419426744 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Information</source>
@@ -351,11 +423,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control API - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 1821775217 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Event</source>
-          <target state="translated">Event</target>
+        <trans-unit id="Page 3768843830 - Control 2107531320 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "API Webhook Notification".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "API Webhook Notification" ausgeführt wird.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Events - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control APIWebhookNotificationLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 163338518 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "API Webhook Subscription".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "API Webhook Subscription" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control APIWebhookSubscriptionLbl - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License</source>
@@ -363,11 +441,35 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control License - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2192953510 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "License Permission".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "License Permission" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control LicensePermissionLbl - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Control 4138364935 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Metadata</source>
           <target state="translated">Metadaten</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Metadata - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1506485208 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Codeunit Metadata".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "Codeunit Metadata" aufgerufen wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control CodeunitMetadataLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3860426192 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Page Metadata".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "Page Metadata" aufgerufen wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control PageMetadataLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 742817619 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Table Metadata".</source>
+          <target state="translated">Gibt den Link an, über die die Tabelle "Table Metadata" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control TableMetadataLbl - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 2123958759 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Object</source>
@@ -375,11 +477,59 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Object - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2999183383 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "AllObj".</source>
+          <target state="translated">Gibt den Linkan, über die die Tabelle "AllObj" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control AllObjectsLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 117816908 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Field".</source>
+          <target state="translated">Gibt den Link an, über die die Tabelle "Field" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control FieldLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3446133255 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Key".</source>
+          <target state="translated">Gibt den Link an, über die die Tabelle "Key" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control KeyLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 689028025 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Record Link".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "Record Link" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control RecordLinkLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3117446396 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About Table Selector</source>
+          <target state="translated">Über Table Selector</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Select - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3117446396 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the table selector if you want to run a specific table.</source>
+          <target state="translated">Verwenden Sie die Tabellenauswahl, wenn Sie eine bestimmte Tabelle ausführen möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Select - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Control 3117446396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table Selector</source>
           <target state="translated">Tabellenauswahl</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Select - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 659315829 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the table no. that you want to run with the table selector.</source>
+          <target state="translated">Gibt die Tabellennummer an, die Sie mit dem Tabellenselektor ausführen möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableNoText - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2846103777 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the table name that you want to run with the table selector.</source>
+          <target state="translated">Gibt den Tabellennamen an, den Sie mit dem Tabellenselektor ausführen möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableTxt - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 2846103777 - Method 1845446376 - NamedType 1108583558" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please select a "Table No." before running this link.</source>
@@ -393,11 +543,113 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Session - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 717117876 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Active Session".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "Active Session" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control ActiveSessionLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1443383892 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Session Event".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "Session Event" ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SessionEventLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 905130876 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the link that will run the table "Session".</source>
+          <target state="translated">Gibt den Link an, über den die Tabelle "SitzungSession ausgeführt wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SessionInformationLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2462631585 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About license information</source>
+          <target state="translated">Über Lizenzinformationen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control LicenseInformation - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2462631585 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the details of your current license or import a new license.</source>
+          <target state="translated">Zeigen Sie die Details Ihrer aktuellen Lizenz an oder importieren Sie eine neue Lizenz.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control LicenseInformation - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1061736343 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About tables</source>
+          <target state="translated">Über Tabellen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Tables - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 1061736343 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This is an overview of all the tables in the system. You can run the table, delete all records from a table, edit specific records, delete a selection of records.</source>
+          <target state="translated">Dies ist eine Übersicht über alle Tabellen im System. Sie können die Tabelle ausführen, alle Datensätze aus einer Tabelle löschen, bestimmte Datensätze bearbeiten, eine Auswahl von Datensätzen löschen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Tables - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1514883969 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About the setup</source>
+          <target state="translated">Über die Einrichtung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Setup - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1514883969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the setup of the Admin Toolbox.</source>
+          <target state="translated">Öffnet die Einrichtung der Admin Toolbox.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Setup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1514883969 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open the setup if you want to set up additional functionalities of the Admin Toolbox.</source>
+          <target state="translated">Öffnen Sie die Einrichtung, wenn Sie zusätzliche Funktionen der Admin Toolbox einrichten möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Setup - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1514883969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup</source>
+          <target state="translated">Einrichtung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check your tables for relation errors</source>
+          <target state="translated">Überprüfen Sie Ihre Tabellen auf Beziehungsfehler</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
+          <target state="translated">Diese Funktion durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
+          <target state="translated">Durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Action 2095919535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Check Table Relations</source>
           <target state="translated">Tabellenrelationen prüfen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 666624329 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Your fellow cleaning service</source>
+          <target state="translated">Ihr Kollege vom Reinigungsdienst</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 666624329 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clears the checkboxes of the field "Delete Records" in all tables.</source>
+          <target state="translated">Entfernt den Haken aus dem Feld "Datensätze löschen" in allen Tabellen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 666624329 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clears the checkboxes of the field "Delete Records" in all tables.</source>
+          <target state="translated">Entfernt den Haken aus dem Feld des Feldes "Datensätze löschen" in allen Tabellen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 666624329 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Clear Records to Delete</source>
@@ -405,11 +657,71 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3327007977 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The bad evil executioner</source>
+          <target state="translated">Der böse Henker</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3327007977 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens a dialog and if confirmed deletes the records from the tables where the field "Delete Records" is checked off.</source>
+          <target state="translated">Öffnet einen Dialog und löscht bei Bestätigung die Datensätze aus den Tabellen, in denen das Feld "Datensätze löschen" angekreuzt ist.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3327007977 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use this action to delete the records that were suggested to you or that you marked for deletion yourself.</source>
+          <target state="translated">Mit dieser Aktion können Sie die Datensätze löschen, die Ihnen vorgeschlagen wurden oder die Sie selbst zum Löschen markiert haben.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Action 3327007977 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete Records</source>
-          <target state="translated">Datensätze löschen</target>
+          <source>Delete Marked Records</source>
+          <target state="translated">Markierte Datensätze löschen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3774338566 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A very powerful table editor</source>
+          <target state="translated">Ein mächtiger Tabelleneditor</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action EditTable - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3774338566 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the table editor where you can edit or delete selected records.</source>
+          <target state="translated">Öffnet den Tabelleneditor, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action EditTable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3774338566 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use this action to open the table editor where you can edit or delete selected records.</source>
+          <target state="translated">Verwenden Sie diese Aktion, um den Tabelleneditor zu öffnen, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action EditTable - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3774338566 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Edit Table</source>
+          <target state="translated">Tabelle bearbeiten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action EditTable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 529433861 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Fills or updates the "Table" sub page</source>
+          <target state="translated">Füllt oder aktualisiert die Sub page"Tabellen"</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 529433861 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inserts or updates the table information in the fast tab "Tables" for all the tables in the system.</source>
+          <target state="translated">Einfügen oder Aktualisieren der Tabelleninformationen auf der Schnellregisterkarte "Tabellen" für alle Tabellen im System.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 529433861 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use this function if your want to see the tables in the system or want to edit/delete records</source>
+          <target state="translated">Verwenden Sie diese Funktion, wenn Sie die Tabellen im System sehen oder Datensätze bearbeiten/löschen möchten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 529433861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Insert/Update Tables</source>
@@ -417,11 +729,47 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish and Install apps without powershell</source>
+          <target state="translated">Veröffentlichen und Installieren von Anwendungen ohne Powershell</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publishes and installs the selected app by using the powershell runner.</source>
+          <target state="translated">Veröffentlichen und installieren Sie die ausgewählte Anwendung mithilfe des Powershell-Runners.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Instead of using powershell, you can use this action to publish and install apps. The action will use the powershellrunner to publish and install the app.</source>
+          <target state="translated">Anstelle der Powershell können Sie diese Aktion zum Veröffentlichen und Installieren von Anwendungen verwenden. Die Aktion verwendet den powershellrunner, um die App zu veröffentlichen und zu installieren.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Action 3420767252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Publish App</source>
-          <target state="translated">App veröffentlichen</target>
+          <source>Publish and Install App</source>
+          <target state="translated">App veröffentlichen und installieren</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Your assistant if you want to delete all records from tables</source>
+          <target state="translated">Ihr Assistent, wenn Sie alle Datensätze aus Tabellen löschen möchten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens a dialog and ask you which records you want to delete. If you continue, the field "Delete records" of the suggested tables will be checked off in the table overview.</source>
+          <target state="translated">Öffnet einen Dialog und fragt Sie, welche Datensätze Sie löschen möchten. Wenn Sie fortfahren, wird das Feld "Datensätze löschen" der vorgeschlagenen Tabellen in der Tabellenübersicht abgehakt.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suggests you records that you may want to delete by checking off the field "Delete Records". This is useful if you want to "clean" a company from transactional data.</source>
+          <target state="translated">Schlägt Ihnen Datensätze vor, die Sie eventuell löschen möchten, indem das Feld "Datensätze löschen" gesetzt wird. Dies ist nützlich, wenn Sie einen Mandanten von Transaktionsdaten "bereinigen" wollen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 3798165307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Suggest Records to Delete</source>
@@ -429,17 +777,131 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2549815061 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the records of the table</source>
+          <target state="translated">Anzeigen der Datensätze der Tabelle</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2549815061 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Runs the selected table in a separate window.</source>
+          <target state="translated">Führt die ausgewählte Tabelle in einem separaten Fenster aus.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2549815061 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This will run the selected table in a separate window.</source>
+          <target state="translated">Dadurch wird die ausgewählte Tabelle in einem separaten Fenster ausgeführt.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Action 2549815061 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>View Records</source>
           <target state="translated">Datensätze anzeigen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3103611735 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About Admin Toolbox Setup</source>
+          <target state="translated">Über die Einrichtung der Admin-Toolbox</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup additional functionalities of the Admin Toolbox. It only contains additional functionalities for OnPrem environments.</source>
+          <target state="translated">Einrichtung zusätzlicher Funktionen der Admin Toolbox. Sie enthält nur zusätzliche Funktionalitäten für OnPrem-Umgebungen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Admin Toolbox Setup</source>
+          <target state="translated">Admin Toolbox Einrichtung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Method 716454850 - NamedType 2566144142" size-unit="char" translate="yes" xml:space="preserve">
+          <source>It was detected that this is not an OnPrem environment. The Admin Tool Setup only contains additional functionalities for OnPrem environments.</source>
+          <target state="translated">Es wurde festgestellt, dass es sich nicht um eine OnPrem-Umgebung handelt. Das Admin Tool Setup enthält nur zusätzliche Funktionalitäten für OnPrem-Umgebungen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Method OnOpenPage - NamedType OnPremMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License</source>
+          <target state="translated">Lizenz</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control License - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 1415170785 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Always be informed if a developer license is imported in systems where it should not be imported.</source>
+          <target state="translated">Seien Sie immer informiert, wenn eine Entwicklerlizenz in Systeme importiert wird, in die sie nicht importiert werden sollte.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Developer License Warning - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 1415170785 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if a warning should be shown on opening the company when a developer license is active (only OnPrem).</source>
+          <target state="translated">Gibt an, ob beim Öffnen des Unternehmens eine Warnung angezeigt werden soll, wenn eine Entwicklerlizenz aktiv ist (nur OnPrem).</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Developer License Warning - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 1415170785 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>If enabled, a message will be shown OnCompanyOpen that the developer license is active. Enable this field in test environments to make sure that no developer license is wrongfully imported.</source>
+          <target state="translated">Wenn diese Option aktiviert ist, wird OnCompanyOpen eine Meldung angezeigt, dass die Entwicklerlizenz aktiv ist. Aktivieren Sie dieses Feld in Testumgebungen, um sicherzustellen, dass keine Entwicklerlizenz fälschlicherweise importiert wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Developer License Warning - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4149399399 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shows you information about the active license.</source>
+          <target state="translated">Zeigt Ihnen Informationen über die aktive Lizenz an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4149399399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if the active license is a developer license.</source>
+          <target state="translated">Gibt an, ob die aktive Lizenz eine Entwicklerlizenz ist.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4149399399 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>If a developer license was imported in the system, this field will be checked off.</source>
+          <target state="translated">Wenn eine Entwicklerlizenz in das System importiert wurde, ist dieses Feld angekreuzt.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4149399399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Developer License</source>
+          <target state="translated">Entwicklerlizenz</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1725951601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Information</source>
           <target state="translated">Lizenzinformationen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Control 4149399399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if the active license is a developer license.</source>
+          <target state="translated">Gibt an, ob die aktive Lizenz eine Entwicklerlizenz ist.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Control DeveloperLicense - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Control 4149399399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Developer License</source>
+          <target state="translated">Entwickler Lizenz</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Control DeveloperLicense - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Control 1821279055 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Text field</source>
+          <target state="translated">Gibt den Wert des Feldes Text an</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Control Text - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Action 2839364610 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Imports the selected license.</source>
+          <target state="translated">Importiert die ausgewählte Lizenz.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ImportLicense - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1725951601 - Action 2839364610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Import License</source>
@@ -452,6 +914,72 @@
           <target state="translated">Tabellen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 2558632233 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that this table was marked for deletion.</source>
+          <target state="translated">Gibt an, dass diese Tabelle zur Löschung markiert wurde.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control Delete Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 2065755396 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the total no. of records in the table.</source>
+          <target state="translated">Gibt die Gesamtzahl der Datensätze in der Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control No. of Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 859139943 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the no. of table relation errors that were detected when running the table relation check.</source>
+          <target state="translated">Gibt die Anzahl der Tabellenrelationsfehler an, die bei der Prüfung der Tabellenrelationen festgestellt wurden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control No. of Table Relation Errors - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table.</source>
+          <target state="translated">Gibt die ID der Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 3808951907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the table.</source>
+          <target state="translated">Gibt den Namen der Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control Table Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 1595823452 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the caption of the table.</source>
+          <target state="translated">Gibt die Beschriftung der Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control TableCaption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Control 1595823452 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Caption</source>
+          <target state="translated">Tabellenbezeichnung</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control TableCaption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A very powerful table editor</source>
+          <target state="translated">Ein mächtiger Tabelleneditor</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the table editor where you can edit or delete selected records.</source>
+          <target state="translated">Öffnet den Tabelleneditor, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use this action to open the table editor where you can edit or delete selected records.</source>
+          <target state="translated">Verwenden Sie diese Aktion, um den Tabelleneditor zu öffnen, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Edit Table</source>
+          <target state="translated">Tabelle bearbeiten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3576430184 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Record Deletion Rel. Error</source>
@@ -488,6 +1016,318 @@
           <target state="translated">Gibt die ID der Tabelle an</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Control Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>About Table Editor</source>
+          <target state="translated">Über Table Editor</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This table editor can modify or delete selected records.</source>
+          <target state="translated">Dieser Tabelleneditor kann ausgewählte Datensätze ändern oder löschen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target state="translated">Tabellen-Editor</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Property 3863440606" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Debug</source>
+          <target state="translated">Debug</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property AdditionalSearchTerms</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to delete %1 records from table %2?</source>
+          <target state="translated">Möchten Sie %1 Datensätze aus Tabelle %2 löschen?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DeleteRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 2800295767" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Records will be deleted using DeleteAll(%1).\\Proceed?</source>
+          <target state="translated">Die Datensätze werden mit DeleteAll(%1).\\ gelöscht. Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DeleteWithTriggerQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 4288424883" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Done.</source>
+          <target state="translated">Fertig.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DoneMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 2128188428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to modify %1 records in table %2?</source>
+          <target state="translated">Möchten Sie %1 Datensätze in Tabelle %2 ändern?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 777624542" size-unit="char" translate="yes" xml:space="preserve">
+          <source>"%1" := [%2];\Modify(%3);\\Proceed?</source>
+          <target state="translated">"%1" := [%2];\Modify(%3);\\Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsWithoutValidateQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 3818357216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validate("%1", [%2]);\Modify(%3);\\Proceed?</source>
+          <target state="translated">Validate("%1", [%2]);\Modify(%3);\\Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsWithValidateQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field</source>
+          <target state="translated">Feld</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldSettings - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1329745570 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies caption of the selected field.</source>
+          <target state="translated">Gibt die Beschriftung des ausgewählten Feldes an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldCaptionField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1329745570 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Caption</source>
+          <target state="translated">Caption</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldCaptionField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1913390121 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies name of the selected field.</source>
+          <target state="translated">Gibt den Namen des ausgewählten Feldes an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNameField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1913390121 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <target state="translated">Name</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNameField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3124662229 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field selector</source>
+          <target state="translated">Feldselektor</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNumberField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3124662229 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies field no. that you want to modify.</source>
+          <target state="translated">Gibt die Feldnummer an, die Sie ändern möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNumberField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3124662229 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select the field if you want to modify a field for the selected records</source>
+          <target state="translated">Wählen Sie das Feld aus, wenn Sie ein Feld für die ausgewählten Datensätze ändern möchten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNumberField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3124662229 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target state="translated">Nr.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNumberField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 645473173 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose the new value</source>
+          <target state="translated">Wählen Sie den neuen Wert</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldValueField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 645473173 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value that the field should have after modifying it.</source>
+          <target state="translated">Gibt den Wert an, den das Feld nach der Änderung haben soll.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldValueField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 645473173 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This is the value that the field will have for the selected records after modifying them.</source>
+          <target state="translated">Dies ist der Wert, den das Feld für die ausgewählten Datensätze nach der Änderung haben wird.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldValueField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 645473173 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Value</source>
+          <target state="translated">Wert</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldValueField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2933813817 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable OnValidateTrigger</source>
+          <target state="translated">OnValidateTrigger einschalten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseValidateTriggerField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2933813817 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want to use the OnValidate trigger of the field.</source>
+          <target state="translated">Gibt an, ob Sie den OnValidate-Auslöser des Feldes verwenden möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseValidateTriggerField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2933813817 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable this field if you want to use the OnValidate Trigger of the field when modifying the records.</source>
+          <target state="translated">Aktivieren Sie dieses Feld, wenn Sie beim Ändern der Datensätze den OnValidate-Trigger des Feldes verwenden möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseValidateTriggerField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2933813817 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Validate</source>
+          <target state="translated">Validieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseValidateTriggerField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 4175714125 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table</source>
+          <target state="translated">Tabelle</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control TableSettings - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3253608131 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of your selected records</source>
+          <target state="translated">Anzahl der von Ihnen ausgewählten Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableNoOfRecordsField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3253608131 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the no. of records that you selected</source>
+          <target state="translated">Gibt die Anzahl der Datensätze an, die Sie ausgewählt haben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableNoOfRecordsField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3253608131 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shows how many records you selected in the previous field.</source>
+          <target state="translated">Zeigt an, wie viele Datensätze Sie im vorherigen Feld ausgewählt haben.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableNoOfRecordsField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3253608131 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Records in Filter</source>
+          <target state="translated">Datensätze im Filter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableNoOfRecordsField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1018074862 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record Selection</source>
+          <target state="translated">Datensatz-Auswahl</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableViewField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1018074862 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the selected records.</source>
+          <target state="translated">Gibt die ausgewählten Datensätze an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableViewField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1018074862 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select all the records that you want to modify or delete</source>
+          <target state="translated">Wählen Sie alle Datensätze aus, die Sie ändern oder löschen möchten</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableViewField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1018074862 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View</source>
+          <target state="translated">View</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control CustomTableViewField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1545557470 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the caption of the table where you want to modify or delete records.</source>
+          <target state="translated">Gibt die Beschriftung der Tabelle an, in der Sie Datensätze ändern oder löschen möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control TableCaptionField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 1545557470 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Caption</source>
+          <target state="translated">Caption</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control TableCaptionField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3745738151 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table where you want to modify or delete records.</source>
+          <target state="translated">Gibt die ID der Tabelle an, in der Sie Datensätze ändern oder löschen möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control TableNoField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 3745738151 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ID</source>
+          <target state="translated">ID</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control TableNoField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2745026057 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to use table triggers?</source>
+          <target state="translated">Möchten Sie Tabellen-Trigger verwenden?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseTableTriggerField - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2745026057 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if you want to run the trigger of the table that you want to modify or delete.</source>
+          <target state="translated">Gibt an, ob Sie den Trigger der Tabelle, die Sie ändern oder löschen wollen, ausführen wollen.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseTableTriggerField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2745026057 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable this field if you want to use the table triggers when modifying or deleting records.</source>
+          <target state="translated">Aktivieren Sie dieses Feld, wenn Sie die Tabellen-Trigger beim Ändern oder Löschen von Datensätzen verwenden möchten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseTableTriggerField - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2745026057 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use Trigger</source>
+          <target state="translated">Trigger verwenden</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseTableTriggerField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 932266291 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Records</source>
+          <target state="translated">Datensätze löschen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action DeleteRecordsAction - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 932266291 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deletes the selected records.</source>
+          <target state="translated">Löscht die ausgewählten Datensätze.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action DeleteRecordsAction - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 932266291 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This will delete all the records that you selected in the field "View"</source>
+          <target state="translated">Dadurch werden alle Datensätze gelöscht, die Sie im Feld "View" ausgewählt haben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action DeleteRecordsAction - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 932266291 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Table Records</source>
+          <target state="translated">Datensätze löschen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action DeleteRecordsAction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3302205236 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modify Records</source>
+          <target state="translated">Datensätze ändern</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3302205236 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modifies the selected records.</source>
+          <target state="translated">Ändert die ausgewählten Datensätze.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3302205236 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This will modify all the records that you selected in the field "View"</source>
+          <target state="translated">Dadurch werden alle Datensätze geändert, die Sie im Feld "Ansicht" ausgewählt haben</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3302205236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modify Table Records</source>
+          <target state="translated">Datensätze modifizieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property Caption</note>
         </trans-unit>
       </group>
     </body>

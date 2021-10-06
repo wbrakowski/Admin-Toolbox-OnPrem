@@ -1,27 +1,23 @@
 # Admin-Toolbox-OnPrem
 
-I've combined features from a few blog posts into one single app called "Admin-Toolbox": </br>
+I've combined features from different people into one single app called "Admin-Toolbox": </br>
 - [Record Deletion Tool, Waldemar Brakowski](https://navinsights.net/2020/04/02/record-deletion-tool/ "Record Deletion Tool, Waldemar Brakowski")
+- Table Editor, Yuri Mishin
 - [View License Information, Waldo](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/ "View License Information, Waldo")
 - [Import Licenses, Neil Roberts](https://www.imbatman.info/post/using-powershell-in-microsoft-al-for-business-central-onprem "Import Licenses, Neil Roberts")
+- Show Developer License Warning, Yuri Mishin
 - [Not out of the box information for consultants, Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/ "Not out of the box information for consultants, Waldo") 
 - [Enabling External Deployment in OnPrem Business Central Environments, Waldo](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/ "Enabling External Deployment in OnPrem Business Central Environments") </br>
 
 Currently this page is only for OnPrem, because license information can only be displayed OnPrem and for the license import DotNet is used. </br>
 If there is enough demand, I can create a SaaS version without the license area. </br> 
 
-In addition, I have created a How To for consultants so that they can upload the app themselves without the help of developers. </br>
-
 ## How To Install the Toolbox
 
 Clone this repository. Modify the app.json so it fits your Business Central version. Move the correct powershell runner from the folder "powershellrunners" to the folder ".netpackages". Make sure that there is only one powershell runner dll in the folder ".netpackages" to avoid weird errors.
 
-Currently the following object numbers are used by the Admin Toolbox:
-- Codeunits 51000, 51001
-- Table 51000, 51001
-- Page 51000-51003 </br>
-
-In the toolbox, the languages German and English are maintained.
+In the toolbox, the languages German, English and Spanish are maintained.
+Please note that the Spanish translation is probably not 100% accurate as it was translated by DeepL.
 
 ## How To Use the Toolbox
 
@@ -29,8 +25,15 @@ After successful installation you will find the toolbox under the search term "A
 
 ![Search Toolbox](images/SearchToolbox.png)
 
-The toolbox is divided into 3 areas:
+Users without SUPER permission will receive an error when opening the Admin Toolbox page.
+
+When opening the Admin Toolbox the first time, you can take a guided tour to show you the functionalities. If you open the page again and the guided tour does not appear, just click the page caption "Admin Toolbox" to reenable it.
+
+![Guided Tour](images/AdminToolbox_Guided_Tour.png)
+
+The toolbox is divided into 4 areas:
 - How To
+- Tables
 - License Information
 - Information </br>
 
@@ -172,8 +175,40 @@ After the check on the table relations has run you can set a filter on the "No. 
 
  As mentioned above, the table relation check is only doing a basic check, so don’t rely too much on it. </br>
  If you have a large amount of master data it might also take a while to run. </br>
- 
- ![PublishApp](images/PublishApp.png)
+
+ ### Table Editor
+ A big thanks goes to my former colleague [Yuri Mishin](https://www.linkedin.com/in/yuri-mishin-2a08a71b4/ "Yuri Mishin") who programmed the main functionality of this table editor.
+
+ Select any table in the table overview and use the page action "Edit Table".
+
+ ![SelectRecordsAndEditTable](images/SelectRecordAndEditTable.png)
+
+ This will open the table editor where you can use the following fields:
+
+ ![TableEditorFields](images/TableEditor_Fields.png)
+
+ 1) ID: This is preselected with the table that you selected in the table overview. It is the table where you want to edit or delete records.
+ 2) Use Trigger: If enabled, the table triggers OnModify/OnDelete will be used when deleting or modifying records.
+ 3) View: Opens a request page to filter the records that you want to modify or delete.
+ 4) No.: If you want to modify a field in your filtered records, select the field here.
+ 5) Value: The new value for the selected field after modifying the records.
+ 6) Validate: If enabled, the OnValidate trigger of the field will be used when modifying the records.
+
+After you have set your values, use the actions "Delete Table Records" or "Modify Table Records" to delete or modify the records. A confirmation dialog will appear before the operation is being executed.
+
+ ![DeleteModifyRecords](images/Delete_Modify_Records.png)
+
+ When deleting:
+
+ ![TableEditorDeleteRecords](images/TableEditor_DeleteRecords.png)
+
+ When modifying:
+
+ ![TableEditorModifyRecords](images/TableEditor_ModifyRecords.png)
+
+
+
+ ### Publishing & Installing Apps
 
 You can publish apps from the Admin Toolbox. This functionality is disabled by default in OnPrem installations. </br>
 In order to publish an app, you first need to install the external deployer. </br>
@@ -181,6 +216,8 @@ For this reason, a dialog opens. It asks you if you want to learn how to install
 By clicking "Learn how to install the external deployer", a new tab will open that leads to the how-to guide. </br>
 If you have not already installed the deployer, you should first to this before you publish an app. </br>
 Otherwise you will run into errors when trying to publish the app. </br>
+
+![PublishApp](images/PublishApp.png)
 
 ![PublishAppDialog](images/PublishAppDialog.png)
 
@@ -204,6 +241,10 @@ Select a new license file and be happy. </br>
 
 ![SelectLicense](images/SelectLicense.png)
 
+There is a boolean field "Developer License" showing you if your active license is a developer license.
+
+![DeveloperLicense](images/DeveloperLicense.png)
+
 ### Links to Informational Tables
 
 Find links to useful tables in the area "Information". I used the links from [Waldo's blogpost](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/, "Waldo's Blogpost"). </br>
@@ -215,6 +256,20 @@ By clicking on a link a new tab will be created that leads you to the page. </br
 ![SessionInformation](images/SessionInformation.png) 
 
 ![SessionInformationTable](images/SessionInformationTable.png) 
+
+### Show Developer License Warning
+
+Open the setup for the Admin Toolbox if you want to activate additional functionalities of the Admin Toolbox. Currently, there is only one additional functionality.
+
+![OpenSetup](images/OpenSetup.png) 
+
+If "Developer License Warning" is enabled, a message will be shown OnCompanyOpen that the developer license is active. Enable this field in test environments to make sure that no developer license is wrongfully imported.
+
+![DeveloperLicenseWarning](images/DeveloperLicenseWarning.png) 
+
+When opening Business Central, users with SUPER rights will receive this message:
+
+![DeveloperLicenseWarningMsg](images/DeveloperLicenseWarningMsg.png) 
 
 ### How to Install the External Deployer
 
