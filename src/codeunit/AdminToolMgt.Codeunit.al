@@ -55,13 +55,21 @@ codeunit 51000 "Admin Tool Mgt."
                 // Only allow "normal" tables to avoid errors, Skip TableType MicrosoftGraph and CRM etc.
                 TableMetadata.SetRange(ID, RecordDeletion."Table ID");
                 TableMetadata.SetRange(TableType, TableMetadata.TableType::Normal);
-                if not TableMetadata.IsEmpty then begin
+                if not TableMetadata.IsEmpty() then begin
                     RecRef.Open(RecordDeletion."Table ID");
                     if RecRef.FindSet() then
                         repeat
+                            Field.Reset();
                             Field.SetRange(TableNo, RecordDeletion."Table ID");
                             Field.SetRange(Class, Field.Class::Normal);
+                            Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
                             Field.SetFilter(RelationTableNo, '<>0');
+                            // Next 4 lines look funny but are needed to avoid this error:
+                            // "Table connection for table type CRM must be registered using RegisterTableConnection or cmdlet New-NAVTableConnection before it can be used"
+                            if RecordDeletion."Table ID" = 5330 then
+                                Field.SetFilter("No.", '<> %1', 124)
+                            else if RecordDeletion."Table ID" = 7200 then
+                                Field.SetFilter("No.", '<> %1', 124);
                             if Field.FindSet() then
                                 repeat
                                     FieldRef := RecRef.Field(Field."No.");
