@@ -11,16 +11,16 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure CalcRecordsInTable(TableNoToCheck: Integer): Integer
     var
-        FieldRec: Record Field;
-        RecRef: RecordRef;
+        Field: Record Field;
+        RecordRef: RecordRef;
         NoOfRecords: Integer;
     begin
-        FieldRec.SetRange(TableNo, TableNoToCheck);
-        if FieldRec.FindFirst() then begin
-            RecRef.Open(TableNoToCheck);
-            RecRef.LockTable();
-            NoOfRecords := RecRef.Count();
-            RecRef.Close();
+        Field.SetRange(TableNo, TableNoToCheck);
+        if Field.FindFirst() then begin
+            RecordRef.Open(TableNoToCheck);
+            RecordRef.LockTable();
+            NoOfRecords := RecordRef.Count();
+            RecordRef.Close();
             exit(NoOfRecords);
         end;
         exit(0);
@@ -33,10 +33,10 @@ codeunit 51000 "Admin Tool Mgt."
         RecordDeletion: Record "Record Deletion";
         RecordDeletionRelError: Record "Record Deletion Rel. Error";
         TableMetadata: Record "Table Metadata";
-        RecRef, RecRef2 : RecordRef;
+        RecordRef, RecordRef2 : RecordRef;
         FieldRef, FieldRef2 : FieldRef;
         SkipCheck: Boolean;
-        Window: Dialog;
+        UpdateDialog: Dialog;
         EntryNo: Integer;
         NotExistsTxt: Label '%1 => %2 = ''%3'' does not exist in the ''%4'' table';
         CheckingRelationsTxt: Label 'Checking Relations Between Records!\Table: #1#######', Comment = '%1 = Table ID';
@@ -45,19 +45,19 @@ codeunit 51000 "Admin Tool Mgt."
         if not Confirm(CheckRelationsQst, false) then
             exit;
 
-        Window.Open(CheckingRelationsTxt);
+        UpdateDialog.Open(CheckingRelationsTxt);
 
         RecordDeletionRelError.DeleteAll();
 
         if RecordDeletion.FindSet() then
             repeat
-                Window.Update(1, Format(RecordDeletion."Table ID"));
+                UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
                 // Only allow "normal" tables to avoid errors, Skip TableType MicrosoftGraph and CRM etc.
                 TableMetadata.SetRange(ID, RecordDeletion."Table ID");
                 TableMetadata.SetRange(TableType, TableMetadata.TableType::Normal);
                 if not TableMetadata.IsEmpty() then begin
-                    RecRef.Open(RecordDeletion."Table ID");
-                    if RecRef.FindSet() then
+                    RecordRef.Open(RecordDeletion."Table ID");
+                    if RecordRef.FindSet() then
                         repeat
                             Field.Reset();
                             Field.SetRange(TableNo, RecordDeletion."Table ID");
@@ -68,55 +68,56 @@ codeunit 51000 "Admin Tool Mgt."
                             // "Table connection for table type CRM must be registered using RegisterTableConnection or cmdlet New-NAVTableConnection before it can be used"
                             if RecordDeletion."Table ID" = 5330 then
                                 Field.SetFilter("No.", '<> %1', 124)
-                            else if RecordDeletion."Table ID" = 7200 then
-                                Field.SetFilter("No.", '<> %1', 124);
+                            else
+                                if RecordDeletion."Table ID" = 7200 then
+                                    Field.SetFilter("No.", '<> %1', 124);
                             if Field.FindSet() then
                                 repeat
-                                    FieldRef := RecRef.Field(Field."No.");
+                                    FieldRef := RecordRef.Field(Field."No.");
                                     if (Format(FieldRef.Value) <> '') and (FORMAT(FieldRef.Value) <> '0') then begin
-                                        RecRef2.Open(Field.RelationTableNo);
+                                        RecordRef2.Open(Field.RelationTableNo);
                                         SkipCheck := false;
                                         if Field.RelationFieldNo <> 0 then begin
-                                            FieldRef2 := RecRef2.Field(Field.RelationFieldNo)
+                                            FieldRef2 := RecordRef2.Field(Field.RelationFieldNo)
                                         end else begin
                                             KeyRec.Get(Field.RelationTableNo, 1);  // PK
                                             Field2.SetRange(TableNo, Field.RelationTableNo);
                                             Field2.SetFilter(FieldName, CopyStr(KeyRec.Key, 1, 30));
                                             if Field2.FindFirst() then // No Match if Dual PK
-                                                FieldRef2 := RecRef2.Field(Field2."No.")
+                                                FieldRef2 := RecordRef2.Field(Field2."No.")
                                             else
                                                 SkipCheck := true;
                                         end;
                                         if (FieldRef.Type = FieldRef2.Type) and (FieldRef.Length = FieldRef2.Length) and (not SkipCheck) then begin
                                             FieldRef2.SetRange(FieldRef.Value);
-                                            if not RecRef2.FindFirst() then begin
-                                                RecordDeletionRelError.SetRange("Table ID", RecRef.Number);
+                                            if not RecordRef2.FindFirst() then begin
+                                                RecordDeletionRelError.SetRange("Table ID", RecordRef.Number);
                                                 if RecordDeletionRelError.FindLast() then
                                                     EntryNo := RecordDeletionRelError."Entry No." + 1
                                                 else
                                                     EntryNo := 1;
                                                 RecordDeletionRelError.Init();
-                                                RecordDeletionRelError."Table ID" := RecRef.Number;
+                                                RecordDeletionRelError."Table ID" := RecordRef.Number;
                                                 RecordDeletionRelError."Entry No." := EntryNo;
                                                 RecordDeletionRelError."Field No." := FieldRef.Number;
-                                                RecordDeletionRelError.Error := CopyStr(StrSubstNo(NotExistsTxt, Format(RecRef.GetPosition()), Format(FieldRef2.Name), Format(FieldRef.Value), Format(RecRef2.Name)), 1, 250);
+                                                RecordDeletionRelError.Error := CopyStr(StrSubstNo(NotExistsTxt, Format(RecordRef.GetPosition()), Format(FieldRef2.Name), Format(FieldRef.Value), Format(RecordRef2.Name)), 1, 250);
                                                 RecordDeletionRelError.Insert();
                                             end;
                                         end;
-                                        RecRef2.Close();
+                                        RecordRef2.Close();
                                     end;
                                 until Field.Next() = 0;
-                        until RecRef.Next() = 0;
-                    RecRef.Close();
+                        until RecordRef.Next() = 0;
+                    RecordRef.Close();
                 end;
             until RecordDeletion.Next() = 0;
-        Window.Close();
+        UpdateDialog.Close();
     end;
 
     procedure ClearRecordsToDelete();
     var
         RecordDeletion: Record "Record Deletion";
-        MarkDeletionRemovedMsg: Label 'The checkbox %1 was succesfully reset for the tables.';
+        MarkDeletionRemovedMsg: Label 'The checkbox %1 was succesfully reset for the tables.', Comment = '%1 = FieldCaption of "Delete Records"';
     begin
         RecordDeletion.ModifyAll("Delete Records", false);
         Message(MarkDeletionRemovedMsg, RecordDeletion.FieldCaption("Delete Records"));
@@ -126,18 +127,19 @@ codeunit 51000 "Admin Tool Mgt."
     var
         RecordDeletion: Record "Record Deletion";
         RecordDeletionRelError: Record "Record Deletion Rel. Error";
-        RecRef: RecordRef;
+        RecordRef: RecordRef;
         RunTrigger: Boolean;
-        Window: Dialog;
+        UpdateDialog: Dialog;
         Selection: Integer;
-        DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?';
-        Options: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
+        DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?', Comment = '%1 = No. of tables';
+        OptionsLbl: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
         DeletingRecordsTxt: Label 'Deleting Records!\Table: #1#######', Comment = '%1 = Table ID';
-        NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.';
+        NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.',
+                        Comment = '%1 = FieldCaption of "Delete Records"';
         CancelledByUserErr: Label 'The operation was cancelled by the user.';
-        DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.';
+        DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.', Comment = '%1 = No. of tables';
     begin
-        Selection := StrMenu(Options, 1);
+        Selection := StrMenu(OptionsLbl, 1);
         case Selection of
             0: // Cancelled
                //     Error(CancelledByUserErr);
@@ -148,7 +150,7 @@ codeunit 51000 "Admin Tool Mgt."
                 RunTrigger := true;
         end;
 
-        Window.Open(DeletingRecordsTxt);
+        UpdateDialog.Open(DeletingRecordsTxt);
 
         RecordDeletion.SetRange("Delete Records", true);
 
@@ -160,16 +162,16 @@ codeunit 51000 "Admin Tool Mgt."
 
         if RecordDeletion.FindSet() then
             repeat
-                Window.Update(1, Format(RecordDeletion."Table ID"));
-                RecRef.Open(RecordDeletion."Table ID");
-                RecRef.DeleteAll(RunTrigger);
-                RecRef.Close();
+                UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
+                RecordRef.Open(RecordDeletion."Table ID");
+                RecordRef.DeleteAll(RunTrigger);
+                RecordRef.Close();
                 RecordDeletionRelError.SetRange("Table ID", RecordDeletion."Table ID");
                 RecordDeletionRelError.DeleteAll();
             until RecordDeletion.Next() = 0;
 
 
-        Window.Close();
+        UpdateDialog.Close();
         Message(StrSubstNo(DeletionSuccessMsg, RecordDeletion.Count()));
     end;
 
@@ -177,29 +179,29 @@ codeunit 51000 "Admin Tool Mgt."
     var
         AllObjWithCaption: Record AllObjWithCaption;
         RecordDeletion: Record "Record Deletion";
-        Window: Dialog;
+        UpdateDialog: Dialog;
         CurrRec, NoOfRecs : Integer;
-        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.';
-        NoRecordFoundMsg: Label 'No record could be found in table %1.';
+        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
+        NoRecordFoundMsg: Label 'No record could be found in table %1.', Comment = '%1 = Table Caption';
         ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
     begin
         AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
         // Do not include system tables
         AllObjWithCaption.SetFilter("Object ID", '< %1', 2000000001);
         if AllObjWithCaption.FindSet() then begin
-            Window.Open(ProcessingDataTxt);
+            UpdateDialog.Open(ProcessingDataTxt);
             NoOfRecs := AllObjWithCaption.Count();
             repeat
                 CurrRec += 1;
                 if NoOfRecs <= 100 then
-                    Window.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
+                    UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
                 else
                     if CurrRec mod (NoOfRecs div 100) = 0 then
-                        Window.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
+                        UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
 
                 RecordDeletion.Init();
                 RecordDeletion."Table ID" := AllObjWithCaption."Object ID";
-                RecordDeletion.Company := CompanyName;
+                RecordDeletion.Company := CompanyName();
                 if RecordDeletion.Insert() then;
             until AllObjWithCaption.Next() = 0;
             Message(UpdateFinishedMsg, CurrRec);
@@ -209,13 +211,15 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure OpenTable(TableId: Integer)
     var
+        UrlTxt: Label '%1/?table=%2', Comment = '%1 = Web URL, %2 = Table ID';
+        Url2Txt: Label '%1&table=%2', Comment = '%1 = Web URL, %2 = Table ID';
         WebUrl: Text;
     begin
         WebUrl := System.GetUrl(ClientType::Web);
         if WebUrl.Contains('?') then
-            WebUrl := StrSubstNo('%1&table=%2', WebUrl, TableId)
+            WebUrl := StrSubstNo(Url2Txt, WebUrl, TableId)
         else
-            WebUrl := StrSubstNo('%1/?table=%2', WebUrl, TableId);
+            WebUrl := StrSubstNo(UrlTxt, WebUrl, TableId);
         Hyperlink(WebUrl);
     end;
 
@@ -223,10 +227,10 @@ codeunit 51000 "Admin Tool Mgt."
     var
         WebUrl: Text;
         Selection: Integer;
-        Options: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
-        Instructions: Label 'The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.';
+        OptionsLbl: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
+        InstructionsLbl: Label 'The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.';
     begin
-        Selection := StrMenu(Options, 1, Instructions);
+        Selection := StrMenu(OptionsLbl, 1, InstructionsLbl);
         case Selection of
             1:
                 begin
@@ -256,9 +260,9 @@ codeunit 51000 "Admin Tool Mgt."
     procedure SuggestRecordsToDelete();
     var
         Selection: Integer;
-        Options: Label 'Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete';
+        OptionsLbl: Label 'Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete';
     begin
-        Selection := StrMenu(Options, 1);
+        Selection := StrMenu(OptionsLbl, 1);
         case Selection of
             // 0: // Cancelled
             //     Error(CancelledByUserErr);
@@ -272,11 +276,11 @@ codeunit 51000 "Admin Tool Mgt."
     procedure SuggestUnlicensedPartnerOrCustomRecordsToDelete();
     var
         RecordDeletion: Record "Record Deletion";
+        PowershellMgt: Codeunit "Powershell Mgt.";
         RecsSuggestedCount: Integer;
         RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 Number of unlicensed records';
         ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
         ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
-        PowershellMgt: Codeunit "Powershell Mgt.";
     begin
         if IsDeveloperLicense() then
             if Confirm(ImportCustLicenseQst, false) then
@@ -379,14 +383,14 @@ codeunit 51000 "Admin Tool Mgt."
 
     internal procedure ShowDevLicenseMessageIfNeeded()
     var
-        AdminToolSetup: Record "Admin Toolbox Setup";
+        AdminToolboxSetup: Record "Admin Toolbox Setup";
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
         DevLicenseMsg: Label 'Attention, the developer license is currently active.';
     begin
-        if not AdminToolSetup.Get() then
+        if not AdminToolboxSetup.Get() then
             exit;
 
-        if AdminToolMgt.IsDeveloperLicense() and AdminToolSetup."Developer License Warning" then
+        if AdminToolMgt.IsDeveloperLicense() and AdminToolboxSetup."Developer License Warning" then
             Message(DevLicenseMsg);
     end;
 
@@ -741,7 +745,7 @@ codeunit 51000 "Admin Tool Mgt."
     internal procedure UpdateTablesIfEmpty()
     var
         RecordDeletion: Record "Record Deletion";
-        UpdateTablesQst: Label 'The overview of all tables is empty so so far. Do you want to get the current state of all tables in the database?';
+    // UpdateTablesQst: Label 'The overview of all tables is empty so so far. Do you want to get the current state of all tables in the database?';
     begin
         if not RecordDeletion.IsEmpty() then
             exit;
@@ -752,8 +756,8 @@ codeunit 51000 "Admin Tool Mgt."
 
     internal procedure UserHasPermissions(): Boolean
     var
-        AdminToolSetup: Record "Admin Toolbox Setup";
+        AdminToolboxSetup: Record "Admin Toolbox Setup";
     begin
-        exit(AdminToolSetup.ReadPermission());
+        exit(AdminToolboxSetup.ReadPermission());
     end;
 }
