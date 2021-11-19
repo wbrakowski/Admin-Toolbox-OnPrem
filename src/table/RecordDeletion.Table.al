@@ -55,7 +55,7 @@ table 51000 "Record Deletion"
 
     trigger OnInsert()
     begin
-        Company := CompanyName;
+        Company := CompanyName();
     end;
 
 }

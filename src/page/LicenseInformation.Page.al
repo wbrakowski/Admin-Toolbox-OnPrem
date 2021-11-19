@@ -41,6 +41,7 @@ page 51002 "License Information"
                 Caption = 'Import License';
                 Image = Import;
                 Promoted = true;
+                PromotedOnly = true;
                 ToolTip = 'Imports the selected license.';
 
                 trigger OnAction()

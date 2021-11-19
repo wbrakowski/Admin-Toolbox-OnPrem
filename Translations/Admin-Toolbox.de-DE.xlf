@@ -108,20 +108,20 @@
         <trans-unit id="Codeunit 4017461657 - Method 1089747479 - NamedType 1478607934" size-unit="char" translate="yes" xml:space="preserve">
           <source>The checkbox %1 was succesfully reset for the tables.</source>
           <target state="translated">Das Feld %1 wurde erfolgreich für die Tabellen zurückgesetzt.</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ClearRecordsToDelete - NamedType MarkDeletionRemovedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
           <target state="translated">%1 Tabellen wurden für die Löschung markiert. Alle Datensätze aus diesen Tabellen werden gelöscht. Fortfahren?</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeleteRecordsQst</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 2346885236" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
           <source>Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)</source>
           <target state="translated">Löschen von Datensätzen ohne Delete Trigger: Record.Delete(false),Löschen von Datensätzen mit Delete Trigger: Record.Delete(true)</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType Options</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 1617397918" size-unit="char" translate="yes" xml:space="preserve">
           <source>Deleting Records!\Table: #1#######</source>
@@ -132,7 +132,7 @@
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3437731031" size-unit="char" translate="yes" xml:space="preserve">
           <source>No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.</source>
           <target state="translated">Zum Löschen wurden keine Tabellen markiert. Stellen Sie sicher, dass Sie das Feld %1 in den Tabellen ankreuzen, in denen Sie Datensätze löschen möchten, bevor Sie diesen Vorgang ausführen.</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType NoRecsFoundErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3235645552" size-unit="char" translate="yes" xml:space="preserve">
@@ -144,19 +144,19 @@
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 2814518218" size-unit="char" translate="yes" xml:space="preserve">
           <source>The records from %1 table(s) were succesfully deleted.</source>
           <target state="translated">Die Datensätze aus %1 Tabellen wurden erfolgreich gelöscht.</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeletionSuccessMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 tables have succesfully been updated.</source>
           <target state="translated">%1 Tabellen wurden erfolgreich aktualisiert.</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType UpdateFinishedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1875284373" size-unit="char" translate="yes" xml:space="preserve">
           <source>No record could be found in table %1.</source>
           <target state="translated">In der Tabelle %1 konnte kein Datensatz gefunden werden.</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType NoRecordFoundMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
@@ -165,17 +165,29 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType ProcessingDataTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 2346885236" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 267657989" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1/?table=%2</source>
+          <target state="translated">%1/?Tabelle=%2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType UrlTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 2396693411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1&amp;table=%2</source>
+          <target state="translated">%1/?Tabelle=%2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType Url2Txt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
           <source>Continue publishing app (a new tab will be opened),Learn how to install the external deployer</source>
           <target state="translated">Weiter mit der Veröffentlichung der App (ein neuer Tab wird geöffnet),Öffnen Sie die Anleitung für die Installation des External Deployer</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType Options</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType OptionsLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 201881077" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 2377828003" size-unit="char" translate="yes" xml:space="preserve">
           <source>The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.</source>
           <target state="translated">Der External Deployer muss auf der Serverinstanz installiert sein, um Apps zu veröffentlichen. Wählen Sie aus, wie Sie fortfahren möchten.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType Instructions</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType InstructionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1304378668 - NamedType 705934383" size-unit="char" translate="yes" xml:space="preserve">
           <source>Attention, the developer license is currently active.</source>
@@ -183,11 +195,11 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowDevLicenseMessageIfNeeded - NamedType DevLicenseMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 542369812 - NamedType 2346885236" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4017461657 - Method 542369812 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
           <source>Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete</source>
           <target state="translated">Alle transaktionalen Datensätze zum Löschen vorschlagen,Alle nicht lizenzierten Partner- oder Customdatensätze vorschlagen.</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestRecordsToDelete - NamedType Options</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestRecordsToDelete - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3094011 - NamedType 1104668713" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1 records to delete were suggested.</source>
@@ -213,35 +225,29 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportCustLicenseQst</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 1563965746 - NamedType 2339166430" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The overview of all tables is empty so so far. Do you want to get the current state of all tables in the database?</source>
-          <target state="translated">Die Übersicht aller Tabellen ist bisher leer. Möchten Sie den aktuellen Status aller Tabellen in der Datenbank abrufen?</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method UpdateTablesIfEmpty - NamedType UpdateTablesQst</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 966007232" size-unit="char" translate="yes" xml:space="preserve">
           <source>*.*</source>
           <target state="translated">*.*</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType AllFilesFilterTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 3026675262" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 1626985572" size-unit="char" translate="yes" xml:space="preserve">
           <source>Busy importing......</source>
           <target state="translated">Importiere......</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType BusyDlg</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType BusyDlgLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 743971322" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 2564551424" size-unit="char" translate="yes" xml:space="preserve">
           <source>License (*.flf)|*.flf|All Files (*.*)|*.*</source>
           <target state="translated">Lizenz (*.flf)|*.flf|Alle Dateien(*.*)|*.*</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType FileFilter</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType FileFilterLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 2448826234" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 3126709376" size-unit="char" translate="yes" xml:space="preserve">
           <source>NavAdminTool.ps1</source>
           <target state="translated">NavAdminTool.ps1</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType NAVAdminTool</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType NAVAdminToolLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 494866634" size-unit="char" translate="yes" xml:space="preserve">
           <source>Select License File</source>
@@ -296,12 +302,6 @@
           <target state="translated">Codeunit Metadata</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType CodeunitMetadataLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - NamedType 3109040375" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Event Subscription</source>
-          <target state="translated">Event Subscription</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType EventSubscriptionLbl</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - NamedType 117816908" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
@@ -362,12 +362,6 @@
           <target state="translated">Keine Tabelle zum Ausführen ausgewählt</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method OnOpenPage - NamedType NoTableSelectedLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Method 716454850 - NamedType 3139662988" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This page can only be accessed by users with super rights. If you want to see the information of this page, please contact your it department to grant you super rights.</source>
-          <target state="translated">Diese Seite kann nur von Benutzern mit Superrechten aufgerufen werden. Wenn Sie die Informationen dieser Seite sehen möchten, wenden Sie sich bitte an Ihre IT-Abteilung, um Ihnen Superrechte zu gewähren.</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method OnOpenPage - NamedType NoAccessErr</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Method 716454850 - NamedType 375350412" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use the three dots on the right to select a table that you want to run</source>
@@ -957,23 +951,11 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Control TableCaption - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>A very powerful table editor</source>
-          <target state="translated">Ein mächtiger Tabelleneditor</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property AboutTitle</note>
-        </trans-unit>
         <trans-unit id="Page 3025933651 - Action 3774338566 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Opens the table editor where you can edit or delete selected records.</source>
           <target state="translated">Öffnet den Tabelleneditor, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3025933651 - Action 3774338566 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Use this action to open the table editor where you can edit or delete selected records.</source>
-          <target state="translated">Verwenden Sie diese Aktion, um den Tabelleneditor zu öffnen, in dem Sie ausgewählte Datensätze bearbeiten oder löschen können.</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion - Action EditTable - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3025933651 - Action 3774338566 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Edit Table</source>
@@ -1031,7 +1013,7 @@
         </trans-unit>
         <trans-unit id="Page 2727896929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table Editor</source>
-          <target state="translated">Tabellen-Editor</target>
+          <target state="translated">Tabelleneditor</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property Caption</note>
         </trans-unit>
@@ -1041,16 +1023,28 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Property AdditionalSearchTerms</note>
         </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 809267791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Proceed?</source>
+          <target state="translated">Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType CreateRecord2Qst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 3555668833" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to create a new record in table %1?</source>
+          <target state="translated">Möchten Sie einen neuen Datensatz in Tabelle %1 erstellen?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType CreateRecordQst</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to delete %1 records from table %2?</source>
           <target state="translated">Möchten Sie %1 Datensätze aus Tabelle %2 löschen?</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DeleteRecordsQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 2800295767" size-unit="char" translate="yes" xml:space="preserve">
           <source>Records will be deleted using DeleteAll(%1).\\Proceed?</source>
           <target state="translated">Die Datensätze werden mit DeleteAll(%1).\\ gelöscht. Fortfahren?</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = UseTrigger (Boolean)</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DeleteWithTriggerQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 4288424883" size-unit="char" translate="yes" xml:space="preserve">
@@ -1059,10 +1053,22 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DoneMsg</note>
         </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 363604244" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter each primary key field with a constant value. Only then a new record can be created using those values.</source>
+          <target state="translated">Filtern Sie jedes Primärschlüsselfeld mit einem konstanten Wert. Erst dann kann ein neuer Datensatz mit diesen Werten erstellt werden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType FilterTableOnEachPKFieldMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 1516192187" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Longest value has %1 characters.\%2</source>
+          <target state="translated">Der längste Wert hat %1 Zeichen.\%2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of characters, %2 = Value</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType MaxLengthMsg</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 2128188428" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to modify %1 records in table %2?</source>
           <target state="translated">Möchten Sie %1 Datensätze in Tabelle %2 ändern?</target>
-          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 777624542" size-unit="char" translate="yes" xml:space="preserve">
@@ -1076,6 +1082,24 @@
           <target state="translated">Validate("%1", [%2]);\Modify(%3);\\Fortfahren?</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsWithValidateQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 2470041236" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No records found.</source>
+          <target state="translated">Keine Datensätze gefunden.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType NoRecordsFoundMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 1798303574" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rename(%1);\\Proceed?</source>
+          <target state="translated">Rename(%1);\\Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType RenameRecords2Qst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - NamedType 4057747532" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to rename %1 records in table %2?</source>
+          <target state="translated">Möchten Sie %1 Datensätze in Tabelle %2 umbenennen?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType RenameRecordsQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
@@ -1130,6 +1154,18 @@
           <target state="translated">Nr.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldNumberField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2576247521 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Type field.</source>
+          <target state="translated">Gibt den Wert des Feldes Typ an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldTypeNameField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Control 2576247521 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target state="translated">Art</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control FieldTypeNameField - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Control 645473173 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>Choose the new value</source>
@@ -1281,6 +1317,18 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Control UseTableTriggerField - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3343869457 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Executes the Create Record action.</source>
+          <target state="translated">Führt die Aktion Datensatz erstellen aus.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action CreateRecordAction - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3343869457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Record</source>
+          <target state="translated">Datensatz erstellen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action CreateRecordAction - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - Action 932266291 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>Delete Records</source>
           <target state="translated">Datensätze löschen</target>
@@ -1304,6 +1352,18 @@
           <target state="translated">Datensätze löschen</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action DeleteRecordsAction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 275727716 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Finds the longest value of a field in the table.</source>
+          <target state="translated">Findet den längsten Wert eines Feldes in der Tabelle.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action FindLongestValueAction - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 275727716 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Find Longest Value</source>
+          <target state="translated">Längsten Wert finden</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action FindLongestValueAction - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Action 3302205236 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>Modify Records</source>

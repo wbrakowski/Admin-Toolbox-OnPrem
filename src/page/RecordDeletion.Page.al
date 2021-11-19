@@ -60,8 +60,6 @@ page 51003 "Record Deletion"
                 PromotedCategory = Process;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                AboutTitle = 'A very powerful table editor';
-                AboutText = 'Use this action to open the table editor where you can edit or delete selected records.';
                 ToolTip = 'Opens the table editor where you can edit or delete selected records.';
                 trigger OnAction()
                 begin

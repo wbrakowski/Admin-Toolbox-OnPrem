@@ -245,7 +245,6 @@ page 51001 "Admin Toolbox"
                         trigger OnAssistEdit()
                         var
                             AllObjWithCaption: Record AllObjWithCaption;
-                            TableObjects: Page "Table Objects";
                         begin
                             if Page.RunModal(Page::"Table Objects", AllObjWithCaption) = Action::LookupOK then begin
                                 SelectedTableNo := AllObjWithCaption."Object ID";
@@ -462,7 +461,6 @@ page 51001 "Admin Toolbox"
         APIWebhookNotificationLbl: Label 'API Webhook Notification';
         APIWebhookSubscriptionLbl: Label 'API Webhook Subscription';
         CodeunitMetadataLbl: Label 'Codeunit Metadata';
-        EventSubscriptionLbl: Label 'Event Subscription';
         FieldLbl: Label 'Field';
         KeyLbl: Label 'Key';
         HowToLbl: Label 'Learn how to use this tool';
@@ -478,7 +476,7 @@ page 51001 "Admin Toolbox"
     var
         UserPermissions: Codeunit "User Permissions";
         NoTableSelectedLbl: Label 'No table to run selected';
-        NoAccessErr: Label 'This page can only be accessed by users with super rights. If you want to see the information of this page, please contact your it department to grant you super rights.';
+        // NoAccessErr: Label 'This page can only be accessed by users with super rights. If you want to see the information of this page, please contact your it department to grant you super rights.';
         ThreeDotsLbl: Label 'Use the three dots on the right to select a table that you want to run';
     begin
         if not UserPermissions.IsSuper(UserSecurityId()) then

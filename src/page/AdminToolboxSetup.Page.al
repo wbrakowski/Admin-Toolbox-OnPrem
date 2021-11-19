@@ -38,7 +38,6 @@ page 51005 "Admin Toolbox Setup"
     }
 
     var
-        AdminToolBoxSetup: Record "Admin Toolbox Setup";
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
         DeveloperLicenseWarning, DeveloperLicense, IsOnPrem : Boolean;
 
