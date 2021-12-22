@@ -11,7 +11,9 @@ codeunit 51002 "Event Subscribers"
         if not EnvironmentInformation.IsOnPrem() or not GuiAllowed or not ActiveSession.Get(Database.ServiceInstanceId(), SessionId()) then
             exit;
         // if AdminToolMgt.UserHasPermissions() then
+#if OnPrem
         if UserPermissions.IsSuper(UserSecurityId()) then
             AdminToolMgt.ShowDevLicenseMessageIfNeeded();
+#endif
     end;
 }

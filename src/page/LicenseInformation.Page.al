@@ -1,3 +1,5 @@
+
+#if OnPrem
 page 51002 "License Information"
 {
     ApplicationArea = All;
@@ -21,7 +23,8 @@ page 51002 "License Information"
                     ToolTip = 'Specifies the value of the Text field';
                 }
             }
-            field(DeveloperLicense; AdminToolMgt.IsDeveloperLicense())
+            
+            field(DeveloperLicense; DeveloperLicense)
             {
                 Caption = 'Developer License';
                 ApplicationArea = All;
@@ -55,4 +58,12 @@ page 51002 "License Information"
     }
     var
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
+        DeveloperLicense: Boolean;
+
+
+    trigger OnAfterGetRecord()
+    begin
+        DeveloperLicense := AdminToolMgt.IsDeveloperLicense();
+    end;
 }
+#endif
