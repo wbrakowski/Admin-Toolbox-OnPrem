@@ -282,9 +282,11 @@ codeunit 51000 "Admin Tool Mgt."
         ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
         ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
     begin
+#if OnPrem
         if IsDeveloperLicense() then
             if Confirm(ImportCustLicenseQst, false) then
                 PowershellMgt.ImportLicense();
+#endif
 
         RecordDeletion.SetFilter("Table ID", '> %1', 49999);
         if RecordDeletion.FindSet(false) then
@@ -297,9 +299,12 @@ codeunit 51000 "Admin Tool Mgt."
             until RecordDeletion.Next() = 0;
 
         Message(RecordsSuggestedMsg, RecsSuggestedCount);
+#if OnPrem
         if Confirm(ImportLicenseQst, false) then
             PowershellMgt.ImportLicense();
+#endif
     end;
+
 
     procedure ViewRecords(RecordDeletion: Record "Record Deletion");
     begin
@@ -316,8 +321,11 @@ codeunit 51000 "Admin Tool Mgt."
         exit(AllObjWithCaption."Object Caption");
     end;
 
+#if OnPrem
+    [Scope('OnPrem')]
     internal procedure IsDeveloperLicense(): Boolean
     var
+
         LicenseInformation: Record "License Information";
         EnvironmentInformation: Codeunit "Environment Information";
     begin
@@ -326,6 +334,7 @@ codeunit 51000 "Admin Tool Mgt."
         LicenseInformation.SetFilter(Text, '@*solution developer*');
         exit(not LicenseInformation.IsEmpty());
     end;
+#endif
 
     local procedure IsRecordInLicense(TableID: Integer): Boolean
     var
@@ -381,6 +390,8 @@ codeunit 51000 "Admin Tool Mgt."
         TableEditor.Run();
     end;
 
+#if OnPrem
+    [Scope('OnPrem')]
     internal procedure ShowDevLicenseMessageIfNeeded()
     var
         AdminToolboxSetup: Record "Admin Toolbox Setup";
@@ -393,6 +404,7 @@ codeunit 51000 "Admin Tool Mgt."
         if AdminToolMgt.IsDeveloperLicense() and AdminToolboxSetup."Developer License Warning" then
             Message(DevLicenseMsg);
     end;
+#endif
 
     local procedure SuggestTransactionalRecordsToDelete()
     var

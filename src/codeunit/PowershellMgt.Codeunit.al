@@ -1,5 +1,6 @@
 codeunit 51001 "Powershell Mgt."
 {
+#if OnPrem
     [Scope('OnPrem')]
     procedure ImportLicense()
     var
@@ -16,20 +17,16 @@ codeunit 51001 "Powershell Mgt."
         FileName: Text;
     begin
         FileName := FileManagement.BLOBImportWithFilter(TempBlob, SelectFileTxt, '', FileFilterLbl, AllFilesFilterTxt);
-
         if FileName = '' then
             exit;
 
         FileName := TemporaryPath + FileName;
-
         if Exists(FileName) then
             Erase(FileName);
 
         FileManagement.BLOBExportToServerFile(TempBlob, FileName);
 
-
         ActiveSession.Get(ServiceInstanceId(), SessionId());
-
         PowerShellRunner := PowerShellRunner.CreateInSandbox();
         PowerShellRunner.WriteEventOnError := true;
         PowerShellRunner.ImportModule(ApplicationPath + NAVAdminToolLbl);
@@ -42,7 +39,7 @@ codeunit 51001 "Powershell Mgt."
 
         while not PowerShellRunner.IsCompleted() do
             Sleep(1000);
-
         UpdateDialog.Close();
     end;
+#endif
 }

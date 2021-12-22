@@ -918,6 +918,16 @@
           <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType RenameRecordsQst</note>
         </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3541026971 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 tables have succesfully been updated.</source>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType UpdateFinishedMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3541026971 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing tables... @1@@@@@@</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType ProcessingDataTxt</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
           <note from="Developer" annotates="general" priority="2"></note>

@@ -12,10 +12,11 @@ page 51005 "Admin Toolbox Setup"
     {
         area(Content)
         {
+
             group(License)
             {
                 Caption = 'License';
-                field(DeveloperLicense; AdminToolMgt.IsDeveloperLicense())
+                field(DeveloperLicense; DeveloperLicense)
                 {
                     Caption = 'Developer License';
                     ApplicationArea = All;
@@ -34,6 +35,7 @@ page 51005 "Admin Toolbox Setup"
                     Editable = IsOnPrem;
                 }
             }
+
         }
     }
 
@@ -48,9 +50,9 @@ page 51005 "Admin Toolbox Setup"
         MyNotification: Notification;
         OnPremMsg: Label 'It was detected that this is not an OnPrem environment. The Admin Tool Setup only contains additional functionalities for OnPrem environments.';
     begin
-        if not Get() then begin
-            Init();
-            Insert();
+        if not Rec.Get() then begin
+            Rec.Init();
+            Rec.Insert();
         end;
 
         IsOnPrem := EnvironmentInformation.IsOnPrem();
@@ -59,5 +61,12 @@ page 51005 "Admin Toolbox Setup"
             MyNotification.Scope := NotificationScope::LocalScope;
             MyNotification.Send();
         end;
+    end;
+
+    trigger OnAfterGetRecord()
+    begin
+#if OnPrem
+        DeveloperLicense := AdminToolMgt.IsDeveloperLicense();
+#endif
     end;
 }

@@ -38,6 +38,7 @@ page 51001 "Admin Toolbox"
                 AboutTitle = 'About tables';
                 AboutText = 'This is an overview of all the tables in the system. You can run the table, delete all records from a table, edit specific records, delete a selection of records.';
             }
+#if OnPrem
             part(LicenseInformation; "License Information")
             {
                 ApplicationArea = All;
@@ -46,6 +47,7 @@ page 51001 "Admin Toolbox"
                 AboutText = 'View the details of your current license or import a new license.';
                 UpdatePropagation = Both;
             }
+#endif
 
             group(Information)
             {
