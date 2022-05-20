@@ -167,13 +167,13 @@
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 267657989" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1/?table=%2</source>
-          <target state="translated">%1/?Tabelle=%2</target>
+          <target state="translated">%1/?table=%2</target>
           <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType UrlTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 2396693411" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1&amp;table=%2</source>
-          <target state="translated">%1/?Tabelle=%2</target>
+          <target state="translated">%1/?table=%2</target>
           <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType Url2Txt</note>
         </trans-unit>

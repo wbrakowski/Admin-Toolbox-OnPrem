@@ -34,13 +34,13 @@ page 51003 "Record Deletion"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the no. of table relation errors that were detected when running the table relation check.';
                 }
-                #if OnPrem
+#if OnPrem
                 field("No. of Records"; Rec."No. of Records")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the total no. of records in the table.';
                 }
-                #endif
+#endif
                 field("Delete Records"; Rec."Delete Records")
                 {
                     ApplicationArea = All;

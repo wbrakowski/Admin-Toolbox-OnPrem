@@ -2,7 +2,7 @@
   "id": "cafd90e7-34f2-4ff9-ae7e-ae1210bc1841",
   "name": "Admin-Toolbox",
   "publisher": "Waldemar Brakowski",
-  "version": "19.0.0.0",
+  "version": "20.0.0.0",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -13,8 +13,8 @@
   "dependencies": [
   ],
   "screenshots": [],
-  "platform": "19.0.0.0",
-  "application": "19.0.0.0",
+  "platform": "20.0.0.0",
+  "application": "20.0.0.0",
   "idRanges": [
     {
       "from": 51000,
@@ -23,7 +23,7 @@
   ],
   "preprocessorSymbols": ["OnPrem"], 
   "contextSensitiveHelpUrl": "https://github.com/wbrakowski/Admin-Tool-OnPrem/blob/main/README.md",
-  "runtime": "8.0",
+  "runtime": "9.0",
   "target": "OnPrem", 
   "features": [ "TranslationFile"]
 }

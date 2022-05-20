@@ -31,6 +31,7 @@ page 51004 "Table Editor"
                     begin
                         ClearTableVariables();
                         GetTableCaption();
+                        UpdateTableNoOfRecords();
                     end;
                 }
                 field(TableCaptionField; TableCaption)
@@ -253,6 +254,12 @@ page 51004 "Table Editor"
         ModifyRecordsWithoutValidateQst: Label '"%1" := [%2];\Modify(%3);\\Proceed?';
         DoneMsg: Label 'Done.';
 
+
+    trigger OnOpenPage()
+    begin
+        UpdateTableNoOfRecords();
+    end;
+
     local procedure ClearTableVariables()
     begin
         Clear(TableCaption);
@@ -284,14 +291,14 @@ page 51004 "Table Editor"
         if CustomTableView <> '' then
             FilterPageBuilder.SetView(TableCaption, CustomTableView)
         else
-            for i := 1 to RecordRef.KeyIndex(1).FieldCount do
+            for i := 1 to RecordRef.KeyIndex(1).FieldCount() do
                 FilterPageBuilder.AddField(TableCaption, RecordRef.KeyIndex(1).FieldIndex(i));
 
         if FilterPageBuilder.RunModal() then
             CustomTableView := FilterPageBuilder.GetView(TableCaption, false);
         RecordRef.SetView(CustomTableView);
 
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         RecordRef.Close();
     end;
 
@@ -306,13 +313,13 @@ page 51004 "Table Editor"
         RecordRef.Open(TableNo);
         RecordRef2.Open(TableNo);
         RecordRef.SetView(CustomTableView);
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         if not RecordRef.IsEmpty then
             Error(FilterTableOnEachPKFieldMsg);
 
         s := 'Rec.Init();\';
         PrimaryKeyRef := RecordRef.KeyIndex(1);
-        for i := 1 to PrimaryKeyRef.FieldCount do begin
+        for i := 1 to PrimaryKeyRef.FieldCount() do begin
             if PrimaryKeyRef.FieldIndex(i).GetFilter = '' then
                 Error(FilterTableOnEachPKFieldMsg);
             RecordRef2.Field(PrimaryKeyRef.FieldIndex(i).Number).Value := PrimaryKeyRef.FieldIndex(i).GetRangeMin;
@@ -330,7 +337,7 @@ page 51004 "Table Editor"
 
         RecordRef2.Init();
         RecordRef2.Insert(false);
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         Message(DoneMsg);
         RecordRef.Close();
     end;
@@ -345,31 +352,28 @@ page 51004 "Table Editor"
     begin
         RecordRef.Open(TableNo);
         RecordRef.SetView(CustomTableView);
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         if not Confirm(DeleteRecordsQst, false, TableNoOfRecords, TableCaption) then
             Error('');
         if not Confirm(DeleteWithTriggerQst, false, Format(UseTableTrigger, 0, 9)) then
             Error('');
-        if UseTableTrigger then begin
-            if RecordRef.FindSet() then begin
-                UpdateDialog.Open(ProcessingDataTxt);
-                NoOfRecs := RecordRef.Count();
-                repeat
-                    CurrRec += 1;
-                    if NoOfRecs <= 100 then
-                        UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
-                    else
-                        if CurrRec mod (NoOfRecs div 100) = 0 then
-                            UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
-                    if RecordRef.Delete(UseTableTrigger) then begin
-                        Commit();
-                        TableNoOfRecords := RecordRef.Count;
-                    end;
-                until RecordRef.Next() = 0;
-            end;
-        end else
-            RecordRef.DeleteAll(UseTableTrigger);
-        TableNoOfRecords := RecordRef.Count;
+        if RecordRef.FindSet() then begin
+            UpdateDialog.Open(ProcessingDataTxt);
+            NoOfRecs := RecordRef.Count();
+            repeat
+                CurrRec += 1;
+                if NoOfRecs <= 100 then
+                    UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
+                else
+                    if CurrRec mod (NoOfRecs div 100) = 0 then
+                        UpdateDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
+                if RecordRef.Delete(UseTableTrigger) then begin
+                    Commit();
+                    TableNoOfRecords := RecordRef.Count();
+                end;
+            until RecordRef.Next() = 0;
+        end;
+        TableNoOfRecords := RecordRef.Count();
         Message(DoneMsg);
         RecordRef.Close();
     end;
@@ -468,7 +472,7 @@ page 51004 "Table Editor"
 
         RecordRef.Open(TableNo);
         RecordRef.SetView(CustomTableView);
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         if not Confirm(ModifyRecordsQst, false, TableNoOfRecords, TableCaption) then
             Error('');
 
@@ -493,7 +497,7 @@ page 51004 "Table Editor"
             RecordRef.Modify(UseTableTrigger);
         until RecordRef.Next() = 0;
 
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         Message(DoneMsg);
         RecordRef.Close();
     end;
@@ -506,7 +510,7 @@ page 51004 "Table Editor"
     begin
         RecordRef.Open(TableNo);
         PrimaryKeyRef := RecordRef.KeyIndex(1);
-        for i := 1 to PrimaryKeyRef.FieldCount do
+        for i := 1 to PrimaryKeyRef.FieldCount() do
             if FieldNumber = PrimaryKeyRef.FieldIndex(i).Number then
                 exit(i);
         exit(-1);
@@ -532,12 +536,12 @@ page 51004 "Table Editor"
 
         RecordRef.Open(TableNo);
         RecordRef.SetView(CustomTableView);
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         if not Confirm(RenameRecordsQst, false, TableNoOfRecords, TableCaption) then
             Error('');
 
         PrimaryKeyRef := RecordRef.KeyIndex(1);
-        NoOfPrimaryKeys := PrimaryKeyRef.FieldCount;
+        NoOfPrimaryKeys := PrimaryKeyRef.FieldCount();
         for i := 1 to NoOfPrimaryKeys do begin
             PKFieldRef[i] := PrimaryKeyRef.FieldIndex(i);
             if i = IndexInPrimaryKey then
@@ -609,9 +613,22 @@ page 51004 "Table Editor"
 
         until RecordRef.Next() = 0;
 
-        TableNoOfRecords := RecordRef.Count;
+        TableNoOfRecords := RecordRef.Count();
         Message(DoneMsg);
         RecordRef.Close();
+    end;
+
+    local procedure UpdateTableNoOfRecords()
+    var
+        RecordRef: RecordRef;
+        FilterPageBuilder: FilterPageBuilder;
+        i: Integer;
+    begin
+        if TableNo <> 0 then begin
+            RecordRef.Open(TableNo);
+            TableNoOfRecords := RecordRef.Count();
+            RecordRef.Close();
+        end;
     end;
 
     procedure FindLongestValue() MaxLength: Integer
