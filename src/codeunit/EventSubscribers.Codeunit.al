@@ -1,6 +1,6 @@
 codeunit 51002 "Event Subscribers"
 {
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Company Triggers", 'OnCompanyOpen', '', true, true)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Company Triggers", 'OnCompanyOpenCompleted', '', true, true)]
     local procedure CompanyTriggers_OnCompanyOpen()
     var
         ActiveSession: Record "Active Session";
