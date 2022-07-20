@@ -9,7 +9,7 @@ page 51000 "Record Deletion Rel. Error"
 
     layout
     {
-        area(content)
+        area(Content)
         {
             repeater(General)
             {
@@ -19,7 +19,7 @@ page 51000 "Record Deletion Rel. Error"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the Entry No.';
                 }
-                field("Error"; Rec.Error)
+                field(Error; Rec.Error)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the error text if an error occured';

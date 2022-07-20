@@ -1,6 +1,6 @@
-table 51001 "Record Deletion Rel. Error"
+table 51002 "Record Deletion Rel. Error"
 {
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
     LookupPageId = "Record Deletion Rel. Error";
     DrillDownPageId = "Record Deletion Rel. Error";
     fields
@@ -8,32 +8,32 @@ table 51001 "Record Deletion Rel. Error"
         field(1; "Table ID"; Integer)
         {
             Caption = 'Table ID';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             Editable = false;
         }
         field(2; "Entry No."; Integer)
         {
             Caption = 'Entry No.';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             Editable = false;
         }
         field(10; "Field No."; Integer)
         {
             Caption = 'Field No.';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             Editable = false;
         }
         field(11; "Field Name"; Text[30])
         {
             Caption = 'Field Name';
             FieldClass = FlowField;
-            CalcFormula = Lookup(Field.FieldName where(TableNo = field("Table ID"), "No." = field("Field No.")));
+            CalcFormula = lookup(Field.FieldName where(TableNo = field("Table ID"), "No." = field("Field No.")));
             Editable = false;
         }
-        field(20; "Error"; Text[250])
+        field(20; Error; Text[250])
         {
             Caption = 'Error';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             Editable = false;
         }
     }

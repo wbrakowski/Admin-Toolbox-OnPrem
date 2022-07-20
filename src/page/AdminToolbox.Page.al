@@ -12,7 +12,7 @@ page 51001 "Admin Toolbox"
     AboutText = 'This toolbox assists you with the following tasks: deleting or editing records, viewing or importing licenses, running tables, publishing apps.';
     layout
     {
-        area(content)
+        area(Content)
         {
             group(Howto)
             {
@@ -119,7 +119,7 @@ page 51001 "Admin Toolbox"
 
                         trigger OnDrillDown()
                         begin
-                            AdminToolMgt.OpenTable(Database::"Codeunit Metadata");
+                            AdminToolMgt.OpenTable(Database::"CodeUnit Metadata");
                         end;
                     }
                     field(PageMetadataLbl; PageMetadataLbl)
@@ -235,7 +235,7 @@ page 51001 "Admin Toolbox"
                 {
                     Caption = 'Table Selector';
                     AboutTitle = 'About Table Selector';
-                    Abouttext = 'Use the table selector if you want to run a specific table.';
+                    AboutText = 'Use the table selector if you want to run a specific table.';
 
                     field(SelectedTableNoText; SelectedTableNoText)
                     {
@@ -464,8 +464,8 @@ page 51001 "Admin Toolbox"
         APIWebhookSubscriptionLbl: Label 'API Webhook Subscription';
         CodeunitMetadataLbl: Label 'Codeunit Metadata';
         FieldLbl: Label 'Field';
-        KeyLbl: Label 'Key';
         HowToLbl: Label 'Learn how to use this tool';
+        KeyLbl: Label 'Key';
         LicensePermissionLbl: Label 'License Permission';
         PageMetadataLbl: Label 'Page Metadata';
         RecordLinkLbl: Label 'Record Link';

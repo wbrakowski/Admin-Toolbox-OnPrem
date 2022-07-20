@@ -87,11 +87,71 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Table ID - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 1761793071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 =&gt; %2 = '%3' does not exist in the '%4' table</source>
-          <target state="translated">%1 =&gt; %2 = '%3' existiert nicht in der Tabelle '%4'.</target>
+        <trans-unit id="Table 2048709543 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Temp Object in License</source>
+          <target state="translated">Temp-Objekt in Lizenz</target>
           <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType NotExistsTxt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2048709543 - Field 3711240756 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object ID</source>
+          <target state="translated">Objekt-ID</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Field Object ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2048709543 - Field 1418569422 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Name</source>
+          <target state="translated">Objektname</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Field Object Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2048709543 - Field 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <target state="translated">Objektart</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Field Object Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2048709543 - Field 1085746399 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</source>
+          <target state="translated">,Tabelle,,Bericht,,Codeunit,XMLport,MenuSuite,Seite,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Field Object Type - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Table 2048709543 - Field 3220827225 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used</source>
+          <target state="translated">Benutzt</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Object in License - Field Used - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4286425647 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Temp Unlicensed Object</source>
+          <target state="translated">Temp Unlizenziertes Objekt</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4286425647 - Field 3711240756 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object ID</source>
+          <target state="translated">Objekt-ID</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Field Object ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4286425647 - Field 1418569422 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Name</source>
+          <target state="translated">Objektname</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Field Object Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4286425647 - Field 1085746399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Type</source>
+          <target state="translated">Objektart</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Field Object Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4286425647 - Field 1085746399 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</source>
+          <target state="translated">,Tabelle,,Bericht,,Codeunit,XMLport,MenuSuite,Seite,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Field Object Type - Property OptionCaption</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 877858973" size-unit="char" translate="yes" xml:space="preserve">
           <source>Checking Relations Between Records!\Table: #1#######</source>
@@ -105,35 +165,17 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType CheckRelationsQst</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 1761793071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 =&gt; %2 = '%3' does not exist in the '%4' table</source>
+          <target state="translated">%1 =&gt; %2 = '%3' existiert nicht in der Tabelle '%4'.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType NotExistsTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1089747479 - NamedType 1478607934" size-unit="char" translate="yes" xml:space="preserve">
           <source>The checkbox %1 was succesfully reset for the tables.</source>
           <target state="translated">Das Feld %1 wurde erfolgreich für die Tabellen zurückgesetzt.</target>
           <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ClearRecordsToDelete - NamedType MarkDeletionRemovedMsg</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
-          <target state="translated">%1 Tabellen wurden für die Löschung markiert. Alle Datensätze aus diesen Tabellen werden gelöscht. Fortfahren?</target>
-          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeleteRecordsQst</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)</source>
-          <target state="translated">Löschen von Datensätzen ohne Delete Trigger: Record.Delete(false),Löschen von Datensätzen mit Delete Trigger: Record.Delete(true)</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType OptionsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 1617397918" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deleting Records!\Table: #1#######</source>
-          <target state="translated">Lösche Datensätze!\Tabelle: #1#######</target>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeletingRecordsTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3437731031" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.</source>
-          <target state="translated">Zum Löschen wurden keine Tabellen markiert. Stellen Sie sicher, dass Sie das Feld %1 in den Tabellen ankreuzen, in denen Sie Datensätze löschen möchten, bevor Sie diesen Vorgang ausführen.</target>
-          <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType NoRecsFoundErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3235645552" size-unit="char" translate="yes" xml:space="preserve">
           <source>The operation was cancelled by the user.</source>
@@ -141,17 +183,35 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType CancelledByUserErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
+          <target state="translated">%1 Tabellen wurden für die Löschung markiert. Alle Datensätze aus diesen Tabellen werden gelöscht. Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeleteRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 1617397918" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleting Records!\Table: #1#######</source>
+          <target state="translated">Lösche Datensätze!\Tabelle: #1#######</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeletingRecordsTxt</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 2814518218" size-unit="char" translate="yes" xml:space="preserve">
           <source>The records from %1 table(s) were succesfully deleted.</source>
           <target state="translated">Die Datensätze aus %1 Tabellen wurden erfolgreich gelöscht.</target>
           <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType DeletionSuccessMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 tables have succesfully been updated.</source>
-          <target state="translated">%1 Tabellen wurden erfolgreich aktualisiert.</target>
-          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType UpdateFinishedMsg</note>
+        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3437731031" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.</source>
+          <target state="translated">Zum Löschen wurden keine Tabellen markiert. Stellen Sie sicher, dass Sie das Feld %1 in den Tabellen ankreuzen, in denen Sie Datensätze löschen möchten, bevor Sie diesen Vorgang ausführen.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType NoRecsFoundErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)</source>
+          <target state="translated">Löschen von Datensätzen ohne Delete Trigger: Record.Delete(false),Löschen von Datensätzen mit Delete Trigger: Record.Delete(true)</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1875284373" size-unit="char" translate="yes" xml:space="preserve">
           <source>No record could be found in table %1.</source>
@@ -165,11 +225,11 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType ProcessingDataTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 267657989" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1/?table=%2</source>
-          <target state="translated">%1/?table=%2</target>
-          <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType UrlTxt</note>
+        <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 tables have succesfully been updated.</source>
+          <target state="translated">%1 Tabellen wurden erfolgreich aktualisiert.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType UpdateFinishedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 2396693411" size-unit="char" translate="yes" xml:space="preserve">
           <source>%1&amp;table=%2</source>
@@ -177,17 +237,23 @@
           <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType Url2Txt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Continue publishing app (a new tab will be opened),Learn how to install the external deployer</source>
-          <target state="translated">Weiter mit der Veröffentlichung der App (ein neuer Tab wird geöffnet),Öffnen Sie die Anleitung für die Installation des External Deployer</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType OptionsLbl</note>
+        <trans-unit id="Codeunit 4017461657 - Method 3722283982 - NamedType 267657989" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1/?table=%2</source>
+          <target state="translated">%1/?table=%2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType UrlTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 2377828003" size-unit="char" translate="yes" xml:space="preserve">
           <source>The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.</source>
           <target state="translated">Der External Deployer muss auf der Serverinstanz installiert sein, um Apps zu veröffentlichen. Wählen Sie aus, wie Sie fortfahren möchten.</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType InstructionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Continue publishing app (a new tab will be opened),Learn how to install the external deployer</source>
+          <target state="translated">Weiter mit der Veröffentlichung der App (ein neuer Tab wird geöffnet),Öffnen Sie die Anleitung für die Installation des External Deployer</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1304378668 - NamedType 705934383" size-unit="char" translate="yes" xml:space="preserve">
           <source>Attention, the developer license is currently active.</source>
@@ -207,11 +273,11 @@
           <note from="Developer" annotates="general" priority="2">%1 = Number of suggested records</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestTransactionalRecordsToDelete - NamedType RecordsWereSuggestedMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 2880885934" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 unlicensed partner or custom records were suggested.</source>
-          <target state="translated">%1 unlizenzierte Datensätze aus Custom- oder Partnertabellen wurden vorgeschlagen.</target>
-          <note from="Developer" annotates="general" priority="2">%1 Number of unlicensed records</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType RecordsSuggestedMsg</note>
+        <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 1018787915" size-unit="char" translate="yes" xml:space="preserve">
+          <source>It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?</source>
+          <target state="translated">Es sieht so aus, als ob derzeit eine Entwicklerlizenz importiert ist. Die Verwendung dieser Funktion ist für Kundenlizenzen vorgesehen. Möchten Sie jetzt eine andere Lizenz importieren?</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportCustLicenseQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 3507336724" size-unit="char" translate="yes" xml:space="preserve">
           <source>A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?</source>
@@ -219,11 +285,11 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportLicenseQst</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 1018787915" size-unit="char" translate="yes" xml:space="preserve">
-          <source>It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?</source>
-          <target state="translated">Es sieht so aus, als ob derzeit eine Entwicklerlizenz importiert ist. Die Verwendung dieser Funktion ist für Kundenlizenzen vorgesehen. Möchten Sie jetzt eine andere Lizenz importieren?</target>
-          <note from="Developer" annotates="general" priority="2"/>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportCustLicenseQst</note>
+        <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 2880885934" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 unlicensed partner or custom records were suggested.</source>
+          <target state="translated">%1 unlizenzierte Datensätze aus Custom- oder Partnertabellen wurden vorgeschlagen.</target>
+          <note from="Developer" annotates="general" priority="2">%1 Number of unlicensed records</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType RecordsSuggestedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 966007232" size-unit="char" translate="yes" xml:space="preserve">
           <source>*.*</source>
@@ -867,6 +933,30 @@
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1618956314 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AllObj</source>
+          <target state="translated">AllObj</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AllObj - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1618956314 - Control 3711240756 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object ID field.</source>
+          <target state="translated">Gibt die Objekt ID an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AllObj - Control Object ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1618956314 - Control 1418569422 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Name field.</source>
+          <target state="translated">Gibt den Objektnamen an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AllObj - Control Object Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1618956314 - Control 1085746399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Type field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttyp an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page AllObj - Control Object Type - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1725951601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Information</source>
           <target state="translated">Lizenzinformationen</target>
@@ -881,7 +971,7 @@
         </trans-unit>
         <trans-unit id="Page 1725951601 - Control 4149399399 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Developer License</source>
-          <target state="translated">Entwickler Lizenz</target>
+          <target state="translated">Entwicklerlizenz</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Control DeveloperLicense - Property Caption</note>
         </trans-unit>
@@ -890,6 +980,30 @@
           <target state="translated">Gibt den Wert des Feldes Text an</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Control Text - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Action 1246810302 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates a list with all used and unused objects in the license.</source>
+          <target state="translated">Erzeugt eine Liste mit allen verwendeten und nicht verwendeten Objekten in der Lizenz.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ExportObjects - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Action 1246810302 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Used and Unused Objects in License</source>
+          <target state="translated">Verwendete und nicht verwendete Objekte exportieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ExportObjects - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Action 1167558626 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates a list with all unlicensed objects.</source>
+          <target state="translated">Erzeugt eine Liste mit allen nicht lizenzierten Objekten.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ExportUnlicensedObjects - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1725951601 - Action 1167558626 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Unlicensed Objects</source>
+          <target state="translated">Nicht lizenzierte Objekte exportieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ExportUnlicensedObjects - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1725951601 - Action 2839364610 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Imports the selected license.</source>
@@ -902,6 +1016,102 @@
           <target state="translated">Lizenz importieren</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page License Information - Action ImportLicense - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>License Permissions</source>
+          <target state="translated">Lizenzberechtigungen</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 3735914638 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Delete Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Löschberechtigung an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Delete Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 480834248 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Execute Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Ausführungserlaubnis an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Execute Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 3088155792 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Insert Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Einfügeerlaubnis an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Insert Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 3767204390 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Limited Usage Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Beschränkte Nutzungserlaubnis an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Limited Usage Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 1682833869 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Modify Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Änderungserlaubnis an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Modify Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 1247803954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Number field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objektnummer an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Object Number - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 1085746399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Type field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttyp an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Object Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 935494845 - Control 3135917451 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Read Permission field.</source>
+          <target state="translated">Gibt den Wert des Feldes Leseberechtigung an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page License Permissions - Control Read Permission - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects in License</source>
+          <target state="translated">Objekte in der Lizenz</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - Control 3711240756 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object ID field.</source>
+          <target state="translated">Gibt die Objekt ID an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - Control Object ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - Control 1418569422 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Name field.</source>
+          <target state="translated">Gibt den Objektnamen an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - Control Object Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - Control 1085746399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Type field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttyp an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - Control Object Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - Control 3220827225 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Used field.</source>
+          <target state="translated">Gibt den Wert des Feldes Verwendet an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - Control Used - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - View 1106942382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Free Objects</source>
+          <target state="translated">Freie Objekte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - View FreeObjects - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1569293126 - View 1741861363 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Used Objects</source>
+          <target state="translated">Verwendete Objekte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Objects in License - View UsedObjects - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3025933651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Tables</source>
@@ -1100,6 +1310,18 @@
           <target state="translated">Möchten Sie %1 Datensätze in Tabelle %2 umbenennen?</target>
           <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType RenameRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3541026971 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing tables... @1@@@@@@</source>
+          <target state="translated">Verarbeite Tabellen... @1@@@@@@</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType ProcessingDataTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3541026971 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 tables have succesfully been updated.</source>
+          <target state="translated">%1 Tabellen wurden erfolgreich aktualisiert.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType UpdateFinishedMsg</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
@@ -1388,6 +1610,126 @@
           <target state="translated">Datensätze modifizieren</target>
           <note from="Developer" annotates="general" priority="2"/>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 670616998 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unlicensed Objects</source>
+          <target state="translated">Nicht lizenzierte Objekte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Unlicensed Objects - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 670616998 - Control 3711240756 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object ID field.</source>
+          <target state="translated">Gibt die Objekt ID an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Unlicensed Objects - Control Object ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 670616998 - Control 1418569422 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Name field.</source>
+          <target state="translated">Gibt den Objektnamen an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Unlicensed Objects - Control Object Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 670616998 - Control 1085746399 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Type field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttyp an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Unlicensed Objects - Control Object Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Used and Not Used Objects</source>
+          <target state="translated">Verwendete und nicht verwendete Objekte exportieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 3904799447 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Types Filter field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttypenfilter an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control ObjectTypeFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 3904799447 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Types Filter</source>
+          <target state="translated">Objekttypen-Filter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control ObjectTypeFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 3904799447 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</source>
+          <target state="translated">,Tabelle,,Bericht,,Codeunit,XMLport,MenuSuite,Seite,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control ObjectTypeFilter - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 2432487110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Objects ID (Number) Filter field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekt-ID (Nummer) Filter an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control ObjIDFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 2432487110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects ID (Number) Filter</source>
+          <target state="translated">Objekte ID (Nummer) Filter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control ObjIDFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 1331043751 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Only Free Objects field.</source>
+          <target state="translated">Gibt den Wert des Feldes Nur freie Objekte an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control OnlyFreeID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 1331043751 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only Free Objects</source>
+          <target state="translated">Nur freie Objekte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control OnlyFreeID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 1491504858 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Only Used Objects field.</source>
+          <target state="translated">Gibt den Wert des Feldes "Nur verwendete Objekte" an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control OnlyUsedID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1924762098 - Control 1491504858 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only Used Objects</source>
+          <target state="translated">Nur verwendete Objekte</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control OnlyUsedID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Unlicensed Objects</source>
+          <target state="translated">Nicht lizenzierte Objekte exportieren</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Control 3904799447 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Object Types Filter field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekttypenfilter an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjectTypeFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Control 3904799447 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Object Types Filter</source>
+          <target state="translated">Objekttypen-Filter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjectTypeFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Control 3904799447 - Property 62802879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>,Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</source>
+          <target state="translated">,Tabelle,,Bericht,,Codeunit,XMLport,MenuSuite,Seite,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjectTypeFilter - Property OptionCaption</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Control 2432487110 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Objects ID (Number) Filter field.</source>
+          <target state="translated">Gibt den Wert des Feldes Objekt-ID (Nummer) Filter an.</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjIDFilter - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 1169104498 - Control 2432487110 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Objects ID (Number) Filter</source>
+          <target state="translated">Objekte ID (Nummer) Filter</target>
+          <note from="Developer" annotates="general" priority="2"/>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjIDFilter - Property Caption</note>
         </trans-unit>
       </group>
     </body>

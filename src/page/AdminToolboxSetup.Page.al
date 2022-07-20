@@ -41,7 +41,7 @@ page 51005 "Admin Toolbox Setup"
 
     var
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
-        DeveloperLicenseWarning, DeveloperLicense, IsOnPrem : Boolean;
+        DeveloperLicense, DeveloperLicenseWarning, IsOnPrem : Boolean;
 
 
     trigger OnOpenPage()

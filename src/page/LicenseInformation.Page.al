@@ -23,7 +23,7 @@ page 51002 "License Information"
                     ToolTip = 'Specifies the value of the Text field';
                 }
             }
-            
+
             field(DeveloperLicense; DeveloperLicense)
             {
                 Caption = 'Developer License';
@@ -53,6 +53,26 @@ page 51002 "License Information"
                 begin
                     PowershellMgt.ImportLicense();
                 end;
+            }
+            action(ExportObjects)
+            {
+                ApplicationArea = All;
+                Caption = 'Export Used and Unused Objects in License';
+                Image = Export;
+                Promoted = true;
+                PromotedOnly = true;
+                ToolTip = 'Creates a list with all used and unused objects in the license.';
+                RunObject = Report "Export Objects in License";
+            }
+            action(ExportUnlicensedObjects)
+            {
+                ApplicationArea = All;
+                Caption = 'Export Unlicensed Objects';
+                Image = Export;
+                Promoted = true;
+                PromotedOnly = true;
+                ToolTip = 'Creates a list with all unlicensed objects.';
+                RunObject = Report "Export Unlicensed Objects";
             }
         }
     }
