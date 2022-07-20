@@ -8,6 +8,8 @@ I've combined features from different blog posts into one single app called "Adm
 - Show Developer License Warning, Yuri Mishin
 - [Not out of the box information for consultants, Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/ "Not out of the box information for consultants, Waldo") 
 - [Enabling External Deployment in OnPrem Business Central Environments, Waldo](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/ "Enabling External Deployment in OnPrem Business Central Environments") </br>
+- [See used and not used Objects, Roberto Stefanetti](https://robertostefanettinavblog.com/2022/03/29/used-and-not-used-objects-in-business-central-license/ "See used and not used Objects, Roberto Stefanetti")
+- Export Unlicensed Objects, Waldemar Brakowski
 
 Currently this page is only for OnPrem, because license information can only be displayed OnPrem and for the license import DotNet is used. </br>
 If there is enough demand, I can create a SaaS version without the license area. </br> 

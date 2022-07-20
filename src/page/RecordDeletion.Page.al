@@ -9,7 +9,7 @@ page 51003 "Record Deletion"
 
     layout
     {
-        area(content)
+        area(Content)
         {
             repeater(General)
             {

@@ -1,12 +1,12 @@
 codeunit 51000 "Admin Tool Mgt."
 {
-    Permissions = TableData "17" = IMD, Tabledata "21" = IMD, Tabledata "25" = IMD, Tabledata "32" = IMD, Tabledata "36" = IMD,
-                  Tabledata "37" = IMD, Tabledata "38" = IMD, Tabledata "39" = IMD, Tabledata "45" = IMD, Tabledata "46" = IMD,
-                  Tabledata "81" = IMD, Tabledata "110" = IMD, TableData "111" = IMD, TableData "112" = IMD, TableData "113" = IMD,
-                  TableData "114" = IMD, TableData "115" = IMD, TableData "120" = IMD, Tabledata "121" = IMD, Tabledata "122" = IMD,
-                  Tabledata "123" = IMD, Tabledata "124" = IMD, Tabledata "125" = IMD, Tabledata "169" = IMD, Tabledata "253" = IMD,
-                  Tabledata "254" = IMD, Tabledata "271" = IMD, Tabledata "339" = IMD, Tabledata "379" = IMD, Tabledata "380" = IMD,
-                  Tabledata "5802" = IMD, tabledata "6650" = IMD, tabledata "6660" = IMD;
+    Permissions = tabledata "G/L Entry" = IMD, tabledata "Cust. Ledger Entry" = IMD, tabledata "Vendor Ledger Entry" = IMD, tabledata "Item Ledger Entry" = IMD, tabledata "Sales Header" = IMD,
+                  tabledata "Sales Line" = IMD, tabledata "Purchase Header" = IMD, tabledata "Purchase Line" = IMD, tabledata "G/L Register" = IMD, tabledata "Item Register" = IMD,
+                  tabledata "Gen. Journal Line" = IMD, tabledata "Sales Shipment Header" = IMD, tabledata "Sales Shipment Line" = IMD, tabledata "Sales Invoice Header" = IMD, tabledata "Sales Invoice Line" = IMD,
+                  tabledata "Sales Cr.Memo Header" = IMD, tabledata "Sales Cr.Memo Line" = IMD, tabledata "Purch. Rcpt. Header" = IMD, tabledata "Purch. Rcpt. Line" = IMD, tabledata "Purch. Inv. Header" = IMD,
+                  tabledata "Purch. Inv. Line" = IMD, tabledata "Purch. Cr. Memo Hdr." = IMD, tabledata "Purch. Cr. Memo Line" = IMD, tabledata "Job Ledger Entry" = IMD, tabledata "G/L Entry - VAT Entry Link" = IMD,
+                  tabledata "VAT Entry" = IMD, tabledata "Bank Account Ledger Entry" = IMD, tabledata "Item Application Entry" = IMD, tabledata "Detailed Cust. Ledg. Entry" = IMD, tabledata "Detailed Vendor Ledg. Entry" = IMD,
+                  tabledata "Value Entry" = IMD, tabledata "Return Shipment Header" = IMD, tabledata "Return Receipt Header" = IMD;
 
 
     procedure CalcRecordsInTable(TableNoToCheck: Integer): Integer
@@ -38,9 +38,9 @@ codeunit 51000 "Admin Tool Mgt."
         SkipCheck: Boolean;
         UpdateDialog: Dialog;
         EntryNo: Integer;
-        NotExistsTxt: Label '%1 => %2 = ''%3'' does not exist in the ''%4'' table';
         CheckingRelationsTxt: Label 'Checking Relations Between Records!\Table: #1#######', Comment = '%1 = Table ID';
         CheckRelationsQst: Label 'Check Table Relations?';
+        NotExistsTxt: Label '%1 => %2 = ''%3'' does not exist in the ''%4'' table';
     begin
         if not Confirm(CheckRelationsQst, false) then
             exit;
@@ -74,7 +74,7 @@ codeunit 51000 "Admin Tool Mgt."
                             if Field.FindSet() then
                                 repeat
                                     FieldRef := RecordRef.Field(Field."No.");
-                                    if (Format(FieldRef.Value) <> '') and (FORMAT(FieldRef.Value) <> '0') then begin
+                                    if (Format(FieldRef.Value) <> '') and (Format(FieldRef.Value) <> '0') then begin
                                         RecordRef2.Open(Field.RelationTableNo);
                                         SkipCheck := false;
                                         if Field.RelationFieldNo <> 0 then begin
@@ -131,13 +131,13 @@ codeunit 51000 "Admin Tool Mgt."
         RunTrigger: Boolean;
         UpdateDialog: Dialog;
         Selection: Integer;
+        CancelledByUserErr: Label 'The operation was cancelled by the user.';
         DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?', Comment = '%1 = No. of tables';
-        OptionsLbl: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
         DeletingRecordsTxt: Label 'Deleting Records!\Table: #1#######', Comment = '%1 = Table ID';
+        DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.', Comment = '%1 = No. of tables';
         NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.',
                         Comment = '%1 = FieldCaption of "Delete Records"';
-        CancelledByUserErr: Label 'The operation was cancelled by the user.';
-        DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.', Comment = '%1 = No. of tables';
+        OptionsLbl: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
     begin
         Selection := StrMenu(OptionsLbl, 1);
         case Selection of
@@ -145,7 +145,7 @@ codeunit 51000 "Admin Tool Mgt."
                //     Error(CancelledByUserErr);
                 exit;
             1: // Without trigger
-                Clear(Runtrigger);
+                Clear(RunTrigger);
             2: // With trigger
                 RunTrigger := true;
         end;
@@ -181,9 +181,9 @@ codeunit 51000 "Admin Tool Mgt."
         RecordDeletion: Record "Record Deletion";
         UpdateDialog: Dialog;
         CurrRec, NoOfRecs : Integer;
-        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
         NoRecordFoundMsg: Label 'No record could be found in table %1.', Comment = '%1 = Table Caption';
         ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
+        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
     begin
         AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
         // Do not include system tables
@@ -211,8 +211,8 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure OpenTable(TableId: Integer)
     var
-        UrlTxt: Label '%1/?table=%2', Comment = '%1 = Web URL, %2 = Table ID';
         Url2Txt: Label '%1&table=%2', Comment = '%1 = Web URL, %2 = Table ID';
+        UrlTxt: Label '%1/?table=%2', Comment = '%1 = Web URL, %2 = Table ID';
         WebUrl: Text;
     begin
         WebUrl := System.GetUrl(ClientType::Web);
@@ -225,10 +225,10 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure PublishApp()
     var
-        WebUrl: Text;
         Selection: Integer;
-        OptionsLbl: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
         InstructionsLbl: Label 'The external deployer must be installed on the server instance to publish apps. Please select how you want to proceed.';
+        OptionsLbl: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
+        WebUrl: Text;
     begin
         Selection := StrMenu(OptionsLbl, 1, InstructionsLbl);
         case Selection of
@@ -278,9 +278,9 @@ codeunit 51000 "Admin Tool Mgt."
         RecordDeletion: Record "Record Deletion";
         PowershellMgt: Codeunit "Powershell Mgt.";
         RecsSuggestedCount: Integer;
-        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 Number of unlicensed records';
-        ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
         ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
+        ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
+        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 Number of unlicensed records';
     begin
 #if OnPrem
         if IsDeveloperLicense() then
@@ -342,6 +342,23 @@ codeunit 51000 "Admin Tool Mgt."
     begin
         // LicensePermission.Get(LicensePermission."Object Type"::Table, TableID);
         LicensePermission.Get(LicensePermission."Object Type"::TableData, TableID);
+        if (LicensePermission."Read Permission" = LicensePermission."Read Permission"::" ") and
+            (LicensePermission."Insert Permission" = LicensePermission."Insert Permission"::" ") and
+            (LicensePermission."Modify Permission" = LicensePermission."Modify Permission"::" ") and
+            (LicensePermission."Delete Permission" = LicensePermission."Delete Permission"::" ") and
+            (LicensePermission."Execute Permission" = LicensePermission."Execute Permission"::" ")
+        then
+            exit(false)
+        else
+            exit(true);
+    end;
+
+    local procedure IsObjectInLicense(ObjectType: Option; ObjectId: Integer): Boolean
+    var
+        LicensePermission: Record "License Permission";
+    begin
+        // LicensePermission.Get(LicensePermission."Object Type"::Table, TableID);
+        LicensePermission.Get(ObjectType, ObjectId);
         if (LicensePermission."Read Permission" = LicensePermission."Read Permission"::" ") and
             (LicensePermission."Insert Permission" = LicensePermission."Insert Permission"::" ") and
             (LicensePermission."Modify Permission" = LicensePermission."Modify Permission"::" ") and

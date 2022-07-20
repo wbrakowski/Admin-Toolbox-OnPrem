@@ -5,8 +5,8 @@ page 51004 "Table Editor"
     UsageCategory = Administration;
     Caption = 'Table Editor';
     AdditionalSearchTerms = 'Debug';
-    Permissions = TableData "337" = IMD;
-    AccessByPermission = TableData "32" = MD;
+    Permissions = tabledata "Reservation Entry" = IMD;
+    AccessByPermission = tabledata "Item Ledger Entry" = MD;
     AboutTitle = 'About Table Editor';
     AboutText = 'This table editor can modify or delete selected records.';
 
@@ -234,25 +234,25 @@ page 51004 "Table Editor"
 
     var
         ChangeLogManagement: Codeunit "Change Log Management";
-        TableNo, TableNoOfRecords, FieldNumber : Integer;
-        TableCaption, CustomTableView : Text;
-        FieldName, FieldCaption, FieldValue, FieldTypeName : Text;
-        UseTableTrigger, UseValidateTrigger : Boolean;
         [InDataSet]
         RenameRequired: Boolean;
-        CreateRecordQst: Label 'Do you want to create a new record in table %1?', Comment = '%1 = Table Caption';
+        UseTableTrigger, UseValidateTrigger : Boolean;
+        FieldNumber, TableNo, TableNoOfRecords : Integer;
         CreateRecord2Qst: Label 'Proceed?';
-        FilterTableOnEachPKFieldMsg: Label 'Filter each primary key field with a constant value. Only then a new record can be created using those values.';
-        RenameRecordsQst: Label 'Do you want to rename %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
-        RenameRecords2Qst: Label 'Rename(%1);\\Proceed?';
-        MaxLengthMsg: Label 'Longest value has %1 characters.\%2', Comment = '%1 = No. of characters, %2 = Value';
-        NoRecordsFoundMsg: Label 'No records found.';
+        CreateRecordQst: Label 'Do you want to create a new record in table %1?', Comment = '%1 = Table Caption';
         DeleteRecordsQst: Label 'Do you want to delete %1 records from table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
         DeleteWithTriggerQst: Label 'Records will be deleted using DeleteAll(%1).\\Proceed?', Comment = '%1 = UseTrigger (Boolean)';
-        ModifyRecordsQst: Label 'Do you want to modify %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
-        ModifyRecordsWithValidateQst: Label 'Validate("%1", [%2]);\Modify(%3);\\Proceed?';
-        ModifyRecordsWithoutValidateQst: Label '"%1" := [%2];\Modify(%3);\\Proceed?';
         DoneMsg: Label 'Done.';
+        FilterTableOnEachPKFieldMsg: Label 'Filter each primary key field with a constant value. Only then a new record can be created using those values.';
+        MaxLengthMsg: Label 'Longest value has %1 characters.\%2', Comment = '%1 = No. of characters, %2 = Value';
+        ModifyRecordsQst: Label 'Do you want to modify %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
+        ModifyRecordsWithoutValidateQst: Label '"%1" := [%2];\Modify(%3);\\Proceed?';
+        ModifyRecordsWithValidateQst: Label 'Validate("%1", [%2]);\Modify(%3);\\Proceed?';
+        NoRecordsFoundMsg: Label 'No records found.';
+        RenameRecords2Qst: Label 'Rename(%1);\\Proceed?';
+        RenameRecordsQst: Label 'Do you want to rename %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
+        CustomTableView, TableCaption : Text;
+        FieldCaption, FieldName, FieldTypeName, FieldValue : Text;
 
 
     trigger OnOpenPage()
@@ -306,8 +306,8 @@ page 51004 "Table Editor"
     var
         RecordRef: RecordRef;
         RecordRef2: RecordRef;
-        PrimaryKeyRef: KeyRef;
         i: Integer;
+        PrimaryKeyRef: KeyRef;
         s: Text;
     begin
         RecordRef.Open(TableNo);
@@ -347,8 +347,8 @@ page 51004 "Table Editor"
         RecordRef: RecordRef;
         UpdateDialog: Dialog;
         CurrRec, NoOfRecs : Integer;
-        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
         ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
+        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
     begin
         RecordRef.Open(TableNo);
         RecordRef.SetView(CustomTableView);
@@ -505,8 +505,8 @@ page 51004 "Table Editor"
     local procedure FieldIndexInPrimaryKey(): Integer
     var
         RecordRef: RecordRef;
-        PrimaryKeyRef: KeyRef;
         i: Integer;
+        PrimaryKeyRef: KeyRef;
     begin
         RecordRef.Open(TableNo);
         PrimaryKeyRef := RecordRef.KeyIndex(1);
@@ -523,9 +523,9 @@ page 51004 "Table Editor"
         RecordRef3: RecordRef;
         FieldRef2: FieldRef;
         PKFieldRef: array[16] of FieldRef;
-        PrimaryKeyRef: KeyRef;
-        NoOfPrimaryKeys, i : Integer;
+        i, NoOfPrimaryKeys : Integer;
         IndexInPrimaryKey: Integer;
+        PrimaryKeyRef: KeyRef;
         s: Text;
     begin
         IndexInPrimaryKey := FieldIndexInPrimaryKey();

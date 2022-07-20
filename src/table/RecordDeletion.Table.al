@@ -1,13 +1,13 @@
-table 51000 "Record Deletion"
+table 51001 "Record Deletion"
 {
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
 
     fields
     {
         field(1; "Table ID"; Integer)
         {
             Caption = 'Table ID';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             Editable = false;
         }
         field(10; "Table Name"; Text[250])
@@ -15,10 +15,12 @@ table 51000 "Record Deletion"
             Caption = 'Table Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Lookup(AllObjWithCaption."Object Name" where("Object Type" = const(Table), "Object ID" = field("Table ID")));
+            CalcFormula = lookup(AllObjWithCaption."Object Name" where("Object Type" = const(Table), "Object ID" = field("Table ID")));
         }
 
+#pragma warning disable AL0717
         field(20; "No. of Records"; Integer)
+#pragma warning restore AL0717
         {
             Caption = 'No. of Records';
             Editable = false;
@@ -33,17 +35,17 @@ table 51000 "Record Deletion"
             Caption = 'No. of Table Relation Errors';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = Count("Record Deletion Rel. Error" where("Table ID" = field("Table ID")));
+            CalcFormula = count("Record Deletion Rel. Error" where("Table ID" = field("Table ID")));
         }
         field(30; "Delete Records"; Boolean)
         {
             Caption = 'Delete Records';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
         }
         field(40; Company; Text[30])
         {
             Caption = 'Company';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
         }
 
 
