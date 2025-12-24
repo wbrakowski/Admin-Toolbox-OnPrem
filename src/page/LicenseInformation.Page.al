@@ -18,16 +18,14 @@ page 51002 "License Information"
                 field(Text; Rec.Text)
                 {
                     Editable = false;
-                    ApplicationArea = All;
                     ShowCaption = false;
-                    ToolTip = 'Specifies the value of the Text field';
+                    ToolTip = 'Specifies the value of the Text field.';
                 }
             }
 
             field(DeveloperLicense; DeveloperLicense)
             {
                 Caption = 'Developer License';
-                ApplicationArea = All;
                 Editable = false;
                 ToolTip = 'Specifies if the active license is a developer license.';
             }
@@ -43,8 +41,6 @@ page 51002 "License Information"
                 ApplicationArea = All;
                 Caption = 'Import License';
                 Image = Import;
-                Promoted = true;
-                PromotedOnly = true;
                 ToolTip = 'Imports the selected license.';
 
                 trigger OnAction()
@@ -59,20 +55,16 @@ page 51002 "License Information"
                 ApplicationArea = All;
                 Caption = 'Export Used and Unused Objects in License';
                 Image = Export;
-                Promoted = true;
-                PromotedOnly = true;
                 ToolTip = 'Creates a list with all used and unused objects in the license.';
-                RunObject = Report "Export Objects in License";
+                RunObject = report "Export Objects in License";
             }
             action(ExportUnlicensedObjects)
             {
                 ApplicationArea = All;
                 Caption = 'Export Unlicensed Objects';
                 Image = Export;
-                Promoted = true;
-                PromotedOnly = true;
                 ToolTip = 'Creates a list with all unlicensed objects.';
-                RunObject = Report "Export Unlicensed Objects";
+                RunObject = report "Export Unlicensed Objects";
             }
         }
     }

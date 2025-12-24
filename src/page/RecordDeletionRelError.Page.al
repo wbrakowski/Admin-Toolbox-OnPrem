@@ -16,28 +16,18 @@ page 51000 "Record Deletion Rel. Error"
 
                 field("Entry No."; Rec."Entry No.")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the Entry No.';
                 }
                 field(Error; Rec.Error)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the error text if an error occured';
                 }
                 field("Field Name"; Rec."Field Name")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the Field Name';
                 }
                 field("Field No."; Rec."Field No.")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the Field No.';
                 }
                 field("Table ID"; Rec."Table ID")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the Table ID';
                 }
             }
         }

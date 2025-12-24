@@ -34,14 +34,12 @@ page 51001 "Admin Toolbox"
             }
             part(Tables; "Record Deletion")
             {
-                ApplicationArea = All;
                 AboutTitle = 'About tables';
                 AboutText = 'This is an overview of all the tables in the system. You can run the table, delete all records from a table, edit specific records, delete a selection of records.';
             }
 #if OnPrem
             part(LicenseInformation; "License Information")
             {
-                ApplicationArea = All;
                 Visible = IsOnPrem;
                 AboutTitle = 'About license information';
                 AboutText = 'View the details of your current license or import a new license.';
@@ -478,15 +476,12 @@ page 51001 "Admin Toolbox"
     var
         UserPermissions: Codeunit "User Permissions";
         NoTableSelectedLbl: Label 'No table to run selected';
-        // NoAccessErr: Label 'This page can only be accessed by users with super rights. If you want to see the information of this page, please contact your it department to grant you super rights.';
         ThreeDotsLbl: Label 'Use the three dots on the right to select a table that you want to run';
     begin
         if not UserPermissions.IsSuper(UserSecurityId()) then
             Error('');
-        // Error(NoAccessErr);
         SelectedTableTxt := NoTableSelectedLbl;
         SelectedTableNoText := ThreeDotsLbl;
-        // AdminToolMgt.UpdateTablesIfEmpty();
         IsOnPrem := EnvironmentInformation.IsOnPrem();
     end;
 }

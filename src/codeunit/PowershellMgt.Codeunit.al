@@ -14,22 +14,24 @@ codeunit 51001 "Powershell Mgt."
         FileFilterLbl: Label 'License (*.flf)|*.flf|All Files (*.*)|*.*';
         NAVAdminToolLbl: Label 'NavAdminTool.ps1';
         SelectFileTxt: Label 'Select License File';
+        NoActiveSessionErr: Label 'Could not get active session information.';
         FileName: Text;
     begin
         FileName := FileManagement.BLOBImportWithFilter(TempBlob, SelectFileTxt, '', FileFilterLbl, AllFilesFilterTxt);
         if FileName = '' then
             exit;
 
-        FileName := TemporaryPath + FileName;
+        FileName := TemporaryPath() + FileName;
         if Exists(FileName) then
             Erase(FileName);
 
         FileManagement.BLOBExportToServerFile(TempBlob, FileName);
 
-        ActiveSession.Get(ServiceInstanceId(), SessionId());
+        if not ActiveSession.Get(ServiceInstanceId(), SessionId()) then
+            Error(NoActiveSessionErr);
         PowerShellRunner := PowerShellRunner.CreateInSandbox();
         PowerShellRunner.WriteEventOnError := true;
-        PowerShellRunner.ImportModule(ApplicationPath + NAVAdminToolLbl);
+        PowerShellRunner.ImportModule(ApplicationPath() + NAVAdminToolLbl);
         PowerShellRunner.AddCommand('Import-NAVServerLicense');
         PowerShellRunner.AddParameter('ServerInstance', ActiveSession."Server Instance Name");
         PowerShellRunner.AddParameter('LicenseFile', FileName);

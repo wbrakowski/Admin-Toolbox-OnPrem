@@ -15,23 +15,15 @@ page 51008 "Objects in License"
             {
                 field("Object Type"; Rec."Object Type")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Object Type field.';
                 }
                 field("Object ID"; Rec."Object ID")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Object ID field.';
                 }
                 field("Object Name"; Rec."Object Name")
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Object Name field.';
                 }
                 field(Used; Rec.Used)
                 {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Used field.';
                 }
             }
         }
