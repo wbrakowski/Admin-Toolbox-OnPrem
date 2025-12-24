@@ -1,9 +1,9 @@
-table 51004 "Temp Unlicensed Object"
+table 51003 "Temp Object in License"
 {
-    Caption = 'Temp Unlicensed Object';
+    Caption = 'Temp Object in License';
     DataClassification = CustomerContent;
-    LookupPageId = "Unlicensed Objects";
-    DrillDownPageId = "Unlicensed Objects";
+    LookupPageId = "Objects in License";
+    DrillDownPageId = "Objects in License";
 
     fields
     {
@@ -23,6 +23,12 @@ table 51004 "Temp Unlicensed Object"
             Caption = 'Object Name';
             ToolTip = 'Specifies the value of the Object Name field.';
         }
+        field(4; Used; Boolean)
+        {
+            Caption = 'Used';
+            ToolTip = 'Specifies the value of the Used field.';
+        }
+
     }
     keys
     {

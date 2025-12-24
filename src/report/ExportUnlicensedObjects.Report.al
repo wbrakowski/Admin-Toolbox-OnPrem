@@ -4,6 +4,7 @@ report 51001 "Export Unlicensed Objects"
     Caption = 'Export Unlicensed Objects';
     UsageCategory = ReportsAndAnalysis;
     ProcessingOnly = true;
+    Permissions = tabledata "Temp Unlicensed Object" = rid;
 
     dataset
     {
@@ -18,21 +19,21 @@ report 51001 "Export Unlicensed Objects"
                 trigger OnAfterGetRecord()
                 begin
                     UnlicensedObject.Init();
-                    UnlicensedObject."Object Type" := LicensePermission."Object Type";
+                    UnlicensedObject."Object Type" := Enum::"Object Type".FromInteger(LicensePermission."Object Type");
                     UnlicensedObject."Object ID" := LicensePermission."Object Number";
                     UnlicensedObject."Object Name" := AllObj."Object Name";
-                    UnlicensedObject.Insert();
+                    UnlicensedObject.Insert(false);
                 end;
             }
-            trigger OnPreDataItem();
+            trigger OnPreDataItem()
             begin
-                if (ObjectTypeFilter <> ObjectTypeFilter::" ") then
-                    SetRange("Object Type", ObjectTypeFilter)
+                if (ObjectTypeFilterVar <> ObjectTypeFilterVar::" ") then
+                    SetRange("Object Type", ObjectTypeFilterVar)
                 else
                     SetRange("Object Type", 1, 20);
 
-                if (ObjIDFilter <> '') then
-                    SetFilter("Object ID", ObjIDFilter);
+                if (ObjIDFilterVar <> '') then
+                    SetFilter("Object ID", ObjIDFilterVar);
             end;
         }
 
@@ -45,18 +46,16 @@ report 51001 "Export Unlicensed Objects"
         {
             area(Content)
             {
-                group(options)
+                group(Options)
                 {
-                    field(ObjectTypeFilter; ObjectTypeFilter)
+                    Caption = 'Options';
+                    field(ObjectTypeFilter; ObjectTypeFilterVar)
                     {
-                        ApplicationArea = All;
-                        OptionCaption = ',Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,PageExtension,TableExtension,Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension';
                         Caption = 'Object Types Filter';
                         ToolTip = 'Specifies the value of the Object Types Filter field.';
                     }
-                    field(ObjIDFilter; ObjIDFilter)
+                    field(ObjIDFilter; ObjIDFilterVar)
                     {
-                        ApplicationArea = All;
                         Caption = 'Objects ID (Number) Filter';
                         ToolTip = 'Specifies the value of the Objects ID (Number) Filter field.';
                     }
@@ -67,13 +66,13 @@ report 51001 "Export Unlicensed Objects"
 
         trigger OnOpenPage()
         begin
-            ObjIDFilter := '50000..99999';
+            ObjIDFilterVar := '50000..99999';
         end;
     }
 
     trigger OnPreReport()
     begin
-        UnlicensedObject.DeleteAll();
+        UnlicensedObject.DeleteAll(false);
     end;
 
 
@@ -85,9 +84,8 @@ report 51001 "Export Unlicensed Objects"
 
 
     var
-        UsedObjects: Record AllObjWithCaption;
         UnlicensedObject: Record "Temp Unlicensed Object";
         UnlicensedObjects: Page "Unlicensed Objects";
-        ObjectTypeFilter: Option " ",Table,,Report,,Codeunit,XMLport,MenuSuite,Page,Query,,,,,"Pageextension","TableExtension",Enum,EnumExtension,,,PermissionSet,PermissionSetExtension,ReportExtension;
-        ObjIDFilter: Text[50];
+        ObjectTypeFilterVar: Enum "Object Type";
+        ObjIDFilterVar: Text[50];
 }

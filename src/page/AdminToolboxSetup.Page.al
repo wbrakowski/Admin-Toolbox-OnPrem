@@ -19,7 +19,6 @@ page 51005 "Admin Toolbox Setup"
                 field(DeveloperLicense; DeveloperLicense)
                 {
                     Caption = 'Developer License';
-                    ApplicationArea = All;
                     Editable = false;
                     ToolTip = 'Specifies if the active license is a developer license.';
                     AboutTitle = 'Shows you information about the active license.';
@@ -28,10 +27,8 @@ page 51005 "Admin Toolbox Setup"
                 }
                 field("Developer License Warning"; Rec."Developer License Warning")
                 {
-                    ToolTip = 'Specifies if a warning should be shown on opening the company when a developer license is active (only OnPrem).';
                     AboutTitle = 'Always be informed if a developer license is imported in systems where it should not be imported.';
                     AboutText = 'If enabled, a message will be shown OnCompanyOpen that the developer license is active. Enable this field in test environments to make sure that no developer license is wrongfully imported.';
-                    ApplicationArea = All;
                     Editable = IsOnPrem;
                 }
             }
@@ -52,7 +49,7 @@ page 51005 "Admin Toolbox Setup"
     begin
         if not Rec.Get() then begin
             Rec.Init();
-            Rec.Insert();
+            Rec.Insert(false);
         end;
 
         IsOnPrem := EnvironmentInformation.IsOnPrem();
