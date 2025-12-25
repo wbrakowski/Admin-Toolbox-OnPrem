@@ -2,13 +2,16 @@
 
 ## Overview
 
-The **Admin-Toolbox** is a comprehensive administrative tool for Microsoft Dynamics 365 Business Central OnPrem environments. It consolidates multiple powerful features from various community contributions into one cohesive application, providing administrators and consultants with essential tools for database management, license administration, and system maintenance.
+The **Admin-Toolbox** is a comprehensive administrative tool for Microsoft Dynamics 365 Business Central OnPrem environments. It consolidates multiple powerful features from various community contributions into one cohesive application, providing administrators and consultants with essential tools for database management, license administration, backup/restore operations, audit logging, and system maintenance.
 
 ### Features
 
 This toolbox combines the following features and contributions:
-- **[Record Deletion Tool](https://navinsights.net/2020/04/02/record-deletion-tool/)** by Waldemar Brakowski - Delete transactional data from multiple tables
-- **Table Editor** by Yuri Mishin - Modify or delete specific records in any table
+- **[Record Deletion Tool](https://navinsights.net/2020/04/02/record-deletion-tool/)** by Waldemar Brakowski - Delete transactional data from multiple tables with automatic backup
+- **Table Editor** by Yuri Mishin - Modify, rename, or delete specific records in any table with full audit logging
+- **Table Backup & Restore System** - Create, manage, and restore table backups with multiple backup types (JSON Export, Snapshot, Full Backup)
+- **Comprehensive Audit Logging** - Track all data modifications and deletions with field-level change history
+- **Admin Toolbox Dashboard** - Monitor recent operations, backups, and audit log activity at a glance
 - **[View License Information](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/)** by Waldo - View current license details and permissions
 - **[Import Licenses](https://www.imbatman.info/post/using-powershell-in-microsoft-al-for-business-central-onprem)** by Neil Roberts - Import license files using PowerShell
 - **Show Developer License Warning** by Yuri Mishin - Alert users when a developer license is active
@@ -23,7 +26,9 @@ This toolbox combines the following features and contributions:
 
 **This app contains very powerful features that can modify or delete data in your database. Use these features with extreme caution!**
 
-- Always create a **full backup** of your company before deleting or modifying records
+- The app includes **automatic backup functionality** that creates backups before deletion operations (configurable)
+- All operations are logged in the **Audit Log** with full field-level change tracking
+- Always verify the **Admin Toolbox Setup** before performing operations
 - Test operations in a development or test environment first
 - Understand the implications of each operation before proceeding
 - Incorrect use may result in data loss or system instability
@@ -35,8 +40,12 @@ This toolbox combines the following features and contributions:
 1. [Prerequisites and Requirements](#prerequisites-and-requirements)
 2. [Installation](#installation)
 3. [How to Use the Toolbox](#how-to-use-the-toolbox)
+   - [Admin Toolbox Dashboard](#admin-toolbox-dashboard)
+   - [Admin Toolbox Setup](#admin-toolbox-setup)
    - [Record Deletion Tool](#record-deletion-tool)
    - [Table Editor](#table-editor)
+   - [Table Backup Management](#table-backup-management)
+   - [Audit Log](#audit-log)
    - [Publishing & Installing Apps](#publishing--installing-apps)
    - [License Overview and Import](#license-overview-and-import)
    - [Export License Object Information](#export-license-object-information)
@@ -158,6 +167,443 @@ The Admin Toolbox is organized into four main areas:
 The **How To** section provides a direct link to this README documentation for quick reference.
 
 ![Howto](images/Howto.png)
+
+---
+
+### Admin Toolbox Dashboard
+
+The **Admin Toolbox Dashboard** provides a comprehensive overview of recent system activity, backups, and audit logs. This centralized view helps administrators quickly assess system health and recent operations.
+
+#### Dashboard Features
+
+**Activity Statistics:**
+- **Total Backups**: Shows the total number of table backups created
+  - Click to drill down to the full backup list
+- **Recent Operations**: Displays operations performed in the last 24 hours
+  - Click to view recent audit log entries
+  - Color-coded to highlight recent activity
+
+**Quick Information:**
+- **Last Backup**: Shows when the most recent backup was created
+  - Helps ensure regular backup practices are being followed
+- **Audit Logging Status**: Indicates if audit logging is enabled
+  - Shows "Active" when audit log entries exist
+  - Color-coded for quick status recognition
+
+**Direct Actions:**
+- **View All Backups**: Opens the complete Table Backup List
+- **View Audit Log**: Opens the Audit Log Entries page
+
+#### Using the Dashboard
+
+The dashboard is designed to provide at-a-glance information about:
+- Backup frequency and coverage
+- Recent system modifications and deletions
+- Overall audit trail health
+
+Use the dashboard as your starting point to:
+1. Verify backups are being created regularly before data operations
+2. Review recent activity for unexpected changes
+3. Monitor audit log activity for compliance purposes
+4. Quickly navigate to backup and audit log management pages
+
+> **Tip:** Keep the dashboard open in a separate tab during major data operations to monitor activity in real-time.
+
+---
+
+### Admin Toolbox Setup
+
+The **Admin Toolbox Setup** page allows you to configure global settings that control backup behavior, audit logging, and system warnings.
+
+#### Opening the Setup
+
+From the Admin Toolbox, click **Setup** to open the configuration page:
+
+![OpenSetup](images/OpenSetup.png)
+
+#### Configuration Options
+
+**Backup Settings:**
+
+1. **Auto Backup Before Deletion** (Default: Enabled)
+   - When enabled, automatically creates a backup before deleting records
+   - Provides safety net for recovery if deletion was unintended
+   - Recommended to keep enabled for production environments
+
+2. **Prompt for Backup** (Default: Enabled)
+   - When enabled, asks for confirmation before creating auto-backups
+   - When disabled, backups are created silently without user interaction
+   - Only applies if "Auto Backup Before Deletion" is enabled
+
+3. **Auto Backup Type** (Default: JSON Export)
+   - Specifies which backup type to use for automatic backups
+   - Options:
+     - **JSON Export**: Exports table data as JSON (recommended for most cases)
+     - **Snapshot**: Creates a physical copy of the table in the database
+     - **Full Backup**: Complete backup including all metadata
+
+4. **Backup Retention Days** (Default: 30 days)
+   - Specifies how long to keep backups before they can be deleted
+   - Helps manage database size while maintaining recovery capability
+   - Minimum value: 1 day
+
+**Audit Log Settings:**
+
+5. **Audit Log Retention Days** (Default: 90 days)
+   - Specifies how long to keep audit log entries
+   - Set to 0 to keep audit logs indefinitely
+   - Helps manage audit log table size for compliance requirements
+
+**Warning Settings:**
+
+6. **Developer License Warning** (Default: Disabled)
+   - When enabled, shows a warning message when opening a company with a developer license
+   - Only users with SUPER permissions see the warning
+   - Helps prevent accidental use of developer licenses in production
+
+7. **Enable Inline Documentation** (Default: Enabled)
+   - When enabled, shows contextual help and guidance within pages
+   - Provides tooltips, about texts, and usage hints
+   - Recommended for new users learning the toolbox
+
+#### Best Practice Recommendations
+
+**For Production Environments:**
+- ✅ Enable "Auto Backup Before Deletion"
+- ✅ Enable "Prompt for Backup" (so users are aware backups are being created)
+- ✅ Set "Auto Backup Type" to "JSON Export" (best balance of speed and reliability)
+- ✅ Set "Backup Retention Days" to at least 30 days
+- ✅ Set "Audit Log Retention Days" to meet your compliance requirements (typically 90+ days)
+- ✅ Enable "Developer License Warning" to prevent accidental license issues
+
+**For Development/Test Environments:**
+- Consider disabling "Prompt for Backup" for faster workflows
+- Lower "Backup Retention Days" to conserve space (e.g., 7-14 days)
+- Lower "Audit Log Retention Days" or disable (set to 0 to keep indefinitely but manually clean up)
+- Enable "Developer License Warning" to ensure correct license usage
+
+> **Note:** Changes to these settings take effect immediately and apply to all users in the system.
+
+---
+
+### Table Backup Management
+
+The **Table Backup Management** system provides comprehensive backup and restore capabilities for any table in Business Central. This feature is essential for data safety during administrative operations.
+
+#### Overview
+
+The backup system supports three backup types:
+1. **JSON Export**: Exports table data in JSON format (recommended for most scenarios)
+2. **Snapshot**: Creates a physical table copy in the database
+3. **Full Backup**: Complete backup including all metadata and relationships
+
+All backups are tracked with:
+- Table ID and Name
+- Backup Type and Operation Type (Manual, Before Deletion, etc.)
+- Creation date/time and user
+- Number of records and backup size
+- Restore history
+
+#### Creating a Backup
+
+**From the Table Backup List:**
+
+1. Open **Admin Toolbox** → **Table Backups**
+2. Click **Create Backup**
+3. Configure the backup options:
+   - **Table ID**: Select the table to backup (or enter ID directly)
+   - **Table Name**: Automatically filled after selecting Table ID
+   - **Backup Type**: Choose JSON Export, Snapshot, or Full Backup (default: JSON Export)
+   - **Description**: Optional description for this backup
+   - **Use Filter**: Enable to backup only specific records
+   - **Filter View**: Define filter criteria (only if "Use Filter" is enabled)
+4. Click **OK** to create the backup
+
+The system will:
+- Show a progress dialog during backup creation
+- Count and store the number of records
+- Calculate the backup size
+- Display a success message with the backup Entry No.
+
+**Automatic Backups:**
+
+Backups are automatically created before deletion operations when:
+- "Auto Backup Before Deletion" is enabled in Admin Toolbox Setup
+- User confirms the backup prompt (if "Prompt for Backup" is enabled)
+- The backup type is determined by "Auto Backup Type" setting
+
+#### Viewing Backups
+
+The **Table Backup List** shows all backups with:
+- Entry No., Table ID, and Table Name
+- Backup Type and Operation Type
+- Creation date/time and user
+- Number of records and backup size (KB)
+- Restore status and date (if restored)
+
+**Filtering and Sorting:**
+- Filter by Table ID to see all backups for a specific table
+- Sort by Backup Date Time to see most recent backups first
+- Filter by Operation Type to see manual vs. automatic backups
+- Filter by Restored status to identify which backups have been used
+
+#### Restoring a Backup
+
+To restore data from a backup:
+
+1. Select the backup in the Table Backup List
+2. Click **Restore Backup**
+3. Review the confirmation dialog showing:
+   - Table ID and Name
+   - Number of records to restore
+   - Backup date/time
+4. Click **Yes** to confirm restoration
+
+The system will:
+- Show a progress dialog with:
+  - Processed count
+  - Successfully inserted count
+  - Failed count (e.g., due to duplicates or validation errors)
+- Handle errors gracefully (existing records are skipped)
+- Update the "Restored" flag and "Restore Date Time"
+- Display detailed results
+
+**Important Notes:**
+- Restoration does **not** delete existing records
+- Records are inserted with `RecordRef.Insert(true)` to ensure SystemId is set
+- Duplicate records (same primary key) will fail to insert but won't stop the process
+- Partial restoration is possible if some records fail validation
+
+#### Exporting and Importing Backups
+
+**Export to File:**
+1. Select a backup in the Table Backup List
+2. Click **Export to File**
+3. Choose a location and filename (.json format)
+4. The backup data is exported for external storage or transfer
+
+**Import from File:**
+1. Click **Import from File** in the Table Backup List
+2. Select the target table for the backup
+3. Choose the .json backup file
+4. The backup is imported and added to the backup list
+5. You can then restore it like any other backup
+
+Use cases:
+- Archiving important backups outside the database
+- Transferring backups between environments
+- Long-term backup retention beyond database retention periods
+
+#### Managing Old Backups
+
+To clean up old backups:
+
+1. Click **Delete Old Backups** in the Table Backup List
+2. Review the count of backups older than the specified retention period (default: 30 days)
+3. Confirm deletion
+4. Old backups are removed to free up database space
+
+> **Tip:** The retention period is configured in Admin Toolbox Setup under "Backup Retention Days"
+
+#### Backup Best Practices
+
+**Before Major Operations:**
+- Always create a manual backup before bulk deletions or modifications
+- Use descriptive names in the Description field (e.g., "Before cleaning transactional data")
+- Verify the backup was created successfully (check record count)
+
+**Backup Type Selection:**
+- **JSON Export**: Best for most scenarios - fast, compact, portable
+- **Snapshot**: Faster restore but requires more database space
+- **Full Backup**: Most comprehensive but slower and larger
+
+**Regular Maintenance:**
+- Review backup list periodically
+- Export critical backups to file for long-term storage
+- Delete old backups that are no longer needed
+- Monitor backup sizes to manage database growth
+
+---
+
+### Audit Log
+
+The **Audit Log** system provides comprehensive tracking of all data modification and deletion operations performed through the Admin Toolbox. Every operation is logged with full field-level change history for compliance and auditing purposes.
+
+#### Overview
+
+The audit log captures:
+- **Operations**: Insert, Modify, Delete, Bulk Delete, Bulk Modify
+- **Field Changes**: Old value → New value for every modified field
+- **Metadata**: Date/time, user, table, status, duration
+- **Related Backups**: Links to backups created before operations
+- **Results**: Records affected, records failed, error messages
+
+All Table Editor operations (Modify, Rename, Delete) automatically create audit log entries with field-level change tracking.
+
+#### Viewing the Audit Log
+
+Open the Audit Log from:
+- Admin Toolbox Dashboard → Recent Operations (drilldown)
+- Admin Toolbox → **View Audit Log** action
+- Direct search: "Audit Log Entries"
+
+The **Audit Log Entries** page displays:
+- Entry No. and Date/Time (color-coded by recency)
+- Operation Type (color-coded)
+- Table ID and Table Name
+- User ID
+- Status (Success, Failed, In Progress) - color-coded
+- No. of Records Affected (color-coded by volume)
+- No. of Records Failed (color-coded if failures exist)
+- No. of Fields Changed
+- Backup Created indicator
+- Duration in milliseconds
+- Description and Triggered By information
+
+#### Viewing Field Changes
+
+To see detailed field-level changes for an operation:
+
+1. Select an audit log entry
+2. Click **View Field Changes** or use the FactBox
+3. The Field Change History shows:
+   - Field No., Field Name, and Field Caption
+   - Old Value and New Value
+   - Date/Time and User ID
+   - Record ID and Primary Key Value
+
+**Field Change History FactBox:**
+- Automatically displayed on the right side of the Audit Log Entries page
+- Shows all field changes for the selected audit log entry
+- Drill down to see full details
+
+**Use Cases:**
+- Track what changed when modifying records in bulk
+- Identify which fields were updated during a rename operation
+- Audit user actions for compliance requirements
+- Troubleshoot unexpected data changes
+
+#### Viewing Related Backups
+
+If a backup was created before an operation:
+
+1. The "Backup Created" field shows ✓ (checkmark)
+2. Click **View Related Backup** to open the backup card
+3. From there, you can restore the backup if needed
+
+This linkage ensures you can always recover data if an operation had unintended consequences.
+
+#### Audit Log Card
+
+Double-click any audit log entry to open the **Audit Log Entry Card** with complete details:
+
+**General Information:**
+- Entry No., Operation Type, Table ID/Name
+- Date/Time, User ID, Company Name
+- Triggered By (source of the operation, e.g., "Table Editor")
+
+**Results:**
+- Status (Success/Failed/In Progress)
+- No. of Records Affected
+- No. of Records Failed
+- No. of Fields Changed
+- Duration (ms)
+- Error Message (if failed)
+
+**Related Records:**
+- Backup Created indicator
+- Backup Entry No. (clickable to view backup)
+- Record ID and Primary Key Value (for single-record operations)
+
+**Description:**
+- Detailed description of the operation (e.g., "Modified field Customer Name to value ABC Ltd")
+
+#### Filtering and Analysis
+
+**Common Filters:**
+- **By Date/Time**: Find operations in a specific timeframe
+- **By User**: See what a specific user has done
+- **By Table**: View all operations on a specific table
+- **By Status**: Find failed operations that need attention
+- **By Operation Type**: Focus on deletions or modifications
+
+**Drill-Down Analysis:**
+- Click on "No. of Records Affected" to see field changes
+- Click on "No. of Fields Changed" to see what changed
+- Click on "Backup Entry No." to view the related backup
+
+#### Exporting Audit Log to Excel
+
+To create an Excel report of audit log entries:
+
+1. Filter the audit log entries as desired
+2. Click **Export to Excel**
+3. Choose a filename and location
+4. Excel file includes:
+   - Entry No., Date/Time, Operation Type
+   - Table ID, Table Name, User ID
+   - Status, Records Affected, Records Failed
+   - Fields Changed, Backup Created indicator
+   - Duration, Description, Triggered By, Error Message
+
+Use for:
+- Compliance reporting
+- Management summaries
+- Long-term archival
+- External audits
+
+#### Deleting Old Audit Log Entries
+
+To manage audit log table size:
+
+1. Click **Delete Old Entries** in the Audit Log Entries page
+2. Entries older than "Audit Log Retention Days" (from Admin Toolbox Setup) will be deleted
+3. Confirm deletion
+4. Old entries are removed
+
+> **Important:** Deleted audit log entries cannot be recovered. Export to Excel first if you need to archive them.
+
+**Retention Policy Recommendations:**
+- **Financial/Regulated Industries**: 90+ days (or longer per compliance requirements)
+- **Standard Operations**: 30-90 days
+- **Development/Test**: 7-30 days (or set to 0 for indefinite retention with manual cleanup)
+
+#### Audit Log Integration
+
+The audit log integrates seamlessly with the Admin Toolbox:
+
+**Table Editor:**
+- **Modify Records**: Creates "Bulk Modify" audit log with all field changes
+- **Rename Records**: Creates "Bulk Modify" audit log tracking primary key changes
+- **Delete Records**: Creates "Bulk Delete" audit log (future enhancement)
+
+**Table Backup:**
+- Backups created before operations are linked in the audit log
+- Use "View Related Backup" to access the backup from the audit log
+
+**Admin Toolbox Dashboard:**
+- Shows recent operations count (last 24 hours)
+- Provides quick drill-down to recent audit log entries
+
+#### Audit Log Best Practices
+
+**For Compliance:**
+- Set appropriate retention periods in Admin Toolbox Setup
+- Export audit logs to Excel regularly for external archival
+- Review audit logs after major operations
+- Monitor failed operations for system issues
+
+**For Operations:**
+- Check audit log before restore to understand what changed
+- Use field change history to verify modifications were correct
+- Review audit log after bulk operations to confirm results
+- Monitor duration to identify performance issues
+
+**For Security:**
+- Review audit log for unauthorized changes
+- Filter by user to audit specific user actions
+- Monitor operations performed outside business hours
+- Track who performed sensitive operations
 
 ---
 
@@ -296,7 +742,7 @@ After the check on the table relations has run you can set a filter on the "No. 
 
  ### Table Editor
 
-The **Table Editor** is a powerful tool that allows you to modify or delete specific records in any table. This is useful for data corrections, testing, and troubleshooting scenarios.
+The **Table Editor** is a powerful tool that allows you to modify, rename, or delete specific records in any table. This is useful for data corrections, testing, and troubleshooting scenarios. All operations are automatically logged in the Audit Log with full field-level change tracking.
 
 > **Credit:** Special thanks to [Yuri Mishin](https://www.linkedin.com/in/yuri-mishin-2a08a71b4/), who programmed the main functionality of this table editor.
 
@@ -332,6 +778,8 @@ The table editor provides the following configuration options:
 
  ![TableEditorDeleteRecords](images/TableEditor_DeleteRecords.png)
 
+> **Note:** Delete operations create an audit log entry. A backup can be automatically created before deletion if configured in Admin Toolbox Setup.
+
 **To Modify Records:**
 1. Set the **ID** field to your target table
 2. Click **View** to filter the records you want to modify
@@ -344,14 +792,76 @@ The table editor provides the following configuration options:
 
  ![TableEditorModifyRecords](images/TableEditor_ModifyRecords.png)
 
-> ⚠️ **Warning:** The Table Editor directly manipulates database records. Always test your operations in a non-production environment first and ensure you have backups.
+> **New:** Modify operations automatically create an audit log entry showing:
+> - Which field was modified
+> - Old value and new value for every modified record
+> - Total number of records modified
+> - User and timestamp
+> 
+> View these changes in the Audit Log Entries page.
 
-**Best Practices:**
+**To Rename Records (Change Primary Key):**
+
+The Table Editor also supports renaming records, which means modifying primary key fields:
+
+1. Set the **ID** field to your target table
+2. Click **View** to filter the records you want to rename
+3. Select the **primary key field** in the **No.** field
+4. Enter the new primary key **Value**
+5. Click **Rename Table Records** (this action appears when editing a primary key field)
+6. Confirm the operation
+
+> **New:** Rename operations automatically create an audit log entry showing:
+> - Which primary key field was renamed
+> - Old value and new value for each renamed record
+> - Total number of records renamed
+> - User and timestamp
+
+#### Audit Log Integration
+
+Every Table Editor operation is automatically tracked:
+
+**Modify Table Records:**
+- Operation Type: "Bulk Modify"
+- Logs all field changes across all modified records
+- Shows old value → new value for each field that changed
+- Includes validation errors if any occur
+
+**Rename Table Records:**
+- Operation Type: "Bulk Modify"
+- Logs primary key field changes
+- Shows old key → new key for each renamed record
+- Tracks any additional field changes that occur during rename
+
+**Delete Table Records:**
+- Operation Type: "Bulk Delete"
+- Logs number of records deleted
+- Links to backup if auto-backup was enabled
+- Records table, user, timestamp, and description
+
+#### Best Practices
+
+**Before Modifying:**
 - Enable **Use Trigger** when deleting to respect referential integrity
 - Enable **Validate** when modifying to ensure business rules are applied
 - Use specific filters to avoid affecting unintended records
 - Test complex modifications on a single record first
-- Always have a backup before making bulk changes
+- Review the audit log after modifications to verify changes
+
+**After Operations:**
+- Check the Audit Log to verify the operation completed successfully
+- Review field changes to ensure modifications were as intended
+- Export audit log to Excel for documentation if needed
+- Use "View Related Backup" if you need to restore data
+
+**Safety Measures:**
+- Always test in a non-production environment first
+- Ensure backups exist (manual or automatic) before major operations
+- Use filters carefully to target only the intended records
+- Review record count before confirming operations
+- Monitor the audit log for unexpected changes
+
+> ⚠️ **Warning:** The Table Editor directly manipulates database records. Combined with the Audit Log, you have full traceability, but prevention is always better than recovery. Use with caution!
 
 ---
 
@@ -746,7 +1256,7 @@ This project combines contributions from several talented developers in the Busi
 - **Waldo (Eric Wauters)** - License Information, System Tables, External Deployer
 - **Neil Roberts** - PowerShell License Import
 - **Roberto Stefanetti** - Used/Unused Objects Analysis
-- **Waldemar Brakowski** - Integration, enhancements, and maintenance
+- **Waldemar Brakowski** - Integration, enhancements, Table Backup System, Audit Logging, and maintenance
 
 Thank you to everyone who has contributed to making this tool valuable for the Business Central community!
 
@@ -757,6 +1267,16 @@ This project is released under the MIT License. See the LICENSE file for details
 
 ---
 
-**Version**: 27.0.0.0
-**Last Updated**: December 2025
+**Version**: 27.0.0.0 (BC27 v2)
+**Last Updated**: December 25, 2025
+**Major Features in This Release**:
+- ✨ Comprehensive Table Backup & Restore System with 3 backup types
+- ✨ Complete Audit Logging with field-level change tracking
+- ✨ Admin Toolbox Dashboard for activity monitoring
+- ✨ Enhanced Table Editor with Rename functionality and audit integration
+- ✨ Automatic backups before deletion operations (configurable)
+- ✨ Full Admin Toolbox Setup page with retention policies
+- ✨ Multi-language support: English, German, Spanish
+
 **Repository**: [https://github.com/wbrakowski/Admin-Toolbox-OnPrem](https://github.com/wbrakowski/Admin-Toolbox-OnPrem)
+
