@@ -20,7 +20,6 @@ page 51006 AllObj
                 {
                     ToolTip = 'Specifies the value of the Object Name field.';
                 }
-
                 field("Object Type"; Rec."Object Type")
                 {
                     ToolTip = 'Specifies the value of the Object Type field.';

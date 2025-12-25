@@ -2,8 +2,8 @@ table 51002 "Record Deletion Rel. Error"
 {
     Caption = 'Record Deletion Rel. Error';
     DataClassification = CustomerContent;
-    LookupPageId = "Record Deletion Rel. Error";
     DrillDownPageId = "Record Deletion Rel. Error";
+    LookupPageId = "Record Deletion Rel. Error";
     fields
     {
         field(1; "Table ID"; Integer)
@@ -26,10 +26,10 @@ table 51002 "Record Deletion Rel. Error"
         }
         field(11; "Field Name"; Text[30])
         {
-            Caption = 'Field Name';
-            FieldClass = FlowField;
             CalcFormula = lookup(Field.FieldName where(TableNo = field("Table ID"), "No." = field("Field No.")));
+            Caption = 'Field Name';
             Editable = false;
+            FieldClass = FlowField;
             ToolTip = 'Specifies the Field Name.';
         }
         field(20; Error; Text[250])
@@ -57,5 +57,4 @@ table 51002 "Record Deletion Rel. Error"
         {
         }
     }
-
 }

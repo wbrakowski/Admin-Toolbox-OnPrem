@@ -2,10 +2,10 @@ page 51008 "Objects in License"
 {
     ApplicationArea = All;
     Caption = 'Objects in License';
+    Editable = false;
     PageType = List;
     SourceTable = "Temp Object in License";
     UsageCategory = Lists;
-    Editable = false;
 
     layout
     {
@@ -34,15 +34,15 @@ page 51008 "Objects in License"
         view(UsedObjects)
         {
             Caption = 'Used Objects';
-            OrderBy = ascending("Object Type", "Object ID");
             Filters = where(Used = const(true));
+            OrderBy = ascending("Object Type", "Object ID");
             SharedLayout = true;
         }
         view(FreeObjects)
         {
             Caption = 'Free Objects';
-            OrderBy = ascending("Object Type", "Object ID");
             Filters = where(Used = const(false));
+            OrderBy = ascending("Object Type", "Object ID");
             SharedLayout = true;
         }
     }

@@ -2,8 +2,8 @@ table 51003 "Temp Object in License"
 {
     Caption = 'Temp Object in License';
     DataClassification = CustomerContent;
-    LookupPageId = "Objects in License";
     DrillDownPageId = "Objects in License";
+    LookupPageId = "Objects in License";
 
     fields
     {
@@ -12,7 +12,6 @@ table 51003 "Temp Object in License"
             Caption = 'Object ID';
             ToolTip = 'Specifies the value of the Object ID field.';
         }
-
         field(2; "Object Type"; Enum "Object Type")
         {
             Caption = 'Object Type';
@@ -28,7 +27,6 @@ table 51003 "Temp Object in License"
             Caption = 'Used';
             ToolTip = 'Specifies the value of the Used field.';
         }
-
     }
     keys
     {

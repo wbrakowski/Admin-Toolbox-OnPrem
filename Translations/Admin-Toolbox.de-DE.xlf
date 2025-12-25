@@ -9,6 +9,54 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 3877319478 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many days to keep audit log entries before they can be automatically deleted. Set to 0 to keep audit logs indefinitely.</source>
+          <target>Gibt an, wie viele Tage Audit-Log-Einträge aufbewahrt werden sollen, bevor sie automatisch gelöscht werden können. Auf 0 setzen, um Audit-Logs unbegrenzt aufzubewahren.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Audit Log Retention Days - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 3877319478 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Retention Days</source>
+          <target>Aufbewahrungstage Audit-Log</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Audit Log Retention Days - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 2135026080 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if a backup should automatically be created before deleting records.</source>
+          <target>Gibt an, ob vor dem Löschen von Datensätzen automatisch ein Backup erstellt werden soll.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Auto Backup Before Deletion - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 2135026080 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Auto Backup Before Deletion</source>
+          <target>Automatisches Backup vor Löschung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Auto Backup Before Deletion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 2469240459 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type of backup to create automatically.</source>
+          <target>Gibt den Typ des automatisch zu erstellenden Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Auto Backup Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 2469240459 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Auto Backup Type</source>
+          <target>Automatischer Backup-Typ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Auto Backup Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 1717400767 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many days to keep backups before they can be automatically deleted.</source>
+          <target>Gibt an, wie viele Tage Backups aufbewahrt werden sollen, bevor sie automatisch gelöscht werden können.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Backup Retention Days - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 1717400767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Retention Days</source>
+          <target>Aufbewahrungstage Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Backup Retention Days - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3103611735 - Field 1415170785 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies if a warning should be shown on opening the company when a developer license is active (only OnPrem).</source>
           <target>Gibt an, ob beim Öffnen des Mandanten eine Warnung angezeigt werden soll, wenn eine Entwicklerlizenz aktiv ist (nur OnPrem).</target>
@@ -21,17 +69,394 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Developer License Warning - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 955145526 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if inline documentation and help texts should be shown within pages. Provides context-sensitive guidance.</source>
+          <target>Gibt an, ob Inline-Dokumentation und Hilfetexte innerhalb von Seiten angezeigt werden sollen. Bietet kontextbezogene Anleitung.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Enable Inline Documentation - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 955145526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable Inline Documentation</source>
+          <target>Inline-Dokumentation aktivieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Enable Inline Documentation - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3103611735 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
           <target>Primärschlüssel</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 4060281915 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if the user should be asked before creating a backup when deleting records. If disabled, backups are created automatically without asking (if Auto Backup Before Deletion is enabled).</source>
+          <target>Gibt an, ob der Benutzer vor der Erstellung eines Backups beim Löschen von Datensätzen gefragt werden soll. Wenn deaktiviert, werden Backups automatisch ohne Nachfrage erstellt (falls Automatisches Backup vor Löschung aktiviert ist).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Prompt for Backup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 3103611735 - Field 4060281915 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Prompt for Backup</source>
+          <target>Backup-Abfrage anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Admin Toolbox Setup - Field Prompt for Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Entry</source>
+          <target>Audit-Log-Eintrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2079639946 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether a backup was created before the operation.</source>
+          <target>Gibt an, ob vor dem Vorgang ein Backup erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Backup Created - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2079639946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Created</source>
+          <target>Backup erstellt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Backup Created - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2008648527 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry number of the related backup.</source>
+          <target>Gibt die Eintragsnummer des zugehörigen Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Backup Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2008648527 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Entry No.</source>
+          <target>Backup-Eintragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Backup Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1016837963 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the operation was performed.</source>
+          <target>Gibt an, wann der Vorgang ausgeführt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Date Time - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1016837963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Time</source>
+          <target>Datum Uhrzeit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Date Time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a description of the operation.</source>
+          <target>Gibt eine Beschreibung des Vorgangs an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 495089811 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the duration of the operation in milliseconds.</source>
+          <target>Gibt die Dauer des Vorgangs in Millisekunden an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Duration (ms) - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 495089811 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Duration (ms)</source>
+          <target>Dauer (ms)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Duration (ms) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry number of the audit log entry.</source>
+          <target>Gibt die Eintragsnummer des Audit-Log-Eintrags an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Eintragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2852966117 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the error message if the operation failed.</source>
+          <target>Gibt die Fehlermeldung an, wenn der Vorgang fehlgeschlagen ist.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Error Message - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2852966117 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Error Message</source>
+          <target>Fehlermeldung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Error Message - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3438337847 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of fields that were changed during the operation.</source>
+          <target>Gibt die Anzahl der Felder an, die während des Vorgangs geändert wurden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Fields Changed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3438337847 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Fields Changed</source>
+          <target>Anzahl geänderter Felder</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Fields Changed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1312536326 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of records that were successfully affected by the operation.</source>
+          <target>Gibt die Anzahl der Datensätze an, die erfolgreich durch den Vorgang betroffen waren.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Records Affected - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1312536326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Records Affected</source>
+          <target>Anzahl betroffener Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Records Affected - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1043065845 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of records that failed during the operation.</source>
+          <target>Gibt die Anzahl der Datensätze an, die während des Vorgangs fehlgeschlagen sind.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Records Failed - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 1043065845 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Records Failed</source>
+          <target>Anzahl fehlgeschlagener Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field No. of Records Failed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3156524383 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type of operation that was performed.</source>
+          <target>Gibt die Art des Vorgangs an, der ausgeführt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Operation Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3156524383 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Operation Type</source>
+          <target>Vorgangstyp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Operation Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 187063084 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the primary key value of the affected record.</source>
+          <target>Gibt den Primärschlüsselwert des betroffenen Datensatzes an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Primary Key Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 187063084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key Value</source>
+          <target>Primärschlüsselwert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Primary Key Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2897660500 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the record ID that was affected.</source>
+          <target>Gibt die Datensatz-ID an, die betroffen war.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Record ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2897660500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record ID</source>
+          <target>Datensatz-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Record ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the status of the operation.</source>
+          <target>Gibt den Status des Vorgangs an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target>Status</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table that was affected.</source>
+          <target>Gibt die ID der Tabelle an, die betroffen war.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
+          <target>Tabellen-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3808951907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the table that was affected.</source>
+          <target>Gibt den Namen der Tabelle an, die betroffen war.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Table Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 3808951907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Name</source>
+          <target>Tabellenname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Table Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 553526790 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies what triggered the operation (e.g., user action, automated process).</source>
+          <target>Gibt an, wodurch der Vorgang ausgelöst wurde (z. B. Benutzeraktion, automatisierter Prozess).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Triggered By - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 553526790 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Triggered By</source>
+          <target>Ausgelöst durch</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field Triggered By - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2708250016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies who performed the operation.</source>
+          <target>Gibt an, wer den Vorgang ausgeführt hat.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field User ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1347281487 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <target>Benutzer-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Audit Log Entry - Field User ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Change History</source>
+          <target>Feldänderungsverlauf</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 1166816670 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Entry No.</source>
+          <target>Audit-Log-Eintragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Audit Log Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 1016837963 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the change was made.</source>
+          <target>Gibt an, wann die Änderung vorgenommen wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Date Time - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 1016837963 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date Time</source>
+          <target>Datum Uhrzeit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Date Time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry number.</source>
+          <target>Gibt die Eintragsnummer an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Eintragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 823559016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the field caption.</source>
+          <target>Gibt die Feldbezeichnung an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field Caption - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 823559016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Caption</source>
+          <target>Feldbezeichnung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field Caption - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3070320983 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the field name.</source>
+          <target>Gibt den Feldnamen an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3070320983 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Name</source>
+          <target>Feldname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3531868071 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the field number.</source>
+          <target>Gibt die Feldnummer an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3531868071 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field No.</source>
+          <target>Feldnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 2432660905 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the new value after the change.</source>
+          <target>Gibt den neuen Wert nach der Änderung an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field New Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 2432660905 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New Value</source>
+          <target>Neuer Wert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field New Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3205443024 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the old value before the change.</source>
+          <target>Gibt den alten Wert vor der Änderung an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Old Value - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3205443024 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Old Value</source>
+          <target>Alter Wert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Old Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 187063084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key Value</source>
+          <target>Primärschlüsselwert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Primary Key Value - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 2897660500 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record ID</source>
+          <target>Datensatz-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Record ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
+          <target>Tabellen-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 3808951907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Name</source>
+          <target>Tabellenname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field Table Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 2708250016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies who made the change.</source>
+          <target>Gibt an, wer die Änderung vorgenommen hat.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field User ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4165286058 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <target>Benutzer-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Field Change History - Field User ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3025933651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Record Deletion</source>
           <target>Datensatzlöschung</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3025933651 - Field 3133801257 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
@@ -104,7 +529,6 @@
           <source>Record Deletion Rel. Error</source>
           <target>Datensatzlöschung Bez.-Fehler</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3576430184 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -166,6 +590,216 @@
           <target>Tabellen-ID</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Record Deletion Rel. Error - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Backup</source>
+          <target>Tabellen-Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 652518866 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Data</source>
+          <target>Backup-Daten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Data - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1373108233 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the backup was created.</source>
+          <target>Gibt an, wann das Backup erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Date Time - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1373108233 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Date Time</source>
+          <target>Backup-Datum Uhrzeit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Date Time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3437146413 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the size of the backup in kilobytes.</source>
+          <target>Gibt die Größe des Backups in Kilobyte an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Size (KB) - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3437146413 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Size (KB)</source>
+          <target>Backup-Größe (KB)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Size (KB) - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1911835018 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type of backup.</source>
+          <target>Gibt den Typ des Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1911835018 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Type</source>
+          <target>Backup-Typ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Backup Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3997336476 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the company name where the backup was created.</source>
+          <target>Gibt den Mandantennamen an, in dem das Backup erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Company Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3997336476 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Company Name</source>
+          <target>Mandantenname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Company Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 973856165 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether compression is enabled for the backup.</source>
+          <target>Gibt an, ob die Komprimierung für das Backup aktiviert ist.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Compression Enabled - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 973856165 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Compression Enabled</source>
+          <target>Komprimierung aktiviert</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Compression Enabled - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a description of the backup.</source>
+          <target>Gibt eine Beschreibung des Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the entry number of the backup.</source>
+          <target>Gibt die Eintragsnummer des Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Eintragsnr.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 804481195 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the file name for the backup.</source>
+          <target>Gibt den Dateinamen für das Backup an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field File Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 804481195 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File Name</source>
+          <target>Dateiname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field File Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2844126439 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the filter that was applied when creating the backup.</source>
+          <target>Gibt den Filter an, der beim Erstellen des Backups angewendet wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Filter View - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2844126439 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter View</source>
+          <target>Filteransicht</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Filter View - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2065755396 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of records in the backup.</source>
+          <target>Gibt die Anzahl der Datensätze im Backup an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field No. of Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2065755396 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Records</source>
+          <target>Anzahl Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field No. of Records - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3156524383 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how the backup was created.</source>
+          <target>Gibt an, wie das Backup erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Operation Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3156524383 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Operation Type</source>
+          <target>Vorgangstyp</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Operation Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 536005243 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the backup was restored.</source>
+          <target>Gibt an, wann das Backup wiederhergestellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Restore Date Time - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 536005243 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore Date Time</source>
+          <target>Wiederherstellungsdatum Uhrzeit</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Restore Date Time - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1575185104 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether the backup has been restored.</source>
+          <target>Gibt an, ob das Backup wiederhergestellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Restored - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 1575185104 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restored</source>
+          <target>Wiederhergestellt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Restored - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3726085865 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Snapshot Table ID</source>
+          <target>Snapshot-Tabellen-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Snapshot Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3135334477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the table ID of the backup.</source>
+          <target>Gibt die Tabellen-ID des Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Table ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3135334477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
+          <target>Tabellen-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Table ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3808951907 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the table name of the backup.</source>
+          <target>Gibt den Tabellennamen des Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Table Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 3808951907 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Name</source>
+          <target>Tabellenname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field Table Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2708250016 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies who created the backup.</source>
+          <target>Gibt an, wer das Backup erstellt hat.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field User ID - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 971614588 - Field 2708250016 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User ID</source>
+          <target>Benutzer-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Table Backup - Field User ID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 2048709543 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Temp Object in License</source>
@@ -287,17 +921,35 @@
           <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ClearRecordsToDelete - NamedType MarkDeletionRemovedMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 1361802906 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
-          <target>%1 Tabelle(n) wurden zum Löschen markiert. Alle Datensätze in diesen Tabellen werden gelöscht. Fortfahren?</target>
-          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType DeleteRecordsQst</note>
+        <trans-unit id="Codeunit 4017461657 - Method 2112174575 - NamedType 3211583473" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No backup was created. Records will be deleted without backup.</source>
+          <target>Es wurde kein Backup erstellt. Die Datensätze werden ohne Backup gelöscht.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmBackupCreation - NamedType BackupSkippedMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 2112174575 - NamedType 4017732072" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to create a backup of the tables before deletion?\\This is recommended for data safety.</source>
+          <target>Möchten Sie vor dem Löschen ein Backup der Tabellen erstellen?\\Dies wird aus Sicherheitsgründen empfohlen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmBackupCreation - NamedType CreateBackupQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1361802906 - NamedType 3235645552" size-unit="char" translate="yes" xml:space="preserve">
           <source>The operation was cancelled by the user.</source>
           <target>Der Vorgang wurde vom Benutzer abgebrochen.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType CancelledByUserErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 1361802906 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
+          <target>%1 Tabelle(n) wurden zum Löschen markiert. Alle Datensätze in diesen Tabellen werden gelöscht. Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType DeleteRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 2128028473 - NamedType 165517589" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Auto backup before deletion of table %1</source>
+          <target>Automatisches Backup vor dem Löschen der Tabelle %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CreateBackupsForTables - NamedType AutoBackupLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
           <source>Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)</source>
@@ -347,11 +999,16 @@
           <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method OpenTable - NamedType UrlTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 1647990127 - NamedType 719640731" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleted all records from table %1 (%2)</source>
+          <target>Alle Datensätze aus Tabelle %1 gelöscht (%2)</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Record count</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PerformDeletion - NamedType DeletedRecordsLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 2377828003" size-unit="char" translate="yes" xml:space="preserve">
           <source>The external deployer must be installed on the server instance to publish apps. Please select how to proceed.</source>
           <target>Der External Deployer muss auf der Serverinstanz installiert sein, um Apps zu veröffentlichen. Wählen Sie aus, wie Sie fortfahren möchten.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">Source has been modified.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType InstructionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
@@ -364,8 +1021,13 @@
           <source>%1/?page=%2</source>
           <target>%1/?page=%2</target>
           <note from="Developer" annotates="general" priority="2">%1 = Web URL, %2 = Page ID</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType PageUrlTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 2000613798 - NamedType 171674528" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 backup(s) were created before deletion.</source>
+          <target>%1 Backup(s) wurden vor dem Löschen erstellt.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of backups</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowBackupCompletionMessage - NamedType BackupsCreatedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3672477713 - NamedType 2814518218" size-unit="char" translate="yes" xml:space="preserve">
           <source>The records from %1 table(s) were succesfully deleted.</source>
@@ -415,6 +1077,12 @@
           <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ValidateRecordsMarkedForDeletion - NamedType NoRecsFoundErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1186982107 - Method 987901840 - NamedType 301575933" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 old audit log entries were deleted.</source>
+          <target>%1 alte Audit-Log-Einträge wurden gelöscht.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Number of deleted entries</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Audit Log Mgt. - Method DeleteOldAuditLogs - NamedType AuditEntriesDeletedMsg</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 966007232" size-unit="char" translate="yes" xml:space="preserve">
           <source>*.*</source>
           <target>*.*</target>
@@ -439,23 +1107,137 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType NAVAdminToolLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 494866634" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Select License File</source>
-          <target>Wählen Sie die Lizenzdatei</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType SelectFileTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 74316162" size-unit="char" translate="yes" xml:space="preserve">
           <source>Could not get active session information.</source>
           <target>Die Informationen zur aktiven Sitzung konnten nicht abgerufen werden.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType NoActiveSessionErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4224254571 - Method 2839364610 - NamedType 494866634" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select License File</source>
+          <target>Wählen Sie die Lizenzdatei</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Powershell Mgt. - Method ImportLicense - NamedType SelectFileTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 153647245" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 records have been restored to table %2.</source>
+          <target>%1 Datensätze wurden in Tabelle %2 wiederhergestellt.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType BackupRestoredMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 862616902" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export Backup</source>
+          <target>Backup exportieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ExportBackupTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 3014721114" size-unit="char" translate="yes" xml:space="preserve">
+          <source>JSON Files (*.json)|*.json|All Files (*.*)|*.*</source>
+          <target>JSON-Dateien (*.json)|*.json|Alle Dateien (*.*)|*.*</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType FileFilterTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 3095777709" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import Backup</source>
+          <target>Backup importieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ImportBackupTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 3338280784" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Imported from file: %1</source>
+          <target>Importiert aus Datei: %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = File Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ImportedFromFileTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 2677121081" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 records were imported from file %2.</source>
+          <target>%1 Datensätze wurden aus Datei %2 importiert.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Record Count, %2 = File Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ImportSuccessMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 4228781672" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The backup data contains invalid JSON format.</source>
+          <target>Die Backup-Daten enthalten ein ungültiges JSON-Format.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType InvalidJSONErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 1895670638" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No backup data found for this entry.</source>
+          <target>Für diesen Eintrag wurden keine Backup-Daten gefunden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType NoBackupDataErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - NamedType 3138905710" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Entry No.: %1\\Data Preview (first 1000 chars):\\%2</source>
+          <target>Backup-Eintragsnr.: %1\\Datenvorschau (erste 1000 Zeichen):\\%2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Entry No., %2 = JSON Preview</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ViewBackupDataMsg</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 899915134 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
+          <target>Backup wird erstellt...\\Tabellen-ID: #1######\\Datensätze: #2######\\Status: #3##################</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method CreateBackup - NamedType CreatingBackupTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 268166844 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
+          <target>Backup wird erstellt...\\Tabellen-ID: #1######\\Datensätze: #2######\\Status: #3##################</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method CreateBackupWithFilter - NamedType CreatingBackupTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3304058875 - NamedType 1845236427" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup_Table_%1_%2_%3.json</source>
+          <target>Backup_Tabelle_%1_%2_%3.json</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name, %3 = DateTime</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method GetBackupFileName - NamedType FileNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 116217714 - NamedType 1118926904" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to restore %1 records to table %2? This will INSERT the backed up records.\\Warning: This may create duplicate records if they still exist!</source>
+          <target>Möchten Sie %1 Datensätze in Tabelle %2 wiederherstellen? Dies fügt die gesicherten Datensätze ein.\\Warnung: Dies kann zu doppelten Datensätzen führen, wenn diese noch existieren!</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method RestoreBackup - NamedType RestoreConfirmQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3277926914 - NamedType 3518696711" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restoring records...\\Processed: #1######\\Inserted: #2######\\Failed: #3######</source>
+          <target>Stelle Datensätze wieder her...\\Verarbeitet: #1######\\Eingefügt: #2######\\Fehlgeschlagen: #3######</target>
+          <note from="Developer" annotates="general" priority="2">#1 = Processed count, #2 = Inserted count, #3 = Failed count</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method RestoreFromJSON - NamedType RestoringTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3277926914 - NamedType 1279447821" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No records found in backup data.</source>
+          <target>Keine Datensätze in den Backup-Daten gefunden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method RestoreFromJSON - NamedType NoRecordsInBackupErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 2912614604 - NamedType 1057755720" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Processing record %1 of %2...</source>
+          <target>Verarbeite Datensatz %1 von %2...</target>
+          <note from="Developer" annotates="general" priority="2">DEU="Verarbeite Datensatz %1 von %2...",ESP="Procesando registro %1 de %2...",PLACEHOLDER="%1 = Current record number, %2 = Total records"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method UpdateProgressIfNeeded - NamedType ProcessingRecordLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 1306569953 - NamedType 2252885004" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No records could be inserted. All %1 attempts failed.</source>
+          <target>Es konnten keine Datensätze eingefügt werden. Alle %1 Versuche sind fehlgeschlagen.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Number of failed attempts</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ValidateRestoreResult - NamedType AllInsertFailedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 1306569953 - NamedType 3358192062" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restored %1 of %2 records. %3 records failed to insert (possibly due to duplicates or validation errors).</source>
+          <target>%1 von %2 Datensätzen wiederhergestellt. %3 Datensätze konnten nicht eingefügt werden (möglicherweise aufgrund von Duplikaten oder Validierungsfehlern).</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Inserted count, %2 = Total count, %3 = Failed count</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ValidateRestoreResult - NamedType PartialRestoreMsg</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About the Admin Toolbox</source>
           <target>Informationen zur Admin Toolbox</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
+          <source>New,Process,Report,Category4,Tables,Deletion,Audit &amp; Backup,Apps</source>
+          <target>Neu,Verarbeiten,Bericht,Kategorie4,Tabellen,Löschung,Audit &amp; Backup,Apps</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property PromotedActionCategories</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
           <source>This toolbox assists you with the following tasks: deleting or editing records, viewing or importing licenses, running tables, publishing apps.</source>
@@ -553,6 +1335,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - NamedType TableMetadataLbl</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 3251290635" size-unit="char" translate="yes" xml:space="preserve">
+          <source>🛠️ Admin Toolbox provides powerful tools for system administration.</source>
+          <target>🛠️ Die Admin Toolbox bietet leistungsstarke Tools für die Systemverwaltung.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 2310249966" size-unit="char" translate="yes" xml:space="preserve">
+          <source>⚠️ IMPORTANT: Always create backups before modifying or deleting data!</source>
+          <target>⚠️ WICHTIG: Erstellen Sie immer Backups, bevor Sie Daten ändern oder löschen!</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome2Lbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 2825609741" size-unit="char" translate="yes" xml:space="preserve">
+          <source>✅ All operations are logged in the Audit Log for compliance.</source>
+          <target>✅ Alle Vorgänge werden im Audit-Log für Compliance protokolliert.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome3Lbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 202195880" size-unit="char" translate="yes" xml:space="preserve">
+          <source>� Use the Dashboard for an overview of your system statistics.</source>
+          <target>📊 Nutzen Sie das Dashboard für eine Übersicht Ihrer Systemstatistiken.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome4Lbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 395353914" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Please read this before proceeding:</source>
+          <target>📖 Bitte lesen Sie dies, bevor Sie fortfahren:</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType ReadThisLbl</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Method 716454850 - NamedType 486125896" size-unit="char" translate="yes" xml:space="preserve">
           <source>No table to run selected</source>
           <target>Keine Tabelle zum Ausführen ausgewählt</target>
@@ -570,24 +1382,6 @@
           <target>How To</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Howto - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>How to use this app</source>
-          <target>So verwenden Sie diese App</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutTitle</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the link that opens the documentation.</source>
-          <target>Gibt den Link an, über den die Dokumentation geöffnet wird.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Control 868925555 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Click on the link to open the documentation for the Admin Toolbox.</source>
-          <target>Klicken Sie auf den Link, um die Dokumentation für die Admin Toolbox zu öffnen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 419426744 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About information</source>
@@ -775,6 +1569,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Tables - Property AboutText</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 3800514526 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Welcome to Admin Toolbox</source>
+          <target>Willkommen bei Admin Toolbox</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control Welcome - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>How to use this app</source>
+          <target>So verwenden Sie diese App</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a link to the comprehensive documentation for the Admin Toolbox with examples, best practices, and step-by-step guides for all functions.</source>
+          <target>Gibt den Link an, über den die Dokumentation geöffnet wird.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 868925555 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Click on the link to open the documentation for the Admin Toolbox.</source>
+          <target>Klicken Sie auf den Link, um die Dokumentation für die Admin Toolbox zu öffnen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control HowToLbl - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Control 2305514357 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Backups</source>
+          <target>Tabellen-Backups</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control TableBackups - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Action 1514883969 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About the setup</source>
           <target>Über die Einrichtung</target>
@@ -799,29 +1623,107 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Setup - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Check your tables for relation errors</source>
-          <target>Überprüfen Sie Ihre Tabellen auf Beziehungsfehler</target>
+        <trans-unit id="Page 3768843830 - Action 637556038 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>App Management</source>
+          <target>App-Verwaltung</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutTitle</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action AppManagement - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
-          <target>Diese Funktion durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish and Install apps without powershell</source>
+          <target>Veröffentlichen und Installieren von Anwendungen ohne Powershell</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutTitle</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
-          <target>Durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publishes and installs the selected app by using the powershell runner.</source>
+          <target>Veröffentlichen und installieren Sie die ausgewählte Anwendung mithilfe des Powershell-Runners.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutText</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Check Table Relations</source>
-          <target>Tabellenrelationen prüfen</target>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Instead of using powershell, you can use this action to publish and install apps. The action will use the powershellrunner to publish and install the app.</source>
+          <target>Anstelle der Powershell können Sie diese Aktion zum Veröffentlichen und Installieren von Anwendungen verwenden. Die Aktion verwendet den powershellrunner, um die App zu veröffentlichen und zu installieren.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Publish &amp; Install App</source>
+          <target>App veröffentlichen und installieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3647117986 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup &amp; Restore</source>
+          <target>Backup &amp; Wiederherstellung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action BackupRestore - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 4213971272 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manage Table Backups</source>
+          <target>Tabellen-Backups verwalten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ManageBackups - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 4213971272 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the table backup management where you can view, create, restore and export/import backups.</source>
+          <target>Öffnet die Tabellen-Backup-Verwaltung, in der Sie Backups anzeigen, erstellen, wiederherstellen und exportieren/importieren können.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ManageBackups - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 4213971272 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View, create, restore and manage backups of your table data.</source>
+          <target>Anzeigen, erstellen, wiederherstellen und verwalten Sie Backups Ihrer Tabellendaten.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ManageBackups - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 4213971272 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manage Backups</source>
+          <target>Backups verwalten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ManageBackups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2559846888 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Audit Log</source>
+          <target>Audit-Log anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewAuditLog - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2559846888 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the audit log where you can see all operations performed in the Admin Toolbox including who did what and when.</source>
+          <target>Öffnet das Audit-Log, in dem Sie alle in der Admin Toolbox durchgeführten Vorgänge sehen können, einschließlich wer was wann getan hat.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewAuditLog - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2559846888 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View the audit log of all delete and modify operations including field changes.</source>
+          <target>Zeigen Sie das Audit-Log aller Lösch- und Änderungsvorgänge einschließlich Feldänderungen an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewAuditLog - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2559846888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Audit Log</source>
+          <target>Audit-Log anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewAuditLog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1727984412 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens the Admin Toolbox Dashboard with statistics, quick actions, and color-coded operations by risk level.</source>
+          <target>Öffnet das Admin Toolbox Dashboard mit Statistiken, Schnellaktionen und farbcodierten Vorgängen nach Risikoebene.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action OpenDashboard - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 1727984412 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open Dashboard</source>
+          <target>Dashboard öffnen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action OpenDashboard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 53297715 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Record Deletion</source>
+          <target>Datensatz-Löschung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action RecordDeletion - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 666624329 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>Your fellow cleaning service</source>
@@ -842,7 +1744,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 666624329 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Clear Records to Delete</source>
+          <source>Clear Selection</source>
           <target>Lösch-Markierung bei Datensätzen entfernen</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ClearRecords - Property Caption</note>
@@ -870,6 +1772,60 @@
           <target>Markierte Datensätze löschen</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action DeleteRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Your assistant if you want to delete all records from tables</source>
+          <target>Ihr Assistent, wenn Sie alle Datensätze aus Tabellen löschen möchten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Opens a dialog and ask you which records you want to delete. If you continue, the field "Delete records" of the suggested tables will be checked off in the table overview.</source>
+          <target>Öffnet einen Dialog und fragt Sie, welche Datensätze Sie löschen möchten. Wenn Sie fortfahren, wird das Feld "Datensätze löschen" der vorgeschlagenen Tabellen in der Tabellenübersicht abgehakt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suggests you records that you may want to delete by checking off the field "Delete Records". This is useful if you want to "clean" a company from transactional data.</source>
+          <target>Schlägt Ihnen Datensätze vor, die Sie eventuell löschen möchten, indem das Feld "Datensätze löschen" gesetzt wird. Dies ist nützlich, wenn Sie einen Mandanten von Transaktionsdaten "bereinigen" wollen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Suggest Records</source>
+          <target>Datensätze zum Löschen vorschlagen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 232834487 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Management</source>
+          <target>Tabellenverwaltung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action TableManagement - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check your tables for relation errors</source>
+          <target>Überprüfen Sie Ihre Tabellen auf Beziehungsfehler</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
+          <target>Diese Funktion durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.</source>
+          <target>Durchläuft alle Datensätze und verwendet die in der Tabelle "Feld" in Business Central definierten Feldbeziehungen, um die Tabellenbeziehungen zu überprüfen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2095919535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check Table Relations</source>
+          <target>Tabellenrelationen prüfen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action CheckTableRelations - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 3774338566 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>A very powerful table editor</source>
@@ -914,58 +1870,10 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 529433861 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Insert/Update Tables</source>
+          <source>Refresh Table List</source>
           <target>Tabellen einfügen/aktualisieren</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action InsertUpdateTables - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Publish and Install apps without powershell</source>
-          <target>Veröffentlichen und Installieren von Anwendungen ohne Powershell</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutTitle</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Publishes and installs the selected app by using the powershell runner.</source>
-          <target>Veröffentlichen und installieren Sie die ausgewählte Anwendung mithilfe des Powershell-Runners.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Instead of using powershell, you can use this action to publish and install apps. The action will use the powershellrunner to publish and install the app.</source>
-          <target>Anstelle der Powershell können Sie diese Aktion zum Veröffentlichen und Installieren von Anwendungen verwenden. Die Aktion verwendet den powershellrunner, um die App zu veröffentlichen und zu installieren.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property AboutText</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3420767252 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Publish and Install App</source>
-          <target>App veröffentlichen und installieren</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action PublishApp - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Your assistant if you want to delete all records from tables</source>
-          <target>Ihr Assistent, wenn Sie alle Datensätze aus Tabellen löschen möchten</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutTitle</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Opens a dialog and ask you which records you want to delete. If you continue, the field "Delete records" of the suggested tables will be checked off in the table overview.</source>
-          <target>Öffnet einen Dialog und fragt Sie, welche Datensätze Sie löschen möchten. Wenn Sie fortfahren, wird das Feld "Datensätze löschen" der vorgeschlagenen Tabellen in der Tabellenübersicht abgehakt.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Suggests you records that you may want to delete by checking off the field "Delete Records". This is useful if you want to "clean" a company from transactional data.</source>
-          <target>Schlägt Ihnen Datensätze vor, die Sie eventuell löschen möchten, indem das Feld "Datensätze löschen" gesetzt wird. Dies ist nützlich, wenn Sie einen Mandanten von Transaktionsdaten "bereinigen" wollen.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property AboutText</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Action 3798165307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Suggest Records to Delete</source>
-          <target>Datensätze zum Löschen vorschlagen</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action SuggestsRecords - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Action 2549815061 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>View the records of the table</source>
@@ -991,6 +1899,174 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2173611026 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Admin Toolbox Dashboard</source>
+          <target>Admin Toolbox Dashboard</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Method 2665803343 - NamedType 2081532769" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Loading Dashboard Data... @1@@@@@@</source>
+          <target>Dashboard-Daten werden geladen... @1@@@@@@</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Method UpdateDashboardData - NamedType LoadingMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 2506002805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quick Information</source>
+          <target>Schnellinformationen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control QuickInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 588720305 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies if audit logging is enabled. When enabled, all operations are tracked for compliance and review.</source>
+          <target>Zeigt an, ob die Audit-Protokollierung aktiviert ist. Wenn aktiviert, werden alle Vorgänge zu Compliance- und Überprüfungszwecken nachverfolgt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control AuditStatusInfo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 588720305 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Logging</source>
+          <target>Audit-Protokollierung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control AuditStatusInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 2853887070 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies when the last backup was created. Regular backups are recommended before any data operations.</source>
+          <target>Zeigt an, wann das letzte Backup erstellt wurde. Regelmäßige Backups werden vor Datenvorgängen empfohlen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control LastBackupInfo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 2853887070 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Backup</source>
+          <target>Letztes Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control LastBackupInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 84074407 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Operations Statistics</source>
+          <target>Vorgangsstatistiken</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Statistics - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 1913454349 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the total number of audit log entries. Click to view audit logs.</source>
+          <target>Zeigt die Gesamtanzahl der Audit-Log-Einträge an. Klicken Sie, um die Audit-Logs anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Audit Log Entries - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 1913454349 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Entries</source>
+          <target>Audit-Log-Einträge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Audit Log Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3970249559 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of operations performed in the last 24 hours.</source>
+          <target>Zeigt die Anzahl der in den letzten 24 Stunden durchgeführten Vorgänge an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Recent Operations - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3970249559 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Recent Operations (24h)</source>
+          <target>Letzte Vorgänge (24h)</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Recent Operations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 172400345 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the total number of table backups that have been created. Click to view all backups.</source>
+          <target>Zeigt die Gesamtanzahl der erstellten Tabellen-Backups an. Klicken Sie, um alle Backups anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Total Backups - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 172400345 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Backups</source>
+          <target>Backups gesamt</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Total Backups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 4034084949 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Statistics</source>
+          <target>Tabellenstatistiken</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control TableStatistics - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 74801032 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of tables that contain more than 1,000 records. Click to view these medium-sized tables.</source>
+          <target>Zeigt die Anzahl der Tabellen an, die mehr als 1.000 Datensätze enthalten. Klicken Sie, um diese mittelgroßen Tabellen anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables &gt; 1000 Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 74801032 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables &gt; 1,000 Records</source>
+          <target>Tabellen &gt; 1.000 Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables &gt; 1000 Records - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3088537784 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of tables that contain more than 100,000 records. Click to view these large tables.</source>
+          <target>Zeigt die Anzahl der Tabellen an, die mehr als 100.000 Datensätze enthalten. Klicken Sie, um diese großen Tabellen anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables &gt; 100000 Records - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3088537784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables &gt; 100,000 Records</source>
+          <target>Tabellen &gt; 100.000 Datensätze</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables &gt; 100000 Records - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3160608529 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the number of tables that contain at least one record. Click to view all tables with data.</source>
+          <target>Zeigt die Anzahl der Tabellen an, die mindestens einen Datensatz enthalten. Klicken Sie, um alle Tabellen mit Daten anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables with Data - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Control 3160608529 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables with Data</source>
+          <target>Tabellen mit Daten</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Control Tables with Data - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 2739639755 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the main Admin Toolbox page with all available tools and operations.</source>
+          <target>Öffnet die Hauptseite der Admin Toolbox mit allen verfügbaren Tools und Vorgängen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action OpenToolbox - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 2739639755 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Admin Toolbox</source>
+          <target>Admin Toolbox</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action OpenToolbox - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 3036198523 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that all statistics and information on the dashboard will be refreshed. This will reload all data from the database.</source>
+          <target>Aktualisiert alle Statistiken und Informationen im Dashboard. Dies lädt alle Daten aus der Datenbank neu.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action RefreshDashboard - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 3036198523 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target>Aktualisieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action RefreshDashboard - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 3036198523 - Method 1377591017 - NamedType 3650436691" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dashboard data has been refreshed.</source>
+          <target>Dashboard-Daten wurden aktualisiert.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action RefreshDashboard - Method OnAction - NamedType DashboardDataRefreshedMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 1514883969 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the Admin Toolbox Setup to configure automatic backups, audit logging, user mode, and retention policies.</source>
+          <target>Öffnet die Admin Toolbox Einrichtung, um automatische Backups, Audit-Protokollierung, Benutzermodus und Aufbewahrungsrichtlinien zu konfigurieren.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action Setup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 1514883969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Setup</source>
+          <target>Einrichtung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action Setup - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3103611735 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About Admin Toolbox Setup</source>
           <target>Über die Einrichtung der Admin-Toolbox</target>
@@ -1014,6 +2090,78 @@
           <target>Es wurde festgestellt, dass es sich nicht um eine OnPrem-Umgebung handelt. Das Admin Tool Setup enthält nur zusätzliche Funktionalitäten für OnPrem-Umgebungen.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Method OnOpenPage - NamedType OnPremMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2673036179 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Settings</source>
+          <target>Audit-Log-Einstellungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control AuditLog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 3877319478 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Retention Policy</source>
+          <target>Audit-Log-Aufbewahrungsrichtlinie</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Audit Log Retention Days - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 3877319478 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set how long audit log entries should be kept. Set to 0 to keep all audit logs. Older entries can be manually deleted from the Audit Log page.</source>
+          <target>Legen Sie fest, wie lange Audit-Log-Einträge aufbewahrt werden sollen. Auf 0 setzen, um alle Audit-Logs zu behalten. Ältere Einträge können manuell auf der Audit-Log-Seite gelöscht werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Audit Log Retention Days - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2441683610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Settings</source>
+          <target>Backup-Einstellungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2135026080 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Automatic Backup Protection</source>
+          <target>Automatischer Backup-Schutz</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Auto Backup Before Deletion - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2135026080 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable this to automatically create backups before deleting records. This provides a safety net to restore data if needed.</source>
+          <target>Aktivieren Sie diese Option, um vor dem Löschen von Datensätzen automatisch Backups zu erstellen. Dies bietet ein Sicherheitsnetz zur Wiederherstellung von Daten bei Bedarf.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Auto Backup Before Deletion - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2469240459 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Type Selection</source>
+          <target>Backup-Typauswahl</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Auto Backup Type - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 2469240459 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose which type of backup should be created: JSON Export (fast, portable), Snapshot (table copy), or Full Backup (complete data).</source>
+          <target>Wählen Sie, welcher Backup-Typ erstellt werden soll: JSON-Export (schnell, portabel), Snapshot (Tabellenkopie) oder Vollständiges Backup (vollständige Daten).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Auto Backup Type - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 1717400767 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Retention Policy</source>
+          <target>Backup-Aufbewahrungsrichtlinie</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Backup Retention Days - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 1717400767 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set how long backups should be kept. Older backups can be manually deleted from the Backup Management page.</source>
+          <target>Legen Sie fest, wie lange Backups aufbewahrt werden sollen. Ältere Backups können manuell auf der Backup-Verwaltungsseite gelöscht werden.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Backup Retention Days - Property AboutText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4060281915 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Confirmation Prompt</source>
+          <target>Backup-Bestätigungsabfrage</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Prompt for Backup - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 4060281915 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>When enabled, users will be asked if they want to create a backup before deletion. When disabled, backups are created automatically without prompting.</source>
+          <target>Wenn aktiviert, werden Benutzer gefragt, ob sie vor dem Löschen ein Backup erstellen möchten. Wenn deaktiviert, werden Backups automatisch ohne Nachfrage erstellt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Prompt for Backup - Property AboutText</note>
         </trans-unit>
         <trans-unit id="Page 3103611735 - Control 3357837221 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License</source>
@@ -1057,6 +2205,30 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control DeveloperLicense - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 3048879360 - Property 1968111052" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Configure how the Admin Toolbox interface displays help and documentation.</source>
+          <target>Konfigurieren Sie, wie die Admin Toolbox-Oberfläche Hilfe und Dokumentation anzeigt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control UserInterface - Property InstructionalText</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 3048879360 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>User Interface</source>
+          <target>Benutzeroberfläche</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control UserInterface - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 955145526 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inline Documentation</source>
+          <target>Inline-Dokumentation</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Enable Inline Documentation - Property AboutTitle</note>
+        </trans-unit>
+        <trans-unit id="Page 3103611735 - Control 955145526 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shows helpful information boxes within pages to explain functions, warn about risks, and provide best practices.</source>
+          <target>Zeigt hilfreiche Informationsfelder innerhalb von Seiten an, um Funktionen zu erklären, vor Risiken zu warnen und Best Practices bereitzustellen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Control Enable Inline Documentation - Property AboutText</note>
+        </trans-unit>
         <trans-unit id="Page 1618956314 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>AllObj</source>
           <target>AllObj</target>
@@ -1080,6 +2252,296 @@
           <target>Gibt den Wert des Feldes Objekttyp an.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page AllObj - Control Object Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Entries</source>
+          <target>Audit-Log-Einträge</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Control 3458165881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Changes</source>
+          <target>Feldänderungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Control FieldChanges - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 334713382 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clears all filters.</source>
+          <target>Löscht alle Filter.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ClearFilters - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 334713382 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clear Filters</source>
+          <target>Filter löschen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ClearFilters - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 3830708839 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filters the audit log by the selected table.</source>
+          <target>Filtert das Audit-Log nach der ausgewählten Tabelle.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action FilterByTable - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 3830708839 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter by Table</source>
+          <target>Nach Tabelle filtern</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action FilterByTable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1003438710 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filters the audit log by the selected user.</source>
+          <target>Filtert das Audit-Log nach dem ausgewählten Benutzer.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action FilterByUser - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1003438710 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter by User</source>
+          <target>Nach Benutzer filtern</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action FilterByUser - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1093237880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deletes audit log entries older than a specified number of days.</source>
+          <target>Löscht Audit-Log-Einträge, die älter als eine angegebene Anzahl von Tagen sind.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1093237880 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Old Entries</source>
+          <target>Alte Einträge löschen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1093237880 - Method 1377591017 - NamedType 3186556524" size-unit="char" translate="yes" xml:space="preserve">
+          <source>How many days of audit log do you want to keep?</source>
+          <target>Wie viele Tage des Audit-Logs möchten Sie aufbewahren?</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Method OnAction - NamedType AskDaysQst</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1093237880 - Method 1377591017 - NamedType 1752520879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Keep audit logs for %1 days and delete older entries?</source>
+          <target>Audit-Logs für %1 Tage aufbewahren und ältere Einträge löschen?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Days to keep</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Method OnAction - NamedType DeleteConfirmQst</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 2851454604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exports the audit log entries to Excel.</source>
+          <target>Exportiert die Audit-Log-Einträge nach Excel.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ExportToExcel - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 2851454604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export to Excel</source>
+          <target>Nach Excel exportieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ExportToExcel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1345825477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the backup created before this operation will be opened.</source>
+          <target>Öffnet das Backup, das vor diesem Vorgang erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ViewBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1345825477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Related Backup</source>
+          <target>Zugehöriges Backup anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ViewBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 2391642598 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that all field changes for this audit log entry will be shown.</source>
+          <target>Zeigt alle Feldänderungen für diesen Audit-Log-Eintrag an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ViewFieldChanges - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 2391642598 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Field Changes</source>
+          <target>Feldänderungen anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action ViewFieldChanges - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit Log Entry</source>
+          <target>Audit-Log-Eintrag</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 1863961788 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Information</source>
+          <target>Backup-Informationen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control BackupInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 318613646 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Details</source>
+          <target>Details</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control Details - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 3458165881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Changes</source>
+          <target>Feldänderungen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control FieldChanges - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target>Allgemein</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 2672556262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Results</source>
+          <target>Ergebnisse</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control Results - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Control 3451064716 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Information</source>
+          <target>Tabelleninformationen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Control TableInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Action 1345825477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the backup created before this operation will be opened.</source>
+          <target>Öffnet das Backup, das vor diesem Vorgang erstellt wurde.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Action ViewBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2581273515 - Action 1345825477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Related Backup</source>
+          <target>Zugehöriges Backup anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entry Card - Action ViewBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Table Backup</source>
+          <target>Tabellen-Backup erstellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 1556380518" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup created successfully. Entry No.: %1</source>
+          <target>Backup erfolgreich erstellt. Lfd Nr.: %1</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Entry No.</note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType SuccessMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 2622681021" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please select a table.</source>
+          <target>Bitte wählen Sie eine Tabelle aus.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType TableSelectionErr</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Options</source>
+          <target>Backup-Optionen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4191215792 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the type of backup to create.</source>
+          <target>Gibt den Typ des zu erstellenden Backups an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control BackupTypeField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4191215792 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Type</source>
+          <target>Backup-Typ</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control BackupTypeField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 3824302424 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies a description for the backup.</source>
+          <target>Gibt eine Beschreibung für das Backup an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control DescriptionField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 3824302424 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Beschreibung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control DescriptionField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4188249081 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the filter to apply (only if Use Filter is enabled).</source>
+          <target>Gibt den anzuwendenden Filter an (nur wenn Filter verwenden aktiviert ist).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4188249081 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter View</source>
+          <target>Filteransicht</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2699620902 - NamedType 1473800271" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please select a table first.</source>
+          <target>Bitte wählen Sie zuerst eine Tabelle aus.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnAssistEdit - NamedType SelectTableFirstMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2699620902 - NamedType 2770735354" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please enter the filter manually in the format: Field1=Value1,Field2=Value2</source>
+          <target>Bitte geben Sie den Filter manuell im Format ein: Feld1=Wert1,Feld2=Wert2</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnAssistEdit - NamedType EnterFilterManuallyMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 2686546651 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the ID of the table to backup.</source>
+          <target>Gibt die ID der zu sichernden Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control TableIDField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 2686546651 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table ID</source>
+          <target>Tabellen-ID</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control TableIDField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 1434847637 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the name of the table to backup.</source>
+          <target>Gibt den Namen der zu sichernden Tabelle an.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control TableNameField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 1434847637 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Name</source>
+          <target>Tabellenname</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control TableNameField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 1547671483 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether to backup only filtered records.</source>
+          <target>Aktivieren, um nur gefilterte Datensätze zu sichern.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control UseFilterField - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Control 1547671483 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use Filter</source>
+          <target>Filter verwenden</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control UseFilterField - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165286058 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Change History</source>
+          <target>Feldänderungsverlauf</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Field Change History - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4165286058 - Action 2559846888 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the related audit log entry will be opened.</source>
+          <target>Öffnet den zugehörigen Audit-Log-Eintrag.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Field Change History - Action ViewAuditLog - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4165286058 - Action 2559846888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Audit Log Entry</source>
+          <target>Audit-Log-Eintrag anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Field Change History - Action ViewAuditLog - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1725951601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>License Information</source>
@@ -1249,6 +2711,222 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Record Deletion Rel. Error - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4089686920 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Backup Card</source>
+          <target>Tabellen-Backup-Karte</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Control 1863961788 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup Information</source>
+          <target>Backup-Informationen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Control BackupInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target>Allgemein</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Control 1828704554 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore Information</source>
+          <target>Wiederherstellungsinformationen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Control RestoreInfo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Control 84074407 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Statistics</source>
+          <target>Statistiken</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Control Statistics - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 927252315 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export the backup data to a JSON file.</source>
+          <target>Exportieren Sie die Backup-Daten in eine JSON-Datei.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action ExportToFile - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 927252315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export to File</source>
+          <target>In Datei exportieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action ExportToFile - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 116217714 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore records from this backup.</source>
+          <target>Stellen Sie Datensätze aus diesem Backup wieder her.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action RestoreBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 116217714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore Backup</source>
+          <target>Backup wiederherstellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action RestoreBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 2144571351 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the backup data (first 1000 characters) will be displayed.</source>
+          <target>Zeigen Sie die Backup-Daten an (erste 1000 Zeichen).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action ViewData - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 2144571351 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Backup Data</source>
+          <target>Backup-Daten anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action ViewData - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Backups</source>
+          <target>Tabellen-Backups</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 2026913255 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Refreshes the backup list.</source>
+          <target>Aktualisiert die Backup-Liste.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action Refresh - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 2026913255 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target>Aktualisieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action Refresh - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 116217714 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restores the data from this backup.</source>
+          <target>Stellt die Daten aus diesem Backup wieder her.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 116217714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore</source>
+          <target>Wiederherstellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 116217714 - Method 1377591017 - NamedType 2294662597" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to restore the backup for table %1 (%2)?\This will restore %3 records from %4.</source>
+          <target>Möchten Sie das Backup für Tabelle %1 (%2) wiederherstellen?\Dies stellt %3 Datensätze von %4 wieder her.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name, %3 = Record Count, %4 = Backup Date</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Method OnAction - NamedType ConfirmMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 116217714 - Method 1377591017 - NamedType 153647245" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup restored successfully.</source>
+          <target>Backup erfolgreich wiederhergestellt.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Method OnAction - NamedType BackupRestoredMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 1345825477 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the backup card will be opened to view details.</source>
+          <target>Öffnet die Backup-Karte, um Details anzuzeigen.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action ViewBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4240297231 - Action 1345825477 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Backup</source>
+          <target>Backup anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action ViewBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Backups</source>
+          <target>Tabellen-Backups</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 899915134 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create a new backup of a table.</source>
+          <target>Erstellen Sie ein neues Backup einer Tabelle.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action CreateBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 899915134 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create Backup</source>
+          <target>Backup erstellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action CreateBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 653807429 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete backups older than a specified number of days.</source>
+          <target>Löschen Sie Backups, die älter als eine angegebene Anzahl von Tagen sind.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 653807429 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete Old Backups</source>
+          <target>Alte Backups löschen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 653807429 - Method 1377591017 - NamedType 1752520879" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This will delete %1 backup(s) older than %2 days. Continue?</source>
+          <target>Dadurch werden %1 Backup(s) gelöscht, die älter als %2 Tage sind. Fortfahren?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of backups, %2 = Days</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType DeleteConfirmQst</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 653807429 - Method 1377591017 - NamedType 159499448" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 backup(s) have been deleted.</source>
+          <target>%1 Backup(s) wurden gelöscht.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of backups</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType DeletedMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 653807429 - Method 1377591017 - NamedType 2223344557" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No backups found older than %1 days.</source>
+          <target>Keine Backups gefunden, die älter als %1 Tage sind.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Days to keep</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType NoBackupsFoundMsg</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 927252315 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export the backup data to a JSON file.</source>
+          <target>Exportieren Sie die Backup-Daten in eine JSON-Datei.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ExportToFile - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 927252315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Export to File</source>
+          <target>In Datei exportieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ExportToFile - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 1031681391 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import backup data from a JSON file.</source>
+          <target>Importieren Sie Backup-Daten aus einer JSON-Datei.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ImportFromFile - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 1031681391 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Import from File</source>
+          <target>Aus Datei importieren</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ImportFromFile - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 116217714 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore records from the selected backup.</source>
+          <target>Stellen Sie Datensätze aus dem ausgewählten Backup wieder her.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action RestoreBackup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 116217714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Restore Backup</source>
+          <target>Backup wiederherstellen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action RestoreBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 2144571351 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that the backup data (first 1000 characters) will be displayed.</source>
+          <target>Zeigen Sie die Backup-Daten an (erste 1000 Zeichen).</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ViewData - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 828941326 - Action 2144571351 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>View Backup Data</source>
+          <target>Backup-Daten anzeigen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ViewData - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About Table Editor</source>
           <target>Über Table Editor</target>
@@ -1356,6 +3034,30 @@
           <target>Verarbeite Tabellen... @1@@@@@@</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType ProcessingDataTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3513534516 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Tabellen-Editor</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method ModifyTableRecords - NamedType TableEditorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 3513534516 - NamedType 3609284232" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modified field %1 to value %2</source>
+          <target>Feld %1 auf Wert %2 geändert</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = Field Value</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method ModifyTableRecords - NamedType ModifyDescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 2861808756 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Tabellen-Editor</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method RenameTableRecords - NamedType TableEditorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2727896929 - Method 2861808756 - NamedType 246981576" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Renamed field %1 to value %2</source>
+          <target>Feld %1 auf Wert %2 umbenannt</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = New Value</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method RenameTableRecords - NamedType RenameDescriptionLbl</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
@@ -1721,7 +3423,6 @@
           <source>Options</source>
           <target>Optionen</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control Options - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 1169104498 - Control 3904799447 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
@@ -1747,6 +3448,102 @@
           <target>Objekte ID (Nummer) Filter</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Export Unlicensed Objects - Control ObjIDFilter - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 573987696 - EnumValue 4103079883 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bulk Delete</source>
+          <target>Massendlöschung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Operation Type - EnumValue Bulk Delete - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 573987696 - EnumValue 2426239284 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bulk Modify</source>
+          <target>Massenänderung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Operation Type - EnumValue Bulk Modify - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 573987696 - EnumValue 2477294019 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target>Löschen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Operation Type - EnumValue Delete - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 573987696 - EnumValue 2049086889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Insert</source>
+          <target>Einfügen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Operation Type - EnumValue Insert - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 573987696 - EnumValue 3817527484 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modify</source>
+          <target>Ändern</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Operation Type - EnumValue Modify - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1958439751 - EnumValue 3826689261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Failed</source>
+          <target>Fehlgeschlagen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Status - EnumValue Failed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1958439751 - EnumValue 1090713286 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>In Progress</source>
+          <target>In Bearbeitung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Status - EnumValue In Progress - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1958439751 - EnumValue 432100567 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Partially Failed</source>
+          <target>Teilweise fehlgeschlagen</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Status - EnumValue Partially Failed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1958439751 - EnumValue 3878926381 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Success</source>
+          <target>Erfolg</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Audit Log Status - EnumValue Success - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 407269813 - EnumValue 1228620279 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Before Deletion</source>
+          <target>Vor Löschung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Operation Type - EnumValue Before Deletion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 407269813 - EnumValue 3156325185 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Before Modification</source>
+          <target>Vor Änderung</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Operation Type - EnumValue Before Modification - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 407269813 - EnumValue 3051329064 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Manual Backup</source>
+          <target>Manuelles Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Operation Type - EnumValue Manual Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 407269813 - EnumValue 4265431785 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Scheduled Backup</source>
+          <target>Geplantes Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Operation Type - EnumValue Scheduled Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1911835018 - EnumValue 1048090895 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Full Backup</source>
+          <target>Vollständiges Backup</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Type - EnumValue Full Backup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1911835018 - EnumValue 275042416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>JSON Export</source>
+          <target>JSON-Export</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Type - EnumValue JSON Export - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1911835018 - EnumValue 332201752 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Snapshot</source>
+          <target>Snapshot</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Backup Type - EnumValue Snapshot - Property Caption</note>
         </trans-unit>
       </group>
     </body>
