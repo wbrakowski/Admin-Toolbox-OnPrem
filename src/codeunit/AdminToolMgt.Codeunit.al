@@ -1,14 +1,41 @@
 codeunit 51000 "Admin Tool Mgt."
 {
-    Permissions = tabledata "G/L Entry" = IMD, tabledata "Cust. Ledger Entry" = IMD, tabledata "Vendor Ledger Entry" = IMD, tabledata "Item Ledger Entry" = IMD, tabledata "Sales Header" = IMD,
-                  tabledata "Sales Line" = IMD, tabledata "Purchase Header" = IMD, tabledata "Purchase Line" = IMD, tabledata "G/L Register" = IMD, tabledata "Item Register" = IMD,
-                  tabledata "Gen. Journal Line" = IMD, tabledata "Sales Shipment Header" = IMD, tabledata "Sales Shipment Line" = IMD, tabledata "Sales Invoice Header" = IMD, tabledata "Sales Invoice Line" = IMD,
-                  tabledata "Sales Cr.Memo Header" = IMD, tabledata "Sales Cr.Memo Line" = IMD, tabledata "Purch. Rcpt. Header" = IMD, tabledata "Purch. Rcpt. Line" = IMD, tabledata "Purch. Inv. Header" = IMD,
-                  tabledata "Purch. Inv. Line" = IMD, tabledata "Purch. Cr. Memo Hdr." = IMD, tabledata "Purch. Cr. Memo Line" = IMD, tabledata "Job Ledger Entry" = IMD, tabledata "G/L Entry - VAT Entry Link" = IMD,
-                  tabledata "VAT Entry" = IMD, tabledata "Bank Account Ledger Entry" = IMD, tabledata "Item Application Entry" = IMD, tabledata "Detailed Cust. Ledg. Entry" = IMD, tabledata "Detailed Vendor Ledg. Entry" = IMD,
-                  tabledata "Value Entry" = IMD, tabledata "Return Shipment Header" = IMD, tabledata "Return Receipt Header" = IMD, tabledata "Record Deletion" = RIM, tabledata "Record Deletion Rel. Error" = RID,
-                  tabledata "Admin Toolbox Setup" = R;
-
+    Permissions = tabledata "Admin Toolbox Setup" = RI,
+tabledata "Bank Account Ledger Entry" = IMD,
+tabledata "Cust. Ledger Entry" = IMD,
+tabledata "Detailed Cust. Ledg. Entry" = IMD,
+tabledata "Detailed Vendor Ledg. Entry" = IMD,
+tabledata "G/L Entry" = IMD,
+tabledata "G/L Entry - VAT Entry Link" = IMD,
+tabledata "G/L Register" = IMD,
+                  tabledata "Gen. Journal Line" = IMD,
+tabledata "Item Application Entry" = IMD,
+tabledata "Item Ledger Entry" = IMD,
+tabledata "Item Register" = IMD,
+tabledata "Job Ledger Entry" = IMD,
+tabledata "Purch. Cr. Memo Hdr." = IMD,
+tabledata "Purch. Cr. Memo Line" = IMD,
+tabledata "Purch. Inv. Header" = IMD,
+                  tabledata "Purch. Inv. Line" = IMD,
+tabledata "Purch. Rcpt. Header" = IMD,
+tabledata "Purch. Rcpt. Line" = IMD,
+tabledata "Purchase Header" = IMD,
+tabledata "Purchase Line" = IMD,
+tabledata "Record Deletion" = RIM,
+tabledata "Record Deletion Rel. Error" = RID,
+tabledata "Return Receipt Header" = IMD,
+tabledata "Return Shipment Header" = IMD,
+                  tabledata "Sales Cr.Memo Header" = IMD,
+tabledata "Sales Cr.Memo Line" = IMD,
+tabledata "Sales Header" = IMD,
+tabledata "Sales Invoice Header" = IMD,
+tabledata "Sales Invoice Line" = IMD,
+                  tabledata "Sales Line" = IMD,
+tabledata "Sales Shipment Header" = IMD,
+tabledata "Sales Shipment Line" = IMD,
+                  tabledata "Value Entry" = IMD,
+                  tabledata "VAT Entry" = IMD,
+tabledata "Vendor Ledger Entry" = IMD;
 
     procedure CalcRecordsInTable(TableNoToCheck: Integer): Integer
     var
@@ -191,6 +218,7 @@ codeunit 51000 "Admin Tool Mgt."
         UpdateDialog.Open(GetDeletingRecordsText());
 
         ValidateRecordsMarkedForDeletion(RecordDeletion, UpdateDialog);
+        CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog);
         PerformDeletion(RecordDeletion, RecordDeletionRelError, RunTrigger, UpdateDialog);
 
         UpdateDialog.Close();
@@ -234,8 +262,8 @@ codeunit 51000 "Admin Tool Mgt."
     local procedure ConfirmDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
     var
         ConfirmManagement: Codeunit "Confirm Management";
-        DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?', Comment = '%1 = No. of tables';
         CancelledByUserErr: Label 'The operation was cancelled by the user.';
+        DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?', Comment = '%1 = No. of tables';
         ConfirmMessage: Text;
     begin
         ConfirmMessage := StrSubstNo(DeleteRecordsQst, RecordDeletion.Count());
@@ -247,17 +275,125 @@ codeunit 51000 "Admin Tool Mgt."
 
     local procedure PerformDeletion(var RecordDeletion: Record "Record Deletion"; var RecordDeletionRelError: Record "Record Deletion Rel. Error"; RunTrigger: Boolean; var UpdateDialog: Dialog)
     var
+        AuditLogMgt: Codeunit "Audit Log Mgt.";
         RecordRef: RecordRef;
+        AuditLogOperationType: Enum "Audit Log Operation Type";
+        AuditLogStatus: Enum "Audit Log Status";
+        RecordCount: Integer;
+        TableAuditLogEntryNo: Integer;
+        DeletedRecordsLbl: Label 'Deleted all records from table %1 (%2)', Comment = '%1 = Table ID, %2 = Record count';
     begin
         if RecordDeletion.FindSet() then
             repeat
                 UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
                 RecordRef.Open(RecordDeletion."Table ID");
+
+                RecordCount := RecordRef.Count();
+
+                // Start audit log for this table deletion
+                TableAuditLogEntryNo := AuditLogMgt.StartOperation(
+                    AuditLogOperationType::Delete,
+                    RecordDeletion."Table ID",
+                    StrSubstNo(DeletedRecordsLbl, RecordDeletion."Table ID", RecordCount),
+                    'Admin Toolbox - Delete Records');
+
                 RecordRef.DeleteAll(RunTrigger);
+
+                // Complete audit log for this table
+                AuditLogMgt.CompleteOperation(TableAuditLogEntryNo, AuditLogStatus::Success, RecordCount, 0, '');
+
                 RecordRef.Close();
                 RecordDeletionRelError.SetRange("Table ID", RecordDeletion."Table ID");
                 RecordDeletionRelError.DeleteAll(false);
             until RecordDeletion.Next() = 0;
+    end;
+
+    local procedure CreateBackupsBeforeDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
+    var
+        AdminToolboxSetup: Record "Admin Toolbox Setup";
+        TableBackupMgt: Codeunit "Table Backup Mgt.";
+        BackupOperationType: Enum "Backup Operation Type";
+        BackupCount: Integer;
+    begin
+        InitializeBackupSetup(AdminToolboxSetup);
+
+        if not AdminToolboxSetup."Auto Backup Before Deletion" then
+            exit;
+
+        if not ConfirmBackupCreation(AdminToolboxSetup, UpdateDialog) then
+            exit;
+
+        BackupCount := CreateBackupsForTables(RecordDeletion, AdminToolboxSetup, TableBackupMgt, BackupOperationType);
+        ShowBackupCompletionMessage(BackupCount);
+
+        // Reopen the deletion dialog
+        UpdateDialog.Open(GetDeletingRecordsText());
+    end;
+
+    local procedure InitializeBackupSetup(var AdminToolboxSetup: Record "Admin Toolbox Setup")
+    var
+        BackupType: Enum "Backup Type";
+    begin
+        if not AdminToolboxSetup.Get() then begin
+            AdminToolboxSetup.Init();
+            AdminToolboxSetup."Auto Backup Before Deletion" := true;
+            AdminToolboxSetup."Prompt for Backup" := true;
+            AdminToolboxSetup."Auto Backup Type" := BackupType::"JSON Export";
+            AdminToolboxSetup.Insert(true);
+        end;
+    end;
+
+    local procedure ConfirmBackupCreation(var AdminToolboxSetup: Record "Admin Toolbox Setup"; var UpdateDialog: Dialog): Boolean
+    var
+        ConfirmManagement: Codeunit "Confirm Management";
+        BackupSkippedMsg: Label 'No backup was created. Records will be deleted without backup.';
+        CreateBackupQst: Label 'Do you want to create a backup of the tables before deletion?\\This is recommended for data safety.';
+    begin
+        if not AdminToolboxSetup."Prompt for Backup" then
+            exit(true);
+
+        UpdateDialog.Close();
+        if not ConfirmManagement.GetResponseOrDefault(CreateBackupQst, true) then begin
+            Message(BackupSkippedMsg);
+            UpdateDialog.Open(GetDeletingRecordsText());
+            exit(false);
+        end;
+
+        exit(true);
+    end;
+
+    local procedure CreateBackupsForTables(var RecordDeletion: Record "Record Deletion"; var AdminToolboxSetup: Record "Admin Toolbox Setup"; var TableBackupMgt: Codeunit "Table Backup Mgt."; BackupOperationType: Enum "Backup Operation Type"): Integer
+    var
+        BackupType: Enum "Backup Type";
+        BackupCount: Integer;
+        BackupTypeToUse: Enum "Backup Type";
+        AutoBackupLbl: Label 'Auto backup before deletion of table %1', Comment = '%1 = Table ID';
+    begin
+        // Ensure a valid backup type is used (fallback to JSON Export if not set)
+        BackupTypeToUse := AdminToolboxSetup."Auto Backup Type";
+        // Check if BackupType is 0 (blank/unset) or invalid
+        if BackupTypeToUse.AsInteger() = 0 then
+            BackupTypeToUse := BackupType::"JSON Export";
+
+        if RecordDeletion.FindSet() then
+            repeat
+                TableBackupMgt.CreateBackup(
+                    RecordDeletion."Table ID",
+                    BackupTypeToUse,
+                    BackupOperationType::"Before Deletion",
+                    StrSubstNo(AutoBackupLbl, RecordDeletion."Table ID"));
+                BackupCount += 1;
+            until RecordDeletion.Next() = 0;
+
+        exit(BackupCount);
+    end;
+
+    local procedure ShowBackupCompletionMessage(BackupCount: Integer)
+    var
+        BackupsCreatedMsg: Label '%1 backup(s) were created before deletion.', Comment = '%1 = No. of backups';
+    begin
+        if BackupCount > 0 then
+            Message(BackupsCreatedMsg, BackupCount);
     end;
 
     local procedure ShowDeletionSuccessMessage(var RecordDeletion: Record "Record Deletion")
@@ -276,6 +412,7 @@ codeunit 51000 "Admin Tool Mgt."
         NoRecordFoundMsg: Label 'No record could be found in table %1.', Comment = '%1 = Table Caption';
         ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
         UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
+
     begin
         AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
         // Do not include system tables
@@ -294,7 +431,8 @@ codeunit 51000 "Admin Tool Mgt."
                 RecordDeletion.Init();
                 RecordDeletion."Table ID" := AllObjWithCaption."Object ID";
                 RecordDeletion.Company := CopyStr(CompanyName(), 1, MaxStrLen(RecordDeletion.Company));
-                RecordDeletion.Insert(false); // Ignore if already exists
+                if not RecordDeletion.Insert(false) then
+                    continue; // Ignore if already exists
             until AllObjWithCaption.Next() = 0;
             Message(UpdateFinishedMsg, CurrRec);
         end else
@@ -320,8 +458,8 @@ codeunit 51000 "Admin Tool Mgt."
         Selection: Integer;
         InstructionsLbl: Label 'The external deployer must be installed on the server instance to publish apps. Please select how to proceed.';
         OptionsLbl: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
-        WebUrl: Text;
         PageUrlTxt: Label '%1/?page=%2', Comment = '%1 = Web URL, %2 = Page ID';
+        WebUrl: Text;
     begin
         Selection := StrMenu(OptionsLbl, 1, InstructionsLbl);
         case Selection of
@@ -364,8 +502,8 @@ codeunit 51000 "Admin Tool Mgt."
 
     procedure SuggestUnlicensedPartnerOrCustomRecordsToDelete()
     var
-        PowershellMgt: Codeunit "Powershell Mgt.";
         ConfirmManagement: Codeunit "Confirm Management";
+        PowershellMgt: Codeunit "Powershell Mgt.";
         RecsSuggestedCount: Integer;
         ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
         ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
@@ -417,7 +555,6 @@ codeunit 51000 "Admin Tool Mgt."
             exit(false);
         exit(true);
     end;
-
 
     procedure ViewRecords(RecordDeletion: Record "Record Deletion")
     begin

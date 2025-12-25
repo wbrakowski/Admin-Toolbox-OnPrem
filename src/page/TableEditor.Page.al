@@ -1,15 +1,14 @@
 page 51004 "Table Editor"
 {
-    PageType = Card;
-    ApplicationArea = All;
-    UsageCategory = Administration;
-    Caption = 'Table Editor';
-    AdditionalSearchTerms = 'Debug';
-    Permissions = tabledata "Reservation Entry" = IMD;
-    AccessByPermission = tabledata "Item Ledger Entry" = MD;
-    AboutTitle = 'About Table Editor';
     AboutText = 'This table editor can modify or delete selected records.';
-
+    AboutTitle = 'About Table Editor';
+    AccessByPermission = tabledata "Item Ledger Entry" = MD;
+    AdditionalSearchTerms = 'Debug';
+    ApplicationArea = All;
+    Caption = 'Table Editor';
+    PageType = Card;
+    Permissions = tabledata "Reservation Entry" = IMD;
+    UsageCategory = Administration;
 
     layout
     {
@@ -21,8 +20,8 @@ page 51004 "Table Editor"
 
                 field(TableNoField; TableNo)
                 {
-                    Caption = 'ID';
                     BlankZero = true;
+                    Caption = 'ID';
                     TableRelation = AllObjWithCaption."Object ID" where("Object Type" = const(Table));
                     ToolTip = 'Specifies the ID of the table where you want to modify or delete records.';
 
@@ -41,20 +40,20 @@ page 51004 "Table Editor"
                 }
                 field(UseTableTriggerField; UseTableTrigger)
                 {
-                    Caption = 'Use Trigger';
-                    ToolTip = 'Specifies if you want to run the trigger of the table that you want to modify or delete.';
-                    AboutTitle = 'Do you want to use table triggers?';
                     AboutText = 'Enable this field if you want to use the table triggers when modifying or deleting records.';
+                    AboutTitle = 'Do you want to use table triggers?';
+                    Caption = 'Use Trigger';
                     Enabled = not RenameRequired;
+                    ToolTip = 'Specifies if you want to run the trigger of the table that you want to modify or delete.';
                 }
                 field(CustomTableViewField; CustomTableView)
                 {
+                    AboutText = 'Select all the records that you want to modify or delete';
+                    AboutTitle = 'Record Selection';
                     Caption = 'View';
                     Editable = false;
                     MultiLine = true;
                     ToolTip = 'Specifies the selected records.';
-                    AboutTitle = 'Record Selection';
-                    AboutText = 'Select all the records that you want to modify or delete';
 
                     trigger OnAssistEdit()
                     begin
@@ -63,18 +62,17 @@ page 51004 "Table Editor"
                 }
                 field(CustomTableNoOfRecordsField; TableNoOfRecords)
                 {
+                    AboutText = 'Shows how many records you selected in the previous field.';
+                    AboutTitle = 'No. of your selected records';
                     Caption = 'Records in Filter';
                     Editable = false;
                     ToolTip = 'Specifies the no. of records that you selected.';
-                    AboutTitle = 'No. of your selected records';
-                    AboutText = 'Shows how many records you selected in the previous field.';
 
                     trigger OnDrillDown()
                     begin
                         ShowCustomTable();
                     end;
                 }
-
             }
             group(FieldSettings)
             {
@@ -82,11 +80,11 @@ page 51004 "Table Editor"
 
                 field(FieldNumberField; FieldNumber)
                 {
-                    Caption = 'No.';
-                    BlankZero = true;
-                    ToolTip = 'Specifies field no. that you want to modify.';
-                    AboutTitle = 'Field selector';
                     AboutText = 'Select the field if you want to modify a field for the selected records';
+                    AboutTitle = 'Field selector';
+                    BlankZero = true;
+                    Caption = 'No.';
+                    ToolTip = 'Specifies field no. that you want to modify.';
 
                     trigger OnLookup(var Text: Text): Boolean
                     begin
@@ -101,10 +99,10 @@ page 51004 "Table Editor"
                 }
                 field(FieldValueField; FieldValue)
                 {
+                    AboutText = 'This is the value that the field will have for the selected records after modifying them.';
+                    AboutTitle = 'Choose the new value';
                     Caption = 'Value';
                     ToolTip = 'Specifies the value that the field should have after modifying it.';
-                    AboutTitle = 'Choose the new value';
-                    AboutText = 'This is the value that the field will have for the selected records after modifying them.';
 
                     trigger OnValidate()
                     begin
@@ -113,11 +111,11 @@ page 51004 "Table Editor"
                 }
                 field(UseValidateTriggerField; UseValidateTrigger)
                 {
-                    Caption = 'Validate';
-                    ToolTip = 'Specifies if you want to use the OnValidate trigger of the field.';
-                    AboutTitle = 'Enable OnValidateTrigger';
                     AboutText = 'Enable this field if you want to use the OnValidate Trigger of the field when modifying the records.';
+                    AboutTitle = 'Enable OnValidateTrigger';
+                    Caption = 'Validate';
                     Enabled = not RenameRequired;
+                    ToolTip = 'Specifies if you want to use the OnValidate trigger of the field.';
                 }
                 field(FieldNameField; FieldName)
                 {
@@ -147,17 +145,16 @@ page 51004 "Table Editor"
         {
             action(DeleteRecordsAction)
             {
-                ApplicationArea = All;
+                AboutText = 'This will delete all the records that you selected in the field "View"';
+                AboutTitle = 'Delete Records';
                 Caption = 'Delete Table Records';
-                Image = Delete;
-                Promoted = true;
-                PromotedOnly = true;
-                PromotedCategory = Process;
                 Ellipsis = true;
                 Enabled = TableNo > 0;
+                Image = Delete;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
                 ToolTip = 'Deletes the selected records.';
-                AboutTitle = 'Delete Records';
-                AboutText = 'This will delete all the records that you selected in the field "View"';
 
                 trigger OnAction()
                 begin
@@ -166,17 +163,16 @@ page 51004 "Table Editor"
             }
             action(ModifyRecordsAction)
             {
-                ApplicationArea = All;
+                AboutText = 'This will modify all the records that you selected in the field "View"';
+                AboutTitle = 'Modify Records';
                 Caption = 'Modify Table Records';
-                Image = Apply;
-                Promoted = true;
-                PromotedOnly = true;
-                PromotedCategory = Process;
                 Ellipsis = true;
                 Enabled = FieldNumber > 0;
+                Image = Apply;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
                 ToolTip = 'Modifies the selected records.';
-                AboutTitle = 'Modify Records';
-                AboutText = 'This will modify all the records that you selected in the field "View"';
 
                 trigger OnAction()
                 begin
@@ -188,13 +184,12 @@ page 51004 "Table Editor"
             }
             action(CreateRecordAction)
             {
-                ApplicationArea = All;
                 Caption = 'Create Record';
+                Enabled = TableNo > 0;
                 Image = Add;
                 Promoted = true;
-                PromotedOnly = true;
                 PromotedCategory = Process;
-                Enabled = TableNo > 0;
+                PromotedOnly = true;
                 ToolTip = 'Executes the Create Record action.';
 
                 trigger OnAction()
@@ -204,13 +199,12 @@ page 51004 "Table Editor"
             }
             action(FindLongestValueAction)
             {
-                ApplicationArea = All;
                 Caption = 'Find Longest Value';
+                Enabled = (TableNo > 0) and (FieldNumber > 0);
                 Image = Find;
                 Promoted = true;
-                PromotedOnly = true;
                 PromotedCategory = Process;
-                Enabled = (TableNo > 0) and (FieldNumber > 0);
+                PromotedOnly = true;
                 ToolTip = 'Finds the longest value of a field in the table.';
 
                 trigger OnAction()
@@ -222,7 +216,6 @@ page 51004 "Table Editor"
     }
 
     var
-        ChangeLogManagement: Codeunit "Change Log Management";
         RenameRequired: Boolean;
         UseTableTrigger, UseValidateTrigger : Boolean;
         FieldNumber, TableNo, TableNoOfRecords : Integer;
@@ -241,7 +234,6 @@ page 51004 "Table Editor"
         RenameRecordsQst: Label 'Do you want to rename %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
         CustomTableView, TableCaption : Text;
         FieldCaption, FieldName, FieldTypeName, FieldValue : Text;
-
 
     trigger OnOpenPage()
     begin
@@ -454,10 +446,18 @@ page 51004 "Table Editor"
 
     local procedure ModifyTableRecords()
     var
+        AuditLogMgt: Codeunit "Audit Log Mgt.";
         RecordRef: RecordRef;
         RecordRef2: RecordRef;
+        OldRecordRef: RecordRef;
         FieldRef: FieldRef;
         FieldRef2: FieldRef;
+        AuditLogEntryNo: Integer;
+        AuditLogOperationType: Enum "Audit Log Operation Type";
+        AuditLogStatus: Enum "Audit Log Status";
+        ModifiedCount: Integer;
+        TableEditorLbl: Label 'Table Editor';
+        ModifyDescriptionLbl: Label 'Modified field %1 to value %2', Comment = '%1 = Field Name, %2 = Field Value';
     begin
         RecordRef2.Open(TableNo);
         FieldRef2 := RecordRef2.Field(FieldNumber);
@@ -476,11 +476,18 @@ page 51004 "Table Editor"
             if not Confirm(ModifyRecordsWithoutValidateQst, false, FieldName, FieldValue, Format(UseTableTrigger, 0, 9)) then
                 Error('');
 
+        // Start audit log for bulk modify operation
+        AuditLogEntryNo := AuditLogMgt.StartOperation(
+            AuditLogOperationType::"Bulk Modify",
+            TableNo,
+            CopyStr(StrSubstNo(ModifyDescriptionLbl, FieldName, FieldValue), 1, 250),
+            TableEditorLbl
+        );
 
-        // TODO: Bind locally defined codeunit with manual subscriber to codeunit 423 "Change Log Management", EventPublisher OnAfterIsAlwaysLoggedTable(TableID: Integer; var AlwaysLogTable: Boolean),
-        //       set AlwaysLogTable := true in order to log all changes
+        ModifiedCount := 0;
         RecordRef.FindSet(true);
         repeat
+            OldRecordRef := RecordRef.Duplicate();
             RecordRef2 := RecordRef.Duplicate();
             FieldRef := RecordRef.Field(FieldNumber);
             if UseValidateTrigger then
@@ -488,9 +495,17 @@ page 51004 "Table Editor"
             else
                 FieldRef.Value := FieldRef2.Value();
             RecordRef.Modify(UseTableTrigger);
+
+            // Log field changes for this record
+            AuditLogMgt.LogFieldChanges(AuditLogEntryNo, OldRecordRef, RecordRef);
+            ModifiedCount += 1;
         until RecordRef.Next() = 0;
 
+        // Complete audit log
+        AuditLogMgt.CompleteOperation(AuditLogEntryNo, AuditLogStatus::Success, ModifiedCount, 0, '');
+
         TableNoOfRecords := RecordRef.Count();
+        Commit(); // Ensure audit log is saved
         Message(DoneMsg);
         RecordRef.Close();
     end;
@@ -511,14 +526,22 @@ page 51004 "Table Editor"
 
     local procedure RenameTableRecords()
     var
+        AuditLogMgt: Codeunit "Audit Log Mgt.";
         RecordRef: RecordRef;
         RecordRef2: RecordRef;
         RecordRef3: RecordRef;
+        OldRecordRef: RecordRef;
         FieldRef2: FieldRef;
         PKFieldRef: array[16] of FieldRef;
-        NoOfPrimaryKeys: Integer;
         IndexInPrimaryKey: Integer;
+        NoOfPrimaryKeys: Integer;
+        RenamedCount: Integer;
+        AuditLogEntryNo: Integer;
+        AuditLogOperationType: Enum "Audit Log Operation Type";
+        AuditLogStatus: Enum "Audit Log Status";
         s: Text;
+        TableEditorLbl: Label 'Table Editor';
+        RenameDescriptionLbl: Label 'Renamed field %1 to value %2', Comment = '%1 = Field Name, %2 = New Value';
     begin
         IndexInPrimaryKey := FieldIndexInPrimaryKey();
 
@@ -535,30 +558,44 @@ page 51004 "Table Editor"
 
         NoOfPrimaryKeys := PreparePrimaryKeyFields(RecordRef, PKFieldRef, IndexInPrimaryKey, FieldRef2);
 
-        // TODO: Bind locally defined codeunit with manual subscriber to codeunit 423 "Change Log Management", EventPublisher OnAfterIsAlwaysLoggedTable(TableID: Integer; var AlwaysLogTable: Boolean),
-        //       set AlwaysLogTable := true in order to log all changes
+        // Start audit log for bulk rename operation
+        AuditLogEntryNo := AuditLogMgt.StartOperation(
+            AuditLogOperationType::"Bulk Modify",
+            TableNo,
+            CopyStr(StrSubstNo(RenameDescriptionLbl, RecordRef.Field(FieldNumber).Name(), FieldValue), 1, 250),
+            TableEditorLbl
+        );
 
+        RenamedCount := 0;
         RecordRef.FindSet(true);
         repeat
             s := RecordRef.GetPosition();
+            OldRecordRef := RecordRef.Duplicate();
             RecordRef3 := RecordRef.Duplicate();
 
             PKFieldRef[IndexInPrimaryKey].Value := FieldRef2.Value();
             ExecuteRename(RecordRef3, PKFieldRef, NoOfPrimaryKeys);
 
+            // Log field changes for audit trail
+            AuditLogMgt.LogFieldChanges(AuditLogEntryNo, OldRecordRef, RecordRef3);
+            RenamedCount += 1;
+
             RecordRef.SetPosition(s);
-            ChangeLogManagement.LogRename(RecordRef3, RecordRef);
         until RecordRef.Next() = 0;
 
+        // Complete audit log operation
+        AuditLogMgt.CompleteOperation(AuditLogEntryNo, AuditLogStatus::Success, RenamedCount, 0, '');
+
         TableNoOfRecords := RecordRef.Count();
+        Commit(); // Ensure audit log is saved
         Message(DoneMsg);
         RecordRef.Close();
     end;
 
     local procedure PreparePrimaryKeyFields(var RecordRef: RecordRef; var PKFieldRef: array[16] of FieldRef; IndexInPrimaryKey: Integer; FieldRef2: FieldRef) NoOfPrimaryKeys: Integer
     var
-        PrimaryKeyRef: KeyRef;
         i: Integer;
+        PrimaryKeyRef: KeyRef;
         s: Text;
     begin
         PrimaryKeyRef := RecordRef.KeyIndex(1);

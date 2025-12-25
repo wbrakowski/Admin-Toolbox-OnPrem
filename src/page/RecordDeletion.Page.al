@@ -1,6 +1,5 @@
 page 51003 "Record Deletion"
 {
-
     ApplicationArea = All;
     Caption = 'Tables';
     PageType = ListPart;
@@ -60,8 +59,6 @@ page 51003 "Record Deletion"
     begin
         exit(Rec."Table ID");
     end;
-
-
 
     var
         AdminToolMgt: Codeunit "Admin Tool Mgt.";

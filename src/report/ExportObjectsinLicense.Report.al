@@ -2,9 +2,9 @@ report 51000 "Export Objects in License"
 {
     ApplicationArea = All;
     Caption = 'Export Used and Not Used Objects';
-    UsageCategory = ReportsAndAnalysis;
-    ProcessingOnly = true;
     Permissions = tabledata "Temp Object in License" = rid;
+    ProcessingOnly = true;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
@@ -47,25 +47,28 @@ report 51000 "Export Objects in License"
                     Caption = 'Options';
                     field(OnlyFreeIDField; OnlyFreeIDVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Only Free Objects';
                         ToolTip = 'Specifies the value of the Only Free Objects field.';
                     }
                     field(OnlyUsedIDField; OnlyUsedIDVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Only Used Objects';
                         ToolTip = 'Specifies the value of the Only Used Objects field.';
                     }
                     field(ObjectTypeFilterField; ObjectTypeFilterVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Object Types Filter';
                         ToolTip = 'Specifies the value of the Object Types Filter field.';
                     }
                     field(ObjIDFilterField; ObjIDFilterVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Objects ID (Number) Filter';
                         ToolTip = 'Specifies the value of the Objects ID (Number) Filter field.';
                     }
-
                 }
             }
         }
@@ -81,13 +84,11 @@ report 51000 "Export Objects in License"
         TempObjectInLicense.DeleteAll(false);
     end;
 
-
     trigger OnPostReport()
 
     begin
         ObjectInLicense.Run();
     end;
-
 
     var
         UsedObjects: Record AllObjWithCaption;

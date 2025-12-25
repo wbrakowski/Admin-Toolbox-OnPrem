@@ -22,7 +22,7 @@ enum 51000 "Object Type"
     {
         Caption = 'XMLport', Locked = true;
     }
-    value(7; "MenuSuite")
+    value(7; MenuSuite)
     {
         Caption = 'MenuSuite', Locked = true;
     }

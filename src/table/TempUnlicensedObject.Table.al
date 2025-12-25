@@ -2,8 +2,8 @@ table 51004 "Temp Unlicensed Object"
 {
     Caption = 'Temp Unlicensed Object';
     DataClassification = CustomerContent;
-    LookupPageId = "Unlicensed Objects";
     DrillDownPageId = "Unlicensed Objects";
+    LookupPageId = "Unlicensed Objects";
 
     fields
     {
@@ -12,7 +12,6 @@ table 51004 "Temp Unlicensed Object"
             Caption = 'Object ID';
             ToolTip = 'Specifies the value of the Object ID field.';
         }
-
         field(2; "Object Type"; Enum "Object Type")
         {
             Caption = 'Object Type';

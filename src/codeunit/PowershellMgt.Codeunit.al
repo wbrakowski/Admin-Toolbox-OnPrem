@@ -13,8 +13,8 @@ codeunit 51001 "Powershell Mgt."
         BusyDlgLbl: Label 'Busy importing......';
         FileFilterLbl: Label 'License (*.flf)|*.flf|All Files (*.*)|*.*';
         NAVAdminToolLbl: Label 'NavAdminTool.ps1';
-        SelectFileTxt: Label 'Select License File';
         NoActiveSessionErr: Label 'Could not get active session information.';
+        SelectFileTxt: Label 'Select License File';
         FileName: Text;
     begin
         FileName := FileManagement.BLOBImportWithFilter(TempBlob, SelectFileTxt, '', FileFilterLbl, AllFilesFilterTxt);

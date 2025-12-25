@@ -1,10 +1,9 @@
 page 51000 "Record Deletion Rel. Error"
 {
-
+    ApplicationArea = All;
+    Caption = 'Record Deletion Rel. Error';
     PageType = List;
     SourceTable = "Record Deletion Rel. Error";
-    Caption = 'Record Deletion Rel. Error';
-    ApplicationArea = All;
     UsageCategory = Lists;
 
     layout
@@ -13,7 +12,6 @@ page 51000 "Record Deletion Rel. Error"
         {
             repeater(General)
             {
-
                 field("Entry No."; Rec."Entry No.")
                 {
                 }
@@ -32,5 +30,4 @@ page 51000 "Record Deletion Rel. Error"
             }
         }
     }
-
 }

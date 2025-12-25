@@ -1,13 +1,12 @@
-
 #if OnPrem
 page 51002 "License Information"
 {
     ApplicationArea = All;
     Caption = 'License Information';
+    Editable = true;
     PageType = ListPart;
     SourceTable = "License Information";
     UsageCategory = Lists;
-    Editable = true;
 
     layout
     {
@@ -38,7 +37,6 @@ page 51002 "License Information"
         {
             action(ImportLicense)
             {
-                ApplicationArea = All;
                 Caption = 'Import License';
                 Image = Import;
                 ToolTip = 'Imports the selected license.';
@@ -52,26 +50,23 @@ page 51002 "License Information"
             }
             action(ExportObjects)
             {
-                ApplicationArea = All;
                 Caption = 'Export Used and Unused Objects in License';
                 Image = Export;
-                ToolTip = 'Creates a list with all used and unused objects in the license.';
                 RunObject = report "Export Objects in License";
+                ToolTip = 'Creates a list with all used and unused objects in the license.';
             }
             action(ExportUnlicensedObjects)
             {
-                ApplicationArea = All;
                 Caption = 'Export Unlicensed Objects';
                 Image = Export;
-                ToolTip = 'Creates a list with all unlicensed objects.';
                 RunObject = report "Export Unlicensed Objects";
+                ToolTip = 'Creates a list with all unlicensed objects.';
             }
         }
     }
     var
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
         DeveloperLicense: Boolean;
-
 
     trigger OnAfterGetRecord()
     begin

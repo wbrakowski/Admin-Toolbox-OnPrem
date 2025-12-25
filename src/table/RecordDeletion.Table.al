@@ -13,10 +13,10 @@ table 51001 "Record Deletion"
         }
         field(10; "Table Name"; Text[250])
         {
+            CalcFormula = lookup(AllObjWithCaption."Object Name" where("Object Type" = const(Table), "Object ID" = field("Table ID")));
             Caption = 'Table Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup(AllObjWithCaption."Object Name" where("Object Type" = const(Table), "Object ID" = field("Table ID")));
             ToolTip = 'Specifies the name of the table.';
         }
 
@@ -26,19 +26,18 @@ table 51001 "Record Deletion"
         {
             Caption = 'No. of Records';
             Editable = false;
-            FieldClass = FlowField;
 #if OnPrem
+            FieldClass = FlowField;
             CalcFormula = lookup("Table Information"."No. of Records" where("Company Name" = field(Company), "Table No." = field("Table ID")));
 #endif
             ToolTip = 'Specifies the total no. of records in the table.';
         }
-
         field(21; "No. of Table Relation Errors"; Integer)
         {
+            CalcFormula = count("Record Deletion Rel. Error" where("Table ID" = field("Table ID")));
             Caption = 'No. of Table Relation Errors';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = count("Record Deletion Rel. Error" where("Table ID" = field("Table ID")));
             ToolTip = 'Specifies the no. of table relation errors that were detected when running the table relation check.';
         }
         field(30; "Delete Records"; Boolean)
@@ -48,11 +47,9 @@ table 51001 "Record Deletion"
         }
         field(40; Company; Text[30])
         {
-            Caption = 'Company';
             AllowInCustomizations = Never;
+            Caption = 'Company';
         }
-
-
     }
 
     keys
@@ -77,5 +74,4 @@ table 51001 "Record Deletion"
     begin
         Company := CopyStr(CompanyName(), 1, MaxStrLen(Company));
     end;
-
 }

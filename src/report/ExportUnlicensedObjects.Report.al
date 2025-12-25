@@ -2,9 +2,9 @@ report 51001 "Export Unlicensed Objects"
 {
     ApplicationArea = All;
     Caption = 'Export Unlicensed Objects';
-    UsageCategory = ReportsAndAnalysis;
-    ProcessingOnly = true;
     Permissions = tabledata "Temp Unlicensed Object" = rid;
+    ProcessingOnly = true;
+    UsageCategory = ReportsAndAnalysis;
 
     dataset
     {
@@ -36,7 +36,6 @@ report 51001 "Export Unlicensed Objects"
                     SetFilter("Object ID", ObjIDFilterVar);
             end;
         }
-
     }
 
     requestpage
@@ -51,15 +50,16 @@ report 51001 "Export Unlicensed Objects"
                     Caption = 'Options';
                     field(ObjectTypeFilter; ObjectTypeFilterVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Object Types Filter';
                         ToolTip = 'Specifies the value of the Object Types Filter field.';
                     }
                     field(ObjIDFilter; ObjIDFilterVar)
                     {
+                        ApplicationArea = All;
                         Caption = 'Objects ID (Number) Filter';
                         ToolTip = 'Specifies the value of the Objects ID (Number) Filter field.';
                     }
-
                 }
             }
         }
@@ -75,13 +75,11 @@ report 51001 "Export Unlicensed Objects"
         UnlicensedObject.DeleteAll(false);
     end;
 
-
     trigger OnPostReport()
 
     begin
         UnlicensedObjects.Run();
     end;
-
 
     var
         UnlicensedObject: Record "Temp Unlicensed Object";
