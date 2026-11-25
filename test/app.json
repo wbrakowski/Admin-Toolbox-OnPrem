@@ -1,0 +1,44 @@
+{
+  "id": "0453c3a7-6761-4154-908d-6c3322716a41",
+  "name": "Admin-Toolbox Tests",
+  "publisher": "Waldemar Brakowski",
+  "version": "29.0.0.0",
+  "brief": "",
+  "description": "Automated test suite for the Admin-Toolbox extension.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "cafd90e7-34f2-4ff9-ae7e-ae1210bc1841",
+      "name": "Admin-Toolbox",
+      "publisher": "Waldemar Brakowski",
+      "version": "29.0.0.0"
+    },
+    {
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "name": "Library Assert",
+      "publisher": "Microsoft",
+      "version": "29.0.0.0"
+    }
+  ],
+  "screenshots": [],
+  "platform": "29.0.0.0",
+  "application": "29.0.0.0",
+  "idRanges": [
+    {
+      "from": 51100,
+      "to": 51149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "preprocessorSymbols": ["OnPrem"],
+  "runtime": "18.0",
+  "target": "OnPrem"
+}

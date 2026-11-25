@@ -78,7 +78,8 @@ tabledata "Vendor Ledger Entry" = IMD;
         UpdateDialog.Close();
     end;
 
-    local procedure CheckTableRelationsForTable(TableID: Integer)
+    // internal (not local) so the test app can run the relation check for one table without the confirm dialog
+    internal procedure CheckTableRelationsForTable(TableID: Integer)
     var
         TableMetadata: Record "Table Metadata";
         RecordRef: RecordRef;
@@ -125,8 +126,21 @@ tabledata "Vendor Ledger Entry" = IMD;
         FieldRef: FieldRef;
     begin
         FieldRef := RecordRef.Field(Field."No.");
-        if (Format(FieldRef.Value()) <> '') and (Format(FieldRef.Value()) <> '0') then
+        if not IsBlankRelationValue(FieldRef) then
             ValidateFieldRelation(RecordRef, FieldRef, Field);
+    end;
+
+    local procedure IsBlankRelationValue(var FieldRef: FieldRef): Boolean
+    var
+        GuidValue: Guid;
+    begin
+        // An empty GUID is formatted as 00000000-0000-..., so it needs its own check
+        if FieldRef.Type() = FieldType::GUID then begin
+            GuidValue := FieldRef.Value();
+            exit(IsNullGuid(GuidValue));
+        end;
+
+        exit((Format(FieldRef.Value()) = '') or (Format(FieldRef.Value()) = '0'));
     end;
 
     local procedure ValidateFieldRelation(var RecordRef: RecordRef; var FieldRef: FieldRef; Field: Record Field)
@@ -142,7 +156,7 @@ tabledata "Vendor Ledger Entry" = IMD;
             FieldRef2 := RecordRef2.Field(Field.RelationFieldNo);
             FieldRefInitialized := true;
         end else
-            FieldRefInitialized := GetPrimaryKeyFieldRef(Field.RelationTableNo, RecordRef2, FieldRef2);
+            FieldRefInitialized := GetPrimaryKeyFieldRef(RecordRef2, FieldRef2);
 
         if FieldRefInitialized then
             if (FieldRef.Type() = FieldRef2.Type()) and (FieldRef.Length() = FieldRef2.Length()) then
@@ -151,22 +165,17 @@ tabledata "Vendor Ledger Entry" = IMD;
         RecordRef2.Close();
     end;
 
-    local procedure GetPrimaryKeyFieldRef(TableNo: Integer; var RecordRef2: RecordRef; var FieldRef2: FieldRef): Boolean
+    local procedure GetPrimaryKeyFieldRef(var RecordRef2: RecordRef; var FieldRef2: FieldRef): Boolean
     var
-        Field2: Record Field;
-        KeyRec: Record "Key";
-        CouldNotGetKeyErr: Label 'Could not get key for table %1', Comment = '%1 = Table ID';
+        PrimaryKeyRef: KeyRef;
     begin
-        if not KeyRec.Get(TableNo, 1) then  // PK
-            Error(CouldNotGetKeyErr, TableNo);
+        PrimaryKeyRef := RecordRef2.KeyIndex(1);
+        // A composite primary key cannot be matched against a single value
+        if PrimaryKeyRef.FieldCount() <> 1 then
+            exit(false);
 
-        Field2.SetRange(TableNo, TableNo);
-        Field2.SetFilter(FieldName, CopyStr(KeyRec.Key, 1, 30));
-        if Field2.FindFirst() then begin // No Match if Dual PK
-            FieldRef2 := RecordRef2.Field(Field2."No.");
-            exit(true);
-        end;
-        exit(false);
+        FieldRef2 := PrimaryKeyRef.FieldIndex(1);
+        exit(true);
     end;
 
     local procedure CheckRelationExists(var RecordRef: RecordRef; var FieldRef: FieldRef; var RecordRef2: RecordRef; var FieldRef2: FieldRef)
@@ -273,7 +282,8 @@ tabledata "Vendor Ledger Entry" = IMD;
         end;
     end;
 
-    local procedure PerformDeletion(var RecordDeletion: Record "Record Deletion"; var RecordDeletionRelError: Record "Record Deletion Rel. Error"; RunTrigger: Boolean; var UpdateDialog: Dialog)
+    // internal (not local) so the test app can run the deletion without the StrMenu and confirm dialogs
+    internal procedure PerformDeletion(var RecordDeletion: Record "Record Deletion"; var RecordDeletionRelError: Record "Record Deletion Rel. Error"; RunTrigger: Boolean; var UpdateDialog: Dialog)
     var
         AuditLogMgt: Codeunit "Audit Log Mgt.";
         RecordRef: RecordRef;
@@ -283,6 +293,8 @@ tabledata "Vendor Ledger Entry" = IMD;
         TableAuditLogEntryNo: Integer;
         DeletedRecordsLbl: Label 'Deleted all records from table %1 (%2)', Comment = '%1 = Table ID, %2 = Record count';
     begin
+        // Never touch tables that are not marked for deletion, even if the caller passes an unfiltered record
+        RecordDeletion.SetRange("Delete Records", true);
         if RecordDeletion.FindSet() then
             repeat
                 UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
@@ -308,7 +320,8 @@ tabledata "Vendor Ledger Entry" = IMD;
             until RecordDeletion.Next() = 0;
     end;
 
-    local procedure CreateBackupsBeforeDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
+    // internal (not local) so the test app can create the backups without the confirm dialogs
+    internal procedure CreateBackupsBeforeDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
     var
         AdminToolboxSetup: Record "Admin Toolbox Setup";
         TableBackupMgt: Codeunit "Table Backup Mgt.";

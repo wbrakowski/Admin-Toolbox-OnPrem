@@ -1,7 +1,19 @@
 {
+    "folders": [
+        {
+            "name": "Repository (docs and config)",
+            "path": "."
+        },
+        {
+            "name": "Admin-Toolbox",
+            "path": "app"
+        },
+        {
+            "name": "Admin-Toolbox Tests",
+            "path": "test"
+        }
+    ],
     "settings": {
-        "al.assemblyProbingPaths": [
-            "./.netpackages"
-        ]
-    },
+        "al.symbolsCountryRegion": "de"
+    }
 }

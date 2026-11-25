@@ -62,7 +62,7 @@ This toolbox combines the following features and contributions:
 
 ### System Requirements
 - **Business Central OnPrem** version 15.0 or higher
-- The app version in `app.json` must match your Business Central platform version
+- The app version in `app/app.json` must match your Business Central platform version
 - User must have **SUPER** permissions to access the Admin Toolbox
 
 ### Technical Requirements
@@ -90,13 +90,16 @@ git clone https://github.com/wbrakowski/Admin-Toolbox-OnPrem.git
 ```
 
 ### Step 2: Configure the App Version
-1. Open `app.json` in the root folder
-2. Verify that the `platform` and `application` versions match your Business Central installation
+1. Open `app/app.json`
+2. Verify that the `platform` and `application` versions match your Business Central installation (this release targets BC 29, runtime 18.0)
 3. Update the version numbers if necessary:
    ```json
-   "platform": "27.0.0.0",
-   "application": "27.0.0.0"
+   "platform": "29.0.0.0",
+   "application": "29.0.0.0",
+   "runtime": "18.0"
    ```
+
+> **Note:** The repository contains two AL projects: the app in `app/` and its automated tests in `test/`. Open `AdminTool.code-workspace` in VS Code to work with both. A compiled release of the app is available in the repository root.
 
 ### Step 3: Install the Correct PowerShell Runner
 1. Navigate to the `powershellrunners` folder
@@ -106,12 +109,13 @@ git clone https://github.com/wbrakowski/Admin-Toolbox-OnPrem.git
    - `17_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 17
    - `18_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 18
    - `19_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 19
-   - `20_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 20 and higher
-3. Create a folder named `.netpackages` in the app root directory (if it doesn't exist)
-4. Copy the appropriate DLL to the `.netpackages` folder
-5. Rename it to `Microsoft.Dynamics.Nav.PowerShellRunner.dll` (remove the version prefix)
+   - `20_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 20 to BC 28
+   - `29_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 29 and higher
+3. Create a folder named `.netpackages` in the `app` folder (if it doesn't exist)
+4. Copy the appropriate DLL to the `app/.netpackages` folder
+5. Make sure only that DLL is used for compilation (the AL setting `al.assemblyProbingPaths` in `app/.vscode/settings.json` points to `./.netpackages`)
 
-> **Important:** Only one PowerShell Runner DLL should be present in the `.netpackages` folder to avoid conflicts.
+> **Important:** Only one PowerShell Runner DLL should be present in the `app/.netpackages` folder to avoid conflicts.
 
 ### Step 4: Compile and Publish the App
 1. Compile the app using AL Language extension in VS Code or your preferred development tool
@@ -1239,8 +1243,13 @@ Contributions to improve the Admin Toolbox are welcome! Here's how you can help:
 **Code Contributions:**
 - Fork the repository and create a feature branch
 - Follow existing code style and AL best practices
-- Test your changes thoroughly before submitting
+- Add or update automated tests in `test/` for every change (see below) and make sure they all pass
 - Submit a pull request with a clear description of changes
+
+**Automated Tests:**
+- The test app `Admin-Toolbox Tests` (`test/`, object IDs 51100 to 51149) covers the backup and restore logic, the record deletion with its relation check, the audit log and the main pages
+- Publish `app/` first, then `test/`, and run all tests with the AL Test Tool or `AL: Run All Tests`
+- The tests assume an English session language and a development or test environment, never run them against production data
 
 **Translation Improvements:**
 - The Spanish translation needs review and corrections
@@ -1267,9 +1276,14 @@ This project is released under the MIT License. See the LICENSE file for details
 
 ---
 
-**Version**: 27.0.0.0 (BC27 v2)
-**Last Updated**: December 25, 2025
-**Major Features in This Release**:
+**Version**: 29.0.0.0 (BC29)
+**Last Updated**: November 25, 2026
+**Major Changes in This Release**:
+- ✨ Upgrade to Business Central 29 (platform 29.0, runtime 18.0)
+- ✨ Automated test app with tests for backup/restore, record deletion, audit log and pages
+- 🐛 Backup/Restore: culture-independent storage of values, closing dates, durations, date formulas and options are restored correctly; Blob, Media and RecordID fields are skipped instead of breaking the restore
+- 🐛 Table relation check: empty GUID fields are no longer reported as missing records, tables whose primary key name contains special characters no longer cause an error
+**Features of the Previous Release**:
 - ✨ Comprehensive Table Backup & Restore System with 3 backup types
 - ✨ Complete Audit Logging with field-level change tracking
 - ✨ Admin Toolbox Dashboard for activity monitoring

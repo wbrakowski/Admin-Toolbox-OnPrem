@@ -803,11 +803,6 @@
           <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method GetDeletingRecordsText - NamedType DeletingRecordsTxt</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4017461657 - Method 3961832346 - NamedType 3898716524" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Could not get key for table %1</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method GetPrimaryKeyFieldRef - NamedType CouldNotGetKeyErr</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1875284373" size-unit="char" translate="yes" xml:space="preserve">
           <source>No record could be found in table %1.</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table Caption</note>
@@ -978,20 +973,15 @@
           <note from="Developer" annotates="general" priority="2">%1 = Entry No., %2 = JSON Preview</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ViewBackupDataMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 555356780 - Method 899915134 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method CreateBackup - NamedType CreatingBackupTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 555356780 - Method 268166844 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method CreateBackupWithFilter - NamedType CreatingBackupTxt</note>
-        </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 3304058875 - NamedType 1845236427" size-unit="char" translate="yes" xml:space="preserve">
           <source>Backup_Table_%1_%2_%3.json</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name, %3 = DateTime</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method GetBackupFileName - NamedType FileNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3808914001 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method OpenBackupProgressDialog - NamedType CreatingBackupTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 116217714 - NamedType 1118926904" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to restore %1 records to table %2? This will INSERT the backed up records.\\Warning: This may create duplicate records if they still exist!</source>

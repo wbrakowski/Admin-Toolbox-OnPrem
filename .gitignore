@@ -1,38 +1,25 @@
-# Created by https://www.gitignore.io/api/al,windows
-# Edit at https://www.gitignore.io/?templates=al,windows
-
-# The tools folder
-.tools
-
-.devops/.vscode/.alcache/
-.vscode/
+# VS Code folders: ignore everything except the shared settings
+.vscode/*
 !.vscode/settings.json
+app/.vscode/*
+!app/.vscode/settings.json
+test/.vscode/*
+!test/.vscode/settings.json
 
-#Root Folder
-.vscode
-!.vscode/settings.json
-#Symbols folder
+# Symbols and caches
 .alpackages/
 .alcache/
 .altemplates/
+.snapshots/
+.coverage/
+.tools
 
-### AL ###
-#Template for AL projects for Dynamics 365 BC
-app/.vscode
-!app/.vscode/settings.json
-#Symbols folder
-app/.alpackages/
-app/.alcache/
-app/.altemplates/
+# Old pre-split root folder of the PowerShell runner (the runner now lives in app/.netpackages)
+/.netpackages/
 
-test/.vscode/*
-!test/.vscode/settings.json
-#Symbols folder
-test/.alpackages/
-test/.alcache/
-test/.altemplates/
-
-# End of https://www.gitignore.io/api/al,windows
+# Build output (a release copy of the app is kept in the repo root)
+app/*.app
+test/*.app
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -58,5 +45,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-# End of https://www.gitignore.io/api/al,windows
