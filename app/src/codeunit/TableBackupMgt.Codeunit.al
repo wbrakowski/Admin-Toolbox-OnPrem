@@ -8,12 +8,8 @@ codeunit 51003 "Table Backup Mgt."
         RecordRef: RecordRef;
         ProgressDialog: Dialog;
         BackupTypeToUse: Enum "Backup Type";
-        CreatingBackupTxt: Label 'Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################', Comment = '%1 = Table ID, %2 = No. of Records, %3 = Status';
     begin
-        // Ensure a valid backup type is used (fallback to JSON Export if 0)
-        BackupTypeToUse := BackupType;
-        if BackupTypeToUse.AsInteger() = 0 then
-            BackupTypeToUse := BackupTypeToUse::"JSON Export";
+        BackupTypeToUse := GetBackupTypeToUse(BackupType);
 
         TableBackup.Init();
         TableBackup."Table ID" := TableID;
@@ -26,25 +22,11 @@ codeunit 51003 "Table Backup Mgt."
         TableBackup."No. of Records" := RecordRef.Count();
         RecordRef.Close();
 
-        // Show progress dialog
-        if GuiAllowed() then begin
-            ProgressDialog.Open(CreatingBackupTxt);
-            ProgressDialog.Update(1, TableBackup."Table ID");
-            ProgressDialog.Update(2, TableBackup."No. of Records");
-            ProgressDialog.Update(3, 'Converting data to backup format...');
-        end;
-
-        case BackupTypeToUse of
-            BackupTypeToUse::"JSON Export":
-                ExportTableToJSON(TableBackup, ProgressDialog);
-            BackupTypeToUse::Snapshot:
-                CreateSnapshotTable(TableBackup, ProgressDialog);
-            BackupTypeToUse::"Full Backup":
-                CreateFullBackup(TableBackup, ProgressDialog);
-        end;
-
-        if GuiAllowed() then
-            ProgressDialog.Close();
+        OpenBackupProgressDialog(ProgressDialog, TableBackup, 'Converting data to backup format...');
+        if BackupTypeToUse = BackupTypeToUse::Snapshot then
+            AssignSnapshotTableId(TableBackup);
+        ExportTableToJSON(TableBackup, ProgressDialog);
+        CloseProgressDialogIfAllowed(ProgressDialog);
 
         TableBackup.Modify(true);
         exit(TableBackup."Entry No.");
@@ -56,12 +38,8 @@ codeunit 51003 "Table Backup Mgt."
         RecordRef: RecordRef;
         ProgressDialog: Dialog;
         BackupTypeToUse: Enum "Backup Type";
-        CreatingBackupTxt: Label 'Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################', Comment = '%1 = Table ID, %2 = No. of Records, %3 = Status';
     begin
-        // Ensure a valid backup type is used (fallback to JSON Export if 0)
-        BackupTypeToUse := BackupType;
-        if BackupTypeToUse.AsInteger() = 0 then
-            BackupTypeToUse := BackupTypeToUse::"JSON Export";
+        BackupTypeToUse := GetBackupTypeToUse(BackupType);
 
         TableBackup.Init();
         TableBackup."Table ID" := TableID;
@@ -76,68 +54,72 @@ codeunit 51003 "Table Backup Mgt."
         TableBackup."No. of Records" := RecordRef.Count();
         RecordRef.Close();
 
-        // Show progress dialog
-        if GuiAllowed() then begin
-            ProgressDialog.Open(CreatingBackupTxt);
-            ProgressDialog.Update(1, TableBackup."Table ID");
-            ProgressDialog.Update(2, TableBackup."No. of Records");
-            ProgressDialog.Update(3, 'Converting filtered data to backup format...');
-        end;
-
-        case BackupTypeToUse of
-            BackupTypeToUse::"JSON Export":
-                ExportTableToJSONWithFilter(TableBackup, FilterView, ProgressDialog);
-            BackupTypeToUse::Snapshot:
-                CreateSnapshotTableWithFilter(TableBackup, FilterView, ProgressDialog);
-            BackupTypeToUse::"Full Backup":
-                CreateFullBackupWithFilter(TableBackup, FilterView, ProgressDialog);
-        end;
-
-        if GuiAllowed() then
-            ProgressDialog.Close();
+        OpenBackupProgressDialog(ProgressDialog, TableBackup, 'Converting filtered data to backup format...');
+        ExportTableToJSONWithFilter(TableBackup, FilterView, ProgressDialog);
+        CloseProgressDialogIfAllowed(ProgressDialog);
 
         TableBackup.Modify(true);
         exit(TableBackup."Entry No.");
     end;
 
+    local procedure GetBackupTypeToUse(BackupType: Enum "Backup Type"): Enum "Backup Type"
+    begin
+        // Ensure a valid backup type is used (fallback to JSON Export if 0)
+        if BackupType.AsInteger() = 0 then
+            exit(BackupType::"JSON Export");
+        exit(BackupType);
+    end;
+
+    local procedure OpenBackupProgressDialog(var ProgressDialog: Dialog; TableBackup: Record "Table Backup"; StatusText: Text)
+    var
+        CreatingBackupTxt: Label 'Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################', Comment = '%1 = Table ID, %2 = No. of Records, %3 = Status';
+    begin
+        if not GuiAllowed() then
+            exit;
+
+        ProgressDialog.Open(CreatingBackupTxt);
+        ProgressDialog.Update(1, TableBackup."Table ID");
+        ProgressDialog.Update(2, TableBackup."No. of Records");
+        ProgressDialog.Update(3, StatusText);
+    end;
+
+    local procedure CloseProgressDialogIfAllowed(var ProgressDialog: Dialog)
+    begin
+        if GuiAllowed() then
+            ProgressDialog.Close();
+    end;
+
     local procedure ExportTableToJSON(var TableBackup: Record "Table Backup"; var ProgressDialog: Dialog)
     var
         RecordRef: RecordRef;
-        OutStream: OutStream;
-        JSONText: Text;
     begin
         if GuiAllowed() then
             ProgressDialog.Update(3, 'Reading table data...');
 
         RecordRef.Open(TableBackup."Table ID");
-        JSONText := ConvertTableToJSON(RecordRef, ProgressDialog);
+        WriteTableToBackupBlob(TableBackup, RecordRef, ProgressDialog);
         RecordRef.Close();
-
-        if GuiAllowed() then
-            ProgressDialog.Update(3, 'Saving backup data...');
-
-        TableBackup."Backup Data".CreateOutStream(OutStream, TextEncoding::UTF8);
-        OutStream.WriteText(JSONText);
-        TableBackup."Backup Size (KB)" := Round(StrLen(JSONText) / 1024, 0.01);
-        TableBackup."File Name" := CopyStr(GetBackupFileName(TableBackup), 1, MaxStrLen(TableBackup."File Name"));
-
-        if GuiAllowed() then
-            ProgressDialog.Update(3, 'Backup completed');
     end;
 
     local procedure ExportTableToJSONWithFilter(var TableBackup: Record "Table Backup"; FilterView: Text; var ProgressDialog: Dialog)
     var
         RecordRef: RecordRef;
-        OutStream: OutStream;
-        JSONText: Text;
     begin
         if GuiAllowed() then
             ProgressDialog.Update(3, 'Reading filtered table data...');
 
         RecordRef.Open(TableBackup."Table ID");
         RecordRef.SetView(FilterView);
-        JSONText := ConvertTableToJSON(RecordRef, ProgressDialog);
+        WriteTableToBackupBlob(TableBackup, RecordRef, ProgressDialog);
         RecordRef.Close();
+    end;
+
+    local procedure WriteTableToBackupBlob(var TableBackup: Record "Table Backup"; var RecordRef: RecordRef; var ProgressDialog: Dialog)
+    var
+        OutStream: OutStream;
+        JSONText: Text;
+    begin
+        JSONText := ConvertTableToJSON(RecordRef, ProgressDialog);
 
         if GuiAllowed() then
             ProgressDialog.Update(3, 'Saving backup data...');
@@ -167,21 +149,39 @@ codeunit 51003 "Table Backup Mgt."
 
     local procedure BuildJSONArrayFromRecords(var RecordRef: RecordRef; var ProgressDialog: Dialog): JsonArray
     var
+        TempExportField: Record Field temporary;
         JSONArray: JsonArray;
         CurrentRecord: Integer;
         RecordCount: Integer;
     begin
+        CollectTableFields(RecordRef.Number(), TempExportField);
         RecordCount := RecordRef.Count();
-        CurrentRecord := 0;
 
         if RecordRef.FindSet() then
             repeat
                 CurrentRecord += 1;
                 UpdateProgressIfNeeded(ProgressDialog, CurrentRecord, RecordCount);
-                JSONArray.Add(ConvertRecordToJSON(RecordRef));
+                JSONArray.Add(ConvertRecordToJSON(RecordRef, TempExportField));
             until RecordRef.Next() = 0;
 
         exit(JSONArray);
+    end;
+
+    // Loads the field metadata once per table instead of re-querying the Field system table for every data record.
+    local procedure CollectTableFields(TableID: Integer; var TempCachedField: Record Field temporary)
+    var
+        Field: Record Field;
+    begin
+        Field.SetRange(TableNo, TableID);
+        Field.SetRange(Class, Field.Class::Normal);
+        Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
+        Field.SetLoadFields("No.", FieldName, Type);
+
+        if Field.FindSet() then
+            repeat
+                TempCachedField := Field;
+                TempCachedField.Insert(false);
+            until Field.Next() = 0;
     end;
 
     local procedure UpdateProgressIfNeeded(var ProgressDialog: Dialog; CurrentRecord: Integer; RecordCount: Integer)
@@ -195,20 +195,14 @@ codeunit 51003 "Table Backup Mgt."
             ProgressDialog.Update(3, StrSubstNo(ProcessingRecordLbl, CurrentRecord, RecordCount));
     end;
 
-    local procedure ConvertRecordToJSON(var RecordRef: RecordRef): JsonObject
+    local procedure ConvertRecordToJSON(var RecordRef: RecordRef; var TempExportField: Record Field temporary): JsonObject
     var
-        Field: Record Field;
         JSONObject: JsonObject;
     begin
-        Clear(JSONObject);
-        Field.SetRange(TableNo, RecordRef.Number());
-        Field.SetRange(Class, Field.Class::Normal);
-        Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
-
-        if Field.FindSet() then
+        if TempExportField.FindSet() then
             repeat
-                AddRecordFieldToJSON(RecordRef, Field, JSONObject);
-            until Field.Next() = 0;
+                AddRecordFieldToJSON(RecordRef, TempExportField, JSONObject);
+            until TempExportField.Next() = 0;
 
         exit(JSONObject);
     end;
@@ -217,11 +211,55 @@ codeunit 51003 "Table Backup Mgt."
     var
         FieldRef: FieldRef;
     begin
-        if Field.Type = Field.Type::BLOB then
-            exit; // Skip BLOB fields in JSON
+        // Only field types with a known-safe, round-trippable text representation are exported;
+        // anything else (BLOB, Media, MediaSet, RecordID, ...) is skipped here and on restore.
+        if not IsFieldTypeSupportedForBackup(Field.Type) then
+            exit;
 
         FieldRef := RecordRef.Field(Field."No.");
-        AddFieldToJSON(JSONObject, Field.FieldName, Format(FieldRef.Value()));
+        AddFieldToJSON(JSONObject, Field.FieldName, GetFieldValueAsText(FieldRef, Field.Type));
+    end;
+
+#pragma warning disable LC0010, LC0088
+    local procedure IsFieldTypeSupportedForBackup(FieldType: Option): Boolean
+    var
+        Field: Record Field;
+    begin
+        exit(FieldType in [
+            Field.Type::Integer, Field.Type::BigInteger, Field.Type::Decimal, Field.Type::Boolean,
+            Field.Type::Date, Field.Type::Time, Field.Type::DateTime, Field.Type::GUID,
+            Field.Type::Option, Field.Type::Text, Field.Type::Code,
+            Field.Type::Duration, Field.Type::DateFormula]);
+    end;
+#pragma warning restore LC0010, LC0088
+
+#pragma warning disable LC0010, LC0088
+    local procedure GetFieldValueAsText(var FieldRef: FieldRef; FieldType: Option): Text
+    var
+        Field: Record Field;
+    begin
+        // Every non-text value is stored in the culture-invariant XML format (Format 9), so a backup created
+        // under one regional setting can be restored under another. Text and Code are written verbatim.
+        if FieldType in [Field.Type::Text, Field.Type::Code] then
+            exit(Format(FieldRef.Value()));
+        if FieldType = Field.Type::Date then
+            exit(GetDateAsText(FieldRef));
+        exit(Format(FieldRef.Value(), 0, 9));
+    end;
+#pragma warning restore LC0010, LC0088
+
+    local procedure GetDateAsText(var FieldRef: FieldRef): Text
+    var
+        DateValue: Date;
+    begin
+        // Format 9 drops the closing date flag, so a closing date is stored as the prefix C plus the normal date.
+        DateValue := FieldRef.Value();
+        if DateValue = 0D then
+            exit('');
+
+        if DateValue <> NormalDate(DateValue) then
+            exit(ClosingDatePrefixTok + Format(NormalDate(DateValue), 0, 9));
+        exit(Format(DateValue, 0, 9));
     end;
 
     local procedure AddFieldToJSON(var JSONObject: JsonObject; FieldName: Text; FieldValue: Text)
@@ -232,43 +270,10 @@ codeunit 51003 "Table Backup Mgt."
         JSONObject.Add(FieldName, JSONValue);
     end;
 
-    local procedure CreateSnapshotTable(var TableBackup: Record "Table Backup"; var ProgressDialog: Dialog)
-    var
-        SourceRecordRef: RecordRef;
-        SnapshotTableId: Integer;
+    local procedure AssignSnapshotTableId(var TableBackup: Record "Table Backup")
     begin
-        // Create temporary copy using a naming convention
-        SnapshotTableId := GetNextSnapshotTableId();
-        TableBackup."Snapshot Table ID" := SnapshotTableId;
-
-        // Copy all records to temporary table
-        SourceRecordRef.Open(TableBackup."Table ID");
-        if SourceRecordRef.FindSet() then
-            repeat
-            // Store in JSON as snapshot tables are complex to manage
-            // In real implementation, you might use temp tables or external storage
-            until SourceRecordRef.Next() = 0;
-        SourceRecordRef.Close();
-
-        // For simplicity, we store snapshots as JSON too
-        ExportTableToJSON(TableBackup, ProgressDialog);
-    end;
-
-    local procedure CreateSnapshotTableWithFilter(var TableBackup: Record "Table Backup"; FilterView: Text; var ProgressDialog: Dialog)
-    begin
-        // For filtered snapshots, store as JSON with filter info
-        ExportTableToJSONWithFilter(TableBackup, FilterView, ProgressDialog);
-    end;
-
-    local procedure CreateFullBackup(var TableBackup: Record "Table Backup"; var ProgressDialog: Dialog)
-    begin
-        // Full backup is the same as JSON export for now
-        ExportTableToJSON(TableBackup, ProgressDialog);
-    end;
-
-    local procedure CreateFullBackupWithFilter(var TableBackup: Record "Table Backup"; FilterView: Text; var ProgressDialog: Dialog)
-    begin
-        ExportTableToJSONWithFilter(TableBackup, FilterView, ProgressDialog);
+        // Snapshots are stored as JSON like every other backup type; only the ID is reserved.
+        TableBackup."Snapshot Table ID" := GetNextSnapshotTableId();
     end;
 
     procedure RestoreBackup(var TableBackup: Record "Table Backup")
@@ -280,23 +285,19 @@ codeunit 51003 "Table Backup Mgt."
         if not ConfirmManagement.GetResponseOrDefault(StrSubstNo(RestoreConfirmQst, TableBackup."No. of Records", TableBackup."Table Name"), false) then
             exit;
 
-        case TableBackup."Backup Type" of
-            TableBackup."Backup Type"::"JSON Export", TableBackup."Backup Type"::"Full Backup":
-                RestoreFromJSON(TableBackup);
-            TableBackup."Backup Type"::Snapshot:
-                RestoreFromSnapshot(TableBackup);
-        end;
+        // Every backup type is stored as JSON. RestoreFromJSON already reports the result to the user.
+        RestoreFromJSON(TableBackup);
 
         TableBackup.Restored := true;
         TableBackup."Restore Date Time" := CurrentDateTime();
         TableBackup.Modify(true);
-
-        Message(StrSubstNo(BackupRestoredMsg, TableBackup."No. of Records", TableBackup."Table Name"));
     end;
 
 #pragma warning disable LC0010, LC0090
-    local procedure RestoreFromJSON(var TableBackup: Record "Table Backup")
+    // internal (not local) so the test app can exercise the restore logic without the interactive confirm dialog
+    internal procedure RestoreFromJSON(var TableBackup: Record "Table Backup")
     var
+        TempRestoreField: Record Field temporary;
         RecordRef: RecordRef;
         InStream: InStream;
         i: Integer;
@@ -308,7 +309,7 @@ codeunit 51003 "Table Backup Mgt."
         RestoringTxt: Label 'Restoring records...\\Processed: #1######\\Inserted: #2######\\Failed: #3######', Comment = '#1 = Processed count, #2 = Inserted count, #3 = Failed count';
         NoRecordsInBackupErr: Label 'No records found in backup data.';
     begin
-        TableBackup.CalcFields("Backup Data");
+        TableBackup.CalcFields("Backup Data", "Table Name");
         TableBackup."Backup Data".CreateInStream(InStream, TextEncoding::UTF8);
         InStream.ReadText(JSONText);
 
@@ -319,15 +320,13 @@ codeunit 51003 "Table Backup Mgt."
             Error(NoRecordsInBackupErr);
 
         RecordRef.Open(TableBackup."Table ID");
+        CollectTableFields(TableBackup."Table ID", TempRestoreField);
 
         if GuiAllowed() then
             InitializeProgressDialog(ProgressDialog, RestoringTxt);
 
-        InsertedCount := 0;
-        FailedCount := 0;
-
         for i := 0 to JSONArray.Count() - 1 do
-            ProcessRestoreRecord(RecordRef, JSONArray, i, InsertedCount, FailedCount, ProgressDialog);
+            ProcessRestoreRecord(RecordRef, TempRestoreField, JSONArray, i, InsertedCount, FailedCount, ProgressDialog);
 
         RecordRef.Close();
 
@@ -346,7 +345,7 @@ codeunit 51003 "Table Backup Mgt."
         ProgressDialog.Update(3, 0);
     end;
 
-    local procedure ProcessRestoreRecord(var RecordRef: RecordRef; var JSONArray: JsonArray; Index: Integer; var InsertedCount: Integer; var FailedCount: Integer; var ProgressDialog: Dialog)
+    local procedure ProcessRestoreRecord(var RecordRef: RecordRef; var TempRestoreField: Record Field temporary; var JSONArray: JsonArray; Index: Integer; var InsertedCount: Integer; var FailedCount: Integer; var ProgressDialog: Dialog)
     var
         JSONToken: JsonToken;
     begin
@@ -354,7 +353,7 @@ codeunit 51003 "Table Backup Mgt."
         if not JSONToken.IsObject() then
             exit;
 
-        if InsertRecordFromJSON(RecordRef, JSONToken.AsObject()) then
+        if InsertRecordFromJSON(RecordRef, TempRestoreField, JSONToken.AsObject()) then
             InsertedCount += 1
         else
             FailedCount += 1;
@@ -387,38 +386,34 @@ codeunit 51003 "Table Backup Mgt."
         if FailedCount > 0 then
             Message(PartialRestoreMsg, InsertedCount, TotalCount, FailedCount)
         else
-            Message(StrSubstNo(BackupRestoredMsg, InsertedCount, TableName));
+            Message(BackupRestoredMsg, InsertedCount, TableName);
     end;
 
-    local procedure InsertRecordFromJSON(var RecordRef: RecordRef; JSONObject: JsonObject): Boolean
-    var
-        InsertResult: Boolean;
+    local procedure InsertRecordFromJSON(var RecordRef: RecordRef; var TempRestoreField: Record Field temporary; JSONObject: JsonObject): Boolean
     begin
         RecordRef.Init();
-        PopulateRecordFieldsFromJSON(RecordRef, JSONObject);
+
+        // A runtime error while assigning a field (e.g. a value rejected by the field) fails only this record, not the whole restore.
+        if not TryPopulateRecordFieldsFromJSON(RecordRef, TempRestoreField, JSONObject) then
+            exit(false);
 
         // Use Insert(true) to ensure system fields like SystemId are properly set
-        InsertResult := RecordRef.Insert(true);
-
-        exit(InsertResult);
+        exit(RecordRef.Insert(true));
     end;
 
-    local procedure PopulateRecordFieldsFromJSON(var RecordRef: RecordRef; JSONObject: JsonObject): Integer
-    var
-        Field: Record Field;
-        FieldsSet: Integer;
+    // A TryFunction is safe here: the field population is pure in-memory work, nothing is written to the database.
+    [TryFunction]
+    local procedure TryPopulateRecordFieldsFromJSON(var RecordRef: RecordRef; var TempRestoreField: Record Field temporary; JSONObject: JsonObject)
     begin
-        FieldsSet := 0;
-        Field.SetRange(TableNo, RecordRef.Number());
-        Field.SetRange(Class, Field.Class::Normal);
-        Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
+        PopulateRecordFieldsFromJSON(RecordRef, TempRestoreField, JSONObject);
+    end;
 
-        repeat
-            SetFieldValueFromJSON(RecordRef, Field, JSONObject);
-            FieldsSet += 1;
-        until Field.Next() = 0;
-
-        exit(FieldsSet);
+    local procedure PopulateRecordFieldsFromJSON(var RecordRef: RecordRef; var TempRestoreField: Record Field temporary; JSONObject: JsonObject)
+    begin
+        if TempRestoreField.FindSet() then
+            repeat
+                SetFieldValueFromJSON(RecordRef, TempRestoreField, JSONObject);
+            until TempRestoreField.Next() = 0;
     end;
 
     local procedure SetFieldValueFromJSON(var RecordRef: RecordRef; Field: Record Field; JSONObject: JsonObject)
@@ -434,6 +429,11 @@ codeunit 51003 "Table Backup Mgt."
 
         FieldValue := JSONToken.AsValue().AsText();
         if FieldValue = '' then
+            exit;
+
+        // A failed FieldRef.Value() call for an unsupported type can corrupt the whole record buffer,
+        // so such values are never attempted at all.
+        if not IsFieldTypeSupportedForBackup(Field.Type) then
             exit;
 
         AssignFieldValueToRecord(RecordRef, Field, FieldValue);
@@ -452,10 +452,6 @@ codeunit 51003 "Table Backup Mgt."
     var
         Field: Record Field;
     begin
-        // Skip empty values to avoid errors
-        if FieldValue = '' then
-            exit;
-
         case FieldType of
             Field.Type::Integer, Field.Type::BigInteger:
                 AssignIntegerValue(FieldRef, FieldValue);
@@ -471,81 +467,131 @@ codeunit 51003 "Table Backup Mgt."
                 AssignDateTimeValue(FieldRef, FieldValue);
             Field.Type::GUID:
                 AssignGuidValue(FieldRef, FieldValue);
+            Field.Type::Option:
+                AssignOptionValue(FieldRef, FieldValue);
+            Field.Type::Duration:
+                AssignDurationValue(FieldRef, FieldValue);
+            Field.Type::DateFormula:
+                AssignDateFormulaValue(FieldRef, FieldValue);
             else
                 AssignTextValue(FieldRef, FieldValue);
         end;
     end;
 #pragma warning restore LC0010, LC0088
 
+    // The Assign*Value procedures first parse the culture-invariant representation written by GetFieldValueAsText
+    // (Format 9). The plain Evaluate is a fallback for backups created before invariant serialization existed.
     local procedure AssignIntegerValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         IntegerValue: Integer;
     begin
-        if Evaluate(IntegerValue, FieldValue) then
-            FieldRef.Value := IntegerValue;
+        if not Evaluate(IntegerValue, FieldValue, 9) then
+            if not Evaluate(IntegerValue, FieldValue) then
+                exit;
+        FieldRef.Value(IntegerValue);
     end;
 
     local procedure AssignDecimalValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         DecimalValue: Decimal;
     begin
-        if Evaluate(DecimalValue, FieldValue) then
-            FieldRef.Value := DecimalValue;
+        if not Evaluate(DecimalValue, FieldValue, 9) then
+            if not Evaluate(DecimalValue, FieldValue) then
+                exit;
+        FieldRef.Value(DecimalValue);
     end;
 
     local procedure AssignBooleanValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         BooleanValue: Boolean;
     begin
-        if Evaluate(BooleanValue, FieldValue) then
-            FieldRef.Value := BooleanValue;
+        if not Evaluate(BooleanValue, FieldValue, 9) then
+            if not Evaluate(BooleanValue, FieldValue) then
+                exit;
+        FieldRef.Value(BooleanValue);
     end;
 
     local procedure AssignDateValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         DateValue: Date;
     begin
-        if Evaluate(DateValue, FieldValue) then
-            FieldRef.Value := DateValue;
+        if CopyStr(FieldValue, 1, 1) = ClosingDatePrefixTok then
+            if Evaluate(DateValue, CopyStr(FieldValue, 2), 9) then begin
+                FieldRef.Value(ClosingDate(DateValue));
+                exit;
+            end;
+
+        if not Evaluate(DateValue, FieldValue, 9) then
+            if not Evaluate(DateValue, FieldValue) then
+                exit;
+        FieldRef.Value(DateValue);
     end;
 
     local procedure AssignTimeValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         TimeValue: Time;
     begin
-        if Evaluate(TimeValue, FieldValue) then
-            FieldRef.Value := TimeValue;
+        if not Evaluate(TimeValue, FieldValue, 9) then
+            if not Evaluate(TimeValue, FieldValue) then
+                exit;
+        FieldRef.Value(TimeValue);
     end;
 
     local procedure AssignDateTimeValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         DateTimeValue: DateTime;
     begin
-        if Evaluate(DateTimeValue, FieldValue) then
-            FieldRef.Value := DateTimeValue;
+        if not Evaluate(DateTimeValue, FieldValue, 9) then
+            if not Evaluate(DateTimeValue, FieldValue) then
+                exit;
+        FieldRef.Value(DateTimeValue);
     end;
 
     local procedure AssignGuidValue(var FieldRef: FieldRef; FieldValue: Text)
     var
         GuidValue: Guid;
     begin
-        if Evaluate(GuidValue, FieldValue) then
-            FieldRef.Value := GuidValue;
+        if not Evaluate(GuidValue, FieldValue, 9) then
+            if not Evaluate(GuidValue, FieldValue) then
+                exit;
+        FieldRef.Value(GuidValue);
+    end;
+
+    local procedure AssignDurationValue(var FieldRef: FieldRef; FieldValue: Text)
+    var
+        DurationValue: Duration;
+    begin
+        if not Evaluate(DurationValue, FieldValue, 9) then
+            if not Evaluate(DurationValue, FieldValue) then
+                exit;
+        FieldRef.Value(DurationValue);
+    end;
+
+    local procedure AssignDateFormulaValue(var FieldRef: FieldRef; FieldValue: Text)
+    var
+        DateFormulaValue: DateFormula;
+    begin
+        if not Evaluate(DateFormulaValue, FieldValue, 9) then
+            if not Evaluate(DateFormulaValue, FieldValue) then
+                exit;
+        FieldRef.Value(DateFormulaValue);
+    end;
+
+    local procedure AssignOptionValue(var FieldRef: FieldRef; FieldValue: Text)
+    var
+        OptionOrdinal: Integer;
+    begin
+        // Options and enums are exported as their ordinal value, so assign it directly instead of matching a locale-dependent caption.
+        if Evaluate(OptionOrdinal, FieldValue) then
+            FieldRef.Value(OptionOrdinal);
     end;
 
     local procedure AssignTextValue(var FieldRef: FieldRef; FieldValue: Text)
     begin
-        // For Text, Code and other types, assign directly
         if FieldRef.Length() > 0 then
-            FieldRef.Value := CopyStr(FieldValue, 1, FieldRef.Length())
+            FieldRef.Value(CopyStr(FieldValue, 1, FieldRef.Length()))
         else
-            FieldRef.Value := FieldValue;
-    end;
-
-    local procedure RestoreFromSnapshot(var TableBackup: Record "Table Backup")
-    begin
-        // Snapshots are stored as JSON, so restore from JSON
-        RestoreFromJSON(TableBackup);
+            FieldRef.Value(FieldValue);
     end;
 
     procedure ExportBackupToFile(var TableBackup: Record "Table Backup")
@@ -582,8 +628,9 @@ codeunit 51003 "Table Backup Mgt."
 
     procedure DeleteSnapshotTable(SnapshotTableID: Integer)
     begin
-        // Cleanup of snapshot resources if needed
-        // In this implementation, snapshots are stored as JSON
+        // Snapshots are stored as JSON, so there is no snapshot table to clean up.
+        if SnapshotTableID = 0 then
+            exit;
     end;
 
     local procedure GetNextSnapshotTableId(): Integer
@@ -591,6 +638,7 @@ codeunit 51003 "Table Backup Mgt."
         TableBackup: Record "Table Backup";
     begin
         TableBackup.SetFilter("Snapshot Table ID", '<>0');
+        TableBackup.SetLoadFields("Snapshot Table ID");
         if TableBackup.FindLast() then
             exit(TableBackup."Snapshot Table ID" + 1);
         exit(99000001); // Starting point for snapshot table IDs
@@ -650,6 +698,7 @@ codeunit 51003 "Table Backup Mgt."
 
     var
         BackupRestoredMsg: Label '%1 records have been restored to table %2.', Comment = '%1 = No. of Records, %2 = Table Name';
+        ClosingDatePrefixTok: Label 'C', Locked = true;
         ExportBackupTxt: Label 'Export Backup';
         FileFilterTxt: Label 'JSON Files (*.json)|*.json|All Files (*.*)|*.*';
         ImportBackupTxt: Label 'Import Backup';
