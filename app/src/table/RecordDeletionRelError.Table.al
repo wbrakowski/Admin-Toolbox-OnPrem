@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+
 table 51002 "Record Deletion Rel. Error"
 {
     Caption = 'Record Deletion Rel. Error';

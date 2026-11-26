@@ -1,7 +1,9 @@
+namespace AdminToolbox;
+
 codeunit 51004 "Audit Log Mgt."
 {
-    Permissions = tabledata "Audit Log Entry" = RIMD,
-                  tabledata "Field Change History" = RIMD;
+    Permissions = tabledata "Audit Log Entry" = rimd,
+                  tabledata "Field Change History" = ri;
 
     procedure StartOperation(OperationType: Enum "Audit Log Operation Type"; TableID: Integer; Description: Text[250]; TriggeredBy: Text[100]): Integer
     var

@@ -1,3 +1,7 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+
 table 51101 "Admin Tool Test PK Target"
 {
     Caption = 'Admin Tool Test PK Target';

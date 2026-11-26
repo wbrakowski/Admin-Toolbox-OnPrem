@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Security.AccessControl;
+
 page 51007 "License Permissions"
 {
     ApplicationArea = All;

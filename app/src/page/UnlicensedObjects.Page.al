@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51009 "Unlicensed Objects"
 {
     ApplicationArea = All;

@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51017 "Field Change History"
 {
     ApplicationArea = All;

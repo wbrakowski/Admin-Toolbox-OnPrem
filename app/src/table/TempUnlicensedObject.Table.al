@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 table 51004 "Temp Unlicensed Object"
 {
     Caption = 'Temp Unlicensed Object';

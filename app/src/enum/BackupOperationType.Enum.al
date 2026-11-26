@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 enum 51002 "Backup Operation Type"
 {
     Extensible = true;

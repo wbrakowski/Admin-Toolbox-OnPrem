@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 table 51003 "Temp Object in License"
 {
     Caption = 'Temp Object in License';

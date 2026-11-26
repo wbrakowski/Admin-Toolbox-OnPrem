@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 enum 51004 "Audit Log Status"
 {
     Extensible = true;

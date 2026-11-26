@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.IO;
+using System.Utilities;
+
 page 51015 "Audit Log Entries"
 {
     ApplicationArea = All;
@@ -121,23 +126,24 @@ page 51015 "Audit Log Entries"
             {
                 Caption = 'Delete Old Entries';
                 Image = Delete;
-                ToolTip = 'Deletes audit log entries older than a specified number of days.';
+                ToolTip = 'Deletes audit log entries that are older than the audit log retention set in the Admin Toolbox Setup.';
 
                 trigger OnAction()
                 var
+                    AdminToolboxSetup: Record "Admin Toolbox Setup";
                     AuditLogMgt: Codeunit "Audit Log Mgt.";
                     ConfirmManagement: Codeunit "Confirm Management";
                     DaysToKeep: Integer;
-                    AskDaysQst: Label 'How many days of audit log do you want to keep?';
                     DeleteConfirmQst: Label 'Keep audit logs for %1 days and delete older entries?', Comment = '%1 = Days to keep';
-                    ConfirmText: Text;
+                    KeepIndefinitelyMsg: Label 'The audit log retention in the Admin Toolbox Setup is 0 days. Audit log entries are kept indefinitely.';
                 begin
-                    if not ConfirmManagement.GetResponseOrDefault(AskDaysQst, true) then
+                    DaysToKeep := AdminToolboxSetup.GetAuditLogRetentionDays();
+                    if DaysToKeep <= 0 then begin
+                        Message(KeepIndefinitelyMsg);
                         exit;
+                    end;
 
-                    DaysToKeep := 90; // Default
-                    ConfirmText := StrSubstNo(DeleteConfirmQst, DaysToKeep);
-                    if ConfirmManagement.GetResponseOrDefault(ConfirmText, false) then
+                    if ConfirmManagement.GetResponseOrDefault(StrSubstNo(DeleteConfirmQst, DaysToKeep), false) then
                         AuditLogMgt.DeleteOldAuditLogs(DaysToKeep);
                 end;
             }

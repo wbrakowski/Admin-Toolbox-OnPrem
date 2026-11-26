@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Utilities;
+
 page 51014 "Table Backup FactBox"
 {
     ApplicationArea = All;

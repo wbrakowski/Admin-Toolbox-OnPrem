@@ -1,14 +1,24 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Utilities;
+
 codeunit 51003 "Table Backup Mgt."
 {
-    Permissions = tabledata "Table Backup" = RIMD;
+    Permissions = tabledata "Table Backup" = rimd;
 
-    procedure CreateBackup(TableID: Integer; BackupType: Enum "Backup Type"; OperationType: Enum "Backup Operation Type"; BackupDescription: Text[250]): Integer
+    procedure CreateBackup(TableID: Integer; BackupType: Enum "Backup Type"; OperationType: Enum "Backup Operation Type"; BackupDescription: Text[250]; ConfirmUnsupportedFields: Boolean): Integer
     var
         TableBackup: Record "Table Backup";
         RecordRef: RecordRef;
         ProgressDialog: Dialog;
         BackupTypeToUse: Enum "Backup Type";
     begin
+        // AL does not short-circuit "and": the confirm has a side effect (a dialog), so it must only be called when requested.
+        if ConfirmUnsupportedFields then
+            if not ConfirmBackupWithUnsupportedFields(TableID) then
+                exit(0);
+
         BackupTypeToUse := GetBackupTypeToUse(BackupType);
 
         TableBackup.Init();
@@ -32,13 +42,18 @@ codeunit 51003 "Table Backup Mgt."
         exit(TableBackup."Entry No.");
     end;
 
-    procedure CreateBackupWithFilter(TableID: Integer; BackupType: Enum "Backup Type"; OperationType: Enum "Backup Operation Type"; BackupDescription: Text[250]; FilterView: Text): Integer
+    procedure CreateBackupWithFilter(TableID: Integer; BackupType: Enum "Backup Type"; OperationType: Enum "Backup Operation Type"; BackupDescription: Text[250]; FilterView: Text; ConfirmUnsupportedFields: Boolean): Integer
     var
         TableBackup: Record "Table Backup";
         RecordRef: RecordRef;
         ProgressDialog: Dialog;
         BackupTypeToUse: Enum "Backup Type";
     begin
+        // AL does not short-circuit "and": the confirm has a side effect (a dialog), so it must only be called when requested.
+        if ConfirmUnsupportedFields then
+            if not ConfirmBackupWithUnsupportedFields(TableID) then
+                exit(0);
+
         BackupTypeToUse := GetBackupTypeToUse(BackupType);
 
         TableBackup.Init();
@@ -60,6 +75,24 @@ codeunit 51003 "Table Backup Mgt."
 
         TableBackup.Modify(true);
         exit(TableBackup."Entry No.");
+    end;
+
+    /// <summary>
+    /// Validates the view against the table and returns it, or an empty text if the view sets no filter (e.g. only a sort order).
+    /// </summary>
+    procedure NormalizeFilterView(TableID: Integer; FilterView: Text): Text
+    var
+        RecordRef: RecordRef;
+    begin
+        if FilterView = '' then
+            exit('');
+
+        RecordRef.Open(TableID);
+        RecordRef.SetView(FilterView);
+        if not RecordRef.HasFilter() then
+            exit('');
+
+        exit(FilterView);
     end;
 
     local procedure GetBackupTypeToUse(BackupType: Enum "Backup Type"): Enum "Backup Type"
@@ -117,54 +150,52 @@ codeunit 51003 "Table Backup Mgt."
     local procedure WriteTableToBackupBlob(var TableBackup: Record "Table Backup"; var RecordRef: RecordRef; var ProgressDialog: Dialog)
     var
         OutStream: OutStream;
-        JSONText: Text;
+        WrittenChars: BigInteger;
     begin
-        JSONText := ConvertTableToJSON(RecordRef, ProgressDialog);
-
-        if GuiAllowed() then
-            ProgressDialog.Update(3, 'Saving backup data...');
-
         TableBackup."Backup Data".CreateOutStream(OutStream, TextEncoding::UTF8);
-        OutStream.WriteText(JSONText);
-        TableBackup."Backup Size (KB)" := Round(StrLen(JSONText) / 1024, 0.01);
+        WrittenChars := WriteRecordsAsJSON(RecordRef, OutStream, ProgressDialog);
+
+        TableBackup."Backup Size (KB)" := Round(WrittenChars / 1024, 0.01);
         TableBackup."File Name" := CopyStr(GetBackupFileName(TableBackup), 1, MaxStrLen(TableBackup."File Name"));
 
         if GuiAllowed() then
             ProgressDialog.Update(3, 'Backup completed');
     end;
 
-    local procedure ConvertTableToJSON(var RecordRef: RecordRef; var ProgressDialog: Dialog): Text
-    var
-        JSONArray: JsonArray;
-        JSONText: Text;
-    begin
-        JSONArray := BuildJSONArrayFromRecords(RecordRef, ProgressDialog);
-
-        if GuiAllowed() then
-            ProgressDialog.Update(3, 'Finalizing JSON...');
-
-        JSONArray.WriteTo(JSONText);
-        exit(JSONText);
-    end;
-
-    local procedure BuildJSONArrayFromRecords(var RecordRef: RecordRef; var ProgressDialog: Dialog): JsonArray
+    // Writes the JSON array record by record, so neither the whole array nor its text lives in memory.
+    // The output is identical to JsonArray.WriteTo(). Returns the number of characters written.
+    local procedure WriteRecordsAsJSON(var RecordRef: RecordRef; var OutStream: OutStream; var ProgressDialog: Dialog): BigInteger
     var
         TempExportField: Record Field temporary;
-        JSONArray: JsonArray;
+        JSONObject: JsonObject;
         CurrentRecord: Integer;
         RecordCount: Integer;
+        WrittenChars: BigInteger;
+        RecordJSONText: Text;
     begin
         CollectTableFields(RecordRef.Number(), TempExportField);
         RecordCount := RecordRef.Count();
+
+        OutStream.WriteText('[');
+        WrittenChars := 1;
 
         if RecordRef.FindSet() then
             repeat
                 CurrentRecord += 1;
                 UpdateProgressIfNeeded(ProgressDialog, CurrentRecord, RecordCount);
-                JSONArray.Add(ConvertRecordToJSON(RecordRef, TempExportField));
+
+                JSONObject := ConvertRecordToJSON(RecordRef, TempExportField);
+                JSONObject.WriteTo(RecordJSONText);
+                if CurrentRecord > 1 then begin
+                    OutStream.WriteText(',');
+                    WrittenChars += 1;
+                end;
+                OutStream.WriteText(RecordJSONText);
+                WrittenChars += StrLen(RecordJSONText);
             until RecordRef.Next() = 0;
 
-        exit(JSONArray);
+        OutStream.WriteText(']');
+        exit(WrittenChars + 1);
     end;
 
     // Loads the field metadata once per table instead of re-querying the Field system table for every data record.
@@ -487,7 +518,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(IntegerValue, FieldValue, 9) then
             if not Evaluate(IntegerValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(IntegerValue);
     end;
 
@@ -497,7 +528,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(DecimalValue, FieldValue, 9) then
             if not Evaluate(DecimalValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(DecimalValue);
     end;
 
@@ -507,7 +538,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(BooleanValue, FieldValue, 9) then
             if not Evaluate(BooleanValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(BooleanValue);
     end;
 
@@ -523,7 +554,7 @@ codeunit 51003 "Table Backup Mgt."
 
         if not Evaluate(DateValue, FieldValue, 9) then
             if not Evaluate(DateValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(DateValue);
     end;
 
@@ -533,7 +564,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(TimeValue, FieldValue, 9) then
             if not Evaluate(TimeValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(TimeValue);
     end;
 
@@ -543,7 +574,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(DateTimeValue, FieldValue, 9) then
             if not Evaluate(DateTimeValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(DateTimeValue);
     end;
 
@@ -553,7 +584,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(GuidValue, FieldValue, 9) then
             if not Evaluate(GuidValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(GuidValue);
     end;
 
@@ -563,7 +594,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(DurationValue, FieldValue, 9) then
             if not Evaluate(DurationValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(DurationValue);
     end;
 
@@ -573,7 +604,7 @@ codeunit 51003 "Table Backup Mgt."
     begin
         if not Evaluate(DateFormulaValue, FieldValue, 9) then
             if not Evaluate(DateFormulaValue, FieldValue) then
-                exit;
+                ErrorInvalidFieldValue(FieldRef, FieldValue);
         FieldRef.Value(DateFormulaValue);
     end;
 
@@ -582,8 +613,22 @@ codeunit 51003 "Table Backup Mgt."
         OptionOrdinal: Integer;
     begin
         // Options and enums are exported as their ordinal value, so assign it directly instead of matching a locale-dependent caption.
-        if Evaluate(OptionOrdinal, FieldValue) then
+        // Backups from before that format hold the caption, which Evaluate resolves in the language of the session.
+        if Evaluate(OptionOrdinal, FieldValue) then begin
             FieldRef.Value(OptionOrdinal);
+            exit;
+        end;
+
+        if not Evaluate(FieldRef, FieldValue) then
+            ErrorInvalidFieldValue(FieldRef, FieldValue);
+    end;
+
+    // The value cannot be converted: fail the record instead of restoring it with a default value.
+    local procedure ErrorInvalidFieldValue(var FieldRef: FieldRef; FieldValue: Text)
+    var
+        InvalidFieldValueErr: Label 'The value ''%1'' cannot be converted for the field ''%2''.', Comment = '%1 = Value from the backup, %2 = Field Name';
+    begin
+        Error(InvalidFieldValueErr, FieldValue, FieldRef.Name());
     end;
 
     local procedure AssignTextValue(var FieldRef: FieldRef; FieldValue: Text)
@@ -631,6 +676,74 @@ codeunit 51003 "Table Backup Mgt."
         // Snapshots are stored as JSON, so there is no snapshot table to clean up.
         if SnapshotTableID = 0 then
             exit;
+    end;
+
+    local procedure ConfirmBackupWithUnsupportedFields(TableID: Integer): Boolean
+    var
+        ConfirmManagement: Codeunit "Confirm Management";
+        TableContainsUnsupportedFieldsQst: Label 'Table %1 %2 contains field type(s) that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped during backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table ID, %2 = Table Name';
+    begin
+        if not TableHasUnsupportedFields(TableID) then
+            exit(true);
+
+        exit(ConfirmManagement.GetResponseOrDefault(StrSubstNo(TableContainsUnsupportedFieldsQst, TableID, GetTableCaption(TableID)), true));
+    end;
+
+    // internal (not local) so tests and the deletion can check tables without opening the confirm dialog
+    internal procedure TableHasUnsupportedFields(TableID: Integer): Boolean
+    var
+        Field: Record Field;
+    begin
+        Field.SetRange(TableNo, TableID);
+        Field.SetRange(Class, Field.Class::Normal);
+        Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
+        Field.SetLoadFields(Type);
+
+        if Field.FindSet() then
+            repeat
+                if not IsFieldTypeSupportedForBackup(Field.Type) then
+                    exit(true);
+            until Field.Next() = 0;
+
+        exit(false);
+    end;
+
+    internal procedure GetTableCaption(TableID: Integer): Text
+    var
+        AllObjWithCaption: Record AllObjWithCaption;
+    begin
+        AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
+        AllObjWithCaption.SetRange("Object ID", TableID);
+        AllObjWithCaption.SetLoadFields("Object Caption");
+        if AllObjWithCaption.FindFirst() then
+            exit(AllObjWithCaption."Object Caption");
+        exit('');
+    end;
+
+    internal procedure CountOldBackups(DaysToKeep: Integer): Integer
+    var
+        TableBackup: Record "Table Backup";
+    begin
+        if DaysToKeep <= 0 then
+            exit(0);
+
+        TableBackup.SetFilter("Backup Date Time", '<%1', CreateDateTime(Today() - DaysToKeep, 0T));
+        exit(TableBackup.Count());
+    end;
+
+    // Deletes the backups that are older than the given number of days and returns how many were deleted.
+    procedure DeleteOldBackups(DaysToKeep: Integer): Integer
+    var
+        TableBackup: Record "Table Backup";
+        DeletedCount: Integer;
+    begin
+        if DaysToKeep <= 0 then
+            exit(0);
+
+        TableBackup.SetFilter("Backup Date Time", '<%1', CreateDateTime(Today() - DaysToKeep, 0T));
+        DeletedCount := TableBackup.Count();
+        TableBackup.DeleteAll(true);
+        exit(DeletedCount);
     end;
 
     local procedure GetNextSnapshotTableId(): Integer

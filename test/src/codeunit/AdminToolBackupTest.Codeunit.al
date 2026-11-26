@@ -1,3 +1,8 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+using System.TestLibraries.Utilities;
+
 codeunit 51100 "Admin Tool Backup Test"
 {
     Subtype = Test;
@@ -7,11 +12,18 @@ codeunit 51100 "Admin Tool Backup Test"
         Assert: Codeunit "Library Assert";
         TableBackupMgt: Codeunit "Table Backup Mgt.";
         LastMessage: Text;
+        ConfirmReply: Boolean;
 
     [MessageHandler]
     procedure MessageHandler(Message: Text[1024])
     begin
         LastMessage := Message;
+    end;
+
+    [ConfirmHandler]
+    procedure ConfirmHandler(Question: Text[1024]; var Reply: Boolean)
+    begin
+        Reply := ConfirmReply;
     end;
 
     [Test]
@@ -28,7 +40,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('T003', 'Third', 3, 3.3, true, 20260103D);
 
         // [WHEN] A JSON export backup is created for the table
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Unit test backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Unit test backup', false);
 
         // [THEN] The backup entry reflects the source data
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -55,7 +67,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('T010', 'Blank type', 1, 1, true, 20260101D);
 
         // [WHEN] A backup is created with the blank backup type
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", BlankBackupType, Enum::"Backup Operation Type"::"Manual Backup", 'Blank type backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", BlankBackupType, Enum::"Backup Operation Type"::"Manual Backup", 'Blank type backup', false);
 
         // [THEN] JSON Export is used
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -78,7 +90,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('T102', 'Beta', 20, 20.75, false, 20260202D);
 
         // [GIVEN] A JSON export backup of the source table
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Round-trip test backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Round-trip test backup', false);
 
         // [GIVEN] All source records have been deleted
         TestBuffer.DeleteAll(false);
@@ -127,7 +139,7 @@ codeunit 51100 "Admin Tool Backup Test"
         FilterView := TestBuffer.GetView(false);
 
         // [WHEN] A filtered JSON export backup is created
-        EntryNo := TableBackupMgt.CreateBackupWithFilter(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Filtered backup', FilterView);
+        EntryNo := TableBackupMgt.CreateBackupWithFilter(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Filtered backup', FilterView, false);
 
         // [THEN] Only the records matching the filter were backed up, and the filter is stored
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -150,7 +162,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.SetFilter("Integer Value", '>=%1', 1);
 
         // [WHEN] A filtered snapshot backup is created
-        EntryNo := TableBackupMgt.CreateBackupWithFilter(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Filtered snapshot', TestBuffer.GetView(false));
+        EntryNo := TableBackupMgt.CreateBackupWithFilter(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Filtered snapshot', TestBuffer.GetView(false), false);
 
         // [THEN] The backup is stored as a snapshot without a snapshot table ID, as filtered snapshots always were
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -173,7 +185,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('S001', 'Snap', 1, 1.1, true, 20260101D);
 
         // [WHEN] A snapshot backup is created
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot backup', false);
 
         // [THEN] A snapshot table ID is assigned and the record count is correct
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -198,8 +210,8 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('S101', 'Snap1', 1, 1.1, true, 20260101D);
 
         // [WHEN] Two snapshot backups are created in sequence
-        FirstEntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot 1');
-        SecondEntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot 2');
+        FirstEntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot 1', false);
+        SecondEntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::Snapshot, Enum::"Backup Operation Type"::"Manual Backup", 'Snapshot 2', false);
 
         // [THEN] The second snapshot gets the next sequential snapshot table ID
         Assert.IsTrue(TableBackup.Get(FirstEntryNo), 'First backup entry should exist.');
@@ -222,7 +234,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('F201', 'Full', 1, 1.1, true, 20260101D);
 
         // [WHEN] A full backup is created
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"Full Backup", Enum::"Backup Operation Type"::"Manual Backup", 'Full backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"Full Backup", Enum::"Backup Operation Type"::"Manual Backup", 'Full backup', false);
 
         // [THEN] The backup entry reflects the source data
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -255,7 +267,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.Insert(false);
 
         // [GIVEN] A JSON export backup of the source table and the source record deleted afterwards
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Time/DateTime/Guid backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Time/DateTime/Guid backup', false);
         TestBuffer.DeleteAll(false);
 
         // [WHEN] The backup is restored directly
@@ -287,7 +299,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.Insert(false);
 
         // [GIVEN] A JSON export backup of the source table and the source record deleted afterwards
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Enum round-trip test backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Enum round-trip test backup', false);
         TestBuffer.DeleteAll(false);
 
         // [WHEN] The backup is restored directly
@@ -315,7 +327,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('MD02', 'MediaTest2', 2, 2.2, false, 20260102D);
 
         // [WHEN] A JSON export backup is created and restored
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Media field backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Media field backup', false);
         TestBuffer.DeleteAll(false);
 
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -458,7 +470,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.Insert(false);
 
         // [GIVEN] A JSON export backup of the source table and the source record deleted afterwards
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Locale round-trip backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Locale round-trip backup', false);
         TestBuffer.DeleteAll(false);
 
         // [WHEN] The backup is restored directly
@@ -502,7 +514,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.Insert(false);
 
         // [GIVEN] A JSON export backup of the source table and the source record deleted afterwards
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Special types backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Special types backup', false);
         TestBuffer.DeleteAll(false);
 
         // [THEN] The closing date is stored as the prefix C plus the invariant normal date
@@ -539,7 +551,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('I001', 'Invariant', 7, 1234567.89, true, 20260201D);
 
         // [WHEN] A JSON export backup is created
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Invariant format backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Invariant format backup', false);
 
         // [THEN] The stored JSON uses the culture-invariant representation (Format 9), not the user's regional format
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -572,7 +584,7 @@ codeunit 51100 "Admin Tool Backup Test"
         CreateTestBufferRecord('S903', 'Third', 3, 3, true, 20260103D);
 
         // [WHEN] A JSON export backup is created
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'JSON array backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'JSON array backup', false);
 
         // [THEN] The stored text is a valid JSON array with exactly one object per record
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -604,7 +616,7 @@ codeunit 51100 "Admin Tool Backup Test"
         TestBuffer.DeleteAll(false);
 
         // [WHEN] A JSON export backup is created
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Empty table backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Empty table backup', false);
 
         // [THEN] The stored text is an empty JSON array
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -660,7 +672,7 @@ codeunit 51100 "Admin Tool Backup Test"
         // [GIVEN] A backup with data
         TestBuffer.DeleteAll(false);
         CreateTestBufferRecord('V001', 'View', 1, 1.1, true, 20260101D);
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'View backup');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'View backup', false);
 
         // [WHEN/THEN] Viewing the backup data does not raise an error
         Assert.IsTrue(TableBackup.Get(EntryNo), 'Backup entry should exist.');
@@ -691,6 +703,236 @@ codeunit 51100 "Admin Tool Backup Test"
         // [WHEN/THEN] Deleting the entry (OnDelete calls DeleteSnapshotTable) works
         TableBackup.Delete(true);
         Assert.IsFalse(TableBackup.Get(TableBackup."Entry No."), 'The backup entry should be deleted.');
+    end;
+
+    [Test]
+    procedure NormalizeFilterViewKeepsViewWithFilter()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        FilterView: Text;
+    begin
+        // [GIVEN] A view that filters on Integer Value
+        TestBuffer.SetFilter("Integer Value", '>%1', 1);
+        FilterView := TestBuffer.GetView(false);
+
+        // [WHEN/THEN] The view is returned unchanged
+        Assert.AreEqual(FilterView, TableBackupMgt.NormalizeFilterView(Database::"Admin Tool Test Buffer", FilterView), 'A view with a filter should be returned unchanged.');
+    end;
+
+    [Test]
+    procedure NormalizeFilterViewReturnsEmptyForViewWithoutFilter()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+    begin
+        // [WHEN/THEN] A sort-only view, as returned by the filter page for an untouched filter, and an empty view both normalize to an empty text
+        Assert.AreEqual('', TableBackupMgt.NormalizeFilterView(Database::"Admin Tool Test Buffer", TestBuffer.GetView(false)), 'A sort-only view should be normalized to an empty text.');
+        Assert.AreEqual('', TableBackupMgt.NormalizeFilterView(Database::"Admin Tool Test Buffer", ''), 'An empty view should stay empty.');
+    end;
+
+    [Test]
+    procedure TableHasUnsupportedFieldsDetectsBlobAndMediaFields()
+    begin
+        // [WHEN/THEN] Tables with a Blob field (Table Backup) or a Media field (test buffer) are detected, a table with only supported types is not
+        Assert.IsTrue(TableBackupMgt.TableHasUnsupportedFields(Database::"Table Backup"), 'Table Backup has a Blob field.');
+        Assert.IsTrue(TableBackupMgt.TableHasUnsupportedFields(Database::"Admin Tool Test Buffer"), 'The test buffer has a Media field.');
+        Assert.IsFalse(TableBackupMgt.TableHasUnsupportedFields(Database::"Admin Tool Test PK Target"), 'The PK target table has only supported field types.');
+    end;
+
+    [Test]
+    [HandlerFunctions('ConfirmHandler')]
+    procedure CreateBackupReturnsZeroWhenUserDeclinesUnsupportedFields()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        TableBackup: Record "Table Backup";
+        EntryNo: Integer;
+    begin
+        // [GIVEN] A table with a Media field and a user who declines the question about the fields that cannot be backed up
+        ConfirmReply := false;
+        TestBuffer.DeleteAll(false);
+        CreateTestBufferRecord('U001', 'Unsupported', 1, 1, true, 20260101D);
+        TableBackup.SetRange("Table ID", Database::"Admin Tool Test Buffer");
+        TableBackup.DeleteAll(false);
+
+        // [WHEN] A backup is requested with the confirmation
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Declined', true);
+
+        // [THEN] No backup was created
+        Assert.AreEqual(0, EntryNo, 'Declining the question should return 0.');
+        Assert.IsTrue(TableBackup.IsEmpty(), 'No backup should be created.');
+    end;
+
+    [Test]
+    [HandlerFunctions('ConfirmHandler')]
+    procedure CreateBackupWithFilterCreatesBackupWhenUserAcceptsUnsupportedFields()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        EntryNo: Integer;
+    begin
+        // [GIVEN] A table with a Media field and a user who accepts
+        ConfirmReply := true;
+        TestBuffer.DeleteAll(false);
+        CreateTestBufferRecord('U101', 'Accepted', 1, 1, true, 20260101D);
+
+        // [WHEN] A filtered backup is requested with the confirmation
+        EntryNo := TableBackupMgt.CreateBackupWithFilter(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Accepted', TestBuffer.GetView(false), true);
+
+        // [THEN] The backup was created
+        Assert.AreNotEqual(0, EntryNo, 'Accepting the question should create the backup.');
+    end;
+
+    [Test]
+    procedure CreateBackupDoesNotAskForTablesWithoutUnsupportedFields()
+    var
+        TestPKTarget: Record "Admin Tool Test PK Target";
+        EntryNo: Integer;
+    begin
+        // [GIVEN] A table with only supported field types (no Confirm handler: a question would fail the test)
+        TestPKTarget.DeleteAll(false);
+        TestPKTarget.Init();
+        TestPKTarget."Code & No. (Key)" := 'U201';
+        TestPKTarget.Insert(false);
+
+        // [WHEN/THEN] A backup is created with the confirmation without any question
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test PK Target", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'No question', true);
+        Assert.AreNotEqual(0, EntryNo, 'The backup should be created.');
+    end;
+
+    [Test]
+    [HandlerFunctions('MessageHandler')]
+    procedure RestoreFromJSONFailsOnlyTheRecordWithAnUnparseableValue()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        TableBackup: Record "Table Backup";
+        OutStream: OutStream;
+    begin
+        // [GIVEN] A backup with one record whose Integer Value cannot be converted and one valid record
+        TestBuffer.DeleteAll(false);
+        TableBackup.Init();
+        TableBackup."Table ID" := Database::"Admin Tool Test Buffer";
+        TableBackup.Insert(true);
+        TableBackup."Backup Data".CreateOutStream(OutStream, TextEncoding::UTF8);
+        OutStream.WriteText('[{"No.":"BAD01","Integer Value":"abc"},{"No.":"OK01","Integer Value":"5"}]');
+        TableBackup.Modify(true);
+
+        // [WHEN] The backup is restored
+        TableBackupMgt.RestoreFromJSON(TableBackup);
+
+        // [THEN] The broken record is not restored with a default value, it counts as failed; the valid record is restored
+        Assert.AreEqual('Restored 1 of 2 records. 1 records failed to insert (possibly due to duplicates or validation errors).', LastMessage, 'Unexpected result message.');
+        Assert.IsFalse(TestBuffer.Get('BAD01'), 'The record with the unparseable value must not be restored.');
+        Assert.IsTrue(TestBuffer.Get('OK01'), 'The valid record should be restored.');
+        Assert.AreEqual(5, TestBuffer."Integer Value", 'Unexpected Integer Value.');
+
+        TestBuffer.DeleteAll(false);
+    end;
+
+    [Test]
+    procedure RestoreFromJSONErrorsWhenNoRecordCanBeRestored()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        TableBackup: Record "Table Backup";
+        OutStream: OutStream;
+    begin
+        // [GIVEN] A backup whose only record has an unparseable value
+        TestBuffer.DeleteAll(false);
+        TableBackup.Init();
+        TableBackup."Table ID" := Database::"Admin Tool Test Buffer";
+        TableBackup.Insert(true);
+        TableBackup."Backup Data".CreateOutStream(OutStream, TextEncoding::UTF8);
+        OutStream.WriteText('[{"No.":"BAD02","Decimal Value":"not a number"}]');
+        TableBackup.Modify(true);
+
+        // [WHEN/THEN] The restore raises the specific error
+        asserterror TableBackupMgt.RestoreFromJSON(TableBackup);
+        Assert.ExpectedError('No records could be inserted. All 1 attempts failed.');
+    end;
+
+    [Test]
+    [HandlerFunctions('MessageHandler')]
+    procedure RestoreFromJSONReadsLegacyOptionCaption()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        TableBackup: Record "Table Backup";
+        OutStream: OutStream;
+    begin
+        // [GIVEN] A backup from before the ordinal format: the option is stored as its caption (assumes an English session language)
+        TestBuffer.DeleteAll(false);
+        TableBackup.Init();
+        TableBackup."Table ID" := Database::"Admin Tool Test Buffer";
+        TableBackup.Insert(true);
+        TableBackup."Backup Data".CreateOutStream(OutStream, TextEncoding::UTF8);
+        OutStream.WriteText('[{"No.":"LEGO1","Option Value":"Second"}]');
+        TableBackup.Modify(true);
+
+        // [WHEN] The backup is restored
+        TableBackupMgt.RestoreFromJSON(TableBackup);
+
+        // [THEN] The caption is resolved to the option
+        Assert.IsTrue(TestBuffer.Get('LEGO1'), 'The record should be restored.');
+        Assert.AreEqual(TestBuffer."Option Value"::Second, TestBuffer."Option Value", 'The option caption should be restored.');
+
+        TestBuffer.DeleteAll(false);
+    end;
+
+    [Test]
+    procedure DeleteOldBackupsDeletesOnlyBackupsOlderThanTheGivenDays()
+    var
+        TableBackup: Record "Table Backup";
+        OldEntryNo: Integer;
+        RecentEntryNo: Integer;
+    begin
+        // [GIVEN] No backup older than the cutoff exists, so the test can never delete real backups
+        Assert.AreEqual(0, TableBackupMgt.CountOldBackups(30), 'Aborting: backups older than the cutoff already exist in this environment.');
+
+        // [GIVEN] A backup 60 days old and a recent backup
+        OldEntryNo := CreateBackupEntry(CreateDateTime(Today() - 60, 120000T));
+        RecentEntryNo := CreateBackupEntry(CurrentDateTime());
+        Assert.AreEqual(1, TableBackupMgt.CountOldBackups(30), 'The old backup should be counted.');
+
+        // [WHEN] Backups older than 30 days are deleted
+        Assert.AreEqual(1, TableBackupMgt.DeleteOldBackups(30), 'Exactly the old backup should be deleted.');
+
+        // [THEN] The old backup is gone, the recent one remains
+        Assert.IsFalse(TableBackup.Get(OldEntryNo), 'The old backup should be deleted.');
+        Assert.IsTrue(TableBackup.Get(RecentEntryNo), 'The recent backup must be kept.');
+    end;
+
+    [Test]
+    procedure DeleteOldBackupsKeepsEverythingForZeroDays()
+    var
+        TableBackup: Record "Table Backup";
+        EntryNo: Integer;
+    begin
+        // [GIVEN] A 400 days old backup
+        EntryNo := CreateBackupEntry(CreateDateTime(Today() - 400, 120000T));
+
+        // [WHEN/THEN] With 0 days nothing is counted or deleted
+        Assert.AreEqual(0, TableBackupMgt.CountOldBackups(0), 'Nothing should be counted for 0 days.');
+        Assert.AreEqual(0, TableBackupMgt.DeleteOldBackups(0), 'Nothing should be deleted for 0 days.');
+        Assert.IsTrue(TableBackup.Get(EntryNo), 'The backup must be kept.');
+
+        // The test runner rolls back only after the whole codeunit, so the old entry must not stay behind
+        TableBackup.Delete(false);
+    end;
+
+    [Test]
+    procedure GetTableCaptionReturnsCaptionOrBlank()
+    begin
+        // [WHEN/THEN] The caption of a known table is returned, an unknown table yields an empty text
+        Assert.AreEqual('Admin Tool Test Buffer', TableBackupMgt.GetTableCaption(Database::"Admin Tool Test Buffer"), 'Unexpected table caption.');
+        Assert.AreEqual('', TableBackupMgt.GetTableCaption(1999999999), 'An unknown table should have no caption.');
+    end;
+
+    local procedure CreateBackupEntry(BackupDateTime: DateTime): Integer
+    var
+        TableBackup: Record "Table Backup";
+    begin
+        TableBackup.Init();
+        TableBackup."Table ID" := Database::"Admin Tool Test Buffer";
+        TableBackup.Insert(true);
+        TableBackup."Backup Date Time" := BackupDateTime;
+        TableBackup.Modify(false);
+        exit(TableBackup."Entry No.");
     end;
 
     local procedure GetJSONObjectText(JSONToken: JsonToken; PropertyName: Text): Text

@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+
 page 51006 AllObj
 {
     ApplicationArea = All;

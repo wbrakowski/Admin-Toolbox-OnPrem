@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+
 table 51010 "Table Backup"
 {
     Caption = 'Table Backup';
@@ -83,6 +87,9 @@ table 51010 "Table Backup"
             AllowInCustomizations = AsReadWrite;
             Caption = 'Compression Enabled';
             InitValue = true;
+            ObsoleteReason = 'Backups are stored uncompressed, the field never had a function.';
+            ObsoleteState = Pending;
+            ObsoleteTag = '29.0';
             ToolTip = 'Specifies whether compression is enabled for the backup.';
         }
         field(13; "Backup Size (KB)"; Decimal)

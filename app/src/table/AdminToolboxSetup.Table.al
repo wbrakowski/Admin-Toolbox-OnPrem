@@ -1,7 +1,10 @@
+namespace AdminToolbox;
+
 table 51000 "Admin Toolbox Setup"
 {
     Caption = 'Admin Toolbox Setup';
     DataClassification = CustomerContent;
+    Permissions = tabledata "Admin Toolbox Setup" = r;
 
     fields
     {
@@ -63,4 +66,44 @@ table 51000 "Admin Toolbox Setup"
             Clustered = true;
         }
     }
+
+    procedure GetBackupRetentionDays(): Integer
+    begin
+        if not Get() then
+            exit(30);
+        exit("Backup Retention Days");
+    end;
+
+    procedure GetAutoBackupBeforeDeletion(): Boolean
+    begin
+        if not Get() then
+            exit(true);
+        exit("Auto Backup Before Deletion");
+    end;
+
+    procedure GetPromptForBackup(): Boolean
+    begin
+        if not Get() then
+            exit(true);
+        exit("Prompt for Backup");
+    end;
+
+    // A blank backup type in the setup falls back to JSON Export
+    procedure GetAutoBackupType(): Enum "Backup Type"
+    var
+        BackupType: Enum "Backup Type";
+    begin
+        if not Get() then
+            exit(BackupType::"JSON Export");
+        if "Auto Backup Type".AsInteger() = 0 then
+            exit(BackupType::"JSON Export");
+        exit("Auto Backup Type");
+    end;
+
+    procedure GetAuditLogRetentionDays(): Integer
+    begin
+        if not Get() then
+            exit(90);
+        exit("Audit Log Retention Days");
+    end;
 }

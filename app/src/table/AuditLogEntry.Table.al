@@ -1,13 +1,18 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Security.AccessControl;
+
 table 51015 "Audit Log Entry"
 {
     Caption = 'Audit Log Entry';
     DataClassification = CustomerContent;
     DrillDownPageId = "Audit Log Entries";
-    InherentEntitlements = RIMDX;
-    InherentPermissions = RIMDX;
+    InherentEntitlements = RX;
+    InherentPermissions = RX;
     LookupPageId = "Audit Log Entries";
-    Permissions = tabledata "Field Change History" = RMD,
-                  tabledata "Table Backup" = R;
+    Permissions = tabledata "Field Change History" = rd,
+                  tabledata "Table Backup" = r;
 
     fields
     {

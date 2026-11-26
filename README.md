@@ -377,6 +377,8 @@ The system will:
 - Records are inserted with `RecordRef.Insert(true)` to ensure SystemId is set
 - Duplicate records (same primary key) will fail to insert but won't stop the process
 - Partial restoration is possible if some records fail validation
+- A value in the backup that cannot be converted is reported with the value and the field name; if every record fails, the restore stops with an error
+- Creating a backup of a table with Blob, Media or RecordID fields asks for confirmation, because these fields are not part of the backup
 
 #### Exporting and Importing Backups
 
@@ -782,7 +784,7 @@ The table editor provides the following configuration options:
 
  ![TableEditorDeleteRecords](images/TableEditor_DeleteRecords.png)
 
-> **Note:** Delete operations create an audit log entry. A backup can be automatically created before deletion if configured in Admin Toolbox Setup.
+> **Note:** Delete operations create an audit log entry. A backup can be automatically created before deletion if configured in Admin Toolbox Setup (without the setup option no backup is created). Tables of the Admin Toolbox itself and system tables are protected and cannot be deleted. The Table Editor requires SUPER permissions.
 
 **To Modify Records:**
 1. Set the **ID** field to your target table
@@ -1247,8 +1249,8 @@ Contributions to improve the Admin Toolbox are welcome! Here's how you can help:
 - Submit a pull request with a clear description of changes
 
 **Automated Tests:**
-- The test app `Admin-Toolbox Tests` (`test/`, object IDs 51100 to 51149) covers the backup and restore logic, the record deletion with its relation check, the audit log and the main pages
-- Publish `app/` first, then `test/`, and run all tests with the AL Test Tool or `AL: Run All Tests`
+- The test app `Admin-Toolbox Tests` (`test/`, object IDs 51100 to 51149) covers the backup and restore logic, the record deletion with its relation check, the audit log, the Table Editor logic, the setup and the main pages
+- Publish `app/` first, then `test/` (unpublish the test app before publishing a new build of the app), and run all tests with the AL Test Tool or `AL: Run All Tests`
 - The tests assume an English session language and a development or test environment, never run them against production data
 
 **Translation Improvements:**
@@ -1281,6 +1283,10 @@ This project is released under the MIT License. See the LICENSE file for details
 **Major Changes in This Release**:
 - ✨ Upgrade to Business Central 29 (platform 29.0, runtime 18.0)
 - ✨ Automated test app with tests for backup/restore, record deletion, audit log and pages
+- ✨ Table Editor logic moved into its own codeunit with SUPER check, audit log and optional backup before deletion; protected tables cannot be deleted
+- ✨ Retention days of the setup are used for the cleanup of the audit log and the backups; the unused field "Compression Enabled" is obsolete
+- ✨ Backup: filter dialog for the filter view, streaming JSON export, confirmation for fields that cannot be backed up
+- ✨ All objects are in the namespace `AdminToolbox`
 - 🐛 Backup/Restore: culture-independent storage of values, closing dates, durations, date formulas and options are restored correctly; Blob, Media and RecordID fields are skipped instead of breaking the restore
 - 🐛 Table relation check: empty GUID fields are no longer reported as missing records, tables whose primary key name contains special characters no longer cause an error
 **Features of the Previous Release**:

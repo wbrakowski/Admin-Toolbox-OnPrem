@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 enum 51000 "Object Type"
 {
     Extensible = true;

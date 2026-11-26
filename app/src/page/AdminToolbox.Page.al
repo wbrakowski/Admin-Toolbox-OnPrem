@@ -1,3 +1,13 @@
+namespace AdminToolbox;
+
+using System.Environment;
+using System.Environment.Configuration;
+using System.Integration;
+using System.Reflection;
+using System.Security.AccessControl;
+using System.Security.User;
+using System.Utilities;
+
 page 51001 "Admin Toolbox"
 {
     AboutText = 'This toolbox assists you with the following tasks: deleting or editing records, viewing or importing licenses, running tables, publishing apps.';
@@ -9,8 +19,7 @@ page 51001 "Admin Toolbox"
     InherentPermissions = X;
     InsertAllowed = false;
     PageType = Document;
-    Permissions = tabledata "Admin Toolbox Setup" = RI;
-    PromotedActionCategories = 'New,Process,Report,Category4,Tables,Deletion,Audit & Backup,Apps';
+    Permissions = tabledata "Admin Toolbox Setup" = ri;
     SaveValues = true;
     SourceTable = Integer;
     UsageCategory = Lists;
@@ -328,10 +337,6 @@ page 51001 "Admin Toolbox"
             {
                 Caption = 'Open Dashboard';
                 Image = ViewDetails;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Opens the Admin Toolbox Dashboard with statistics, quick actions, and color-coded operations by risk level.';
 
                 trigger OnAction()
@@ -350,10 +355,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'Fills or updates the "Table" sub page';
                     Caption = 'Refresh Table List';
                     Image = Refresh;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ToolTip = 'Inserts or updates the table information in the fast tab "Tables" for all the tables in the system.';
 
                     trigger OnAction()
@@ -368,10 +369,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'View the records of the table';
                     Caption = 'View Records';
                     Image = Table;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedIsBig = false;
-                    PromotedOnly = true;
                     ToolTip = 'Runs the selected table in a separate window.';
                     trigger OnAction()
                     var
@@ -387,10 +384,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'A very powerful table editor';
                     Caption = 'Edit Table';
                     Image = EditLines;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedIsBig = false;
-                    PromotedOnly = true;
                     ToolTip = 'Opens the table editor where you can edit or delete selected records.';
                     trigger OnAction()
                     begin
@@ -404,10 +397,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'Check your tables for relation errors';
                     Caption = 'Check Table Relations';
                     Image = Relationship;
-                    Promoted = true;
-                    PromotedCategory = Category5;
-                    PromotedIsBig = false;
-                    PromotedOnly = true;
                     ToolTip = 'This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations.';
                     trigger OnAction()
                     begin
@@ -428,10 +417,6 @@ page 51001 "Admin Toolbox"
                     Caption = 'Suggest Records';
                     Ellipsis = true;
                     Image = Suggest;
-                    Promoted = true;
-                    PromotedCategory = Category6;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ToolTip = 'Opens a dialog and ask you which records you want to delete. If you continue, the field "Delete records" of the suggested tables will be checked off in the table overview.';
                     trigger OnAction()
                     begin
@@ -446,10 +431,6 @@ page 51001 "Admin Toolbox"
                     Caption = 'Delete Marked Records';
                     Ellipsis = true;
                     Image = Delete;
-                    Promoted = true;
-                    PromotedCategory = Category6;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ToolTip = 'Opens a dialog and if confirmed deletes the records from the tables where the field "Delete Records" is checked off.';
                     trigger OnAction()
                     begin
@@ -463,10 +444,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'Your fellow cleaning service';
                     Caption = 'Clear Selection';
                     Image = ClearFilter;
-                    Promoted = true;
-                    PromotedCategory = Category6;
-                    PromotedIsBig = false;
-                    PromotedOnly = true;
                     ToolTip = 'Clears the checkboxes of the field "Delete Records" in all tables.';
                     trigger OnAction()
                     begin
@@ -486,10 +463,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'Manage Table Backups';
                     Caption = 'Manage Backups';
                     Image = Archive;
-                    Promoted = true;
-                    PromotedCategory = Category7;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ToolTip = 'Opens the table backup management where you can view, create, restore and export/import backups.';
 
                     trigger OnAction()
@@ -503,10 +476,6 @@ page 51001 "Admin Toolbox"
                     AboutTitle = 'View Audit Log';
                     Caption = 'View Audit Log';
                     Image = EntryStatistics;
-                    Promoted = true;
-                    PromotedCategory = Category7;
-                    PromotedIsBig = false;
-                    PromotedOnly = true;
                     ToolTip = 'Opens the audit log where you can see all operations performed in the Admin Toolbox including who did what and when.';
 
                     trigger OnAction()
@@ -528,10 +497,6 @@ page 51001 "Admin Toolbox"
                     Caption = 'Publish & Install App';
                     Ellipsis = true;
                     Image = Installments;
-                    Promoted = true;
-                    PromotedCategory = Category8;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
                     ToolTip = 'Publishes and installs the selected app by using the powershell runner.';
 
                     trigger OnAction()
@@ -551,12 +516,72 @@ page 51001 "Admin Toolbox"
                 AboutTitle = 'About the setup';
                 Caption = 'Setup';
                 Image = Setup;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 RunObject = page "Admin Toolbox Setup";
                 ToolTip = 'Opens the setup of the Admin Toolbox.';
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(OpenDashboard_Promoted; OpenDashboard)
+                {
+                }
+                actionref(Setup_Promoted; Setup)
+                {
+                }
+            }
+            group(Category_Tables)
+            {
+                Caption = 'Tables';
+
+                actionref(InsertUpdateTables_Promoted; InsertUpdateTables)
+                {
+                }
+                actionref(ViewRecords_Promoted; ViewRecords)
+                {
+                }
+                actionref(EditTable_Promoted; EditTable)
+                {
+                }
+                actionref(CheckTableRelations_Promoted; CheckTableRelations)
+                {
+                }
+            }
+            group(Category_Deletion)
+            {
+                Caption = 'Deletion';
+
+                actionref(SuggestsRecords_Promoted; SuggestsRecords)
+                {
+                }
+                actionref(DeleteRecords_Promoted; DeleteRecords)
+                {
+                }
+                actionref(ClearRecords_Promoted; ClearRecords)
+                {
+                }
+            }
+            group(Category_AuditAndBackup)
+            {
+                Caption = 'Audit & Backup';
+
+                actionref(ManageBackups_Promoted; ManageBackups)
+                {
+                }
+                actionref(ViewAuditLog_Promoted; ViewAuditLog)
+                {
+                }
+            }
+            group(Category_Apps)
+            {
+                Caption = 'Apps';
+
+                actionref(PublishApp_Promoted; PublishApp)
+                {
+                }
             }
         }
     }

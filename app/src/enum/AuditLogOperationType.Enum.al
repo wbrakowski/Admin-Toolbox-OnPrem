@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 enum 51003 "Audit Log Operation Type"
 {
     Extensible = true;

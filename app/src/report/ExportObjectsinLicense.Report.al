@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Security.AccessControl;
+
 report 51000 "Export Objects in License"
 {
     ApplicationArea = All;
@@ -42,7 +47,7 @@ report 51000 "Export Objects in License"
         {
             area(Content)
             {
-                group(options)
+                group(Options)
                 {
                     Caption = 'Options';
                     field(OnlyFreeIDField; OnlyFreeIDVar)

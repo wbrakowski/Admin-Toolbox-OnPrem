@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Security.AccessControl;
+
 report 51001 "Export Unlicensed Objects"
 {
     ApplicationArea = All;

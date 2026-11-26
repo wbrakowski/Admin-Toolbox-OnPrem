@@ -915,6 +915,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType CheckRelationsQst</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 4008216517 - NamedType 2535638518" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Remove the mark in the field %2 for these tables.</source>
+          <target>Las siguientes tablas pertenecen a Admin Toolbox o al sistema y no se pueden eliminar: %1.\\Quite la marca del campo %2 para estas tablas.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table names, %2 = FieldCaption of "Delete Records"</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTablesAreDeletable - NamedType ProtectedTablesErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1089747479 - NamedType 1478607934" size-unit="char" translate="yes" xml:space="preserve">
           <source>The checkbox %1 was succesfully reset for the tables.</source>
           <target>La casilla %1 ha sido restablecida con éxito para las tablas.</target>
@@ -944,6 +950,18 @@
           <target>%1 tabla(s) fueron marcadas para su eliminación. Todos los registros de estas tablas se eliminarán. ¿Continuar?</target>
           <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType DeleteRecordsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 3381977563 - NamedType 756982822" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The following tables contain field types that cannot be backed up (e.g. BLOB, Media, RecordID): %1.\\These fields are skipped in the backup and cannot be restored. Do you want to continue?</source>
+          <target>Las siguientes tablas contienen tipos de campo que no se pueden incluir en la copia de seguridad (p. ej. BLOB, Media, RecordID): %1.\\Estos campos se omiten en la copia de seguridad y no se pueden restaurar. ¿Desea continuar?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table names</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmTablesWithUnsupportedFields - NamedType UnsupportedFieldsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4017461657 - Method 475533277 - NamedType 3235645552" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The operation was cancelled by the user.</source>
+          <target>La operación fue cancelada por el usuario.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CreateBackupsAndCommit - NamedType CancelledByUserErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2128028473 - NamedType 165517589" size-unit="char" translate="yes" xml:space="preserve">
           <source>Auto backup before deletion of table %1</source>
@@ -1063,7 +1081,6 @@
           <source>%1 unlicensed partner or custom records were suggested.</source>
           <target>%Se sugirieron registros de socios o personalizados.</target>
           <note from="Developer" annotates="general" priority="2">%1 Number of unlicensed records</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">The placeholder "%1" was found in source, but not in target.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType RecordsSuggestedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1889626813 - NamedType 3437731031" size-unit="char" translate="yes" xml:space="preserve">
@@ -1168,17 +1185,29 @@
           <note from="Developer" annotates="general" priority="2">%1 = Entry No., %2 = JSON Preview</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ViewBackupDataMsg</note>
         </trans-unit>
-        <trans-unit id="Codeunit 555356780 - Method 3808914001 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
-          <target>Creando copia de seguridad...\\ID de tabla: #1######\\Registros: #2######\\Estado: #3##################</target>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method OpenBackupProgressDialog - NamedType CreatingBackupTxt</note>
+        <trans-unit id="Codeunit 555356780 - Method 1570998342 - NamedType 1837596097" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table %1 %2 contains field type(s) that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped during backup and cannot be restored.\\Do you want to continue?</source>
+          <target>La tabla %1 %2 contiene tipos de campo que no se pueden incluir en la copia de seguridad (p. ej. BLOB, Media, RecordID). Se omiten durante la copia de seguridad y no se pueden restaurar.\\¿Desea continuar?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ConfirmBackupWithUnsupportedFields - NamedType TableContainsUnsupportedFieldsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3463787780 - NamedType 4077275319" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value '%1' cannot be converted for the field '%2'.</source>
+          <target>El valor '%1' no se puede convertir para el campo '%2'.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Value from the backup, %2 = Field Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ErrorInvalidFieldValue - NamedType InvalidFieldValueErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 3304058875 - NamedType 1845236427" size-unit="char" translate="yes" xml:space="preserve">
           <source>Backup_Table_%1_%2_%3.json</source>
           <target>CopiaSeg_Tabla_%1_%2_%3.json</target>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name, %3 = DateTime</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method GetBackupFileName - NamedType FileNameTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 555356780 - Method 3808914001 - NamedType 4127255929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creating Backup...\\Table ID: #1######\\Records: #2######\\Status: #3##################</source>
+          <target>Creando copia de seguridad...\\ID de tabla: #1######\\Registros: #2######\\Estado: #3##################</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = No. of Records, %3 = Status</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method OpenBackupProgressDialog - NamedType CreatingBackupTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 116217714 - NamedType 1118926904" size-unit="char" translate="yes" xml:space="preserve">
           <source>Do you want to restore %1 records to table %2? This will INSERT the backed up records.\\Warning: This may create duplicate records if they still exist!</source>
@@ -1216,17 +1245,125 @@
           <note from="Developer" annotates="general" priority="2">%1 = Inserted count, %2 = Total count, %3 = Failed count</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ValidateRestoreResult - NamedType PartialRestoreMsg</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 923294632 - NamedType 53700791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You need SUPER permissions to use the Table Editor.</source>
+          <target>Se necesitan permisos SUPER para usar el editor de tablas.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method CheckSuperPermission - NamedType SuperRequiredErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1860814064 - NamedType 1704922001" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table %1 %2 belongs to the Admin Toolbox or to the system and its records cannot be changed.</source>
+          <target>La tabla %1 %2 pertenece a Admin Toolbox o al sistema y sus registros no se pueden cambiar.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method CheckTableIsEditable - NamedType ProtectedTableChangeErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1794513315 - NamedType 3235645552" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The operation was cancelled by the user.</source>
+          <target>La operación fue cancelada por el usuario.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType CancelledByUserErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1794513315 - NamedType 4017732072" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Do you want to create a backup of the selected records before deletion?\\This is recommended for data safety.</source>
+          <target>¿Desea crear una copia de seguridad de los registros seleccionados antes de eliminarlos?\\Se recomienda para la seguridad de los datos.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType CreateBackupQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1794513315 - NamedType 756982822" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table %1 %2 contains field types that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped in the backup and cannot be restored.\\Do you want to continue?</source>
+          <target>La tabla %1 %2 contiene tipos de campo que no se pueden incluir en la copia de seguridad (p. ej. BLOB, Media, RecordID). Se omiten en la copia de seguridad y no se pueden restaurar.\\¿Desea continuar?</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType UnsupportedFieldsQst</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 112614305 - NamedType 165517589" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Backup before deletion in the Table Editor (table %1)</source>
+          <target>Copia de seguridad antes de eliminar en el editor de tablas (tabla %1)</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method CreateBackupBeforeDeletion - NamedType AutoBackupLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1810708843 - NamedType 470820532" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Created a record in the Table Editor</source>
+          <target>Registro creado en el editor de tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method CreateRecord - NamedType CreateDescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 1810708843 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Editor de tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method CreateRecord - NamedType TableEditorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3327007977 - NamedType 1591829087" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleted %1 record(s)</source>
+          <target>%1 registro(s) eliminado(s)</target>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of records</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method DeleteRecords - NamedType DeleteDescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3327007977 - NamedType 4141105003" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table %1 %2 belongs to the Admin Toolbox or to the system and its records cannot be deleted.</source>
+          <target>La tabla %1 %2 pertenece a Admin Toolbox o al sistema y sus registros no se pueden eliminar.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method DeleteRecords - NamedType ProtectedTableErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3327007977 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Editor de tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method DeleteRecords - NamedType TableEditorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3791685341 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deleting records... @1@@@@@@</source>
+          <target>Eliminando registros... @1@@@@@@</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method DeleteRecordsOfView - NamedType ProcessingDataTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 4129183015 - NamedType 967741232" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Filter each primary key field with a constant value. Only then a new record can be created using those values.</source>
+          <target>Filtrar cada campo de clave primaria con un valor constante. Sólo entonces se puede crear un nuevo registro utilizando esos valores.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method GetCreateRecordPreview - NamedType FilterTableOnEachPKFieldErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 4129183015 - NamedType 2372278282" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A record with these primary key values already exists.</source>
+          <target>Ya existe un registro con estos valores de clave primaria.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method GetCreateRecordPreview - NamedType RecordAlreadyExistsErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 2134091890 - NamedType 2441471186" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The field %1 is not part of the primary key of table %2.</source>
+          <target>El campo %1 no forma parte de la clave primaria de la tabla %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Field No., %2 = Table ID</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method GetPrimaryKeyIndexOrError - NamedType FieldNotInPrimaryKeyErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 2632086522 - NamedType 3609284232" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Modified field %1 to value %2</source>
+          <target>Campo %1 modificado al valor %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = Field Value</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ModifyRecords - NamedType ModifyDescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 2632086522 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Editor de tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ModifyRecords - NamedType TableEditorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3994719674 - NamedType 246981576" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Renamed field %1 to value %2</source>
+          <target>Campo %1 renombrado a valor %2</target>
+          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = New Value</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method RenameRecords - NamedType RenameDescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3331715897 - Method 3994719674 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Table Editor</source>
+          <target>Editor de tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method RenameRecords - NamedType TableEditorLbl</note>
+        </trans-unit>
         <trans-unit id="Page 3768843830 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About the Admin Toolbox</source>
           <target>Acerca de la caja de herramientas de administración</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property AboutTitle</note>
-        </trans-unit>
-        <trans-unit id="Page 3768843830 - Property 2019332006" size-unit="char" translate="yes" xml:space="preserve">
-          <source>New,Process,Report,Category4,Tables,Deletion,Audit &amp; Backup,Apps</source>
-          <target>Nuevo,Procesar,Informe,Categoría4,Tablas,Eliminación,Auditoría y copia de seguridad,Aplicaciones</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Property PromotedActionCategories</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Property 247559172" size-unit="char" translate="yes" xml:space="preserve">
           <source>This toolbox assists you with the following tasks: deleting or editing records, viewing or importing licenses, running tables, publishing apps.</source>
@@ -1888,6 +2025,36 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action ViewRecords - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 943044191 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Apps</source>
+          <target>Aplicaciones</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Category_Apps - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 4268898489 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Audit &amp; Backup</source>
+          <target>Auditoría y copia de seguridad</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Category_AuditAndBackup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 111709845 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Deletion</source>
+          <target>Eliminación</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Category_Deletion - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <target>Procesar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Category_Process - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3768843830 - Action 2726749494 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tables</source>
+          <target>Tablas</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Action Category_Tables - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2173611026 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Admin Toolbox Dashboard</source>
           <target>Panel de Admin Toolbox</target>
@@ -2055,6 +2222,12 @@
           <target>Configuración</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action Setup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2173611026 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <target>Procesar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Action Category_Process - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3103611735 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About Admin Toolbox Setup</source>
@@ -2291,7 +2464,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action FilterByUser - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1913454349 - Action 1093237880 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deletes audit log entries older than a specified number of days.</source>
+          <source>Deletes audit log entries that are older than the audit log retention set in the Admin Toolbox Setup.</source>
           <target>Elimina las entradas del registro de auditoría anteriores a un número especificado de días.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Property ToolTip</note>
@@ -2302,17 +2475,17 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1913454349 - Action 1093237880 - Method 1377591017 - NamedType 3186556524" size-unit="char" translate="yes" xml:space="preserve">
-          <source>How many days of audit log do you want to keep?</source>
-          <target>¿Cuántos días del registro de auditoría desea conservar?</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Method OnAction - NamedType AskDaysQst</note>
-        </trans-unit>
         <trans-unit id="Page 1913454349 - Action 1093237880 - Method 1377591017 - NamedType 1752520879" size-unit="char" translate="yes" xml:space="preserve">
           <source>Keep audit logs for %1 days and delete older entries?</source>
           <target>¿Conservar los registros de auditoría durante %1 días y eliminar las entradas más antiguas?</target>
           <note from="Developer" annotates="general" priority="2">%1 = Days to keep</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Method OnAction - NamedType DeleteConfirmQst</note>
+        </trans-unit>
+        <trans-unit id="Page 1913454349 - Action 1093237880 - Method 1377591017 - NamedType 3365979212" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The audit log retention in the Admin Toolbox Setup is 0 days. Audit log entries are kept indefinitely.</source>
+          <target>La retención del registro de auditoría en la configuración de Admin Toolbox es de 0 días. Las entradas del registro de auditoría se conservan indefinidamente.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Audit Log Entries - Action DeleteOldEntries - Method OnAction - NamedType KeepIndefinitelyMsg</note>
         </trans-unit>
         <trans-unit id="Page 1913454349 - Action 2851454604 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Exports the audit log entries to Excel.</source>
@@ -2414,15 +2587,25 @@
           <source>Backup created successfully. Entry No.: %1</source>
           <target>Copia de seguridad creada con éxito. N.º de entrada: %1</target>
           <note from="Developer" annotates="general" priority="2">%1 = Entry No.</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType SuccessMsg</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 2622681021" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please select a table.</source>
           <target>Por favor, seleccione una tabla.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">New translation.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType TableSelectionErr</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 3308047891" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use Filter is enabled but no filter is set. Set a filter or disable Use Filter.</source>
+          <target>Usar filtro está activado, pero no hay ningún filtro definido. Defina un filtro o desactive Usar filtro.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType FilterMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Page 1797195072 - Method 1196596036 - NamedType 1473800271" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Please select a table first.</source>
+          <target>Seleccione primero una tabla.</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method SelectFilter - NamedType SelectTableFirstMsg</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Backup Options</source>
@@ -2455,7 +2638,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control DescriptionField - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Control 4188249081 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the filter to apply (only if Use Filter is enabled).</source>
+          <source>Specifies the filter to apply (only if Use Filter is enabled). Choose the assist-edit button to set the filter on the fields of the selected table.</source>
           <target>Especifica el filtro que se aplicará (solo si Usar filtro está habilitado).</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Property ToolTip</note>
@@ -2466,17 +2649,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2699620902 - NamedType 1473800271" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2126772001 - NamedType 3635503699" size-unit="char" translate="yes" xml:space="preserve">
           <source>Please select a table first.</source>
           <target>Seleccione primero una tabla.</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnAssistEdit - NamedType SelectTableFirstMsg</note>
-        </trans-unit>
-        <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2699620902 - NamedType 2770735354" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please enter the filter manually in the format: Field1=Value1,Field2=Value2</source>
-          <target>Introduzca el filtro manualmente en el formato: Campo1=Valor1,Campo2=Valor2</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnAssistEdit - NamedType EnterFilterManuallyMsg</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnValidate - NamedType SelectTableFirstErr</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Control 2686546651 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the ID of the table to backup.</source>
@@ -2766,6 +2943,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action ViewData - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4089686920 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <target>Procesar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup Card - Action Category_Process - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 4240297231 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Table Backups</source>
           <target>Copias de seguridad de tabla</target>
@@ -2839,7 +3022,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action CreateBackup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 828941326 - Action 653807429 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete backups older than a specified number of days.</source>
+          <source>Deletes the backups that are older than the backup retention set in the Admin Toolbox Setup.</source>
           <target>Elimine las copias de seguridad anteriores a un número especificado de días.</target>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Property ToolTip</note>
@@ -2916,6 +3099,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action ViewData - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 828941326 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <target>Procesar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action Category_Process - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2727896929 - Property 1064389655" size-unit="char" translate="yes" xml:space="preserve">
           <source>About Table Editor</source>
           <target>Acerca del editor de tablas</target>
@@ -2970,17 +3159,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DoneMsg</note>
         </trans-unit>
-        <trans-unit id="Page 2727896929 - NamedType 363604244" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Filter each primary key field with a constant value. Only then a new record can be created using those values.</source>
-          <target>Filtrar cada campo de clave primaria con un valor constante. Sólo entonces se puede crear un nuevo registro utilizando esos valores.</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType FilterTableOnEachPKFieldMsg</note>
-        </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 1516192187" size-unit="char" translate="yes" xml:space="preserve">
           <source>Longest value has %1 characters.\%2</source>
           <target>El valor más largo tiene %1 ccaracteres.\N</target>
           <note from="Developer" annotates="general" priority="2">%1 = No. of characters, %2 = Value</note>
-          <note from="NAB AL Tool Refresh Xlf" annotates="general" priority="3">The placeholder "%2" was found in source, but not in target.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType MaxLengthMsg</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 2128188428" size-unit="char" translate="yes" xml:space="preserve">
@@ -3018,36 +3200,6 @@
           <target>¿Desea renombrar %1 registros en la tabla %2?</target>
           <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType RenameRecordsQst</note>
-        </trans-unit>
-        <trans-unit id="Page 2727896929 - Method 3541026971 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Processing tables... @1@@@@@@</source>
-          <target>Procesando tablas... @1@@@@@@</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method DeleteTableRecords - NamedType ProcessingDataTxt</note>
-        </trans-unit>
-        <trans-unit id="Page 2727896929 - Method 3513534516 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table Editor</source>
-          <target>Editor de tablas</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method ModifyTableRecords - NamedType TableEditorLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 2727896929 - Method 3513534516 - NamedType 3609284232" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Modified field %1 to value %2</source>
-          <target>Campo %1 modificado al valor %2</target>
-          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = Field Value</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method ModifyTableRecords - NamedType ModifyDescriptionLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 2727896929 - Method 2861808756 - NamedType 3193892791" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table Editor</source>
-          <target>Editor de tabla</target>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method RenameTableRecords - NamedType TableEditorLbl</note>
-        </trans-unit>
-        <trans-unit id="Page 2727896929 - Method 2861808756 - NamedType 246981576" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Renamed field %1 to value %2</source>
-          <target>Campo %1 renombrado a valor %2</target>
-          <note from="Developer" annotates="general" priority="2">%1 = Field Name, %2 = New Value</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Method RenameTableRecords - NamedType RenameDescriptionLbl</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - Control 2071486177 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Field</source>
@@ -3337,6 +3489,12 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action ModifyRecordsAction - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2727896929 - Action 3383493608 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Process</source>
+          <target>Procesar</target>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - Action Category_Process - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 670616998 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Unlicensed Objects</source>
           <target>Objetos sin licencia</target>
@@ -3349,11 +3507,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 1924762098 - Control 198641044 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Report 1924762098 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
           <target>Opciones</target>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control options - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report Export Objects in License - Control Options - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 1924762098 - Control 1234378913 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Object Types Filter field.</source>
