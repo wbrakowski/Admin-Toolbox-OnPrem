@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Utilities;
+
 page 51011 "Table Backup List"
 {
     ApplicationArea = All;
@@ -77,10 +82,6 @@ page 51011 "Table Backup List"
             {
                 Caption = 'Create Backup';
                 Image = Export;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Create a new backup of a table.';
 
                 trigger OnAction()
@@ -96,10 +97,6 @@ page 51011 "Table Backup List"
                 Caption = 'Restore Backup';
                 Enabled = Rec."Entry No." <> 0;
                 Image = Import;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Restore records from the selected backup.';
 
                 trigger OnAction()
@@ -113,10 +110,6 @@ page 51011 "Table Backup List"
                 Caption = 'Export to File';
                 Enabled = Rec."Entry No." <> 0;
                 Image = ExportFile;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Export the backup data to a JSON file.';
 
                 trigger OnAction()
@@ -128,10 +121,6 @@ page 51011 "Table Backup List"
             {
                 Caption = 'Import from File';
                 Image = ImportExcel;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Import backup data from a JSON file.';
 
                 trigger OnAction()
@@ -150,10 +139,6 @@ page 51011 "Table Backup List"
                 Caption = 'View Backup Data';
                 Enabled = Rec."Entry No." <> 0;
                 Image = View;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Specifies that the backup data (first 1000 characters) will be displayed.';
 
                 trigger OnAction()
@@ -165,40 +150,57 @@ page 51011 "Table Backup List"
             {
                 Caption = 'Delete Old Backups';
                 Image = Delete;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-                ToolTip = 'Delete backups older than a specified number of days.';
+                ToolTip = 'Deletes the backups that are older than the backup retention set in the Admin Toolbox Setup.';
 
                 trigger OnAction()
                 var
-                    TableBackup: Record "Table Backup";
+                    AdminToolboxSetup: Record "Admin Toolbox Setup";
                     ConfirmManagement: Codeunit "Confirm Management";
-                    CutoffDate: DateTime;
+                    TableBackupMgt: Codeunit "Table Backup Mgt.";
                     Days: Integer;
-                    DeletedCount: Integer;
                     DeleteConfirmQst: Label 'This will delete %1 backup(s) older than %2 days. Continue?', Comment = '%1 = No. of backups, %2 = Days';
                     DeletedMsg: Label '%1 backup(s) have been deleted.', Comment = '%1 = No. of backups';
                     NoBackupsFoundMsg: Label 'No backups found older than %1 days.', Comment = '%1 = Days to keep';
                 begin
-                    Days := 30; // Default: 30 days
+                    Days := AdminToolboxSetup.GetBackupRetentionDays();
 
-                    CutoffDate := CreateDateTime(Today() - Days, 0T);
-                    TableBackup.SetFilter("Backup Date Time", '<%1', CutoffDate);
-                    if TableBackup.IsEmpty() then begin
+                    if TableBackupMgt.CountOldBackups(Days) = 0 then begin
                         Message(NoBackupsFoundMsg, Days);
                         exit;
                     end;
 
-                    if not ConfirmManagement.GetResponseOrDefault(StrSubstNo(DeleteConfirmQst, TableBackup.Count(), Days), false) then
+                    if not ConfirmManagement.GetResponseOrDefault(StrSubstNo(DeleteConfirmQst, TableBackupMgt.CountOldBackups(Days), Days), false) then
                         exit;
 
-                    DeletedCount := TableBackup.Count();
-                    TableBackup.DeleteAll(true);
-                    Message(DeletedMsg, DeletedCount);
+                    Message(DeletedMsg, TableBackupMgt.DeleteOldBackups(Days));
                     CurrPage.Update(false);
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(CreateBackup_Promoted; CreateBackup)
+                {
+                }
+                actionref(RestoreBackup_Promoted; RestoreBackup)
+                {
+                }
+                actionref(ExportToFile_Promoted; ExportToFile)
+                {
+                }
+                actionref(ImportFromFile_Promoted; ImportFromFile)
+                {
+                }
+                actionref(ViewData_Promoted; ViewData)
+                {
+                }
+                actionref(DeleteOldBackups_Promoted; DeleteOldBackups)
+                {
+                }
             }
         }
     }

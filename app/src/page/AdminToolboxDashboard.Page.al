@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51018 "Admin Toolbox Dashboard"
 {
     ApplicationArea = All;
@@ -5,9 +7,9 @@ page 51018 "Admin Toolbox Dashboard"
     InherentEntitlements = X;
     InherentPermissions = X;
     PageType = Card;
-    Permissions = tabledata "Admin Toolbox Setup" = R,
-tabledata "Record Deletion" = R,
-                  tabledata "Table Backup" = R;
+    Permissions = tabledata "Admin Toolbox Setup" = r,
+                  tabledata "Record Deletion" = r,
+                  tabledata "Table Backup" = r;
     RefreshOnActivate = true;
     UsageCategory = Administration;
 
@@ -137,10 +139,6 @@ tabledata "Record Deletion" = R,
             {
                 Caption = 'Admin Toolbox';
                 Image = Setup;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Specifies the main Admin Toolbox page with all available tools and operations.';
 
                 trigger OnAction()
@@ -152,10 +150,6 @@ tabledata "Record Deletion" = R,
             {
                 Caption = 'Setup';
                 Image = Setup;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Specifies the Admin Toolbox Setup to configure automatic backups, audit logging, user mode, and retention policies.';
 
                 trigger OnAction()
@@ -167,10 +161,6 @@ tabledata "Record Deletion" = R,
             {
                 Caption = 'Refresh';
                 Image = Refresh;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Specifies that all statistics and information on the dashboard will be refreshed. This will reload all data from the database.';
 
                 trigger OnAction()
@@ -182,6 +172,23 @@ tabledata "Record Deletion" = R,
                     CurrPage.Update(false);
                     Message(DashboardDataRefreshedMsg);
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(OpenToolbox_Promoted; OpenToolbox)
+                {
+                }
+                actionref(Setup_Promoted; Setup)
+                {
+                }
+                actionref(RefreshDashboard_Promoted; RefreshDashboard)
+                {
+                }
             }
         }
     }
@@ -321,11 +328,8 @@ tabledata "Record Deletion" = R,
             else
                 Tables100000Style := Format(PageStyle::Standard);
 
-        // Audit Status
-        if AuditStatusText.Contains('Enabled') then
-            AuditStatusStyle := Format(PageStyle::Favorable)
-        else
-            AuditStatusStyle := Format(PageStyle::Attention);
+        // Audit logging cannot be switched off, so the status is always favorable
+        AuditStatusStyle := Format(PageStyle::Favorable);
 
         // Recent operations style
         if RecentOperations > 50 then

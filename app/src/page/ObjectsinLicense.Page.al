@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51008 "Objects in License"
 {
     ApplicationArea = All;

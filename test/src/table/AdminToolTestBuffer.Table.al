@@ -1,3 +1,7 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+
 table 51100 "Admin Tool Test Buffer"
 {
     Caption = 'Admin Tool Test Buffer';
@@ -100,6 +104,7 @@ table 51100 "Admin Tool Test Buffer"
             Caption = 'Date Formula Value';
             ToolTip = 'Specifies a date formula value used for round-trip testing.';
         }
+#pragma warning disable LC0088
         field(19; "Option Value"; Option)
         {
             Caption = 'Option Value';
@@ -107,6 +112,7 @@ table 51100 "Admin Tool Test Buffer"
             OptionMembers = " ",First,Second;
             ToolTip = 'Specifies an option value used for round-trip testing.';
         }
+#pragma warning restore LC0088
         field(20; "Closing Date Value"; Date)
         {
             Caption = 'Closing Date Value';

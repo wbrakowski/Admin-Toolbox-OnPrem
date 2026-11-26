@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 permissionset 51000 "Admin Toolbox"
 {
     Assignable = true;
@@ -7,9 +9,9 @@ permissionset 51000 "Admin Toolbox"
         table "Admin Toolbox Setup" = X,
         tabledata "Admin Toolbox Setup" = RIMD,
         table "Audit Log Entry" = X,
-        tabledata "Audit Log Entry" = RIMD,
+        tabledata "Audit Log Entry" = R,
         table "Field Change History" = X,
-        tabledata "Field Change History" = RIMD,
+        tabledata "Field Change History" = R,
         table "Record Deletion" = X,
         tabledata "Record Deletion" = RIMD,
         table "Record Deletion Rel. Error" = X,
@@ -26,6 +28,7 @@ permissionset 51000 "Admin Toolbox"
         codeunit "Event Subscribers" = X,
         codeunit "Powershell Mgt." = X,
         codeunit "Table Backup Mgt." = X,
+        codeunit "Table Editor Mgt." = X,
         // Pages
         page "Admin Toolbox" = X,
         page "Admin Toolbox Dashboard" = X,

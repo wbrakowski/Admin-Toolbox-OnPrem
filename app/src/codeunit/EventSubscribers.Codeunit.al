@@ -1,7 +1,12 @@
+namespace AdminToolbox;
+
+using System.Environment;
+using System.Security.User;
+
 codeunit 51002 "Event Subscribers"
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Company Triggers", OnCompanyOpenCompleted, '', true, true)]
-    local procedure CompanyTriggers_OnCompanyOpen()
+    local procedure "Company Triggers_OnCompanyOpenCompleted"()
     var
         ActiveSession: Record "Active Session";
         AdminToolMgt: Codeunit "Admin Tool Mgt.";

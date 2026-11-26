@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Environment;
+
 page 51005 "Admin Toolbox Setup"
 {
     AboutText = 'Setup additional functionalities of the Admin Toolbox. It only contains additional functionalities for OnPrem environments.';
@@ -97,7 +101,7 @@ page 51005 "Admin Toolbox Setup"
         IsOnPrem := EnvironmentInformation.IsOnPrem();
         if not IsOnPrem then begin
             MyNotification.Message(OnPremMsg);
-            MyNotification.Scope := NotificationScope::LocalScope;
+            MyNotification.Scope(NotificationScope::LocalScope);
             MyNotification.Send();
         end;
     end;

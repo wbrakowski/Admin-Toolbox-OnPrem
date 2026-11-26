@@ -1,3 +1,8 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+using System.TestLibraries.Utilities;
+
 codeunit 51103 "Admin Tool Page Test"
 {
     Subtype = Test;
@@ -58,7 +63,7 @@ codeunit 51103 "Admin Tool Page Test"
         TestBuffer.Init();
         TestBuffer."No." := 'PG01';
         TestBuffer.Insert(false);
-        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Shown in the backup list');
+        EntryNo := TableBackupMgt.CreateBackup(Database::"Admin Tool Test Buffer", Enum::"Backup Type"::"JSON Export", Enum::"Backup Operation Type"::"Manual Backup", 'Shown in the backup list', false);
 
         // [WHEN] The backup list is opened and positioned on the entry
         TableBackupList.OpenView();
@@ -78,5 +83,15 @@ codeunit 51103 "Admin Tool Page Test"
         // [WHEN/THEN] The dashboard calculates its statistics and opens without an error
         AdminToolboxDashboard.OpenView();
         AdminToolboxDashboard.Close();
+    end;
+
+    [Test]
+    procedure TableEditorPageOpensForSuperUser()
+    var
+        TableEditor: TestPage "Table Editor";
+    begin
+        // [WHEN/THEN] The user running the tests has SUPER permissions, so the Table Editor opens
+        TableEditor.OpenEdit();
+        TableEditor.Close();
     end;
 }

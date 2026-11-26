@@ -1,41 +1,156 @@
+namespace AdminToolbox;
+
+using Microsoft.Assembly.Comment;
+using Microsoft.Assembly.Document;
+using Microsoft.Assembly.History;
+using Microsoft.Bank.Check;
+using Microsoft.Bank.DirectDebit;
+using Microsoft.Bank.Ledger;
+using Microsoft.Bank.Payment;
+using Microsoft.Bank.Reconciliation;
+using Microsoft.Bank.Statement;
+using Microsoft.CashFlow.Forecast;
+using Microsoft.CashFlow.Setup;
+using Microsoft.CashFlow.Worksheet;
+using Microsoft.CostAccounting.Budget;
+using Microsoft.CostAccounting.Journal;
+using Microsoft.CostAccounting.Ledger;
+using Microsoft.CRM.Campaign;
+using Microsoft.CRM.Interaction;
+using Microsoft.CRM.Opportunity;
+using Microsoft.CRM.Segment;
+using Microsoft.CRM.Task;
+using Microsoft.EServices.EDocument;
+using Microsoft.Finance.Analysis;
+using Microsoft.Finance.Currency;
+using Microsoft.Finance.Dimension;
+using Microsoft.Finance.GeneralLedger.Budget;
+using Microsoft.Finance.GeneralLedger.Journal;
+using Microsoft.Finance.GeneralLedger.Ledger;
+using Microsoft.Finance.GeneralLedger.Reversal;
+using Microsoft.Finance.VAT.Ledger;
+using Microsoft.Finance.VAT.RateChange;
+using Microsoft.Finance.VAT.Registration;
+using Microsoft.Finance.VAT.Reporting;
+using Microsoft.FixedAssets.Insurance;
+using Microsoft.FixedAssets.Journal;
+using Microsoft.FixedAssets.Ledger;
+using Microsoft.FixedAssets.Maintenance;
+using Microsoft.Foundation.Comment;
+using Microsoft.Foundation.Navigate;
+using Microsoft.Foundation.Period;
+using Microsoft.HumanResources.Absence;
+using Microsoft.Intercompany.Comment;
+using Microsoft.Intercompany.Dimension;
+using Microsoft.Intercompany.Inbox;
+using Microsoft.Intercompany.Outbox;
+using Microsoft.Inventory.Analysis;
+using Microsoft.Inventory.Availability;
+using Microsoft.Inventory.Costing;
+using Microsoft.Inventory.Counting.Journal;
+using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Planning;
+using Microsoft.Inventory.Reconciliation;
+using Microsoft.Inventory.Requisition;
+using Microsoft.Inventory.Setup;
+using Microsoft.Inventory.Tracking;
+using Microsoft.Inventory.Transfer;
+using Microsoft.Manufacturing.Capacity;
+using Microsoft.Manufacturing.Document;
+using Microsoft.Manufacturing.Forecast;
+using Microsoft.Manufacturing.Routing;
+using Microsoft.Manufacturing.Setup;
+using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Journal;
+using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
+using Microsoft.Projects.Project.WIP;
+using Microsoft.Projects.Resources.Journal;
+using Microsoft.Projects.Resources.Ledger;
+using Microsoft.Projects.Resources.Resource;
+using Microsoft.Projects.TimeSheet;
+using Microsoft.Purchases.Archive;
+using Microsoft.Purchases.Comment;
+using Microsoft.Purchases.Document;
+using Microsoft.Purchases.History;
+using Microsoft.Purchases.Payables;
+using Microsoft.Sales.Archive;
+using Microsoft.Sales.Comment;
+using Microsoft.Sales.Document;
+using Microsoft.Sales.FinanceCharge;
+using Microsoft.Sales.History;
+using Microsoft.Sales.Receivables;
+using Microsoft.Sales.Reminder;
+using Microsoft.Service.Comment;
+using Microsoft.Service.Contract;
+using Microsoft.Service.Document;
+using Microsoft.Service.History;
+using Microsoft.Service.Item;
+using Microsoft.Service.Ledger;
+using Microsoft.Service.Loaner;
+using Microsoft.Service.Pricing;
+using Microsoft.Utilities;
+using Microsoft.Warehouse.Activity;
+using Microsoft.Warehouse.Activity.History;
+using Microsoft.Warehouse.Document;
+using Microsoft.Warehouse.History;
+using Microsoft.Warehouse.InternalDocument;
+using Microsoft.Warehouse.InventoryDocument;
+using Microsoft.Warehouse.Journal;
+using Microsoft.Warehouse.Ledger;
+using Microsoft.Warehouse.Request;
+using Microsoft.Warehouse.Tracking;
+using Microsoft.Warehouse.Worksheet;
+using System.Automation;
+using System.Diagnostics;
+using System.EMail;
+using System.Environment;
+using System.Environment.Configuration;
+using System.Reflection;
+using System.Security.AccessControl;
+using System.Threading;
+using System.Utilities;
+
 codeunit 51000 "Admin Tool Mgt."
 {
-    Permissions = tabledata "Admin Toolbox Setup" = RI,
-tabledata "Bank Account Ledger Entry" = IMD,
-tabledata "Cust. Ledger Entry" = IMD,
-tabledata "Detailed Cust. Ledg. Entry" = IMD,
-tabledata "Detailed Vendor Ledg. Entry" = IMD,
-tabledata "G/L Entry" = IMD,
-tabledata "G/L Entry - VAT Entry Link" = IMD,
-tabledata "G/L Register" = IMD,
-                  tabledata "Gen. Journal Line" = IMD,
-tabledata "Item Application Entry" = IMD,
-tabledata "Item Ledger Entry" = IMD,
-tabledata "Item Register" = IMD,
-tabledata "Job Ledger Entry" = IMD,
-tabledata "Purch. Cr. Memo Hdr." = IMD,
-tabledata "Purch. Cr. Memo Line" = IMD,
-tabledata "Purch. Inv. Header" = IMD,
-                  tabledata "Purch. Inv. Line" = IMD,
-tabledata "Purch. Rcpt. Header" = IMD,
-tabledata "Purch. Rcpt. Line" = IMD,
-tabledata "Purchase Header" = IMD,
-tabledata "Purchase Line" = IMD,
-tabledata "Record Deletion" = RIM,
-tabledata "Record Deletion Rel. Error" = RID,
-tabledata "Return Receipt Header" = IMD,
-tabledata "Return Shipment Header" = IMD,
-                  tabledata "Sales Cr.Memo Header" = IMD,
-tabledata "Sales Cr.Memo Line" = IMD,
-tabledata "Sales Header" = IMD,
-tabledata "Sales Invoice Header" = IMD,
-tabledata "Sales Invoice Line" = IMD,
-                  tabledata "Sales Line" = IMD,
-tabledata "Sales Shipment Header" = IMD,
-tabledata "Sales Shipment Line" = IMD,
-                  tabledata "Value Entry" = IMD,
-                  tabledata "VAT Entry" = IMD,
-tabledata "Vendor Ledger Entry" = IMD;
+    Permissions = tabledata "Admin Toolbox Setup" = ri,
+                  tabledata "Bank Account Ledger Entry" = imd,
+                  tabledata "Cust. Ledger Entry" = imd,
+                  tabledata "Detailed Cust. Ledg. Entry" = imd,
+                  tabledata "Detailed Vendor Ledg. Entry" = imd,
+                  tabledata "G/L Entry" = imd,
+                  tabledata "G/L Entry - VAT Entry Link" = imd,
+                  tabledata "G/L Register" = imd,
+                  tabledata "Gen. Journal Line" = imd,
+                  tabledata "Item Application Entry" = imd,
+                  tabledata "Item Ledger Entry" = imd,
+                  tabledata "Item Register" = imd,
+                  tabledata "Job Ledger Entry" = imd,
+                  tabledata "Purch. Cr. Memo Hdr." = imd,
+                  tabledata "Purch. Cr. Memo Line" = imd,
+                  tabledata "Purch. Inv. Header" = imd,
+                  tabledata "Purch. Inv. Line" = imd,
+                  tabledata "Purch. Rcpt. Header" = imd,
+                  tabledata "Purch. Rcpt. Line" = imd,
+                  tabledata "Purchase Header" = imd,
+                  tabledata "Purchase Line" = imd,
+                  tabledata "Record Deletion" = rim,
+                  tabledata "Record Deletion Rel. Error" = rid,
+                  tabledata "Return Receipt Header" = imd,
+                  tabledata "Return Shipment Header" = imd,
+                  tabledata "Sales Cr.Memo Header" = imd,
+                  tabledata "Sales Cr.Memo Line" = imd,
+                  tabledata "Sales Header" = imd,
+                  tabledata "Sales Invoice Header" = imd,
+                  tabledata "Sales Invoice Line" = imd,
+                  tabledata "Sales Line" = imd,
+                  tabledata "Sales Shipment Header" = imd,
+                  tabledata "Sales Shipment Line" = imd,
+                  tabledata "Value Entry" = imd,
+                  tabledata "VAT Entry" = imd,
+                  tabledata "Vendor Ledger Entry" = imd;
 
     procedure CalcRecordsInTable(TableNoToCheck: Integer): Integer
     var
@@ -46,7 +161,7 @@ tabledata "Vendor Ledger Entry" = IMD;
         Field.SetRange(TableNo, TableNoToCheck);
         if not Field.IsEmpty() then begin
             RecordRef.Open(TableNoToCheck);
-            RecordRef.ReadIsolation(IsolationLevel::UpdLock);
+            RecordRef.ReadIsolation(IsolationLevel::ReadUncommitted);
             NoOfRecords := RecordRef.Count();
             RecordRef.Close();
             exit(NoOfRecords);
@@ -227,7 +342,7 @@ tabledata "Vendor Ledger Entry" = IMD;
         UpdateDialog.Open(GetDeletingRecordsText());
 
         ValidateRecordsMarkedForDeletion(RecordDeletion, UpdateDialog);
-        CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog);
+        CreateBackupsAndCommit(RecordDeletion, UpdateDialog);
         PerformDeletion(RecordDeletion, RecordDeletionRelError, RunTrigger, UpdateDialog);
 
         UpdateDialog.Close();
@@ -265,7 +380,55 @@ tabledata "Vendor Ledger Entry" = IMD;
             Error(NoRecsFoundErr, RecordDeletion.FieldCaption("Delete Records"));
         end;
 
+        CheckTablesAreDeletable(RecordDeletion);
         ConfirmDeletion(RecordDeletion, UpdateDialog);
+    end;
+
+    // The backups are committed before the deletion, so they survive an error during the deletion.
+    local procedure CreateBackupsAndCommit(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
+    var
+        BackupCount: Integer;
+        CancelledByUserErr: Label 'The operation was cancelled by the user.';
+    begin
+        if not CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount) then begin
+            UpdateDialog.Close();
+            Error(CancelledByUserErr);
+        end;
+
+        if BackupCount > 0 then
+            Commit();
+    end;
+
+    // Tables of the Admin Toolbox itself (audit log, backups, deletion list) and the system tables are never deleted.
+    internal procedure IsTableProtected(TableID: Integer): Boolean
+    begin
+        if TableID >= 2000000000 then
+            exit(true);
+
+        exit(TableID in [
+            Database::"Admin Toolbox Setup", Database::"Audit Log Entry", Database::"Field Change History",
+            Database::"Record Deletion", Database::"Record Deletion Rel. Error", Database::"Table Backup"]);
+    end;
+
+    local procedure CheckTablesAreDeletable(var RecordDeletion: Record "Record Deletion")
+    var
+        ProtectedTables: Text;
+        ProtectedTablesErr: Label 'The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Remove the mark in the field %2 for these tables.', Comment = '%1 = Table names, %2 = FieldCaption of "Delete Records"';
+    begin
+        RecordDeletion.SetRange("Delete Records", true);
+        RecordDeletion.SetLoadFields("Table ID");
+        if RecordDeletion.FindSet() then
+            repeat
+                if IsTableProtected(RecordDeletion."Table ID") then begin
+                    if ProtectedTables <> '' then
+                        ProtectedTables += ', ';
+                    ProtectedTables += StrSubstNo('%1 %2', RecordDeletion."Table ID", GetTableCaption(RecordDeletion."Table ID"));
+                end;
+            until RecordDeletion.Next() = 0;
+        RecordDeletion.SetLoadFields();
+
+        if ProtectedTables <> '' then
+            Error(ProtectedTablesErr, ProtectedTables, RecordDeletion.FieldCaption("Delete Records"));
     end;
 
     local procedure ConfirmDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
@@ -295,6 +458,7 @@ tabledata "Vendor Ledger Entry" = IMD;
     begin
         // Never touch tables that are not marked for deletion, even if the caller passes an unfiltered record
         RecordDeletion.SetRange("Delete Records", true);
+        CheckTablesAreDeletable(RecordDeletion);
         if RecordDeletion.FindSet() then
             repeat
                 UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
@@ -320,27 +484,57 @@ tabledata "Vendor Ledger Entry" = IMD;
             until RecordDeletion.Next() = 0;
     end;
 
-    // internal (not local) so the test app can create the backups without the confirm dialogs
-    internal procedure CreateBackupsBeforeDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
+    // internal (not local) so the test app can create the backups without the confirm dialogs.
+    // Returns false if the user cancels because of tables with field types that cannot be backed up.
+    internal procedure CreateBackupsBeforeDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog; var BackupCount: Integer): Boolean
     var
         AdminToolboxSetup: Record "Admin Toolbox Setup";
         TableBackupMgt: Codeunit "Table Backup Mgt.";
         BackupOperationType: Enum "Backup Operation Type";
-        BackupCount: Integer;
     begin
+        BackupCount := 0;
+        RecordDeletion.SetRange("Delete Records", true);
+        CheckTablesAreDeletable(RecordDeletion);
         InitializeBackupSetup(AdminToolboxSetup);
 
         if not AdminToolboxSetup."Auto Backup Before Deletion" then
-            exit;
+            exit(true);
 
         if not ConfirmBackupCreation(AdminToolboxSetup, UpdateDialog) then
-            exit;
+            exit(true);
+
+        if not ConfirmTablesWithUnsupportedFields(RecordDeletion, TableBackupMgt, UpdateDialog) then
+            exit(false);
 
         BackupCount := CreateBackupsForTables(RecordDeletion, AdminToolboxSetup, TableBackupMgt, BackupOperationType);
         ShowBackupCompletionMessage(BackupCount);
 
         // Reopen the deletion dialog
         UpdateDialog.Open(GetDeletingRecordsText());
+        exit(true);
+    end;
+
+    // One question for all flagged tables that contain field types that are skipped by the backup (BLOB, Media, RecordID, ...)
+    local procedure ConfirmTablesWithUnsupportedFields(var RecordDeletion: Record "Record Deletion"; var TableBackupMgt: Codeunit "Table Backup Mgt."; var UpdateDialog: Dialog): Boolean
+    var
+        ConfirmManagement: Codeunit "Confirm Management";
+        AffectedTables: Text;
+        UnsupportedFieldsQst: Label 'The following tables contain field types that cannot be backed up (e.g. BLOB, Media, RecordID): %1.\\These fields are skipped in the backup and cannot be restored. Do you want to continue?', Comment = '%1 = Table names';
+    begin
+        if RecordDeletion.FindSet() then
+            repeat
+                if TableBackupMgt.TableHasUnsupportedFields(RecordDeletion."Table ID") then begin
+                    if AffectedTables <> '' then
+                        AffectedTables += ', ';
+                    AffectedTables += StrSubstNo('%1 %2', RecordDeletion."Table ID", GetTableCaption(RecordDeletion."Table ID"));
+                end;
+            until RecordDeletion.Next() = 0;
+
+        if AffectedTables = '' then
+            exit(true);
+
+        UpdateDialog.Close();
+        exit(ConfirmManagement.GetResponseOrDefault(StrSubstNo(UnsupportedFieldsQst, AffectedTables), true));
     end;
 
     local procedure InitializeBackupSetup(var AdminToolboxSetup: Record "Admin Toolbox Setup")
@@ -394,7 +588,8 @@ tabledata "Vendor Ledger Entry" = IMD;
                     RecordDeletion."Table ID",
                     BackupTypeToUse,
                     BackupOperationType::"Before Deletion",
-                    StrSubstNo(AutoBackupLbl, RecordDeletion."Table ID"));
+                    StrSubstNo(AutoBackupLbl, RecordDeletion."Table ID"),
+                    false);
                 BackupCount += 1;
             until RecordDeletion.Next() = 0;
 
@@ -444,6 +639,8 @@ tabledata "Vendor Ledger Entry" = IMD;
                 RecordDeletion.Init();
                 RecordDeletion."Table ID" := AllObjWithCaption."Object ID";
                 RecordDeletion.Company := CopyStr(CompanyName(), 1, MaxStrLen(RecordDeletion.Company));
+                if IsTableProtected(RecordDeletion."Table ID") then
+                    continue;
                 if not RecordDeletion.Insert(false) then
                     continue; // Ignore if already exists
             until AllObjWithCaption.Next() = 0;
@@ -493,6 +690,9 @@ tabledata "Vendor Ledger Entry" = IMD;
     var
         RecordDeletion: Record "Record Deletion";
     begin
+        if IsTableProtected(TableID) then
+            exit;
+
         if RecordDeletion.Get(TableID) then begin
             RecordDeletion."Delete Records" := true;
             RecordDeletion.Modify(false);

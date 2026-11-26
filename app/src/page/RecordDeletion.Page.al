@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51003 "Record Deletion"
 {
     ApplicationArea = All;

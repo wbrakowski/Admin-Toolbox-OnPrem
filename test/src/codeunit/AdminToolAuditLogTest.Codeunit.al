@@ -1,3 +1,8 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+using System.TestLibraries.Utilities;
+
 codeunit 51102 "Admin Tool Audit Log Test"
 {
     Subtype = Test;

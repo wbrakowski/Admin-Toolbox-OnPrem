@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.Reflection;
+using System.Security.AccessControl;
+
 table 51016 "Field Change History"
 {
     Caption = 'Field Change History';

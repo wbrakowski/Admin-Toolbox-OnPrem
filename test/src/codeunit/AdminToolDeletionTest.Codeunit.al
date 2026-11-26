@@ -1,3 +1,10 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+using Microsoft.Sales.Document;
+using System.Reflection;
+using System.TestLibraries.Utilities;
+
 codeunit 51101 "Admin Tool Deletion Test"
 {
     Subtype = Test;
@@ -6,6 +13,7 @@ codeunit 51101 "Admin Tool Deletion Test"
     var
         Assert: Codeunit "Library Assert";
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
+        ConfirmReply: Boolean;
 
     [MessageHandler]
     procedure MessageHandler(Message: Text[1024])
@@ -312,16 +320,19 @@ codeunit 51101 "Admin Tool Deletion Test"
     end;
 
     [Test]
-    [HandlerFunctions('MessageHandler')]
+    [HandlerFunctions('MessageHandler,ConfirmHandler')]
     procedure CreateBackupsBeforeDeletionCreatesBackupForFlaggedTable()
     var
         TestBuffer: Record "Admin Tool Test Buffer";
         RecordDeletion: Record "Record Deletion";
         TableBackup: Record "Table Backup";
         UpdateDialog: Dialog;
+        BackupCount: Integer;
         BackupCountBefore: Integer;
     begin
         // [GIVEN] Automatic backups without prompt, and a record in the test table flagged for deletion
+        //         (the table has a Media field, so the user is asked once about the fields that cannot be backed up and agrees)
+        ConfirmReply := true;
         SetupAutoBackup(true, false, Enum::"Backup Type"::"JSON Export");
         TestBuffer.DeleteAll(false);
         InsertTestBufferRecord('B001');
@@ -331,9 +342,12 @@ codeunit 51101 "Admin Tool Deletion Test"
         BackupCountBefore := TableBackup.Count();
 
         // [WHEN] Backups are created for the flagged table
-        AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog);
+        UpdateDialog.Open('Deleting #1#######');
+        Assert.IsTrue(AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount), 'The deletion should not be cancelled.');
+        UpdateDialog.Close();
 
         // [THEN] Exactly one new backup of the table exists, created for the deletion
+        Assert.AreEqual(1, BackupCount, 'Unexpected number of created backups.');
         Assert.AreEqual(BackupCountBefore + 1, TableBackup.Count(), 'Expected exactly one new backup to be created.');
         Assert.IsTrue(TableBackup.FindLast(), 'A backup should have been created.');
         Assert.AreEqual(Enum::"Backup Operation Type"::"Before Deletion".AsInteger(), TableBackup."Operation Type".AsInteger(), 'Unexpected operation type of the backup.');
@@ -341,7 +355,70 @@ codeunit 51101 "Admin Tool Deletion Test"
     end;
 
     [Test]
+    [HandlerFunctions('ConfirmHandler')]
+    procedure CreateBackupsBeforeDeletionCancelsWhenUserDeclinesTablesWithUnsupportedFields()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        RecordDeletion: Record "Record Deletion";
+        TableBackup: Record "Table Backup";
+        UpdateDialog: Dialog;
+        BackupCount: Integer;
+    begin
+        // [GIVEN] Automatic backups without prompt, a flagged table with a Media field, and a user who declines
+        ConfirmReply := false;
+        SetupAutoBackup(true, false, Enum::"Backup Type"::"JSON Export");
+        TestBuffer.DeleteAll(false);
+        InsertTestBufferRecord('B051');
+        FlagOnlyTestBufferForDeletion(RecordDeletion);
+
+        TableBackup.SetRange("Table ID", Database::"Admin Tool Test Buffer");
+        TableBackup.DeleteAll(false);
+
+        // [WHEN] Backups are created for the flagged table
+        UpdateDialog.Open('Deleting #1#######');
+        Assert.IsFalse(AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount), 'Declining the question should cancel the deletion.');
+
+        // [THEN] No backup was created
+        Assert.AreEqual(0, BackupCount, 'No backup should be counted.');
+        Assert.IsTrue(TableBackup.IsEmpty(), 'No backup should be created when the user cancels.');
+    end;
+
+    [Test]
     [HandlerFunctions('MessageHandler')]
+    procedure CreateBackupsBeforeDeletionDoesNotAskForTablesWithoutUnsupportedFields()
+    var
+        TestPKTarget: Record "Admin Tool Test PK Target";
+        RecordDeletion: Record "Record Deletion";
+        TableBackup: Record "Table Backup";
+        UpdateDialog: Dialog;
+        BackupCount: Integer;
+    begin
+        // [GIVEN] Automatic backups without prompt and a flagged table that has only supported field types (no Confirm handler: a question would fail the test)
+        SetupAutoBackup(true, false, Enum::"Backup Type"::"JSON Export");
+        TestPKTarget.DeleteAll(false);
+        TestPKTarget.Init();
+        TestPKTarget."Code & No. (Key)" := 'B061';
+        TestPKTarget.Insert(false);
+        DeleteRecordDeletionEntry(Database::"Admin Tool Test PK Target");
+        CreateRecordDeletionEntry(Database::"Admin Tool Test PK Target");
+        FlagRecordDeletionEntry(Database::"Admin Tool Test PK Target");
+        RecordDeletion.SetRange("Table ID", Database::"Admin Tool Test PK Target");
+        RecordDeletion.SetRange("Delete Records", true);
+        Assert.RecordCount(RecordDeletion, 1);
+
+        // [WHEN] Backups are created for the flagged table
+        UpdateDialog.Open('Deleting #1#######');
+        Assert.IsTrue(AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount), 'The deletion should not be cancelled.');
+        UpdateDialog.Close();
+
+        // [THEN] The backup was created without any question
+        TableBackup.SetRange("Table ID", Database::"Admin Tool Test PK Target");
+        Assert.AreEqual(1, BackupCount, 'Unexpected number of created backups.');
+        Assert.IsFalse(TableBackup.IsEmpty(), 'A backup should have been created.');
+    end;
+
+    [Test]
+    [HandlerFunctions('MessageHandler,ConfirmHandler')]
     procedure CreateBackupsBeforeDeletionUsesJsonExportWhenBackupTypeIsBlank()
     var
         TestBuffer: Record "Admin Tool Test Buffer";
@@ -349,15 +426,19 @@ codeunit 51101 "Admin Tool Deletion Test"
         TableBackup: Record "Table Backup";
         BlankBackupType: Enum "Backup Type";
         UpdateDialog: Dialog;
+        BackupCount: Integer;
     begin
         // [GIVEN] Automatic backups with a blank backup type in the setup
+        ConfirmReply := true;
         SetupAutoBackup(true, false, BlankBackupType);
         TestBuffer.DeleteAll(false);
         InsertTestBufferRecord('B101');
         FlagOnlyTestBufferForDeletion(RecordDeletion);
 
         // [WHEN] Backups are created for the flagged table
-        AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog);
+        UpdateDialog.Open('Deleting #1#######');
+        AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount);
+        UpdateDialog.Close();
 
         // [THEN] JSON Export is used
         TableBackup.SetRange("Table ID", Database::"Admin Tool Test Buffer");
@@ -372,6 +453,7 @@ codeunit 51101 "Admin Tool Deletion Test"
         RecordDeletion: Record "Record Deletion";
         TableBackup: Record "Table Backup";
         UpdateDialog: Dialog;
+        BackupCount: Integer;
     begin
         // [GIVEN] Automatic backups are disabled and a record is flagged for deletion
         SetupAutoBackup(false, false, Enum::"Backup Type"::"JSON Export");
@@ -383,10 +465,90 @@ codeunit 51101 "Admin Tool Deletion Test"
         TableBackup.DeleteAll(false);
 
         // [WHEN] Backups are created for the flagged table
-        AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog);
+        Assert.IsTrue(AdminToolMgt.CreateBackupsBeforeDeletion(RecordDeletion, UpdateDialog, BackupCount), 'The deletion should not be cancelled.');
 
         // [THEN] No backup was created
+        Assert.AreEqual(0, BackupCount, 'No backup should be counted.');
         Assert.IsTrue(TableBackup.IsEmpty(), 'No backup should be created when automatic backups are disabled.');
+    end;
+
+    [Test]
+    procedure IsTableProtectedReturnsTrueForOwnAndSystemTables()
+    begin
+        // [WHEN/THEN] The tables of the Admin Toolbox itself and the system tables are protected from deletion
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Record Deletion"), 'Record Deletion should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Record Deletion Rel. Error"), 'Record Deletion Rel. Error should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Table Backup"), 'Table Backup should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Audit Log Entry"), 'Audit Log Entry should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Field Change History"), 'Field Change History should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(Database::"Admin Toolbox Setup"), 'Admin Toolbox Setup should be protected.');
+        Assert.IsTrue(AdminToolMgt.IsTableProtected(2000000000), 'System tables should be protected.');
+    end;
+
+    [Test]
+    procedure IsTableProtectedReturnsFalseForOtherTables()
+    begin
+        // [WHEN/THEN] Ordinary tables are not protected
+        Assert.IsFalse(AdminToolMgt.IsTableProtected(Database::"Admin Tool Test Buffer"), 'The test buffer should not be protected.');
+        Assert.IsFalse(AdminToolMgt.IsTableProtected(Database::"Sales Header"), 'Sales Header should not be protected.');
+        Assert.IsFalse(AdminToolMgt.IsTableProtected(1999999999), 'The last ID below the system range should not be protected.');
+    end;
+
+    [Test]
+    procedure SetSuggestedTableIgnoresProtectedTable()
+    var
+        RecordDeletion: Record "Record Deletion";
+    begin
+        // [GIVEN] A Record Deletion entry for one of the tables of the Admin Toolbox
+        DeleteRecordDeletionEntry(Database::"Table Backup");
+        CreateRecordDeletionEntry(Database::"Table Backup");
+
+        // [WHEN] The protected table is suggested for deletion
+        AdminToolMgt.SetSuggestedTable(Database::"Table Backup");
+
+        // [THEN] It is not flagged
+        Assert.IsTrue(RecordDeletion.Get(Database::"Table Backup"), 'Record Deletion entry should still exist.');
+        Assert.IsFalse(RecordDeletion."Delete Records", 'A protected table must never be flagged for deletion.');
+    end;
+
+    [Test]
+    procedure PerformDeletionErrorsWhenProtectedTableIsFlagged()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        RecordDeletion: Record "Record Deletion";
+        RecordDeletionRelError: Record "Record Deletion Rel. Error";
+        UpdateDialog: Dialog;
+        ErrorText: Text;
+    begin
+        // [GIVEN] A deletable table and a protected table are both flagged (the flag is set directly, bypassing SetSuggestedTable)
+        TestBuffer.DeleteAll(false);
+        InsertTestBufferRecord('X001');
+        DeleteRecordDeletionEntry(Database::"Admin Tool Test Buffer");
+        CreateRecordDeletionEntry(Database::"Admin Tool Test Buffer");
+        FlagRecordDeletionEntry(Database::"Admin Tool Test Buffer");
+        DeleteRecordDeletionEntry(Database::"Table Backup");
+        CreateRecordDeletionEntry(Database::"Table Backup");
+        FlagRecordDeletionEntry(Database::"Table Backup");
+
+        // The record is limited to the two tables above, so the code under test can never reach other tables
+        RecordDeletion.SetFilter("Table ID", '%1|%2', Database::"Admin Tool Test Buffer", Database::"Table Backup");
+        Assert.RecordCount(RecordDeletion, 2);
+
+        // [WHEN] Deletion is performed
+        UpdateDialog.Open('Deleting #1#######');
+        asserterror AdminToolMgt.PerformDeletion(RecordDeletion, RecordDeletionRelError, false, UpdateDialog);
+        ErrorText := GetLastErrorText();
+
+        // [THEN] The error names the protected table only (asserterror rolls the writes back, the error text is the only observable result)
+        Assert.ExpectedError('belong to the Admin Toolbox or to the system and cannot be deleted');
+        Assert.IsTrue(ErrorText.Contains('Table Backup'), 'The error should list the protected table.');
+        Assert.IsFalse(ErrorText.Contains('Admin Tool Test Buffer'), 'The error should not list the deletable table.');
+    end;
+
+    [ConfirmHandler]
+    procedure ConfirmHandler(Question: Text[1024]; var Reply: Boolean)
+    begin
+        Reply := ConfirmReply;
     end;
 
     local procedure SetupAutoBackup(AutoBackup: Boolean; PromptForBackup: Boolean; BackupType: Enum "Backup Type")

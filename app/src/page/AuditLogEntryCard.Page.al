@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51016 "Audit Log Entry Card"
 {
     ApplicationArea = All;

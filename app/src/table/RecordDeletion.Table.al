@@ -1,3 +1,8 @@
+namespace AdminToolbox;
+
+using System.Environment;
+using System.Reflection;
+
 table 51001 "Record Deletion"
 {
     Caption = 'Record Deletion';

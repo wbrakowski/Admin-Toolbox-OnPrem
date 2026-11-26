@@ -8,7 +8,7 @@
 
 ## Repository Layout
 
-- **`app/`**: the main app (`app/app.json`, `app/src/...`, `app/Translations/`, `app/.netpackages/`), ID range 51000-51099, no namespaces. `internalsVisibleTo` lists the test app.
+- **`app/`**: the main app (`app/app.json`, `app/src/...`, `app/Translations/`, `app/.netpackages/`), ID range 51000-51099. All objects use `namespace AdminToolbox;` with explicit `using` statements (without a namespace the fallback to Base App objects is gone); the only exception is `app/src/dotnet.al` (AA0247 stays an accepted info). `internalsVisibleTo` lists the test app.
 - **`test/`**: the separate AL test app "Admin-Toolbox Tests" (`test/app.json`, `test/src/...`), ID range 51100-51149, target OnPrem, depends on `app` and Microsoft's `Library Assert`.
 - Both are sibling folders (neither is nested in the other), otherwise the AL compiler merges the test files into the main app project.
 - Open both together via **`AdminTool.code-workspace`** (multi-root). The repository root is only a documentation/config folder in that workspace, it has no `app.json`.
@@ -21,6 +21,7 @@
 - **AdminToolMgt (51000)**: Central business logic for record deletion, table relation validation, record counting
 - **AuditLogMgt (51004)**: Comprehensive audit trail with field-level change tracking
 - **TableBackupMgt (51003)**: Multi-strategy backup system (JSON Export, Snapshot, Full Backup)
+- **TableEditorMgt (51005)**: Logic of the Table Editor page (count, modify, rename, delete, create) incl. SUPER check, audit log and optional backup before deletion; the page only calls it
 - **PowershellMgt (51001)**: DotNet interop for license import using PowerShell Runner
 - **EventSubscribers (51002)**: Developer license warnings on company open
 
@@ -123,6 +124,7 @@ end;
 ## Translation & Localization
 
 - **Translations folder**: `app/Translations` contains `.xlf` files for German (de-DE) and Spanish (es-ES)
+- **Keep the xlf files in sync**: every build that adds or moves texts needs matching units in `de-DE` and `es-ES` (LC0091 lists the missing ones); remove stale units. Keep the line layout of the existing files (one element per line), do not re-save them through an XML writer, that reformats the whole file.
 - **Generated file**: `Admin-Toolbox.g.xlf` is generated on every compilation and IS tracked in git, commit it together with the code. After moving or renaming a Label into another procedure its translation unit gets a new ID: carry the translation over to the new ID in both language files and delete the stale unit (LC0091 warns about missing translations)
 - **app.json** includes `"features": ["TranslationFile"]`
 - All user-facing text must have proper Labels with Comment parameters explaining placeholders
@@ -137,7 +139,10 @@ end;
 
 ## Permission & Security
 
-- **SUPER permission required**: All pages check for SUPER permissions
+- **SUPER permission required**: All pages check for SUPER permissions; `Table Editor Mgt.` provides `CheckSuperPermission`, called when the Table Editor page opens
+- **Protected tables**: `AdminToolMgt.IsTableProtected` blocks deletion of the tables of the Admin Toolbox itself and of system tables, in the record deletion tool and in the Table Editor. Backups are committed (`Commit()`) before records are deleted. There is no extra production guard because the app is OnPrem only.
+- The table `Audit Log Entry` is limited to read access in `InherentPermissions`.
+- Retention: `Audit Log Retention Days` and `Backup Retention Days` of the setup are read through the accessors of `Admin Toolbox Setup`; the field `Compression Enabled` is obsolete (pending) and unused.
 - **TableData permissions**: AdminToolMgt declares explicit IMD permissions for common BC tables
 - Entry point checks: `UserPermissions.IsSuper(UserSecurityId())` before sensitive operations
 
@@ -212,7 +217,9 @@ Pattern: Use fact boxes and cues to surface critical information without drillin
 - Only field types with a safe text representation are exported (`IsFieldTypeSupportedForBackup`): Integer, BigInteger, Decimal, Boolean, Date, Time, DateTime, GUID, Option/Enum, Text, Code, Duration, DateFormula. Blob, Media, MediaSet, RecordID and other types are skipped on backup and restore.
 - Text and Code are written verbatim. Every other value is written culture-independent with `Format(Value, 0, 9)` (decimal with dot, date as `yyyy-MM-dd`, option and enum as ordinal). A closing date is written as `C` plus the normal date (`C2026-12-31`), because Format 9 drops the closing date flag.
 - Restore parses with `Evaluate(..., 9)` first and falls back to the plain `Evaluate` for backups from before the culture-independent format. Known limitation: a legacy decimal such as `1.234` (meaning 1234 in a German session) is valid Format 9 and is read as 1.234; legacy option captions are not restored.
-- Restore inserts record by record with `Insert(true)`; records that already exist count as failed, the restore carries on and reports a partial result.
+- Restore inserts record by record with `Insert(true)`; records that already exist count as failed, the restore carries on and reports a partial result. A value that cannot be converted is a hard error naming the value and the field (no silent skipping); if every record fails the restore errors.
+- The JSON is written in a streaming way (record by record into the blob, no big JSON object in memory). A backup of a table with unsupported field types (Blob, Media, RecordID) asks for confirmation (`ConfirmUnsupportedFields`).
+- A format marker for legacy backups is deliberately not implemented: old backups carry no marker, so it would not help to tell them apart.
 
 ## Key Files Reference
 
@@ -220,7 +227,8 @@ Pattern: Use fact boxes and cues to surface critical information without drillin
 - `app/src/codeunit/AuditLogMgt.Codeunit.al` - Audit logging patterns
 - `app/src/codeunit/TableBackupMgt.Codeunit.al` - Backup strategy implementation
 - `app/src/page/AdminToolbox.Page.al` - Main UI entry point with guided tour
-- `app/src/page/TableEditor.Page.al` - Dynamic record editing example
+- `app/src/codeunit/TableEditorMgt.Codeunit.al` - Logic behind the Table Editor (audit, backup, protected tables)
+- `app/src/page/TableEditor.Page.al` - Table Editor UI, delegates to `Table Editor Mgt.`
 - `app/src/table/AdminToolboxSetup.Table.al` - Configuration singleton pattern
 - `app/src/dotnet.al` - DotNet assembly declarations with OnPrem conditionals
 - `app/app.json` - Platform 29.0, runtime 18.0, target OnPrem, `internalsVisibleTo` the test app
@@ -238,6 +246,10 @@ Tests live in the separate app under `test/` (IDs 51100-51149, target OnPrem, de
 | 51102 `Admin Tool Audit Log Test` | start/complete operation, single record operation, field changes, backup link, cleanup of old entries incl. field change history |
 | 51103 `Admin Tool Page Test` | setup page, audit log list, backup list, dashboard (TestPage) |
 | 51104 `Admin Tool Backup Commit Test` | the two tests that need a `Commit()` (kept in a codeunit of their own) |
+| 51105 `Admin Tool Table Editor Test` | `Table Editor Mgt.`: count, modify (incl. validate), rename, delete with and without backup, create, protected tables (delete, modify, rename, create), confirm before deletion, SUPER check |
+| 51106 `Admin Tool Setup Test` | setup accessors and their defaults |
+
+Test objects use `namespace AdminToolbox.Test;` plus `using AdminToolbox;`. The last verified run: 96 tests, all green.
 
 ### Test conventions
 - **`internal` test hooks**: public entry points hidden behind a dialog (`StrMenu`, confirm) are not called by tests. The core procedure is `internal` instead, with `internalsVisibleTo` in `app/app.json`: `TableBackupMgt.RestoreFromJSON`, `AdminToolMgt.CheckTableRelationsForTable`, `AdminToolMgt.PerformDeletion`, `AdminToolMgt.CreateBackupsBeforeDeletion`. Add a one-line comment why a procedure is `internal`.
@@ -245,6 +257,8 @@ Tests live in the separate app under `test/` (IDs 51100-51149, target OnPrem, de
 - **Safety guard for destructive procedures**: procedures that loop over flagged tables must only ever see the test table. Tests pass a `Record "Record Deletion"` filtered to the test table and assert `RecordCount = 1` first (`FlagOnlyTestBufferForDeletion`). `PerformDeletion` additionally sets the filter `Delete Records = true` itself. The audit log cleanup test aborts if real entries older than the cutoff exist.
 - **UI in tests**: `Message` needs a `[MessageHandler]` (`[HandlerFunctions('MessageHandler')]` on the test), otherwise the test fails with "Unhandled UI: Message". A handler that is declared but not triggered also fails the test. `Dialog` variables passed to `PerformDeletion` must be opened in the test (`UpdateDialog.Open(...)`).
 - **`asserterror` always with `Assert.ExpectedError`**. Error texts are English, so the tests assume an English session language.
+- **Confirm dialogs**: a `Confirm` needs a `[ConfirmHandler]` (`[HandlerFunctions('ConfirmHandler')]`), same rule as for `Message`: a declared but unused handler fails the test.
+- **Publishing the test app**: the dev-endpoint test app is recompiled with its old sources when the main app is published (AL0135). Unpublish it first: `Unpublish-BcContainerApp -containerName bc29 -appName 'Admin-Toolbox Tests' -unInstall -doNotSaveData -force`, then publish `app`, then `test`.
 - **`Commit()`**: CalcFields on a Blob field only sees committed rows. A test that calls `Commit()` needs `[TransactionModel(TransactionModel::AutoCommit)]`, cleans up its own rows and lives in `Admin Tool Backup Commit Test`, because the commit would also commit everything earlier tests of the codeunit left behind.
 - New tests use the dummy tables `Admin Tool Test Buffer` / `Admin Tool Test PK Target` instead of real business tables. New test objects go into the permission set `Admin Tool Test`.
 - Defects found by failing tests and fixed: empty GUID fields were reported as missing records, a filter error for primary key names with special characters (`( ) &`), closing dates were restored as normal dates. Fixed proactively after the `Record-Deletion-Tool`: culture-dependent backup values, Blob/Media/RecordID fields breaking a restore, a duplicate result message after restore.
@@ -255,7 +269,7 @@ Tests live in the separate app under `test/` (IDs 51100-51149, target OnPrem, de
 - `IsDeveloperLicense`, `ShowDevLicenseMessageIfNeeded`, `SuggestUnlicensedPartnerOrCustomRecordsToDelete`, `IsRecordInLicense`, the license pages and the two license export reports: depend on the license installed in the environment.
 - `PowershellMgt.ImportLicense`: needs the PowerShell Runner, a file upload and a server instance.
 - `ExportBackupToFile`, `ImportBackupFromFile`, `ViewRecords`, `OpenTable`, `PublishApp`, `OpenReadme`: client file transfer and hyperlinks. Only the "no backup data" error guards are tested.
-- The `Table Editor` page (`ModifyTableRecords`, `RenameTableRecords`, `DeleteTableRecords`, `CreateRecord`): the logic lives in the page behind `Confirm` dialogs and cannot be reached by tests. Moving it into a codeunit is a planned improvement.
+- The UI part of the `Table Editor` page (field lookup, `Confirm` dialogs, progress): the logic itself is in `Table Editor Mgt.` and tested.
 - `FilterPageBuilder` dialogs on the pages.
 
 ## Testing Approach for Manual Checks

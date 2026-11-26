@@ -1,3 +1,8 @@
+namespace AdminToolbox.Test;
+
+using AdminToolbox;
+using System.TestLibraries.Utilities;
+
 codeunit 51104 "Admin Tool Backup Commit Test"
 {
     // These tests need a Commit (CalcFields on a Blob field only sees committed rows). A Commit also

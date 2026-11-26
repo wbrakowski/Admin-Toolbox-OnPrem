@@ -1,3 +1,7 @@
+namespace AdminToolbox;
+
+using System.Security.AccessControl;
+
 #if OnPrem
 page 51002 "License Information"
 {

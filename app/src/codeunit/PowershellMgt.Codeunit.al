@@ -1,3 +1,9 @@
+namespace AdminToolbox;
+
+using System.Environment;
+using System.IO;
+using System.Utilities;
+
 codeunit 51001 "Powershell Mgt."
 {
 #if OnPrem
@@ -30,7 +36,7 @@ codeunit 51001 "Powershell Mgt."
         if not ActiveSession.Get(ServiceInstanceId(), SessionId()) then
             Error(NoActiveSessionErr);
         PowerShellRunner := PowerShellRunner.CreateInSandbox();
-        PowerShellRunner.WriteEventOnError := true;
+        PowerShellRunner.WriteEventOnError(true);
         PowerShellRunner.ImportModule(ApplicationPath() + NAVAdminToolLbl);
         PowerShellRunner.AddCommand('Import-NAVServerLicense');
         PowerShellRunner.AddParameter('ServerInstance', ActiveSession."Server Instance Name");

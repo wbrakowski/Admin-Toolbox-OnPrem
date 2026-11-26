@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51000 "Record Deletion Rel. Error"
 {
     ApplicationArea = All;

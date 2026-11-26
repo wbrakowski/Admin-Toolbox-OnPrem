@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 page 51012 "Table Backup Card"
 {
     ApplicationArea = All;
@@ -103,10 +105,6 @@ page 51012 "Table Backup Card"
             {
                 Caption = 'Restore Backup';
                 Image = Import;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Restore records from this backup.';
 
                 trigger OnAction()
@@ -119,10 +117,6 @@ page 51012 "Table Backup Card"
             {
                 Caption = 'Export to File';
                 Image = ExportFile;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Export the backup data to a JSON file.';
 
                 trigger OnAction()
@@ -134,16 +128,29 @@ page 51012 "Table Backup Card"
             {
                 Caption = 'View Backup Data';
                 Image = View;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
                 ToolTip = 'Specifies that the backup data (first 1000 characters) will be displayed.';
 
                 trigger OnAction()
                 begin
                     Rec.ViewBackupData();
                 end;
+            }
+        }
+        area(Promoted)
+        {
+            group(Category_Process)
+            {
+                Caption = 'Process';
+
+                actionref(RestoreBackup_Promoted; RestoreBackup)
+                {
+                }
+                actionref(ExportToFile_Promoted; ExportToFile)
+                {
+                }
+                actionref(ViewData_Promoted; ViewData)
+                {
+                }
             }
         }
     }
