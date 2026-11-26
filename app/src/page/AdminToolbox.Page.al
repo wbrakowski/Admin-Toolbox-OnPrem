@@ -310,7 +310,7 @@ page 51001 "Admin Toolbox"
 
                         trigger OnDrillDown()
                         var
-                            NoTableNoSelectedErr: Label 'Please select a "Table No." before running this link.';
+                            NoTableNoSelectedErr: Label 'Select a table in the field "Table No." before you run this link.';
                         begin
                             if SelectedTableNo <> 0 then
                                 AdminToolMgt.OpenTable(SelectedTableNo)
@@ -640,7 +640,7 @@ page 51001 "Admin Toolbox"
         Welcome1Lbl: Label '🛠️ Admin Toolbox provides powerful tools for system administration.';
         Welcome2Lbl: Label '⚠️ IMPORTANT: Always create backups before modifying or deleting data!';
         Welcome3Lbl: Label '✅ All operations are logged in the Audit Log for compliance.';
-        Welcome4Lbl: Label '� Use the Dashboard for an overview of your system statistics.';
+        Welcome4Lbl: Label '📊 Use the Dashboard for an overview of your system statistics.';
         ReadThisLbl: Label ' Please read this before proceeding:';
     begin
         WelcomeText1 := Welcome1Lbl + ReadThisLbl;

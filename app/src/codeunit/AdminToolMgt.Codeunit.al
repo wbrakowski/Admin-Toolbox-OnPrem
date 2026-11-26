@@ -175,8 +175,10 @@ codeunit 51000 "Admin Tool Mgt."
         RecordDeletionRelError: Record "Record Deletion Rel. Error";
         ConfirmManagement: Codeunit "Confirm Management";
         UpdateDialog: Dialog;
-        CheckingRelationsTxt: Label 'Checking Relations Between Records!\Table: #1#######', Comment = '%1 = Table ID';
-        CheckRelationsQst: Label 'Check Table Relations?';
+        ProcessedCount: Integer;
+        TotalCount: Integer;
+        CheckingRelationsTxt: Label 'Checking table relations...\Table ID: #1#######\Table name: #2##################\Progress: #3##########', Comment = '%1 = Table ID, %2 = Table name, %3 = Progress in percent';
+        CheckRelationsQst: Label 'Do you want to check the table relations of all listed tables?';
     begin
         if not ConfirmManagement.GetResponseOrDefault(CheckRelationsQst, false) then
             exit;
@@ -184,9 +186,15 @@ codeunit 51000 "Admin Tool Mgt."
         UpdateDialog.Open(CheckingRelationsTxt);
         RecordDeletionRelError.DeleteAll(false);
 
+        RecordDeletion.SetLoadFields("Table ID");
+        RecordDeletion.SetAutoCalcFields("Table Name");
+        TotalCount := RecordDeletion.Count();
         if RecordDeletion.FindSet() then
             repeat
+                ProcessedCount += 1;
                 UpdateDialog.Update(1, Format(RecordDeletion."Table ID"));
+                UpdateDialog.Update(2, RecordDeletion."Table Name");
+                UpdateDialog.Update(3, Format(ProcessedCount * 100 div TotalCount) + '%');
                 CheckTableRelationsForTable(RecordDeletion."Table ID");
             until RecordDeletion.Next() = 0;
 
@@ -196,53 +204,103 @@ codeunit 51000 "Admin Tool Mgt."
     // internal (not local) so the test app can run the relation check for one table without the confirm dialog
     internal procedure CheckTableRelationsForTable(TableID: Integer)
     var
-        TableMetadata: Record "Table Metadata";
+        TempRelationField: Record Field temporary;
         RecordRef: RecordRef;
     begin
-        // Only allow "normal" tables to avoid errors, Skip TableType MicrosoftGraph and CRM etc.
-        TableMetadata.SetRange(ID, TableID);
-        TableMetadata.SetRange(TableType, TableMetadata.TableType::Normal);
-        if TableMetadata.IsEmpty() then
+        // Only normal tables: skips TableType MicrosoftGraph, CRM etc.
+        if not IsNormalTable(TableID) then
+            exit;
+
+        CollectRelationFields(TableID, TempRelationField);
+        if TempRelationField.IsEmpty() then
             exit;
 
         RecordRef.Open(TableID);
-        if RecordRef.FindSet() then
-            repeat
-                CheckRecordRelations(RecordRef);
-            until RecordRef.Next() = 0;
+        CheckRelationsForFields(RecordRef, TempRelationField);
         RecordRef.Close();
     end;
 
-    local procedure CheckRecordRelations(var RecordRef: RecordRef)
+    local procedure IsNormalTable(TableID: Integer): Boolean
+    var
+        TableMetadata: Record "Table Metadata";
+    begin
+        TableMetadata.SetRange(ID, TableID);
+        TableMetadata.SetRange(TableType, TableMetadata.TableType::Normal);
+        exit(not TableMetadata.IsEmpty());
+    end;
+
+    // Reads the field metadata once per table instead of once per record.
+    local procedure CollectRelationFields(TableID: Integer; var TempRelationField: Record Field temporary)
     var
         Field: Record Field;
     begin
-        Field.SetRange(TableNo, RecordRef.Number());
+        Field.SetRange(TableNo, TableID);
         Field.SetRange(Class, Field.Class::Normal);
         Field.SetRange(ObsoleteState, Field.ObsoleteState::No);
-        Field.SetFilter(RelationTableNo, '<>0');
+        // System tables cannot be opened for every target type
+        Field.SetFilter(RelationTableNo, '1..%1', SystemTableIdStart() - 1);
 
-        // Next 4 lines look funny but are needed to avoid this error:
-        // "Table connection for table type CRM must be registered using RegisterTableConnection or cmdlet New-NAVTableConnection before it can be used"
-        if RecordRef.Number() = 5330 then
-            Field.SetFilter("No.", '<> %1', 124)
-        else
-            if RecordRef.Number() = 7200 then
-                Field.SetFilter("No.", '<> %1', 124);
+        // Avoids "Table connection for table type CRM must be registered using RegisterTableConnection or cmdlet New-NAVTableConnection before it can be used"
+        if TableID in [5330, 7200] then
+            Field.SetFilter("No.", '<> %1', 124);
 
         if Field.FindSet() then
             repeat
-                CheckFieldRelation(RecordRef, Field);
+                TempRelationField := Field;
+                TempRelationField.Insert(false);
             until Field.Next() = 0;
     end;
 
-    local procedure CheckFieldRelation(var RecordRef: RecordRef; Field: Record Field)
-    var
-        FieldRef: FieldRef;
+    local procedure CheckRelationsForFields(var RecordRef: RecordRef; var TempRelationField: Record Field temporary)
     begin
+        if TempRelationField.FindSet() then
+            repeat
+                CheckRelationsForField(RecordRef, TempRelationField);
+            until TempRelationField.Next() = 0;
+    end;
+
+    // Opens the related table and resolves the target field once per field, not once per record.
+    local procedure CheckRelationsForField(var RecordRef: RecordRef; Field: Record Field)
+    var
+        RecordRef2: RecordRef;
+        FieldRef: FieldRef;
+        FieldRef2: FieldRef;
+    begin
+        // CRM, Graph and other non-normal related tables cannot be opened
+        if not IsNormalTable(Field.RelationTableNo) then
+            exit;
+
+        RecordRef2.Open(Field.RelationTableNo);
+        if not ResolveRelationFieldRef(Field, RecordRef2, FieldRef2) then begin
+            RecordRef2.Close();
+            exit;
+        end;
+
         FieldRef := RecordRef.Field(Field."No.");
-        if not IsBlankRelationValue(FieldRef) then
-            ValidateFieldRelation(RecordRef, FieldRef, Field);
+        if (FieldRef.Type() = FieldRef2.Type()) and (FieldRef.Length() = FieldRef2.Length()) then
+            if RecordRef.FindSet() then
+                repeat
+                    CheckFieldRelationForRecord(RecordRef, FieldRef, RecordRef2, FieldRef2);
+                until RecordRef.Next() = 0;
+
+        RecordRef2.Close();
+    end;
+
+    local procedure ResolveRelationFieldRef(Field: Record Field; var RecordRef2: RecordRef; var FieldRef2: FieldRef): Boolean
+    begin
+        if Field.RelationFieldNo <> 0 then begin
+            FieldRef2 := RecordRef2.Field(Field.RelationFieldNo);
+            exit(true);
+        end;
+        exit(GetPrimaryKeyFieldRef(RecordRef2, FieldRef2));
+    end;
+
+    local procedure CheckFieldRelationForRecord(var RecordRef: RecordRef; var FieldRef: FieldRef; var RecordRef2: RecordRef; var FieldRef2: FieldRef)
+    begin
+        if IsBlankRelationValue(FieldRef) then
+            exit;
+
+        CheckRelationExists(RecordRef, FieldRef, RecordRef2, FieldRef2);
     end;
 
     local procedure IsBlankRelationValue(var FieldRef: FieldRef): Boolean
@@ -256,28 +314,6 @@ codeunit 51000 "Admin Tool Mgt."
         end;
 
         exit((Format(FieldRef.Value()) = '') or (Format(FieldRef.Value()) = '0'));
-    end;
-
-    local procedure ValidateFieldRelation(var RecordRef: RecordRef; var FieldRef: FieldRef; Field: Record Field)
-    var
-        RecordRef2: RecordRef;
-        FieldRef2: FieldRef;
-        FieldRefInitialized: Boolean;
-    begin
-        RecordRef2.Open(Field.RelationTableNo);
-        FieldRefInitialized := false;
-
-        if Field.RelationFieldNo <> 0 then begin
-            FieldRef2 := RecordRef2.Field(Field.RelationFieldNo);
-            FieldRefInitialized := true;
-        end else
-            FieldRefInitialized := GetPrimaryKeyFieldRef(RecordRef2, FieldRef2);
-
-        if FieldRefInitialized then
-            if (FieldRef.Type() = FieldRef2.Type()) and (FieldRef.Length() = FieldRef2.Length()) then
-                CheckRelationExists(RecordRef, FieldRef, RecordRef2, FieldRef2);
-
-        RecordRef2.Close();
     end;
 
     local procedure GetPrimaryKeyFieldRef(var RecordRef2: RecordRef; var FieldRef2: FieldRef): Boolean
@@ -297,7 +333,7 @@ codeunit 51000 "Admin Tool Mgt."
     var
         RecordDeletionRelError: Record "Record Deletion Rel. Error";
         EntryNo: Integer;
-        NotExistsTxt: Label '%1 => %2 = ''%3'' does not exist in the ''%4'' table', Comment = '%1 = Source Table Name, %2 = Source Field Name, %3 = Field Value, %4 = Target Table Name';
+        NotExistsTxt: Label 'The record %1 refers to the value ''%3'', which does not exist in field ''%2'' of table ''%4''.', Comment = '%1 = Primary key of the source record, %2 = Target field name, %3 = Field value, %4 = Target table name';
     begin
         FieldRef2.SetRange(FieldRef.Value());
         if RecordRef2.FindFirst() then
@@ -320,7 +356,7 @@ codeunit 51000 "Admin Tool Mgt."
     procedure ClearRecordsToDelete()
     var
         RecordDeletion: Record "Record Deletion";
-        MarkDeletionRemovedMsg: Label 'The checkbox %1 was succesfully reset for the tables.', Comment = '%1 = FieldCaption of "Delete Records"';
+        MarkDeletionRemovedMsg: Label 'The field %1 was cleared for all tables.', Comment = '%1 = FieldCaption of "Delete Records"';
     begin
         RecordDeletion.ModifyAll("Delete Records", false, false);
         Message(MarkDeletionRemovedMsg, RecordDeletion.FieldCaption("Delete Records"));
@@ -333,7 +369,7 @@ codeunit 51000 "Admin Tool Mgt."
         RunTrigger: Boolean;
         UpdateDialog: Dialog;
         Selection: Integer;
-        OptionsLbl: Label 'Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)';
+        OptionsLbl: Label 'Delete records without running table triggers,Delete records and run table triggers';
     begin
         Selection := StrMenu(OptionsLbl, 1);
         if not ProcessDeletionSelection(Selection, RunTrigger) then
@@ -364,14 +400,14 @@ codeunit 51000 "Admin Tool Mgt."
 
     local procedure GetDeletingRecordsText(): Text
     var
-        DeletingRecordsTxt: Label 'Deleting Records!\Table: #1#######', Comment = '%1 = Table ID';
+        DeletingRecordsTxt: Label 'Deleting records...\Table ID: #1#######', Comment = '%1 = Table ID';
     begin
         exit(DeletingRecordsTxt);
     end;
 
     local procedure ValidateRecordsMarkedForDeletion(var RecordDeletion: Record "Record Deletion"; var UpdateDialog: Dialog)
     var
-        NoRecsFoundErr: Label 'No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.',
+        NoRecsFoundErr: Label 'No tables are marked for deletion. Select the field %1 for the tables whose records you want to delete, and then run this action again.',
                         Comment = '%1 = FieldCaption of "Delete Records"';
     begin
         RecordDeletion.SetRange("Delete Records", true);
@@ -399,10 +435,15 @@ codeunit 51000 "Admin Tool Mgt."
             Commit();
     end;
 
+    local procedure SystemTableIdStart(): Integer
+    begin
+        exit(2000000000);
+    end;
+
     // Tables of the Admin Toolbox itself (audit log, backups, deletion list) and the system tables are never deleted.
     internal procedure IsTableProtected(TableID: Integer): Boolean
     begin
-        if TableID >= 2000000000 then
+        if TableID >= SystemTableIdStart() then
             exit(true);
 
         exit(TableID in [
@@ -413,7 +454,7 @@ codeunit 51000 "Admin Tool Mgt."
     local procedure CheckTablesAreDeletable(var RecordDeletion: Record "Record Deletion")
     var
         ProtectedTables: Text;
-        ProtectedTablesErr: Label 'The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Remove the mark in the field %2 for these tables.', Comment = '%1 = Table names, %2 = FieldCaption of "Delete Records"';
+        ProtectedTablesErr: Label 'The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Clear the field %2 for these tables and try again.', Comment = '%1 = Table names, %2 = FieldCaption of "Delete Records"';
     begin
         RecordDeletion.SetRange("Delete Records", true);
         RecordDeletion.SetLoadFields("Table ID");
@@ -435,7 +476,7 @@ codeunit 51000 "Admin Tool Mgt."
     var
         ConfirmManagement: Codeunit "Confirm Management";
         CancelledByUserErr: Label 'The operation was cancelled by the user.';
-        DeleteRecordsQst: Label '%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?', Comment = '%1 = No. of tables';
+        DeleteRecordsQst: Label '%1 table(s) are marked for deletion. All records in these tables will be permanently deleted.\\Do you want to continue?', Comment = '%1 = No. of tables';
         ConfirmMessage: Text;
     begin
         ConfirmMessage := StrSubstNo(DeleteRecordsQst, RecordDeletion.Count());
@@ -519,7 +560,7 @@ codeunit 51000 "Admin Tool Mgt."
     var
         ConfirmManagement: Codeunit "Confirm Management";
         AffectedTables: Text;
-        UnsupportedFieldsQst: Label 'The following tables contain field types that cannot be backed up (e.g. BLOB, Media, RecordID): %1.\\These fields are skipped in the backup and cannot be restored. Do you want to continue?', Comment = '%1 = Table names';
+        UnsupportedFieldsQst: Label 'The following tables contain fields of a type that cannot be backed up (for example BLOB, Media or RecordID): %1.\\These fields are skipped in the backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table names';
     begin
         if RecordDeletion.FindSet() then
             repeat
@@ -553,8 +594,8 @@ codeunit 51000 "Admin Tool Mgt."
     local procedure ConfirmBackupCreation(var AdminToolboxSetup: Record "Admin Toolbox Setup"; var UpdateDialog: Dialog): Boolean
     var
         ConfirmManagement: Codeunit "Confirm Management";
-        BackupSkippedMsg: Label 'No backup was created. Records will be deleted without backup.';
-        CreateBackupQst: Label 'Do you want to create a backup of the tables before deletion?\\This is recommended for data safety.';
+        BackupSkippedMsg: Label 'No backup was created. The records will be deleted without a backup.';
+        CreateBackupQst: Label 'Do you want to create a backup of the tables before the records are deleted?\\A backup is recommended so that the data can be restored if needed.';
     begin
         if not AdminToolboxSetup."Prompt for Backup" then
             exit(true);
@@ -606,7 +647,7 @@ codeunit 51000 "Admin Tool Mgt."
 
     local procedure ShowDeletionSuccessMessage(var RecordDeletion: Record "Record Deletion")
     var
-        DeletionSuccessMsg: Label 'The records from %1 table(s) were succesfully deleted.', Comment = '%1 = No. of tables';
+        DeletionSuccessMsg: Label 'The records of %1 table(s) were deleted successfully.', Comment = '%1 = No. of tables';
     begin
         Message(DeletionSuccessMsg, RecordDeletion.Count());
     end;
@@ -617,14 +658,14 @@ codeunit 51000 "Admin Tool Mgt."
         RecordDeletion: Record "Record Deletion";
         UpdateDialog: Dialog;
         CurrRec, NoOfRecs : Integer;
-        NoRecordFoundMsg: Label 'No record could be found in table %1.', Comment = '%1 = Table Caption';
-        ProcessingDataTxt: Label 'Processing tables... @1@@@@@@';
-        UpdateFinishedMsg: Label '%1 tables have succesfully been updated.', Comment = '%1 = No. of tables';
+        NoRecordFoundMsg: Label 'No records were found in table %1.', Comment = '%1 = Table Caption';
+        ProcessingDataTxt: Label 'Updating the table list... @1@@@@@@';
+        UpdateFinishedMsg: Label 'The table list was updated successfully (%1 tables).', Comment = '%1 = No. of tables';
 
     begin
         AllObjWithCaption.SetRange("Object Type", AllObjWithCaption."Object Type"::Table);
         // Do not include system tables
-        AllObjWithCaption.SetFilter("Object ID", '< %1', 2000000001);
+        AllObjWithCaption.SetFilter("Object ID", '< %1', SystemTableIdStart());
         if AllObjWithCaption.FindSet() then begin
             UpdateDialog.Open(ProcessingDataTxt);
             NoOfRecs := AllObjWithCaption.Count();
@@ -666,8 +707,8 @@ codeunit 51000 "Admin Tool Mgt."
     procedure PublishApp()
     var
         Selection: Integer;
-        InstructionsLbl: Label 'The external deployer must be installed on the server instance to publish apps. Please select how to proceed.';
-        OptionsLbl: Label 'Continue publishing app (a new tab will be opened),Learn how to install the external deployer';
+        InstructionsLbl: Label 'Publishing an app requires the external deployer to be installed on the server instance. Select how you want to proceed.';
+        OptionsLbl: Label 'Continue publishing (opens a new browser tab),Learn how to install the external deployer';
         PageUrlTxt: Label '%1/?page=%2', Comment = '%1 = Web URL, %2 = Page ID';
         WebUrl: Text;
     begin
@@ -702,7 +743,7 @@ codeunit 51000 "Admin Tool Mgt."
     procedure SuggestRecordsToDelete()
     var
         Selection: Integer;
-        OptionsLbl: Label 'Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete';
+        OptionsLbl: Label 'Suggest all transactional tables for deletion,Suggest unlicensed partner or custom tables for deletion';
     begin
         Selection := StrMenu(OptionsLbl, 1);
         case Selection of
@@ -718,9 +759,9 @@ codeunit 51000 "Admin Tool Mgt."
         ConfirmManagement: Codeunit "Confirm Management";
         PowershellMgt: Codeunit "Powershell Mgt.";
         RecsSuggestedCount: Integer;
-        ImportCustLicenseQst: Label 'It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?';
-        ImportLicenseQst: Label 'A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?';
-        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom records were suggested.', Comment = '%1 Number of unlicensed records';
+        ImportCustLicenseQst: Label 'A developer license is currently imported. This function is intended for use with a customer license.\\Do you want to import a different license now?';
+        ImportLicenseQst: Label 'A developer license is required to delete the marked unlicensed records.\\Do you want to import a different license now?';
+        RecordsSuggestedMsg: Label '%1 unlicensed partner or custom tables were suggested for deletion.', Comment = '%1 = No. of suggested tables';
     begin
 #if OnPrem
         PromptForLicenseImportIfDeveloperLicense(PowershellMgt, ImportCustLicenseQst);
@@ -884,7 +925,7 @@ codeunit 51000 "Admin Tool Mgt."
     var
         AdminToolboxSetup: Record "Admin Toolbox Setup";
         AdminToolMgt: Codeunit "Admin Tool Mgt.";
-        DevLicenseMsg: Label 'Attention, the developer license is currently active.';
+        DevLicenseMsg: Label 'A developer license is currently active.';
     begin
         if not AdminToolboxSetup.Get() then
             exit;
@@ -898,7 +939,7 @@ codeunit 51000 "Admin Tool Mgt."
     var
         RecordDeletion: Record "Record Deletion";
         AfterSuggestionDeleteCount, BeforeSuggestionDeleteCount : Integer;
-        RecordsWereSuggestedMsg: Label '%1 records to delete were suggested.', Comment = '%1 = Number of suggested records';
+        RecordsWereSuggestedMsg: Label '%1 tables were suggested for deletion.', Comment = '%1 = No. of suggested tables';
     begin
         RecordDeletion.SetRange("Delete Records", true);
         BeforeSuggestionDeleteCount := RecordDeletion.Count();

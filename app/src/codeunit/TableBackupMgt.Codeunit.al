@@ -310,7 +310,7 @@ codeunit 51003 "Table Backup Mgt."
     procedure RestoreBackup(var TableBackup: Record "Table Backup")
     var
         ConfirmManagement: Codeunit "Confirm Management";
-        RestoreConfirmQst: Label 'Do you want to restore %1 records to table %2? This will INSERT the backed up records.\\Warning: This may create duplicate records if they still exist!', Comment = '%1 = No. of Records, %2 = Table ID';
+        RestoreConfirmQst: Label 'Do you want to restore %1 records to table %2?\\The backed up records will be inserted into the table. Records that already exist cannot be inserted again and are reported as failed.', Comment = '%1 = No. of Records, %2 = Table ID';
     begin
         TableBackup.CalcFields("Table Name");
         if not ConfirmManagement.GetResponseOrDefault(StrSubstNo(RestoreConfirmQst, TableBackup."No. of Records", TableBackup."Table Name"), false) then
@@ -681,7 +681,7 @@ codeunit 51003 "Table Backup Mgt."
     local procedure ConfirmBackupWithUnsupportedFields(TableID: Integer): Boolean
     var
         ConfirmManagement: Codeunit "Confirm Management";
-        TableContainsUnsupportedFieldsQst: Label 'Table %1 %2 contains field type(s) that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped during backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table ID, %2 = Table Name';
+        TableContainsUnsupportedFieldsQst: Label 'Table %1 %2 contains fields of a type that cannot be backed up (for example BLOB, Media or RecordID). These fields are skipped in the backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table ID, %2 = Table Name';
     begin
         if not TableHasUnsupportedFields(TableID) then
             exit(true);
@@ -819,5 +819,5 @@ codeunit 51003 "Table Backup Mgt."
         ImportSuccessMsg: Label '%1 records were imported from file %2.', Comment = '%1 = Record Count, %2 = File Name';
         InvalidJSONErr: Label 'The backup data contains invalid JSON format.';
         NoBackupDataErr: Label 'No backup data found for this entry.';
-        ViewBackupDataMsg: Label 'Backup Entry No.: %1\\Data Preview (first 1000 chars):\\%2', Comment = '%1 = Entry No., %2 = JSON Preview';
+        ViewBackupDataMsg: Label 'Backup entry no.: %1\\Data preview (first 1000 characters):\\%2', Comment = '%1 = Entry No., %2 = JSON Preview';
 }

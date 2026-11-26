@@ -122,6 +122,37 @@ codeunit 51101 "Admin Tool Deletion Test"
     end;
 
     [Test]
+    procedure CheckTableRelationsForTableNumbersEveryErrorAndNamesValueFieldAndTable()
+    var
+        TestBuffer: Record "Admin Tool Test Buffer";
+        RecordDeletionRelError: Record "Record Deletion Rel. Error";
+    begin
+        // [GIVEN] Two records that refer to a related record that does not exist
+        TestBuffer.DeleteAll(false);
+        ClearRelationErrors();
+
+        InsertTestBufferRecordWithRelation('N001', 'MISSING1');
+        InsertTestBufferRecordWithRelation('N002', 'MISSING2');
+
+        // [WHEN] Table relations are checked for the test table
+        AdminToolMgt.CheckTableRelationsForTable(Database::"Admin Tool Test Buffer");
+
+        // [THEN] Every dangling reference gets its own consecutively numbered error
+        RecordDeletionRelError.SetRange("Table ID", Database::"Admin Tool Test Buffer");
+        Assert.RecordCount(RecordDeletionRelError, 2);
+        RecordDeletionRelError.FindSet();
+        Assert.AreEqual(1, RecordDeletionRelError."Entry No.", 'The first error should have entry no. 1.');
+
+        // [THEN] The error text names the missing value, the target field and the target table
+        Assert.IsTrue(StrPos(RecordDeletionRelError.Error, 'MISSING1') > 0, 'The error text should contain the missing value.');
+        Assert.IsTrue(StrPos(RecordDeletionRelError.Error, 'field ''No.''') > 0, 'The error text should name the target field.');
+        Assert.IsTrue(StrPos(RecordDeletionRelError.Error, 'table ''Admin Tool Test Buffer''') > 0, 'The error text should name the target table.');
+        RecordDeletionRelError.Next();
+        Assert.AreEqual(2, RecordDeletionRelError."Entry No.", 'The second error should have entry no. 2.');
+        Assert.IsTrue(StrPos(RecordDeletionRelError.Error, 'MISSING2') > 0, 'The error text should contain the second missing value.');
+    end;
+
+    [Test]
     procedure CheckTableRelationsForTableDetectsMissingPrimaryKeyRelation()
     var
         TestBuffer: Record "Admin Tool Test Buffer";

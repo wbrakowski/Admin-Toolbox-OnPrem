@@ -34,6 +34,9 @@ codeunit 51004 "Audit Log Mgt."
         AuditLogEntry."No. of Records Failed" := NoOfRecordsFailed;
         AuditLogEntry."Error Message" := ErrorMessage;
         AuditLogEntry."Duration (ms)" := CurrentDateTime() - AuditLogEntry."Date Time";
+        // The database rounds the start time, so it can be a few milliseconds later than the current time.
+        if AuditLogEntry."Duration (ms)" < 0 then
+            AuditLogEntry."Duration (ms)" := 0;
         AuditLogEntry.Modify(true);
     end;
 

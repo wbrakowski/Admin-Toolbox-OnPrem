@@ -8,7 +8,7 @@
 
 ## Repository Layout
 
-- **`app/`**: the main app (`app/app.json`, `app/src/...`, `app/Translations/`, `app/.netpackages/`), ID range 51000-51099. All objects use `namespace AdminToolbox;` with explicit `using` statements (without a namespace the fallback to Base App objects is gone); the only exception is `app/src/dotnet.al` (AA0247 stays an accepted info). `internalsVisibleTo` lists the test app.
+- **`app/`**: the main app (`app/app.json`, `app/src/...`, `app/Translations/`, `app/.netpackages/`), ID range 51000-51099. All objects use `namespace AdminToolbox;` with explicit `using` statements (without a namespace the fallback to Base App objects is gone), including `app/src/dotnet.al`. `internalsVisibleTo` lists the test app.
 - **`test/`**: the separate AL test app "Admin-Toolbox Tests" (`test/app.json`, `test/src/...`), ID range 51100-51149, target OnPrem, depends on `app` and Microsoft's `Library Assert`.
 - Both are sibling folders (neither is nested in the other), otherwise the AL compiler merges the test files into the main app project.
 - Open both together via **`AdminTool.code-workspace`** (multi-root). The repository root is only a documentation/config folder in that workspace, it has no `app.json`. The workspace file carries the shared settings: all analyzers (CodeCop, UICop, ALCops), `[al]` files as UTF-8 without BOM with CRLF, search and watcher excludes for symbol and cache folders, and the recommended extensions. Personal files (`launch.json`, `rad.json`) stay in the ignored `.vscode` folders.
@@ -132,7 +132,7 @@ end;
 ## PowerShell Runner Setup
 
 **Critical for OnPrem functionality**: The correct PowerShell Runner DLL must be in `app/.netpackages`:
-- Version-specific DLLs in `powershellrunners/` folder (15-20 and 29 `_Microsoft.Dynamics.Nav.PowerShellRunner.dll`)
+- Version-specific DLLs in `powershellrunners/` folder (15-20 and 29 `_Microsoft.Dynamics.Nav.PowerShellRunner.dll`); for 21-28 take the file from `<install>\<version>\Service\Add-ins\PowerShellRunner` (the assembly version equals the major version)
 - Copy the DLL matching the BC version to `app/.netpackages/` (currently `29_Microsoft.Dynamics.Nav.PowerShellRunner.dll`, taken from the BC 29 container); keep only one DLL there
 - Referenced in `app/src/dotnet.al` with conditional compilation
 - The test app needs no DLL (it does not use the DotNet type)
@@ -161,7 +161,7 @@ end;
 4. **Build and run the tests in the local container `bc29`** (BC 29) until all tests pass: build `app` and `test` with all analyzers (CodeCop, UICop, ApplicationCop, FormattingCop, LinterCop, TestAutomationCop), publish `app` first and then `test`, run all tests. A failing test is either a bug in the code (fix the code, keep the test) or a wrong test (fix the test); never delete or weaken a test just to get green.
 5. **Pull request to `main`**: when all tests pass, commit, push the branch and create the pull request.
 6. **Merge with a merge commit** (no squash, no rebase), then delete the feature branch locally and on the remote and build once more on the updated `main`.
-7. Update this file and the README when structure, versions, conventions or features changed.
+7. Update this file, the README and `CHANGELOG.md` when structure, versions, conventions or features changed. Write documentation in a factual tone without emojis or dashes (no em dash or en dash).
 
 ### Building & Testing in the Container
 - Container: `bc29` (BC 29, Docker, instance `BC`, tenant `default`, user/password authentication). Start it if it is stopped. The Docker CLI needs `$env:DOCKER_HOST = 'npipe:////./pipe/docker_engine_windows'` in the session.
@@ -242,14 +242,14 @@ Tests live in the separate app under `test/` (IDs 51100-51149, target OnPrem, de
 | Codeunit | Content |
 |---|---|
 | 51100 `Admin Tool Backup Test` | all backup types, filtered backups, round trips for every supported field type (incl. enum, option, duration, date formula, closing date, Media field), culture-independent storage, legacy values, invalid/empty JSON, existing records on restore, view backup data, snapshot IDs |
-| 51101 `Admin Tool Deletion Test` | `SetSuggestedTable`, `ClearRecordsToDelete`, `CalcRecordsInTable`, `GetTableCaption`, relation check (record, primary key, primary key name with special characters, GUID, standard tables related to system tables), `PerformDeletion` incl. audit log, `CreateBackupsBeforeDeletion` |
+| 51101 `Admin Tool Deletion Test` | `SetSuggestedTable`, `ClearRecordsToDelete`, `CalcRecordsInTable`, `GetTableCaption`, relation check (record, primary key, primary key name with special characters, GUID, numbered errors and error text, standard tables related to system tables), `PerformDeletion` incl. audit log, `CreateBackupsBeforeDeletion` |
 | 51102 `Admin Tool Audit Log Test` | start/complete operation, single record operation, field changes, backup link, cleanup of old entries incl. field change history |
 | 51103 `Admin Tool Page Test` | setup page, audit log list, backup list, dashboard (TestPage) |
 | 51104 `Admin Tool Backup Commit Test` | the two tests that need a `Commit()` (kept in a codeunit of their own) |
 | 51105 `Admin Tool Table Editor Test` | `Table Editor Mgt.`: count, modify (incl. validate), rename, delete with and without backup, create, protected tables (delete, modify, rename, create), confirm before deletion, SUPER check |
 | 51106 `Admin Tool Setup Test` | setup accessors and their defaults |
 
-Test objects use `namespace AdminToolbox.Test;` plus `using AdminToolbox;`. The last verified run: 96 tests, all green.
+Test objects use `namespace AdminToolbox.Test;` plus `using AdminToolbox;`. The last verified run: 97 tests, all green.
 
 ### Test conventions
 - **`internal` test hooks**: public entry points hidden behind a dialog (`StrMenu`, confirm) are not called by tests. The core procedure is `internal` instead, with `internalsVisibleTo` in `app/app.json`: `TableBackupMgt.RestoreFromJSON`, `AdminToolMgt.CheckTableRelationsForTable`, `AdminToolMgt.PerformDeletion`, `AdminToolMgt.CreateBackupsBeforeDeletion`. Add a one-line comment why a procedure is `internal`.

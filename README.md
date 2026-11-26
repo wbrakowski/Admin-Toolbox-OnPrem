@@ -1,1302 +1,462 @@
-# Admin-Toolbox-OnPrem
+# Admin Toolbox for Business Central OnPrem
 
-## Overview
+The Admin Toolbox is an extension for Microsoft Dynamics 365 Business Central OnPrem. It provides administrators and consultants with tools for bulk data deletion, record editing, table backup and restore, audit logging and license administration.
 
-The **Admin-Toolbox** is a comprehensive administrative tool for Microsoft Dynamics 365 Business Central OnPrem environments. It consolidates multiple powerful features from various community contributions into one cohesive application, providing administrators and consultants with essential tools for database management, license administration, backup/restore operations, audit logging, and system maintenance.
+The extension combines several community tools in one app and adds a backup system, an audit log and a dashboard around them. See [CHANGELOG.md](CHANGELOG.md) for the release history.
 
-### Features
+## Contents
 
-This toolbox combines the following features and contributions:
-- **[Record Deletion Tool](https://navinsights.net/2020/04/02/record-deletion-tool/)** by Waldemar Brakowski - Delete transactional data from multiple tables with automatic backup
-- **Table Editor** by Yuri Mishin - Modify, rename, or delete specific records in any table with full audit logging
-- **Table Backup & Restore System** - Create, manage, and restore table backups with multiple backup types (JSON Export, Snapshot, Full Backup)
-- **Comprehensive Audit Logging** - Track all data modifications and deletions with field-level change history
-- **Admin Toolbox Dashboard** - Monitor recent operations, backups, and audit log activity at a glance
-- **[View License Information](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/)** by Waldo - View current license details and permissions
-- **[Import Licenses](https://www.imbatman.info/post/using-powershell-in-microsoft-al-for-business-central-onprem)** by Neil Roberts - Import license files using PowerShell
-- **Show Developer License Warning** by Yuri Mishin - Alert users when a developer license is active
-- **[System Information Tables](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/)** by Waldo - Quick access to useful system tables
-- **[External Deployment Support](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/)** by Waldo - Enable app publishing in OnPrem environments
-- **[Used and Unused Objects](https://robertostefanettinavblog.com/2022/03/29/used-and-not-used-objects-in-business-central-license/)** by Roberto Stefanetti - Identify which licensed objects are actually used
-- **Export Unlicensed Objects** by Waldemar Brakowski - List all objects not covered by the current license
+1. [Features](#features)
+2. [Important notice](#important-notice)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+5. [Getting started](#getting-started)
+6. [Dashboard](#dashboard)
+7. [Setup](#setup)
+8. [Record deletion](#record-deletion)
+9. [Table Editor](#table-editor)
+10. [Table backups](#table-backups)
+11. [Audit log](#audit-log)
+12. [Information tables](#information-tables)
+13. [License management](#license-management)
+14. [Publishing apps](#publishing-apps)
+15. [Permissions and security](#permissions-and-security)
+16. [Languages](#languages)
+17. [Development and testing](#development-and-testing)
+18. [Contributing](#contributing)
+19. [Credits](#credits)
+20. [License](#license)
 
-> **Note:** This application is designed specifically for OnPrem environments because license information can only be accessed in OnPrem installations and the license import functionality requires DotNet. A SaaS version without the license management features could be created if there is sufficient demand.
+## Features
 
-### ⚠️ IMPORTANT WARNING
+| Area | Description | Origin |
+|---|---|---|
+| Record deletion | Delete the records of many tables at once, with suggestions for transactional tables | [Record Deletion Tool](https://navinsights.net/2020/04/02/record-deletion-tool/) by Waldemar Brakowski, based on the NAV tool by Olof Simren |
+| Table relation check | Find records that refer to related records that do not exist | Record Deletion Tool |
+| Table Editor | Modify, rename, create or delete records in any table | Yuri Mishin |
+| Table backups | Create, export, import and restore table backups in JSON format | Waldemar Brakowski |
+| Audit log | Log of all operations with field level change history | Waldemar Brakowski |
+| Dashboard | Statistics about tables, backups and recent operations | Waldemar Brakowski |
+| Information tables | Quick access to system tables such as sessions, metadata and the license | [Waldo](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/) |
+| License information | Display the active license and import license files | [Waldo](https://www.waldo.be/2021/01/07/check-customer-license-in-an-onprem-db-from-the-web-client/), [Neil Roberts](https://www.imbatman.info/post/using-powershell-in-microsoft-al-for-business-central-onprem) |
+| License reports | Export used, unused and unlicensed objects | [Roberto Stefanetti](https://robertostefanettinavblog.com/2022/03/29/used-and-not-used-objects-in-business-central-license/), Waldemar Brakowski |
+| Developer license warning | Warn administrators when a developer license is active | Yuri Mishin |
+| App publishing | Publish and install apps through the External Deployer | [Waldo](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/) |
 
-**This app contains very powerful features that can modify or delete data in your database. Use these features with extreme caution!**
+The app is designed for OnPrem installations. License information is only available OnPrem, and the license import uses DotNet to call PowerShell.
 
-- The app includes **automatic backup functionality** that creates backups before deletion operations (configurable)
-- All operations are logged in the **Audit Log** with full field-level change tracking
-- Always verify the **Admin Toolbox Setup** before performing operations
-- Test operations in a development or test environment first
-- Understand the implications of each operation before proceeding
-- Incorrect use may result in data loss or system instability
+## Important notice
 
----
+The Admin Toolbox can modify and delete large amounts of data. Observe the following before you use it:
 
-## Table of Contents
+- Test every operation in a development or test environment first.
+- Create a backup of the database or company before you delete data in bulk.
+- Check the [Setup](#setup) page. By default a backup of every table is offered before records are deleted.
+- All deletions and modifications that are made through the toolbox are recorded in the [audit log](#audit-log).
+- The suggestions for tables to delete are based on a fixed list and can be incomplete. Always review the marked tables before you delete.
+- The tool is provided without warranty. Incorrect use can lead to data loss.
 
-1. [Prerequisites and Requirements](#prerequisites-and-requirements)
-2. [Installation](#installation)
-3. [How to Use the Toolbox](#how-to-use-the-toolbox)
-   - [Admin Toolbox Dashboard](#admin-toolbox-dashboard)
-   - [Admin Toolbox Setup](#admin-toolbox-setup)
-   - [Record Deletion Tool](#record-deletion-tool)
-   - [Table Editor](#table-editor)
-   - [Table Backup Management](#table-backup-management)
-   - [Audit Log](#audit-log)
-   - [Publishing & Installing Apps](#publishing--installing-apps)
-   - [License Overview and Import](#license-overview-and-import)
-   - [Export License Object Information](#export-license-object-information)
-   - [Links to Informational Tables](#links-to-informational-tables)
-   - [Show Developer License Warning](#show-developer-license-warning)
-4. [How to Install the External Deployer](#how-to-install-the-external-deployer)
-5. [Support and Contributions](#support-and-contributions)
+## Requirements
 
----
-
----
-
-## Prerequisites and Requirements
-
-### System Requirements
-- **Business Central OnPrem** version 15.0 or higher
-- The app version in `app/app.json` must match your Business Central platform version
-- User must have **SUPER** permissions to access the Admin Toolbox
-
-### Technical Requirements
-- **.NET Package**: PowerShell Runner DLL matching your BC version (included in `powershellrunners` folder)
-- **PowerShell**: Required for license import functionality
-- **Database Access**: Full read/write permissions to the Business Central database
-
-### Supported Languages
-The toolbox currently supports the following languages:
-- English (en-US)
-- German (de-DE)
-- Spanish (es-ES)
-
-> **Note:** The Spanish translation was generated using DeepL and may not be 100% accurate. Contributions to improve translations are welcome.
-
----
+- Business Central OnPrem. This release targets version 29 (platform 29.0, runtime 18.0).
+- A user with the SUPER permission set. Other users cannot open the toolbox.
+- The PowerShell Runner assembly of the Business Central version, for compiling the app from source (see [Installation](#installation)).
+- For the license import: PowerShell on the server and permission to restart the service instance.
 
 ## Installation
 
-Follow these steps to install the Admin Toolbox in your Business Central OnPrem environment:
+### Using the compiled app
 
-### Step 1: Clone or Download the Repository
+A compiled app is available in the root folder of the repository (`Waldemar Brakowski_Admin-Toolbox_<version>.app`).
+
 ```powershell
-git clone https://github.com/wbrakowski/Admin-Toolbox-OnPrem.git
+Publish-NAVApp -ServerInstance <ServerInstance> -Path "<path>\Waldemar Brakowski_Admin-Toolbox_29.0.0.0.app" -SkipVerification
+Sync-NAVApp -ServerInstance <ServerInstance> -Name "Admin-Toolbox"
+Install-NAVApp -ServerInstance <ServerInstance> -Name "Admin-Toolbox"
 ```
 
-### Step 2: Configure the App Version
-1. Open `app/app.json`
-2. Verify that the `platform` and `application` versions match your Business Central installation (this release targets BC 29, runtime 18.0)
-3. Update the version numbers if necessary:
-   ```json
-   "platform": "29.0.0.0",
-   "application": "29.0.0.0",
-   "runtime": "18.0"
-   ```
+Assign the permission set **Admin Toolbox** to the users who work with the app. Open the page by searching for "Admin Toolbox".
 
-> **Note:** The repository contains two AL projects: the app in `app/` and its automated tests in `test/`. Open `AdminTool.code-workspace` in VS Code to work with both. A compiled release of the app is available in the repository root.
+![Search for the Admin Toolbox](images/search-toolbox.png)
 
-### Step 3: Install the Correct PowerShell Runner
-1. Navigate to the `powershellrunners` folder
-2. Identify the DLL that matches your Business Central major version:
-   - `15_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 15
-   - `16_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 16
-   - `17_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 17
-   - `18_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 18
-   - `19_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 19
-   - `20_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 20 to BC 28
-   - `29_Microsoft.Dynamics.Nav.PowerShellRunner.dll` for BC 29 and higher
-3. Create a folder named `.netpackages` in the `app` folder (if it doesn't exist)
-4. Copy the appropriate DLL to the `app/.netpackages` folder
-5. Make sure only that DLL is used for compilation (the AL setting `al.assemblyProbingPaths` in `app/.vscode/settings.json` points to `./.netpackages`)
+### Building from source
 
-> **Important:** Only one PowerShell Runner DLL should be present in the `app/.netpackages` folder to avoid conflicts.
+1. Clone the repository: `git clone https://github.com/wbrakowski/Admin-Toolbox-OnPrem.git`
+2. Open `AdminTool.code-workspace` in Visual Studio Code. The workspace contains the repository root, the app in `app/` and the test app in `test/`.
+3. Adjust `platform`, `application` and `runtime` in `app/app.json` if you target another Business Central version.
+4. Copy the PowerShell Runner assembly of your Business Central version to `app/.netpackages`. Keep exactly one file in that folder.
 
-### Step 4: Compile and Publish the App
-1. Compile the app using AL Language extension in VS Code or your preferred development tool
-2. Publish the app to your Business Central server:
-   ```powershell
-   Publish-NAVApp -ServerInstance YourServerInstance -Path "path\to\app.app" -SkipVerification
-   ```
-3. Install the app on your desired companies:
-   ```powershell
-   Install-NAVApp -ServerInstance YourServerInstance -Name "Admin-Toolbox"
-   ```
+   The assembly is part of every Business Central installation and is the safest source, because its assembly version equals the major version of the service tier. You find it in the service tier folder, for example `C:\Program Files\Microsoft Dynamics NAV\280\Service\Add-ins\PowerShellRunner\Microsoft.Dynamics.Nav.PowerShellRunner.dll` for version 28.
 
-### Step 5: Verify Installation
-1. Open Business Central Web Client
-2. Search for "Admin Toolbox" using the search function (Alt+Q or Tell Me)
-3. The Admin Toolbox page should appear in the search results
+   For convenience the folder `powershellrunners` contains copies of the files:
 
----
+   | Business Central version | File in `powershellrunners` |
+   |---|---|
+   | 15 to 20 | `<version>_Microsoft.Dynamics.Nav.PowerShellRunner.dll` |
+   | 21 to 28 | No copy of its own. Use the file of your installation |
+   | 29 | `29_Microsoft.Dynamics.Nav.PowerShellRunner.dll` |
 
-## How to Use the Toolbox
+   In a test with the containers of version 28 and 29, apps that were compiled against the files of version 15, 17, 19, 20 and 29 all bound to the assembly of the service tier. A single file such as version 20 is therefore likely to work for the newer versions that run on .NET. This was only verified for versions 28 and 29. Older service tiers that run on the .NET Framework bind strictly by assembly version, so use the file of the same major version there.
 
-### Accessing the Admin Toolbox
+5. Download the symbols, compile and publish the app.
 
-After successful installation, you can access the toolbox through the search function in Business Central:
+The setting `al.assemblyProbingPaths` in `app/.vscode/settings.json` points to `./.netpackages`.
 
-1. Press **Alt+Q** or click the search icon (🔍) in the top menu
-2. Type "Admin Toolbox" in the search field
-3. Click on the Admin Toolbox page to open it
+## Getting started
 
-![Search Toolbox](images/SearchToolbox.png)
+The Admin Toolbox page combines all functions in one place. The ribbon groups the actions by task: **Tables**, **Deletion** and **Audit & Backup**. The page contains the following areas:
 
-> **Security Note:** Users without SUPER permissions will receive an error when attempting to open the Admin Toolbox page. This is a security measure to ensure only authorized administrators can access these powerful features.
+- **Welcome**: short instructions and a link to this documentation. The area can be hidden in the [Setup](#setup).
+- **Tables**: the list of all tables with their record counts. Record deletion and the Table Editor start from here.
+- **License Information**: license details and import (OnPrem only).
+- **Information**: links to system tables.
+- **Table Backups** (FactBox): the backups of the selected table.
 
-### Guided Tour
+![Admin Toolbox](images/toolbox-home.png)
 
-When opening the Admin Toolbox for the first time, a guided tour will automatically appear to help you understand the available functionalities. 
+![Actions in the Tables group](images/toolbox-ribbon-tables.png)
 
-![Guided Tour](images/AdminToolbox_Guided_Tour.png)
+When you open the toolbox for the first time, a guided tour describes the available functions. To start the tour again, select the page title.
 
-If you dismiss the guided tour and want to see it again later, simply click on the page caption "Admin Toolbox" to re-enable it.
+## Dashboard
 
-### Toolbox Structure
+The dashboard gives a quick overview. Open it with **Open Dashboard** on the toolbox page.
 
-The Admin Toolbox is organized into four main areas:
+![Dashboard](images/dashboard.png)
 
-1. **How To** - Quick link to this documentation
-2. **Tables** - Record deletion tool and table editor for data management
-3. **License Information** - View license details, import licenses, and export object lists (OnPrem only)
-4. **Information** - Quick access to useful system tables and information
+| Tile | Description |
+|---|---|
+| Tables with Data | Number of tables with at least one record in the current company |
+| Tables > 1,000 Records | Number of tables with more than 1,000 records |
+| Tables > 100,000 Records | Number of tables with more than 100,000 records |
+| Total Backups | Number of table backups |
+| Audit Log Entries | Number of audit log entries |
+| Recent Operations (24h) | Number of operations in the last 24 hours |
 
-![Admin Toolbox](images/Toolbox.png)
+**Last Backup** shows when the latest backup was created, and **Audit Logging** shows whether audit log entries exist. Selecting a tile opens the matching list. **Refresh** recalculates all values.
 
-The **How To** section provides a direct link to this README documentation for quick reference.
+## Setup
 
-![Howto](images/Howto.png)
+Open the setup with **Setup** on the toolbox page. The settings apply to all users.
 
----
+![Setup](images/setup.png)
 
-### Admin Toolbox Dashboard
+| Setting | Default | Description |
+|---|---|---|
+| Auto Backup Before Deletion | Yes | Create a backup of each table before its records are deleted |
+| Prompt for Backup | Yes | Ask for confirmation before the backups are created. If disabled, the backups are created without a prompt |
+| Auto Backup Type | JSON Export | Backup type that is used for automatic backups |
+| Backup Retention Days | 30 | Age in days after which backups can be deleted with **Delete Old Backups** |
+| Audit Log Retention Days | 90 | Age in days after which entries can be deleted with **Delete Old Entries**. Set 0 to keep all entries |
+| Developer License Warning | No | Show a message on company open when a developer license is active (OnPrem only) |
+| Enable Inline Documentation | Yes | Show the welcome text and the help texts of the guided tour |
 
-The **Admin Toolbox Dashboard** provides a comprehensive overview of recent system activity, backups, and audit logs. This centralized view helps administrators quickly assess system health and recent operations.
+Recommendations for production systems: keep **Auto Backup Before Deletion** enabled, keep **Prompt for Backup** enabled so that users are aware of the backups, and set the retention days according to your compliance requirements.
 
-#### Dashboard Features
+## Record deletion
 
-**Activity Statistics:**
-- **Total Backups**: Shows the total number of table backups created
-  - Click to drill down to the full backup list
-- **Recent Operations**: Displays operations performed in the last 24 hours
-  - Click to view recent audit log entries
-  - Color-coded to highlight recent activity
+The record deletion removes all records from the marked tables. Typical uses are cleaning a company of transactional data before go-live or preparing a company for demos, training or tests. The function is based on the [Record Deletion Tool](https://navinsights.net/2020/04/02/record-deletion-tool/).
 
-**Quick Information:**
-- **Last Backup**: Shows when the most recent backup was created
-  - Helps ensure regular backup practices are being followed
-- **Audit Logging Status**: Indicates if audit logging is enabled
-  - Shows "Active" when audit log entries exist
-  - Color-coded for quick status recognition
+The **Tables** list shows all tables of the database except system tables and the tables of the Admin Toolbox itself. The columns are Table ID, Table Name, Table Caption, **No. of Table Relation Errors**, **No. of Records** and **Delete Records**. Records are only deleted from tables for which **Delete Records** is selected.
 
-**Direct Actions:**
-- **View All Backups**: Opens the complete Table Backup List
-- **View Audit Log**: Opens the Audit Log Entries page
+### Procedure
 
-#### Using the Dashboard
+1. **Refresh Table List** (group Tables). Adds tables that are not yet in the list. Run it again after you installed new apps.
+2. **Suggest Records** (group Deletion). Select what you want to mark:
 
-The dashboard is designed to provide at-a-glance information about:
-- Backup frequency and coverage
-- Recent system modifications and deletions
-- Overall audit trail health
+   ![Suggestion options](images/suggest-options.png)
 
-Use the dashboard as your starting point to:
-1. Verify backups are being created regularly before data operations
-2. Review recent activity for unexpected changes
-3. Monitor audit log activity for compliance purposes
-4. Quickly navigate to backup and audit log management pages
+   - *Suggest all transactional tables for deletion* marks the tables that usually contain transactional data.
+   - *Suggest unlicensed partner or custom tables for deletion* marks tables from partner or custom objects that are not covered by the license. Use this option with the customer license. If a developer license is imported, the tool offers to import another license first. To delete the marked records afterwards, a developer license is required.
 
-> **Tip:** Keep the dashboard open in a separate tab during major data operations to monitor activity in real-time.
+   ![Result of the suggestion](images/suggest-result.png)
 
----
+3. Review the marked tables. Add or remove tables manually. **View Records** opens the selected table in a separate window. A filter on **No. of Records** shows the tables that still contain data.
 
-### Admin Toolbox Setup
+   ![Marked tables](images/tables-marked.png)
 
-The **Admin Toolbox Setup** page allows you to configure global settings that control backup behavior, audit logging, and system warnings.
+4. Optional: [check the table relations](#table-relation-check).
+5. **Delete Marked Records** (group Deletion). Choose whether the table triggers are executed:
 
-#### Opening the Setup
+   ![Deletion options](images/delete-options.png)
 
-From the Admin Toolbox, click **Setup** to open the configuration page:
+   - *Delete records without running table triggers* is faster and is the default.
+   - *Delete records and run table triggers* runs the delete triggers of the tables.
 
-![OpenSetup](images/OpenSetup.png)
+   The toolbox then shows the number of marked tables and asks for confirmation.
 
-#### Configuration Options
+   ![Confirmation](images/delete-confirm.png)
 
-**Backup Settings:**
+6. If **Auto Backup Before Deletion** is enabled in the setup, the toolbox offers to create a backup of each table. Tables with field types that cannot be backed up are listed in one additional question. The backups are committed before the first record is deleted, so they remain available if the deletion fails.
+7. **Clear Selection** clears **Delete Records** for all tables.
 
-1. **Auto Backup Before Deletion** (Default: Enabled)
-   - When enabled, automatically creates a backup before deleting records
-   - Provides safety net for recovery if deletion was unintended
-   - Recommended to keep enabled for production environments
+Each deleted table is logged in the [audit log](#audit-log) as a Delete operation with the number of deleted records.
 
-2. **Prompt for Backup** (Default: Enabled)
-   - When enabled, asks for confirmation before creating auto-backups
-   - When disabled, backups are created silently without user interaction
-   - Only applies if "Auto Backup Before Deletion" is enabled
+The tables of the Admin Toolbox and system tables are protected. If one of them is marked, the deletion stops with an error before any record is changed.
 
-3. **Auto Backup Type** (Default: JSON Export)
-   - Specifies which backup type to use for automatic backups
-   - Options:
-     - **JSON Export**: Exports table data as JSON (recommended for most cases)
-     - **Snapshot**: Creates a physical copy of the table in the database
-     - **Full Backup**: Complete backup including all metadata
+### Table relation check
 
-4. **Backup Retention Days** (Default: 30 days)
-   - Specifies how long to keep backups before they can be deleted
-   - Helps manage database size while maintaining recovery capability
-   - Minimum value: 1 day
+**Check Table Relations** (group Tables) checks for every listed table whether the records refer to related records that exist. After a confirmation the toolbox shows the progress with table, name and percentage.
 
-**Audit Log Settings:**
+![Confirmation](images/check-relations-confirm.png)
 
-5. **Audit Log Retention Days** (Default: 90 days)
-   - Specifies how long to keep audit log entries
-   - Set to 0 to keep audit logs indefinitely
-   - Helps manage audit log table size for compliance requirements
+![Progress](images/check-relations-progress.png)
 
-**Warning Settings:**
+The check uses the table relations that are defined on the fields of the tables. It has the following properties:
 
-6. **Developer License Warning** (Default: Disabled)
-   - When enabled, shows a warning message when opening a company with a developer license
-   - Only users with SUPER permissions see the warning
-   - Helps prevent accidental use of developer licenses in production
+- Only simple relations from one field to one field of another table are checked. Relations with several fields and conditional relations are not checked.
+- Empty values, zero and empty GUIDs are ignored.
+- Relations to system tables and to tables that cannot be opened, for example tables of external connections, are skipped.
+- The result is stored per table and shown in the column **No. of Table Relation Errors**.
 
-7. **Enable Inline Documentation** (Default: Enabled)
-   - When enabled, shows contextual help and guidance within pages
-   - Provides tooltips, about texts, and usage hints
-   - Recommended for new users learning the toolbox
+![Tables with relation errors](images/tables-relation-errors.png)
 
-#### Best Practice Recommendations
-
-**For Production Environments:**
-- ✅ Enable "Auto Backup Before Deletion"
-- ✅ Enable "Prompt for Backup" (so users are aware backups are being created)
-- ✅ Set "Auto Backup Type" to "JSON Export" (best balance of speed and reliability)
-- ✅ Set "Backup Retention Days" to at least 30 days
-- ✅ Set "Audit Log Retention Days" to meet your compliance requirements (typically 90+ days)
-- ✅ Enable "Developer License Warning" to prevent accidental license issues
-
-**For Development/Test Environments:**
-- Consider disabling "Prompt for Backup" for faster workflows
-- Lower "Backup Retention Days" to conserve space (e.g., 7-14 days)
-- Lower "Audit Log Retention Days" or disable (set to 0 to keep indefinitely but manually clean up)
-- Enable "Developer License Warning" to ensure correct license usage
-
-> **Note:** Changes to these settings take effect immediately and apply to all users in the system.
-
----
-
-### Table Backup Management
-
-The **Table Backup Management** system provides comprehensive backup and restore capabilities for any table in Business Central. This feature is essential for data safety during administrative operations.
-
-#### Overview
-
-The backup system supports three backup types:
-1. **JSON Export**: Exports table data in JSON format (recommended for most scenarios)
-2. **Snapshot**: Creates a physical table copy in the database
-3. **Full Backup**: Complete backup including all metadata and relationships
-
-All backups are tracked with:
-- Table ID and Name
-- Backup Type and Operation Type (Manual, Before Deletion, etc.)
-- Creation date/time and user
-- Number of records and backup size
-- Restore history
-
-#### Creating a Backup
-
-**From the Table Backup List:**
-
-1. Open **Admin Toolbox** → **Table Backups**
-2. Click **Create Backup**
-3. Configure the backup options:
-   - **Table ID**: Select the table to backup (or enter ID directly)
-   - **Table Name**: Automatically filled after selecting Table ID
-   - **Backup Type**: Choose JSON Export, Snapshot, or Full Backup (default: JSON Export)
-   - **Description**: Optional description for this backup
-   - **Use Filter**: Enable to backup only specific records
-   - **Filter View**: Define filter criteria (only if "Use Filter" is enabled)
-4. Click **OK** to create the backup
-
-The system will:
-- Show a progress dialog during backup creation
-- Count and store the number of records
-- Calculate the backup size
-- Display a success message with the backup Entry No.
-
-**Automatic Backups:**
-
-Backups are automatically created before deletion operations when:
-- "Auto Backup Before Deletion" is enabled in Admin Toolbox Setup
-- User confirms the backup prompt (if "Prompt for Backup" is enabled)
-- The backup type is determined by "Auto Backup Type" setting
+Select the number to open the errors of a table. Each error names the record, the value and the field and table in which the value was not found.
 
-#### Viewing Backups
+![Relation errors](images/relation-errors.png)
 
-The **Table Backup List** shows all backups with:
-- Entry No., Table ID, and Table Name
-- Backup Type and Operation Type
-- Creation date/time and user
-- Number of records and backup size (KB)
-- Restore status and date (if restored)
+The check is a helpful indicator, not a complete integrity check. On large databases it can take some time.
 
-**Filtering and Sorting:**
-- Filter by Table ID to see all backups for a specific table
-- Sort by Backup Date Time to see most recent backups first
-- Filter by Operation Type to see manual vs. automatic backups
-- Filter by Restored status to identify which backups have been used
+## Table Editor
 
-#### Restoring a Backup
+The Table Editor modifies, renames, creates or deletes records of any table. Open it with **Edit Table** for the selected table in the list. Special thanks to [Yuri Mishin](https://www.linkedin.com/in/yuri-mishin-2a08a71b4/), who developed the Table Editor.
 
-To restore data from a backup:
+![Table Editor](images/table-editor.png)
 
-1. Select the backup in the Table Backup List
-2. Click **Restore Backup**
-3. Review the confirmation dialog showing:
-   - Table ID and Name
-   - Number of records to restore
-   - Backup date/time
-4. Click **Yes** to confirm restoration
-
-The system will:
-- Show a progress dialog with:
-  - Processed count
-  - Successfully inserted count
-  - Failed count (e.g., due to duplicates or validation errors)
-- Handle errors gracefully (existing records are skipped)
-- Update the "Restored" flag and "Restore Date Time"
-- Display detailed results
-
-**Important Notes:**
-- Restoration does **not** delete existing records
-- Records are inserted with `RecordRef.Insert(true)` to ensure SystemId is set
-- Duplicate records (same primary key) will fail to insert but won't stop the process
-- Partial restoration is possible if some records fail validation
-- A value in the backup that cannot be converted is reported with the value and the field name; if every record fails, the restore stops with an error
-- Creating a backup of a table with Blob, Media or RecordID fields asks for confirmation, because these fields are not part of the backup
-
-#### Exporting and Importing Backups
-
-**Export to File:**
-1. Select a backup in the Table Backup List
-2. Click **Export to File**
-3. Choose a location and filename (.json format)
-4. The backup data is exported for external storage or transfer
-
-**Import from File:**
-1. Click **Import from File** in the Table Backup List
-2. Select the target table for the backup
-3. Choose the .json backup file
-4. The backup is imported and added to the backup list
-5. You can then restore it like any other backup
-
-Use cases:
-- Archiving important backups outside the database
-- Transferring backups between environments
-- Long-term backup retention beyond database retention periods
-
-#### Managing Old Backups
+| Field | Description |
+|---|---|
+| ID, Caption | The table to edit |
+| Use Trigger | Run the triggers of the table when records are modified or deleted |
+| View | Filter that selects the records. **Records in Filter** shows how many records are selected |
+| No. | Field to change. Name, Caption and Type of the field are shown |
+| Value | New value |
+| Validate | Run the OnValidate trigger of the field |
 
-To clean up old backups:
+| Action | Description |
+|---|---|
+| Modify Table Records | Sets the value in the selected records. If the field is part of the primary key, the action renames the records instead |
+| Delete Table Records | Deletes the selected records |
+| Create Record | Creates a record. Every field of the primary key must be filtered to a single value in **View** |
+| Find Longest Value | Shows the longest value of the selected field |
 
-1. Click **Delete Old Backups** in the Table Backup List
-2. Review the count of backups older than the specified retention period (default: 30 days)
-3. Confirm deletion
-4. Old backups are removed to free up database space
+Before any change the Table Editor asks for confirmation. When you delete records, it can create a backup first if that is set up in the [Setup](#setup).
 
-> **Tip:** The retention period is configured in Admin Toolbox Setup under "Backup Retention Days"
-
-#### Backup Best Practices
-
-**Before Major Operations:**
-- Always create a manual backup before bulk deletions or modifications
-- Use descriptive names in the Description field (e.g., "Before cleaning transactional data")
-- Verify the backup was created successfully (check record count)
-
-**Backup Type Selection:**
-- **JSON Export**: Best for most scenarios - fast, compact, portable
-- **Snapshot**: Faster restore but requires more database space
-- **Full Backup**: Most comprehensive but slower and larger
-
-**Regular Maintenance:**
-- Review backup list periodically
-- Export critical backups to file for long-term storage
-- Delete old backups that are no longer needed
-- Monitor backup sizes to manage database growth
-
----
-
-### Audit Log
-
-The **Audit Log** system provides comprehensive tracking of all data modification and deletion operations performed through the Admin Toolbox. Every operation is logged with full field-level change history for compliance and auditing purposes.
-
-#### Overview
-
-The audit log captures:
-- **Operations**: Insert, Modify, Delete, Bulk Delete, Bulk Modify
-- **Field Changes**: Old value → New value for every modified field
-- **Metadata**: Date/time, user, table, status, duration
-- **Related Backups**: Links to backups created before operations
-- **Results**: Records affected, records failed, error messages
-
-All Table Editor operations (Modify, Rename, Delete) automatically create audit log entries with field-level change tracking.
-
-#### Viewing the Audit Log
-
-Open the Audit Log from:
-- Admin Toolbox Dashboard → Recent Operations (drilldown)
-- Admin Toolbox → **View Audit Log** action
-- Direct search: "Audit Log Entries"
-
-The **Audit Log Entries** page displays:
-- Entry No. and Date/Time (color-coded by recency)
-- Operation Type (color-coded)
-- Table ID and Table Name
-- User ID
-- Status (Success, Failed, In Progress) - color-coded
-- No. of Records Affected (color-coded by volume)
-- No. of Records Failed (color-coded if failures exist)
-- No. of Fields Changed
-- Backup Created indicator
-- Duration in milliseconds
-- Description and Triggered By information
-
-#### Viewing Field Changes
-
-To see detailed field-level changes for an operation:
-
-1. Select an audit log entry
-2. Click **View Field Changes** or use the FactBox
-3. The Field Change History shows:
-   - Field No., Field Name, and Field Caption
-   - Old Value and New Value
-   - Date/Time and User ID
-   - Record ID and Primary Key Value
-
-**Field Change History FactBox:**
-- Automatically displayed on the right side of the Audit Log Entries page
-- Shows all field changes for the selected audit log entry
-- Drill down to see full details
-
-**Use Cases:**
-- Track what changed when modifying records in bulk
-- Identify which fields were updated during a rename operation
-- Audit user actions for compliance requirements
-- Troubleshoot unexpected data changes
-
-#### Viewing Related Backups
-
-If a backup was created before an operation:
-
-1. The "Backup Created" field shows ✓ (checkmark)
-2. Click **View Related Backup** to open the backup card
-3. From there, you can restore the backup if needed
-
-This linkage ensures you can always recover data if an operation had unintended consequences.
-
-#### Audit Log Card
-
-Double-click any audit log entry to open the **Audit Log Entry Card** with complete details:
-
-**General Information:**
-- Entry No., Operation Type, Table ID/Name
-- Date/Time, User ID, Company Name
-- Triggered By (source of the operation, e.g., "Table Editor")
-
-**Results:**
-- Status (Success/Failed/In Progress)
-- No. of Records Affected
-- No. of Records Failed
-- No. of Fields Changed
-- Duration (ms)
-- Error Message (if failed)
-
-**Related Records:**
-- Backup Created indicator
-- Backup Entry No. (clickable to view backup)
-- Record ID and Primary Key Value (for single-record operations)
-
-**Description:**
-- Detailed description of the operation (e.g., "Modified field Customer Name to value ABC Ltd")
-
-#### Filtering and Analysis
-
-**Common Filters:**
-- **By Date/Time**: Find operations in a specific timeframe
-- **By User**: See what a specific user has done
-- **By Table**: View all operations on a specific table
-- **By Status**: Find failed operations that need attention
-- **By Operation Type**: Focus on deletions or modifications
+Every operation is logged in the audit log. Modify and rename operations are logged as Bulk Modify with old and new values of each changed field, deletions as Bulk Delete. Tables of the Admin Toolbox and system tables cannot be changed. The Table Editor requires the SUPER permission set.
 
-**Drill-Down Analysis:**
-- Click on "No. of Records Affected" to see field changes
-- Click on "No. of Fields Changed" to see what changed
-- Click on "Backup Entry No." to view the related backup
+The Table Editor changes data directly. Use filters carefully, enable **Validate** when business rules must be respected, and check the audit log afterwards.
 
-#### Exporting Audit Log to Excel
+## Table backups
 
-To create an Excel report of audit log entries:
+Open the backups with **Manage Backups** in the ribbon group Audit & Backup. The FactBox on the toolbox page shows the backups of the selected table.
 
-1. Filter the audit log entries as desired
-2. Click **Export to Excel**
-3. Choose a filename and location
-4. Excel file includes:
-   - Entry No., Date/Time, Operation Type
-   - Table ID, Table Name, User ID
-   - Status, Records Affected, Records Failed
-   - Fields Changed, Backup Created indicator
-   - Duration, Description, Triggered By, Error Message
+![Table backups](images/backup-list.png)
 
-Use for:
-- Compliance reporting
-- Management summaries
-- Long-term archival
-- External audits
+### Backup types
 
-#### Deleting Old Audit Log Entries
+All backup types store the table data as JSON in the backup record.
 
-To manage audit log table size:
+| Type | Use |
+|---|---|
+| JSON Export | Default. Portable, readable, can be exported to a file |
+| Snapshot | Reserves a snapshot table ID in addition to the JSON data |
+| Full Backup | Same storage as JSON Export, intended for complete backups |
 
-1. Click **Delete Old Entries** in the Audit Log Entries page
-2. Entries older than "Audit Log Retention Days" (from Admin Toolbox Setup) will be deleted
-3. Confirm deletion
-4. Old entries are removed
+The operation type shows why a backup was created: Manual Backup, Before Deletion, Before Modification or Scheduled Backup.
 
-> **Important:** Deleted audit log entries cannot be recovered. Export to Excel first if you need to archive them.
+### Create a backup
 
-**Retention Policy Recommendations:**
-- **Financial/Regulated Industries**: 90+ days (or longer per compliance requirements)
-- **Standard Operations**: 30-90 days
-- **Development/Test**: 7-30 days (or set to 0 for indefinite retention with manual cleanup)
+1. Select **Create Backup**.
+2. Select the table, the backup type and enter an optional description.
+3. To back up only some records, enable **Use Filter** and set the filter with the assist edit button of **Filter View**. Use Filter without a filter is rejected.
+4. Confirm with **OK**.
 
-#### Audit Log Integration
+![Create a backup](images/create-backup.png)
 
-The audit log integrates seamlessly with the Admin Toolbox:
+The following field types are backed up: integer, big integer, decimal, boolean, date, time, date and time, GUID, option and enum, text, code, duration and date formula. Fields of other types, for example BLOB, Media, MediaSet and RecordID, are skipped and cannot be restored. If a table contains such fields, the toolbox asks for confirmation before it creates the backup.
 
-**Table Editor:**
-- **Modify Records**: Creates "Bulk Modify" audit log with all field changes
-- **Rename Records**: Creates "Bulk Modify" audit log tracking primary key changes
-- **Delete Records**: Creates "Bulk Delete" audit log (future enhancement)
+Values are stored independent of the language and region settings, so that backups can be restored in a different environment.
 
-**Table Backup:**
-- Backups created before operations are linked in the audit log
-- Use "View Related Backup" to access the backup from the audit log
+### Restore a backup
 
-**Admin Toolbox Dashboard:**
-- Shows recent operations count (last 24 hours)
-- Provides quick drill-down to recent audit log entries
+1. Select the backup and choose **Restore Backup**.
+2. Confirm the question.
 
-#### Audit Log Best Practices
+![Restore a backup](images/restore-confirm.png)
 
-**For Compliance:**
-- Set appropriate retention periods in Admin Toolbox Setup
-- Export audit logs to Excel regularly for external archival
-- Review audit logs after major operations
-- Monitor failed operations for system issues
+The records are inserted one by one. Existing records are not changed. Records that already exist or that cannot be inserted are counted as failed, and the restore continues. The result message shows how many records were restored. A value in the backup that cannot be converted stops the affected record and names the value and the field. If no record can be inserted, the restore ends with an error. The backup records the restore date.
 
-**For Operations:**
-- Check audit log before restore to understand what changed
-- Use field change history to verify modifications were correct
-- Review audit log after bulk operations to confirm results
-- Monitor duration to identify performance issues
+### Export, import and cleanup
 
-**For Security:**
-- Review audit log for unauthorized changes
-- Filter by user to audit specific user actions
-- Monitor operations performed outside business hours
-- Track who performed sensitive operations
+- **Export to File** saves the JSON data of a backup in a file.
+- **Import from File** creates a backup from a JSON file for a selected table.
+- **View Backup Data** shows the first 1,000 characters of the data.
+- **Delete Old Backups** deletes the backups that are older than **Backup Retention Days**.
 
----
+## Audit log
 
-### Record Deletion Tool
+The audit log records the operations of the Admin Toolbox. Open it with **View Audit Log** in the ribbon group Audit & Backup.
 
-The Tables area shows you all the tables in the system except the system tables. </br>
-It also contains functionalities to delete records from these tables. </br> 
+![Audit log](images/audit-log.png)
 
-Part of the following descriptions were copied from [Olof Simren's original post](http://www.olofsimren.com/record-deletion-tool-for-dynamics-nav-2015/ "Olof Simren's original post") for the Record Deletion Tool. </br>
-He created the original version for Microsoft Dynamics NAV. </br>
-I rebuilt the tool and added some new functions to it. </br> 
+Each entry contains the date and time, the user, the operation type (Insert, Modify, Delete, Bulk Delete, Bulk Modify), the table, the status, the number of affected and failed records, the number of changed fields, the duration, a description and the originating function. If a backup was created before the operation, the entry links to it.
 
-This data deletion tool is useful if you want to 'clean' a company from transactional data. </br>
-It could for example be that you have been testing transactions in a company that you want to use for a go-live. </br>
-It is also useful if you just want to have a clean company without transactions for a demo, training or testing session. </br> 
+| Action | Description |
+|---|---|
+| View Field Changes | Shows old and new values of the changed fields. The FactBox shows them for the selected entry |
+| View Related Backup | Opens the backup that was created before the operation |
+| Export to Excel | Exports the entries |
+| Delete Old Entries | Deletes entries that are older than **Audit Log Retention Days** |
+| Filter by Table, Filter by User, Clear Filters | Filter functions |
 
-Use the PageAction "Insert/Update Tables". This will populate the list with all the tables that are in the database. </br>
-The "Insert/Update Tables" function will be automatically executed the first time you open the page. </br>
-System tables are excluded here. If you afterwards add new tables you can run this function again to have them added. </br>
+Deleted audit log entries cannot be restored. Export them to Excel first if they are subject to retention requirements.
 
-![InsertTables](images/InsertTables.png)
+## Information tables
 
-After you used the function, the tables are now available in the list. </br>
+The **Information** area opens frequently needed system tables in a new browser tab. Select the title **Information** to expand the area.
 
-![TableList](images/TableList.png)
+![Information](images/information.png)
 
-Then you go through and select the tables you want to delete records from by checking the "Delete Records" field. </br>
-The PageActrion "Suggest Records to Delete" can suggest records for you to delete by providing you with these two options:
-- Suggest all transactional records to delete
-- Suggest unlicensed partner or custom records to delete
+| Group | Tables |
+|---|---|
+| Session | Session, Active Session, Session Event |
+| Metadata | Table Metadata, Codeunit Metadata, Page Metadata |
+| Object | All Objects, Field, Key, Record Link |
+| API | API Webhook Subscription, API Webhook Notification |
+| License | License Permission |
 
-![SuggestOptions](images/SuggestOptions.png)
+With the **Table Selector** you can open any other table by its number.
 
-Use the first option to select the tables you typically want to delete records from when cleaning a company from transactional data. </br>
+![Session table](images/information-session-table.png)
 
-Use the second option to suggest unlicensed partner or custom records to delete. </br>
-This may be useful if you used a developer license in the system at some point and created records with that license. </br>
-Now you want to switch back to the customer license and have errors in the system because of these still existing records.
-<b>Note:</b> This second option must be used with the customer license. </br>
-If the tool detects that you are currently using a developer license, it will ask you if you want to import a customer license instead. </br>
-![DeveloperLicenseIsImported](images/DeveloperLicenseIsImported.png)
+## License management
 
-After you have suggested the records, you need to import the developer license to delete the records. </br>
-![ImportAnotherLicense](images/ImportAnotherLicense.png)
+The functions in this section are available in OnPrem environments only.
 
-<b>Note that the suggestion of tables may be incomplete or the logic faulty, but for my cases it worked. </br>
-You should always check the suggested records manually afterwards and select additional tables if necessary! </b> </br> 
+### License information and developer license
 
-Also note that I am not responsible if this suggestion selects something you don’t want to delete or skips something that you do want to delete. </br>
+The **License Information** area shows the details of the active license. A separate field shows whether the license is a developer license.
 
-![SuggestRecords](images/SuggestRecords.png)
+![License information](images/license-information.png)
 
-Use the "Clear Records to Delete" function to remove all the selections. </br>
+![Developer license indicator](images/license-developer-indicator.png)
 
-![ClearRecords](images/ClearRecords.png)
+### Import a license
 
-When you are happy with the selection you press "Delete Records". </br>
-Business Central now goes through the tables and deletes all records from each of the selected tables. </br>
-</b>It might make sense to do a backup of the data before you do this. </b> </br> 
+1. Select **Import License** in the License Information area.
 
-I typically just copy the company before this step, so at least you have a company that can easily be restored or copy/paste data from. </br>
+   ![Import License](images/license-import-action.png)
 
-![DeleteRecords](images/DeleteRecords.png)
+2. Select the license file (`.flf`).
 
-Note that you can delete records either by running the deletion trigger or not. </br>
-The default option is to delete records without using the deletion trigger. </br>
+   ![Select the license file](images/license-select-file.png)
 
-![DeleteOptions](images/DeleteOptions.png)
+The license is imported and the service instance is restarted. All users are disconnected for a short time, so import licenses outside of working hours. The import requires the PowerShell Runner assembly and the permission to restart the service.
 
-Before the deletion is being executed, you get an information how many tables were marked for deletion. </br>
+### License reports
 
-![TablesMarked](images/TablesMarked.png)
+- **Export Used and Unused Objects in License** lists license objects with their usage. Filter by object type, by ID range, and show only free objects if required.
+- **Export Unlicensed Objects** lists objects that are not covered by the license. Use it before you switch from a developer license to a customer license.
 
-After pressing "Yes", you can watch the system do its work. </br>
+### Developer license warning
 
-![DeletingRecords](images/DeletingRecords.png) 
+When **Developer License Warning** is enabled in the setup, users with the SUPER permission set receive a message on company open if a developer license is active.
 
-...and you get a success message after the operation has finished. </br>
+![Setup](images/setup-developer-license-warning.png)
 
-![DeleteSuccess](images/DeleteSuccess.png) 
+![Warning message](images/developer-license-warning-message.png)
 
-Note that the field "No. of Records" is updated after the operation. </br>
+### Suggestion of unlicensed tables
 
-![NoOfRecords](images/NoOfRecords.png)
+When you suggest unlicensed tables for deletion with a developer license active, the toolbox offers to import a customer license first.
 
-After the records have been deleted it is recommended to review the tables that still have data in them to make sure you have not missed anything. </br>
-The easiest way to do this is to just apply a filter on the "No. of Records" field to be <>0. </br>
+![Developer license detected](images/license-developer-detected.png)
 
-![NoOfRecordsFilter](images/NoOfRecordsFilter.png)
+After the suggestion, the deletion of the marked tables requires the developer license again.
 
-Use the "View Records" function to view the records in the tables. </br>
-When selecting "View Records" the table will be run to show all the records and all the fields, like below. </br>
+![Import another license](images/license-import-prompt.png)
 
-![ViewRecords](images/ViewRecords.png)
+## Publishing apps
 
-![ViewRecordsList](images/ViewRecordsList.png)
+In OnPrem environments the toolbox can publish and install apps through the External Deployer. This requires the deployer to be installed on the server. The action **Publish & Install App** is available in the Apps group.
 
-When looking at the records it is typically quite easy to see if they should have been deleted or not. </br>
-If the records has an entry number, document number, etc. it is most likely transactional data that should be deleted. </br>
-The number of records in the table could sometimes also give you a hint if it should be deleted or not. </br>
+![Publish action](images/publish-app-action.png)
 
-The next option when reviewing the remaining data is to use the "Check Table Relations" function. </br>
-This function runs through all records and uses the field relations defined in the table "Field" in Business Central to validate the table relations. </br>
-It does so by just looking if the related record is in the database or not. </br>
+The dialog offers two options:
 
-Note that this only checks the very basic relations where a field has a table relation to a field in another table. </br>
-This is similar to the table relations you find in the FactBox in the configuration worksheet. </br>
-It does not check table relations that involve multiple fields or conditional table relations. </br>
-It is still a good check I think. </br>
+- *Learn how to install the external deployer* opens the installation instructions.
+- *Continue publishing (opens a new browser tab)* opens the standard upload page. Use it only after the External Deployer is installed.
 
-![CheckTableRelations](images/CheckTableRelations.png)
+![Publish dialog](images/publish-app-dialog.png)
 
-As this is a time consuming operation, you need to confirm before the table relations are being checked. </br>
+![Upload and deploy](images/publish-app-upload.png)
 
-![CheckTableRelationsConfirm](images/CheckTableRelationsConfirm.png)
+### Install the External Deployer
 
-Watch the system work. </br>
-
-![CheckingRelations](images/CheckingRelations.png)
-
-After the check on the table relations has run you can set a filter on the "No. of Table Relations Errors" to be <> 0. </br>
- You should then see if there are any basic table relation errors. </br>
-
- ![NoOfErrorsFilter](images/NoOfErrorsFilter.png)
-
- If there are any errors you can make a drilldown on the number to see the errors. </br>
-
- ![ErrorsDrilldown](images/ErrorsDrilldown.png)
-
- These are the table relation errors in my example: </br>
-
- ![DrilldownExample](images/DrilldownExample.png)
-
- As mentioned above, the table relation check is only doing a basic check, so don’t rely too much on it. </br>
- If you have a large amount of master data it might also take a while to run. </br>
-
- ### Table Editor
-
-The **Table Editor** is a powerful tool that allows you to modify, rename, or delete specific records in any table. This is useful for data corrections, testing, and troubleshooting scenarios. All operations are automatically logged in the Audit Log with full field-level change tracking.
-
-> **Credit:** Special thanks to [Yuri Mishin](https://www.linkedin.com/in/yuri-mishin-2a08a71b4/), who programmed the main functionality of this table editor.
-
-#### Opening the Table Editor
-
-Select any table in the table overview and click the **Edit Table** action.
-
- ![SelectRecordsAndEditTable](images/SelectRecordAndEditTable.png)
-
-#### Table Editor Interface
-
-The table editor provides the following configuration options:
-
- ![TableEditorFields](images/TableEditor_Fields.png)
-
-1. **ID**: The table you want to edit (pre-selected from the table overview)
-2. **Use Trigger**: When enabled, OnModify/OnDelete triggers will fire during operations
-3. **View**: Opens a filter dialog to select which records to modify or delete
-4. **No.**: Select the field you want to modify in the filtered records
-5. **Value**: The new value to assign to the selected field
-6. **Validate**: When enabled, the OnValidate trigger of the field will fire during modification
-
-#### Using the Table Editor
-
-**To Delete Records:**
-1. Set the **ID** field to your target table
-2. Click **View** to filter the records you want to delete
-3. Decide whether to enable **Use Trigger** (recommended for referential integrity)
-4. Click **Delete Table Records**
-5. Confirm the operation
-
- ![DeleteModifyRecords](images/Delete_Modify_Records.png)
-
- ![TableEditorDeleteRecords](images/TableEditor_DeleteRecords.png)
-
-> **Note:** Delete operations create an audit log entry. A backup can be automatically created before deletion if configured in Admin Toolbox Setup (without the setup option no backup is created). Tables of the Admin Toolbox itself and system tables are protected and cannot be deleted. The Table Editor requires SUPER permissions.
-
-**To Modify Records:**
-1. Set the **ID** field to your target table
-2. Click **View** to filter the records you want to modify
-3. Select the field **No.** you want to change
-4. Enter the new **Value**
-5. Decide whether to enable **Validate** (recommended to maintain business logic)
-6. Decide whether to enable **Use Trigger**
-7. Click **Modify Table Records**
-8. Confirm the operation
-
- ![TableEditorModifyRecords](images/TableEditor_ModifyRecords.png)
-
-> **New:** Modify operations automatically create an audit log entry showing:
-> - Which field was modified
-> - Old value and new value for every modified record
-> - Total number of records modified
-> - User and timestamp
-> 
-> View these changes in the Audit Log Entries page.
-
-**To Rename Records (Change Primary Key):**
-
-The Table Editor also supports renaming records, which means modifying primary key fields:
-
-1. Set the **ID** field to your target table
-2. Click **View** to filter the records you want to rename
-3. Select the **primary key field** in the **No.** field
-4. Enter the new primary key **Value**
-5. Click **Rename Table Records** (this action appears when editing a primary key field)
-6. Confirm the operation
-
-> **New:** Rename operations automatically create an audit log entry showing:
-> - Which primary key field was renamed
-> - Old value and new value for each renamed record
-> - Total number of records renamed
-> - User and timestamp
-
-#### Audit Log Integration
-
-Every Table Editor operation is automatically tracked:
-
-**Modify Table Records:**
-- Operation Type: "Bulk Modify"
-- Logs all field changes across all modified records
-- Shows old value → new value for each field that changed
-- Includes validation errors if any occur
-
-**Rename Table Records:**
-- Operation Type: "Bulk Modify"
-- Logs primary key field changes
-- Shows old key → new key for each renamed record
-- Tracks any additional field changes that occur during rename
-
-**Delete Table Records:**
-- Operation Type: "Bulk Delete"
-- Logs number of records deleted
-- Links to backup if auto-backup was enabled
-- Records table, user, timestamp, and description
-
-#### Best Practices
-
-**Before Modifying:**
-- Enable **Use Trigger** when deleting to respect referential integrity
-- Enable **Validate** when modifying to ensure business rules are applied
-- Use specific filters to avoid affecting unintended records
-- Test complex modifications on a single record first
-- Review the audit log after modifications to verify changes
-
-**After Operations:**
-- Check the Audit Log to verify the operation completed successfully
-- Review field changes to ensure modifications were as intended
-- Export audit log to Excel for documentation if needed
-- Use "View Related Backup" if you need to restore data
-
-**Safety Measures:**
-- Always test in a non-production environment first
-- Ensure backups exist (manual or automatic) before major operations
-- Use filters carefully to target only the intended records
-- Review record count before confirming operations
-- Monitor the audit log for unexpected changes
-
-> ⚠️ **Warning:** The Table Editor directly manipulates database records. Combined with the Audit Log, you have full traceability, but prevention is always better than recovery. Use with caution!
-
----
-
- ### Publishing & Installing Apps
-
-The Admin Toolbox enables app publishing in OnPrem environments through integration with the External Deployer. This functionality is disabled by default in Business Central OnPrem installations but can be activated following the setup process.
-
-#### Prerequisites
-
-Before you can publish apps, you must install the **ALOps External Deployer**. See the [How to Install the External Deployer](#how-to-install-the-external-deployer) section at the end of this documentation for detailed instructions.
-
-#### Publishing an App
-
-1. Click the **Publish and Install App** action in the Admin Toolbox
-2. A dialog will appear with two options:
-
-![PublishApp](images/PublishApp.png)
-
-![PublishAppDialog](images/PublishAppDialog.png)
-
-**Option 1: Learn how to install the external deployer**
-- Opens the installation guide in a new tab
-- Follow this option if you haven't installed the deployer yet
-- Installing the deployer is a one-time setup process
-
-**Option 2: Continue publishing app**
-- Proceeds directly to the app publish dialog
-- Only use this if you've already installed the External Deployer
-- Without the deployer installed, publishing will fail with an error
-
-#### Upload and Deploy
-
-Once the External Deployer is installed, selecting "Continue publishing app" opens the standard Business Central app upload dialog:
-
-![UploadAndDeploy](images/UploadAndDeploy.png)
-
-From here you can:
-1. Select your .app file
-2. Choose whether to install the app immediately
-3. Select target companies (if applicable)
-4. Complete the deployment
-
-> **Note:** The External Deployer must be properly configured and the NST service restarted before app publishing will work. See the installation guide below for details.
-
----
-
- ### License Overview and Import
-
-The **License Information** section provides visibility into your current Business Central license and allows you to import new license files.
-
-#### Viewing License Information
-
-The license area displays detailed information about your active license using data from the system table "License Information".
-
-![License](images/License.png)
-
-The display includes:
-- License holder information
-- Licensed database name
-- Expiration dates
-- Granule information
-- Object range permissions
-
-#### Developer License Indicator
-
-A dedicated field shows whether your current license is a developer license:
-
-![DeveloperLicense](images/DeveloperLicense.png)
-
-This indicator is useful for:
-- Verifying you're using the correct license type
-- Avoiding accidental development in production environments
-- License compliance checks
-
-#### Importing a New License
-
-To import a new license file:
-
-1. Click **Manage** → **Import License** in the License Information section
-
-![ImportLicense](images/ImportLicense.png)
-
-2. Select your license file (.flf format) from the file browser
-
-![SelectLicense](images/SelectLicense.png)
-
-3. The license will be imported and the NST service will be restarted automatically
-4. The license information will update to reflect the new license
-
-> **Important:** Importing a license requires PowerShell integration and the appropriate PowerShell Runner DLL. License imports will restart the Business Central service, temporarily disconnecting all users.
-
-**Best Practices:**
-- Always backup your current license file before importing a new one
-- Import licenses during scheduled maintenance windows to minimize user impact
-- Verify the new license information after import to ensure it loaded correctly
-- Keep a copy of all license files in a secure location
-
----
-
-### Export License Object Information
-
-The Admin Toolbox provides powerful reporting capabilities to analyze your license and identify which objects are used or missing in your license.
-
-#### Export Used and Unused Objects in License
-
-This report helps you identify which objects in your license are actively used and which are free/available for use. This is particularly useful for:
-- License optimization and planning
-- Identifying free object IDs for custom development
-- Understanding license utilization
-
-**To run the report:**
-1. Go to the License Information section in the Admin Toolbox
-2. Click on **Manage** → **Export Used and Unused Objects in License**
-3. Configure the report options:
-   - **Object Type**: Filter by specific object types (Table, Page, Codeunit, etc.) or leave blank for all types
-   - **Object ID Filter**: Specify a range of object IDs (e.g., "50000..59999") or leave blank for all objects
-   - **Only Free Objects**: Check this to export only unused/free objects in your license
-   - **Used**: Select whether to include used objects, unused objects, or both
-
-The report generates a list showing:
-- Object Type
-- Object ID
-- Object Name
-- Used status (Yes/No)
-
-This information can help you identify which license granules are being utilized and which object ranges are available for customization.
-
-#### Export Unlicensed Objects
-
-This report identifies all objects in your database that are **not** covered by the current license. This is critical for:
-- License compliance auditing
-- Identifying objects that need licensing before go-live
-- Troubleshooting permission errors related to unlicensed objects
-
-**To run the report:**
-1. Go to the License Information section in the Admin Toolbox
-2. Click on **Manage** → **Export Unlicensed Objects**
-3. Configure the report options:
-   - **Object Type**: Filter by specific object types or leave blank for all types
-   - **Object ID Filter**: Specify a range of object IDs or leave blank for all objects
-
-The report generates a list showing:
-- Object Type
-- Object ID  
-- Object Name
-
-> **Important:** This report is especially useful when switching from a developer license to a customer license. It helps identify custom objects that were created under the developer license but are not included in the customer license, which could cause runtime errors.
-
----
-
-### Links to Informational Tables
-
-The **Information** section provides quick access to useful system tables that are not typically available through the standard Business Central interface. These tables contain valuable diagnostic and system information.
-
-> **Credit:** This feature is inspired by [Waldo's blog post](https://www.waldo.be/2020/05/26/getting-not-out-of-the-box-information-with-the-out-of-the-box-web-client/) about accessing system information tables.
-
-![Information](images/Information.png)
-
-#### Available System Tables
-
-The Information section provides clickable links to the following system tables:
-
-**Session Information:**
-- **Active Session**: View all active user sessions and their details
-- **Session Event**: Review session-related events and activities
-- **Session Information**: Detailed information about current sessions
-
-**Metadata:**
-- **Table Metadata**: Information about all tables in the database
-- **Codeunit Metadata**: Details about codeunits and their properties
-- **Page Metadata**: Information about pages and their structure
-
-**Objects:**
-- **All Objects**: Complete list of all objects in the system
-- **Field**: Field definitions and properties across all tables
-- **Key**: Table key definitions and configurations
-
-**API:**
-- **API Webhook Subscription**: Registered webhook subscriptions
-- **API Webhook Notification**: Webhook notification history and status
-
-**License:**
-- **License Permission**: Detailed object permissions granted by the license
-
-**Other:**
-- **Record Link**: Record links and attachments throughout the system
-
-#### Using the Links
-
-Click any link to open the corresponding table in a new browser tab:
-
-![SessionInformation](images/SessionInformation.png) 
-
-The table opens with full access to all records and fields:
-
-![SessionInformationTable](images/SessionInformationTable.png) 
-
-**Common Use Cases:**
-- **Active Session**: Monitor who is currently connected and what they're doing
-- **Session Event**: Troubleshoot user session issues and track activities
-- **Table/Page/Codeunit Metadata**: Understand database structure and object relationships
-- **Field table**: Review field properties, types, and relations
-- **API Webhook**: Monitor and troubleshoot API integrations
-- **License Permission**: Verify which objects are covered by your license
-
---- 
-
-### Show Developer License Warning
-
-The **Developer License Warning** feature helps prevent accidental use of developer licenses in test or production environments by displaying an alert when users open the company.
-
-#### Configuring the Warning
-
-To enable this feature, open the Admin Toolbox Setup page:
-
-![OpenSetup](images/OpenSetup.png) 
-
-In the setup page, enable the **Developer License Warning** field:
-
-![DeveloperLicenseWarning](images/DeveloperLicenseWarning.png) 
-
-#### How It Works
-
-When the warning is enabled and a developer license is detected:
-- Users with SUPER permissions will see an alert message when opening the company
-- The warning appears automatically on the OnCompanyOpen trigger
-- This helps prevent unintended development or data creation with a developer license
-
-![DeveloperLicenseWarningMsg](images/DeveloperLicenseWarningMsg.png) 
-
-#### Use Cases
-
-**Test Environments:**
-- Enable this warning to ensure the correct license is always active
-- Prevents accidental import of developer licenses in test systems
-- Helps maintain consistent testing conditions
-
-**Production Environments:**
-- Acts as a safety check if a developer license is mistakenly imported
-- Alerts administrators immediately to the license mismatch
-- Helps maintain license compliance
-
-**Transition Scenarios:**
-- Useful when switching between developer and customer licenses during development cycles
-- Ensures team members are aware of the current license state
-
-> **Note:** Only users with SUPER permissions will see this warning. Regular users will not be affected. The warning is informational only and does not prevent system use.
-
----
-
-### How to Install the External Deployer
-
-The External Deployer enables app publishing functionality in OnPrem Business Central environments by simulating the SaaS app deployment behavior.
-
-> **Credit:** The following instructions are based on [Waldo's blog post about enabling External Deployment in OnPrem Business Central environments](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/).
-
-#### Important Disclaimer
-
-? **Please read carefully before proceeding:**
-
-The External Deployer is an unofficial tool that simulates SaaS extension deployment behavior in OnPrem environments. Please note:
-
-- This tool is provided "as is" without official Microsoft support
-- It replicates what occurs when uploading extensions through the Automation API in SaaS
-- The tool depends on Business Central's architecture and may require updates with new BC versions
-- It works only on standard Business Central installations (not copy/paste or non-standard setups)
-- Feedback and issues should be reported through the ALOps GitHub repository
-
-
-#### Installation Steps
-
-The External Deployer is installed using a PowerShell module. Run these commands on the server hosting your Business Central NST (Server Tier).
-
-##### Step 1: Install the PowerShell Module
-
-Open PowerShell as Administrator and run:
+The External Deployer is an unofficial tool that simulates the extension upload of Business Central online for OnPrem installations. It is provided without official Microsoft support and can require updates for new versions. The instructions are based on [the blog post by Waldo](https://www.waldo.be/2020/06/15/deploying-from-devops-the-right-way-enabling-external-deployment-in-onprem-business-central-environments/). Run the following steps on the server that hosts the service instance, in PowerShell as administrator:
 
 ```powershell
 Install-Module ALOps.ExternalDeployer -Force
-```
-
-This downloads and installs the ALOps.ExternalDeployer module from the PowerShell Gallery.
-
-##### Step 2: Import the Module
-
-Load the module into your PowerShell session:
-
-```powershell
 Import-Module ALOps.ExternalDeployer
-```
-
-This makes the External Deployer commandlets available in your current session.
-
-
-##### Step 3: Install the External Deployer Agent
-
-Install the agent that handles app publishing:
-
-```powershell
 Install-ALOpsExternalDeployer
+New-ALOpsExternalDeployer -ServerInstance <ServerInstance>
 ```
 
-This installs a background agent that intercepts app upload requests through the Automation API and handles the actual publishing and installation.
+The last command configures the service instance and restarts it. To verify the installation, select **Publish & Install App**, choose *Continue publishing* and check that the upload page opens.
 
-##### Step 4: Link to Your NST Instance
+If the upload fails, check that the service restarted successfully and review the Windows event log. If the error "External Deployer not configured" appears, run the last command again with the correct server instance name.
 
-Configure your Business Central server instance to use the External Deployer:
+## Permissions and security
 
-```powershell
-New-ALOpsExternalDeployer -ServerInstance BC
-```
+- The toolbox pages and the Table Editor can only be used by users with the SUPER permission set. Other users receive an error when they open the page.
+- The app contains the permission set **Admin Toolbox**.
+- The tables of the Admin Toolbox itself and system tables cannot be deleted or changed by the toolbox.
+- Operations that change data are logged in the audit log, and deletions can be preceded by a backup.
 
-> **Important:** Replace `BC` with your actual server instance name. Common names include:
-> - `BC` or `BC240` (version-specific)
-> - `MicrosoftDynamics365BusinessCentral`
-> - Your custom instance name
+## Languages
 
-This command:
-- Updates the NST configuration with External Deployer settings
-- Automatically restarts the NST service
-- Applies the changes immediately
+The app is available in English, German and Spanish. The Spanish translation was created with machine translation and needs review. Corrections are welcome as pull requests.
 
+## Development and testing
 
-#### Verification
+The repository contains two AL projects:
 
-To verify the installation was successful:
+| Folder | Content | Object IDs |
+|---|---|---|
+| `app/` | The Admin Toolbox | 51000 to 51099 |
+| `test/` | Automated tests (AL Test Toolkit, depends on `Library Assert`) | 51100 to 51149 |
 
-1. Go to the Admin Toolbox
-2. Click **Publish and Install App**
-3. Select "Continue publishing app"
-4. If the upload dialog appears, the External Deployer is working correctly
+The AL objects use the namespace `AdminToolbox`. All OnPrem specific code is enclosed in `#if OnPrem` directives, and the app is compiled with the preprocessor symbol `OnPrem`.
 
-#### Troubleshooting
+The tests cover the backup and restore logic, record deletion with the relation check, the audit log, the Table Editor logic, the setup and the main pages. To run them:
 
-**Problem:** Upload fails or times out
-- **Solution:** Verify the NST service restarted successfully after installation
-- Check Windows Event Viewer for NST-related errors
+1. Publish `app/` first and `test/` second. Unpublish the test app before you publish a new build of the app.
+2. Run all tests with the AL Test Tool or `AL: Run All Tests`.
 
-**Problem:** "External Deployer not configured" error
-- **Solution:** Re-run Step 4 with the correct server instance name
-- Verify you have administrator rights on the server
+The tests expect an English session language and must never be run against production data.
 
-**Problem:** Changes not taking effect
-- **Solution:** Manually restart the Business Central service
-- Clear browser cache and reconnect
+The conventions for contributors and coding agents are described in [.github/copilot-instructions.md](.github/copilot-instructions.md).
 
+## Contributing
 
----
+Contributions are welcome.
 
-## Support and Contributions
+- Report errors and requests as [GitHub issues](https://github.com/wbrakowski/Admin-Toolbox-OnPrem/issues). Include the Business Central version, the app version, the steps to reproduce and error messages or screenshots.
+- For code changes, create a branch, follow the existing code style, add or update tests in `test/` and make sure that all tests pass. Describe the change in the pull request.
+- Corrections of translations can be submitted as changed `.xlf` files.
 
-### Getting Help
+## Credits
 
-If you encounter issues or have questions about the Admin Toolbox:
+The Admin Toolbox combines contributions from the Business Central community:
 
-1. **Check the Documentation**: Review this README for usage instructions and troubleshooting
-2. **GitHub Issues**: Open an issue on the [GitHub repository](https://github.com/wbrakowski/Admin-Toolbox-OnPrem/issues)
-3. **Community Forums**: Ask questions on the Business Central community forums
+- **Olof Simren**: original Record Deletion Tool for Microsoft Dynamics NAV
+- **Yuri Mishin**: Table Editor and developer license warning
+- **Waldo (Eric Wauters)**: license information, system information tables and External Deployer
+- **Neil Roberts**: license import with PowerShell
+- **Roberto Stefanetti**: used and unused objects
+- **Waldemar Brakowski**: integration, record deletion tool, backup system, audit log, dashboard and maintenance
 
-### Contributing
+## License
 
-Contributions to improve the Admin Toolbox are welcome! Here's how you can help:
+The project is released under the MIT License. See the [LICENSE](LICENSE) file.
 
-**Bug Reports:**
-- Open a GitHub issue with a clear description of the problem
-- Include BC version, app version, and steps to reproduce
-- Provide error messages and screenshots if applicable
-
-**Feature Requests:**
-- Suggest new features through GitHub issues
-- Explain the use case and expected behavior
-- Consider whether the feature fits the OnPrem focus of the tool
-
-
-**Code Contributions:**
-- Fork the repository and create a feature branch
-- Follow existing code style and AL best practices
-- Add or update automated tests in `test/` for every change (see below) and make sure they all pass
-- Submit a pull request with a clear description of changes
-
-**Automated Tests:**
-- The test app `Admin-Toolbox Tests` (`test/`, object IDs 51100 to 51149) covers the backup and restore logic, the record deletion with its relation check, the audit log, the Table Editor logic, the setup and the main pages
-- Publish `app/` first, then `test/` (unpublish the test app before publishing a new build of the app), and run all tests with the AL Test Tool or `AL: Run All Tests`
-- The tests assume an English session language and a development or test environment, never run them against production data
-
-**Translation Improvements:**
-- The Spanish translation needs review and corrections
-- Additional language translations are welcome
-- Submit updated .xlf files through pull requests
-
-### Acknowledgments
-
-This project combines contributions from several talented developers in the Business Central community:
-
-- **Olof Simren** - Original Record Deletion Tool for NAV
-- **Yuri Mishin** - Table Editor and Developer License Warning
-- **Waldo (Eric Wauters)** - License Information, System Tables, External Deployer
-- **Neil Roberts** - PowerShell License Import
-- **Roberto Stefanetti** - Used/Unused Objects Analysis
-- **Waldemar Brakowski** - Integration, enhancements, Table Backup System, Audit Logging, and maintenance
-
-Thank you to everyone who has contributed to making this tool valuable for the Business Central community!
-
-
-### License
-
-This project is released under the MIT License. See the LICENSE file for details.
-
----
-
-**Version**: 29.0.0.0 (BC29)
-**Last Updated**: November 25, 2026
-**Major Changes in This Release**:
-- ✨ Upgrade to Business Central 29 (platform 29.0, runtime 18.0)
-- ✨ Automated test app with tests for backup/restore, record deletion, audit log and pages
-- ✨ Table Editor logic moved into its own codeunit with SUPER check, audit log and optional backup before deletion; protected tables cannot be deleted
-- ✨ Retention days of the setup are used for the cleanup of the audit log and the backups; the unused field "Compression Enabled" is obsolete
-- ✨ Backup: filter dialog for the filter view, streaming JSON export, confirmation for fields that cannot be backed up
-- ✨ All objects are in the namespace `AdminToolbox`
-- 🐛 Backup/Restore: culture-independent storage of values, closing dates, durations, date formulas and options are restored correctly; Blob, Media and RecordID fields are skipped instead of breaking the restore
-- 🐛 Table relation check: empty GUID fields are no longer reported as missing records, tables whose primary key name contains special characters no longer cause an error
-**Features of the Previous Release**:
-- ✨ Comprehensive Table Backup & Restore System with 3 backup types
-- ✨ Complete Audit Logging with field-level change tracking
-- ✨ Admin Toolbox Dashboard for activity monitoring
-- ✨ Enhanced Table Editor with Rename functionality and audit integration
-- ✨ Automatic backups before deletion operations (configurable)
-- ✨ Full Admin Toolbox Setup page with retention policies
-- ✨ Multi-language support: English, German, Spanish
-
-**Repository**: [https://github.com/wbrakowski/Admin-Toolbox-OnPrem](https://github.com/wbrakowski/Admin-Toolbox-OnPrem)
-
+Repository: [https://github.com/wbrakowski/Admin-Toolbox-OnPrem](https://github.com/wbrakowski/Admin-Toolbox-OnPrem)

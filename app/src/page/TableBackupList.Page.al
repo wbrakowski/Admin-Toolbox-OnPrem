@@ -158,9 +158,9 @@ page 51011 "Table Backup List"
                     ConfirmManagement: Codeunit "Confirm Management";
                     TableBackupMgt: Codeunit "Table Backup Mgt.";
                     Days: Integer;
-                    DeleteConfirmQst: Label 'This will delete %1 backup(s) older than %2 days. Continue?', Comment = '%1 = No. of backups, %2 = Days';
+                    DeleteConfirmQst: Label 'Do you want to delete %1 backup(s) that are older than %2 days?', Comment = '%1 = No. of backups, %2 = Days';
                     DeletedMsg: Label '%1 backup(s) have been deleted.', Comment = '%1 = No. of backups';
-                    NoBackupsFoundMsg: Label 'No backups found older than %1 days.', Comment = '%1 = Days to keep';
+                    NoBackupsFoundMsg: Label 'No backups older than %1 days were found.', Comment = '%1 = Days to keep';
                 begin
                     Days := AdminToolboxSetup.GetBackupRetentionDays();
 
