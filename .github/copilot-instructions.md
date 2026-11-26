@@ -11,7 +11,7 @@
 - **`app/`**: the main app (`app/app.json`, `app/src/...`, `app/Translations/`, `app/.netpackages/`), ID range 51000-51099. All objects use `namespace AdminToolbox;` with explicit `using` statements (without a namespace the fallback to Base App objects is gone); the only exception is `app/src/dotnet.al` (AA0247 stays an accepted info). `internalsVisibleTo` lists the test app.
 - **`test/`**: the separate AL test app "Admin-Toolbox Tests" (`test/app.json`, `test/src/...`), ID range 51100-51149, target OnPrem, depends on `app` and Microsoft's `Library Assert`.
 - Both are sibling folders (neither is nested in the other), otherwise the AL compiler merges the test files into the main app project.
-- Open both together via **`AdminTool.code-workspace`** (multi-root). The repository root is only a documentation/config folder in that workspace, it has no `app.json`.
+- Open both together via **`AdminTool.code-workspace`** (multi-root). The repository root is only a documentation/config folder in that workspace, it has no `app.json`. The workspace file carries the shared settings: all analyzers (CodeCop, UICop, ALCops), `[al]` files as UTF-8 without BOM with CRLF, search and watcher excludes for symbol and cache folders, and the recommended extensions. Personal files (`launch.json`, `rad.json`) stay in the ignored `.vscode` folders.
 - `powershellrunners/` holds the PowerShell Runner DLLs per BC version; the one used for compilation is copied to `app/.netpackages/` (`app/.vscode/settings.json` sets `al.assemblyProbingPaths`).
 - A release copy of the compiled app (`Waldemar Brakowski_Admin-Toolbox_<version>.app`) is kept in the repository root. Replace it with the new build when the version changes. `app/*.app` and `test/*.app` are ignored.
 
