@@ -14,6 +14,47 @@
         }
     ],
     "settings": {
-        "al.symbolsCountryRegion": "de"
+        "al.symbolsCountryRegion": "de",
+        "al.enableCodeAnalysis": true,
+        "al.codeAnalyzers": [
+            "${CodeCop}",
+            "${UICop}",
+            "${analyzerFolder}ALCops.ApplicationCop.dll",
+            "${analyzerFolder}ALCops.FormattingCop.dll",
+            "${analyzerFolder}ALCops.LinterCop.dll",
+            "${analyzerFolder}ALCops.TestAutomationCop.dll",
+            "${analyzerFolder}ALCops.Common.dll"
+        ],
+        "[al]": {
+            "editor.formatOnSave": true,
+            "files.encoding": "utf8",
+            "files.eol": "\r\n"
+        },
+        "[xml]": {
+            "files.eol": "\r\n"
+        },
+        "files.watcherExclude": {
+            "**/.alpackages/**": true,
+            "**/.netpackages/**": true,
+            "**/.snapshots/**": true
+        },
+        "search.exclude": {
+            "**/.alpackages": true,
+            "**/.netpackages": true,
+            "**/.snapshots": true,
+            "**/*.app": true,
+            "**/*.g.xlf": true
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dynamics-smb.al",
+            "arthurvdv.alcops",
+            "stefanmaron.businesscentral-lintercop",
+            "nabsolutions.nab-al-tools",
+            "vjeko.vjeko-al-objid",
+            "eamodio.gitlens",
+            "github.vscode-pull-request-github"
+        ]
     }
 }
