@@ -77,8 +77,8 @@ page 51014 "Table Backup FactBox"
                 trigger OnAction()
                 var
                     ConfirmManagement: Codeunit "Confirm Management";
-                    ConfirmMsg: Label 'Do you want to restore the backup for table %1 (%2)?\This will restore %3 records from %4.', Comment = '%1 = Table ID, %2 = Table Name, %3 = Record Count, %4 = Backup Date';
-                    BackupRestoredMsg: Label 'Backup restored successfully.';
+                    ConfirmMsg: Label 'Do you want to restore the backup of table %1 (%2)?\The %3 records from %4 will be restored.', Comment = '%1 = Table ID, %2 = Table Name, %3 = Record Count, %4 = Backup Date';
+                    BackupRestoredMsg: Label 'The backup was restored successfully.';
                     ConfirmText: Text;
                 begin
                     ConfirmText := StrSubstNo(ConfirmMsg, Rec."Table ID", Rec."Table Name", Rec."No. of Records", Rec."Backup Date Time");

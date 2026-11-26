@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "app": true,
+        "test": true
+    },
+    "search.exclude": {
+        "app": true,
+        "test": true
+    },
+    "files.watcherExclude": {
+        "app/**": true,
+        "test/**": true
+    }
+}

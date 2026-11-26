@@ -749,37 +749,37 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table Temp Unlicensed Object - Field Object Type - Property Caption</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3295197148 - NamedType 1761793071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 =&gt; %2 = '%3' does not exist in the '%4' table</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Source Table Name, %2 = Source Field Name, %3 = Field Value, %4 = Target Table Name</note>
+          <source>The record %1 refers to the value '%3', which does not exist in field '%2' of table '%4'.</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Primary key of the source record, %2 = Target field name, %3 = Field value, %4 = Target table name</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckRelationExists - NamedType NotExistsTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 877858973" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Checking Relations Between Records!\Table: #1#######</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
+          <source>Checking table relations...\Table ID: #1#######\Table name: #2##################\Progress: #3##########</source>
+          <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table name, %3 = Progress in percent</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType CheckingRelationsTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2095919535 - NamedType 2478991407" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Check Table Relations?</source>
+          <source>Do you want to check the table relations of all listed tables?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTableRelations - NamedType CheckRelationsQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 4008216517 - NamedType 2535638518" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Remove the mark in the field %2 for these tables.</source>
+          <source>The following tables belong to the Admin Toolbox or to the system and cannot be deleted: %1.\\Clear the field %2 for these tables and try again.</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table names, %2 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CheckTablesAreDeletable - NamedType ProtectedTablesErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1089747479 - NamedType 1478607934" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The checkbox %1 was succesfully reset for the tables.</source>
+          <source>The field %1 was cleared for all tables.</source>
           <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ClearRecordsToDelete - NamedType MarkDeletionRemovedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2112174575 - NamedType 3211583473" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No backup was created. Records will be deleted without backup.</source>
+          <source>No backup was created. The records will be deleted without a backup.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmBackupCreation - NamedType BackupSkippedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 2112174575 - NamedType 4017732072" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to create a backup of the tables before deletion?\\This is recommended for data safety.</source>
+          <source>Do you want to create a backup of the tables before the records are deleted?\\A backup is recommended so that the data can be restored if needed.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmBackupCreation - NamedType CreateBackupQst</note>
         </trans-unit>
@@ -789,12 +789,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType CancelledByUserErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1361802906 - NamedType 669701587" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 table(s) were marked for deletion. All records in these tables will be deleted. Continue?</source>
+          <source>%1 table(s) are marked for deletion. All records in these tables will be permanently deleted.\\Do you want to continue?</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmDeletion - NamedType DeleteRecordsQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3381977563 - NamedType 756982822" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The following tables contain field types that cannot be backed up (e.g. BLOB, Media, RecordID): %1.\\These fields are skipped in the backup and cannot be restored. Do you want to continue?</source>
+          <source>The following tables contain fields of a type that cannot be backed up (for example BLOB, Media or RecordID): %1.\\These fields are skipped in the backup and cannot be restored.\\Do you want to continue?</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table names</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ConfirmTablesWithUnsupportedFields - NamedType UnsupportedFieldsQst</note>
         </trans-unit>
@@ -809,27 +809,27 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method CreateBackupsForTables - NamedType AutoBackupLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3327007977 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Delete records without deletion trigger: Record.Delete(false),Delete records with deletion trigger: Record.Delete(true)</source>
+          <source>Delete records without running table triggers,Delete records and run table triggers</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method DeleteRecords - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 517910971 - NamedType 1617397918" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deleting Records!\Table: #1#######</source>
+          <source>Deleting records...\Table ID: #1#######</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method GetDeletingRecordsText - NamedType DeletingRecordsTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1875284373" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No record could be found in table %1.</source>
+          <source>No records were found in table %1.</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table Caption</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType NoRecordFoundMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 577911013" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Processing tables... @1@@@@@@</source>
+          <source>Updating the table list... @1@@@@@@</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType ProcessingDataTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 529433861 - NamedType 1709914334" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 tables have succesfully been updated.</source>
+          <source>The table list was updated successfully (%1 tables).</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method InsertUpdateTables - NamedType UpdateFinishedMsg</note>
         </trans-unit>
@@ -849,12 +849,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PerformDeletion - NamedType DeletedRecordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 2377828003" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The external deployer must be installed on the server instance to publish apps. Please select how to proceed.</source>
+          <source>Publishing an app requires the external deployer to be installed on the server instance. Select how you want to proceed.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType InstructionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3420767252 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Continue publishing app (a new tab will be opened),Learn how to install the external deployer</source>
+          <source>Continue publishing (opens a new browser tab),Learn how to install the external deployer</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method PublishApp - NamedType OptionsLbl</note>
         </trans-unit>
@@ -869,42 +869,42 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowBackupCompletionMessage - NamedType BackupsCreatedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3672477713 - NamedType 2814518218" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The records from %1 table(s) were succesfully deleted.</source>
+          <source>The records of %1 table(s) were deleted successfully.</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowDeletionSuccessMessage - NamedType DeletionSuccessMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1304378668 - NamedType 705934383" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Attention, the developer license is currently active.</source>
+          <source>A developer license is currently active.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ShowDevLicenseMessageIfNeeded - NamedType DevLicenseMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 542369812 - NamedType 3203928494" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Suggest all transactional records to delete,Suggest unlicensed partner or custom records to delete</source>
+          <source>Suggest all transactional tables for deletion,Suggest unlicensed partner or custom tables for deletion</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestRecordsToDelete - NamedType OptionsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 3094011 - NamedType 1104668713" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 records to delete were suggested.</source>
-          <note from="Developer" annotates="general" priority="2">%1 = Number of suggested records</note>
+          <source>%1 tables were suggested for deletion.</source>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of suggested tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestTransactionalRecordsToDelete - NamedType RecordsWereSuggestedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 1018787915" size-unit="char" translate="yes" xml:space="preserve">
-          <source>It looks like a developer license is currently imported. The use of this function is intended for customer licenses. Do you want to import another license now?</source>
+          <source>A developer license is currently imported. This function is intended for use with a customer license.\\Do you want to import a different license now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportCustLicenseQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 3507336724" size-unit="char" translate="yes" xml:space="preserve">
-          <source>A developer license will be required to delete the marked unlicensed records. Do you want to import another license now?</source>
+          <source>A developer license is required to delete the marked unlicensed records.\\Do you want to import a different license now?</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType ImportLicenseQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1419025072 - NamedType 2880885934" size-unit="char" translate="yes" xml:space="preserve">
-          <source>%1 unlicensed partner or custom records were suggested.</source>
-          <note from="Developer" annotates="general" priority="2">%1 Number of unlicensed records</note>
+          <source>%1 unlicensed partner or custom tables were suggested for deletion.</source>
+          <note from="Developer" annotates="general" priority="2">%1 = No. of suggested tables</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method SuggestUnlicensedPartnerOrCustomRecordsToDelete - NamedType RecordsSuggestedMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 4017461657 - Method 1889626813 - NamedType 3437731031" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No tables were marked for deletion. Please make sure that you check the Field %1 in the tables where you want to delete records before you run this operation.</source>
+          <source>No tables are marked for deletion. Select the field %1 for the tables whose records you want to delete, and then run this action again.</source>
           <note from="Developer" annotates="general" priority="2">%1 = FieldCaption of "Delete Records"</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Admin Tool Mgt. - Method ValidateRecordsMarkedForDeletion - NamedType NoRecsFoundErr</note>
         </trans-unit>
@@ -984,12 +984,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType NoBackupDataErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - NamedType 3138905710" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Backup Entry No.: %1\\Data Preview (first 1000 chars):\\%2</source>
+          <source>Backup entry no.: %1\\Data preview (first 1000 characters):\\%2</source>
           <note from="Developer" annotates="general" priority="2">%1 = Entry No., %2 = JSON Preview</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - NamedType ViewBackupDataMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 1570998342 - NamedType 1837596097" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table %1 %2 contains field type(s) that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped during backup and cannot be restored.\\Do you want to continue?</source>
+          <source>Table %1 %2 contains fields of a type that cannot be backed up (for example BLOB, Media or RecordID). These fields are skipped in the backup and cannot be restored.\\Do you want to continue?</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method ConfirmBackupWithUnsupportedFields - NamedType TableContainsUnsupportedFieldsQst</note>
         </trans-unit>
@@ -1009,7 +1009,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method OpenBackupProgressDialog - NamedType CreatingBackupTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 555356780 - Method 116217714 - NamedType 1118926904" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to restore %1 records to table %2? This will INSERT the backed up records.\\Warning: This may create duplicate records if they still exist!</source>
+          <source>Do you want to restore %1 records to table %2?\\The backed up records will be inserted into the table. Records that already exist cannot be inserted again and are reported as failed.</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of Records, %2 = Table ID</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Backup Mgt. - Method RestoreBackup - NamedType RestoreConfirmQst</note>
         </trans-unit>
@@ -1054,12 +1054,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType CancelledByUserErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 3331715897 - Method 1794513315 - NamedType 4017732072" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to create a backup of the selected records before deletion?\\This is recommended for data safety.</source>
+          <source>Do you want to create a backup of the selected records before they are deleted?\\A backup is recommended so that the data can be restored if needed.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType CreateBackupQst</note>
         </trans-unit>
         <trans-unit id="Codeunit 3331715897 - Method 1794513315 - NamedType 756982822" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Table %1 %2 contains field types that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped in the backup and cannot be restored.\\Do you want to continue?</source>
+          <source>Table %1 %2 contains fields of a type that cannot be backed up (for example BLOB, Media or RecordID). These fields are skipped in the backup and cannot be restored.\\Do you want to continue?</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Table Editor Mgt. - Method ConfirmBackupBeforeDeletion - NamedType UnsupportedFieldsQst</note>
         </trans-unit>
@@ -1234,7 +1234,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome3Lbl</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Method 1237460832 - NamedType 202195880" size-unit="char" translate="yes" xml:space="preserve">
-          <source>� Use the Dashboard for an overview of your system statistics.</source>
+          <source>📊 Use the Dashboard for an overview of your system statistics.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Method InitializeWelcomeTexts - NamedType Welcome4Lbl</note>
         </trans-unit>
@@ -1369,7 +1369,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableTxt - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 3768843830 - Control 2846103777 - Method 1845446376 - NamedType 1108583558" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please select a "Table No." before running this link.</source>
+          <source>Select a table in the field "Table No." before you run this link.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox - Control SelectedTableTxt - Method OnDrillDown - NamedType NoTableNoSelectedErr</note>
         </trans-unit>
@@ -1718,11 +1718,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2173611026 - Method 2665803343 - NamedType 2081532769" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Loading Dashboard Data... @1@@@@@@</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Dashboard - Method UpdateDashboardData - NamedType LoadingMsg</note>
-        </trans-unit>
         <trans-unit id="Page 2173611026 - Control 2506002805 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Quick Information</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1874,7 +1869,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3103611735 - Method 716454850 - NamedType 2566144142" size-unit="char" translate="yes" xml:space="preserve">
-          <source>It was detected that this is not an OnPrem environment. The Admin Tool Setup only contains additional functionalities for OnPrem environments.</source>
+          <source>This is not an on-premises environment. The Admin Toolbox setup only provides additional functions for on-premises environments.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Admin Toolbox Setup - Method OnOpenPage - NamedType OnPremMsg</note>
         </trans-unit>
@@ -2154,22 +2149,22 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 1556380518" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Backup created successfully. Entry No.: %1</source>
+          <source>The backup was created successfully (entry no. %1).</source>
           <note from="Developer" annotates="general" priority="2">%1 = Entry No.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType SuccessMsg</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 2622681021" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please select a table.</source>
+          <source>Select a table.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType TableSelectionErr</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Method 4177352842 - NamedType 3308047891" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Use Filter is enabled but no filter is set. Set a filter or disable Use Filter.</source>
+          <source>The option Use Filter is selected, but no filter is set. Set a filter or clear the option.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method OnQueryClosePage - NamedType FilterMissingErr</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Method 1196596036 - NamedType 1473800271" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please select a table first.</source>
+          <source>Select a table first.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Method SelectFilter - NamedType SelectTableFirstMsg</note>
         </trans-unit>
@@ -2209,7 +2204,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1797195072 - Control 4188249081 - Method 2126772001 - NamedType 3635503699" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Please select a table first.</source>
+          <source>Select a table first.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Create Table Backup - Control FilterViewField - Method OnValidate - NamedType SelectTableFirstErr</note>
         </trans-unit>
@@ -2484,12 +2479,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 4240297231 - Action 116217714 - Method 1377591017 - NamedType 2294662597" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Do you want to restore the backup for table %1 (%2)?\This will restore %3 records from %4.</source>
+          <source>Do you want to restore the backup of table %1 (%2)?\The %3 records from %4 will be restored.</source>
           <note from="Developer" annotates="general" priority="2">%1 = Table ID, %2 = Table Name, %3 = Record Count, %4 = Backup Date</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Method OnAction - NamedType ConfirmMsg</note>
         </trans-unit>
         <trans-unit id="Page 4240297231 - Action 116217714 - Method 1377591017 - NamedType 153647245" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Backup restored successfully.</source>
+          <source>The backup was restored successfully.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup FactBox - Action RestoreBackup - Method OnAction - NamedType BackupRestoredMsg</note>
         </trans-unit>
@@ -2529,7 +2524,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 828941326 - Action 653807429 - Method 1377591017 - NamedType 1752520879" size-unit="char" translate="yes" xml:space="preserve">
-          <source>This will delete %1 backup(s) older than %2 days. Continue?</source>
+          <source>Do you want to delete %1 backup(s) that are older than %2 days?</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of backups, %2 = Days</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType DeleteConfirmQst</note>
         </trans-unit>
@@ -2539,7 +2534,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType DeletedMsg</note>
         </trans-unit>
         <trans-unit id="Page 828941326 - Action 653807429 - Method 1377591017 - NamedType 2223344557" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No backups found older than %1 days.</source>
+          <source>No backups older than %1 days were found.</source>
           <note from="Developer" annotates="general" priority="2">%1 = Days to keep</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Backup List - Action DeleteOldBackups - Method OnAction - NamedType NoBackupsFoundMsg</note>
         </trans-unit>
@@ -2629,12 +2624,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DeleteWithTriggerQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 4288424883" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Done.</source>
+          <source>The operation was completed.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType DoneMsg</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 1516192187" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Longest value has %1 characters.\%2</source>
+          <source>The longest value has %1 characters.\%2</source>
           <note from="Developer" annotates="general" priority="2">%1 = No. of characters, %2 = Value</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType MaxLengthMsg</note>
         </trans-unit>
@@ -2654,7 +2649,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType ModifyRecordsWithValidateQst</note>
         </trans-unit>
         <trans-unit id="Page 2727896929 - NamedType 2470041236" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No records found.</source>
+          <source>No records were found.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Table Editor - NamedType NoRecordsFoundMsg</note>
         </trans-unit>

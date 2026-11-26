@@ -238,12 +238,12 @@ page 51004 "Table Editor"
         CreateRecordQst: Label 'Do you want to create a new record in table %1?', Comment = '%1 = Table Caption';
         DeleteRecordsQst: Label 'Do you want to delete %1 records from table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
         DeleteWithTriggerQst: Label 'Records will be deleted using DeleteAll(%1).\\Proceed?', Comment = '%1 = UseTrigger (Boolean)';
-        DoneMsg: Label 'Done.';
-        MaxLengthMsg: Label 'Longest value has %1 characters.\%2', Comment = '%1 = No. of characters, %2 = Value';
+        DoneMsg: Label 'The operation was completed.';
+        MaxLengthMsg: Label 'The longest value has %1 characters.\%2', Comment = '%1 = No. of characters, %2 = Value';
         ModifyRecordsQst: Label 'Do you want to modify %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
         ModifyRecordsWithoutValidateQst: Label '"%1" := [%2];\Modify(%3);\\Proceed?', Comment = '%1 = Field Name, %2 = Field Value, %3 = UseTrigger (Boolean)';
         ModifyRecordsWithValidateQst: Label 'Validate("%1", [%2]);\Modify(%3);\\Proceed?', Comment = '%1 = Field Name, %2 = Field Value, %3 = UseTrigger (Boolean)';
-        NoRecordsFoundMsg: Label 'No records found.';
+        NoRecordsFoundMsg: Label 'No records were found.';
         RenameRecords2Qst: Label 'Rename(%1);\\Proceed?', Comment = '%1 = Primary Key Fields';
         RenameRecordsQst: Label 'Do you want to rename %1 records in table %2?', Comment = '%1 = No. of Records, %2 = Table Caption';
         CustomTableView, TableCaption : Text;

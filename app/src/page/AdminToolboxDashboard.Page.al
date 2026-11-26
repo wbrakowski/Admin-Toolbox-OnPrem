@@ -1,5 +1,8 @@
 namespace AdminToolbox;
 
+using System.Environment;
+using System.Reflection;
+
 page 51018 "Admin Toolbox Dashboard"
 {
     ApplicationArea = All;
@@ -8,7 +11,9 @@ page 51018 "Admin Toolbox Dashboard"
     InherentPermissions = X;
     PageType = Card;
     Permissions = tabledata "Admin Toolbox Setup" = r,
-                  tabledata "Record Deletion" = r,
+#if OnPrem
+                  tabledata "Table Information" = r,
+#endif
                   tabledata "Table Backup" = r;
     RefreshOnActivate = true;
     UsageCategory = Administration;
@@ -213,13 +218,8 @@ page 51018 "Admin Toolbox Dashboard"
         AdminToolboxSetup: Record "Admin Toolbox Setup";
         AuditLogEntry: Record "Audit Log Entry";
         TableBackup: Record "Table Backup";
-        ProgressDialog: Dialog;
-        LoadingMsg: Label 'Loading Dashboard Data... @1@@@@@@';
     begin
-        if GuiAllowed() then
-            ProgressDialog.Open(LoadingMsg);
-
-        CalculateTableStatistics(ProgressDialog);
+        CalculateTableStatistics();
         CalculateBackupStatistics(TableBackup);
         CalculateAuditLogStatistics(AuditLogEntry);
         UpdateQuickInfo(AdminToolboxSetup);
@@ -227,52 +227,41 @@ page 51018 "Admin Toolbox Dashboard"
         UpdateStyles();
 
         DataLoaded := true;
-
-        if GuiAllowed() then
-            ProgressDialog.Close();
     end;
 
-    local procedure CalculateTableStatistics(var ProgressDialog: Dialog)
+    // One read of the table information instead of one lookup per table keeps the dashboard fast.
+    local procedure CalculateTableStatistics()
+#if OnPrem
     var
-        RecordDeletion: Record "Record Deletion";
-        CurrRec: Integer;
-        NoOfRecs: Integer;
-        TableCount: Integer;
+        TableInformation: Record "Table Information";
+        AdminToolMgt: Codeunit "Admin Tool Mgt.";
     begin
-        RecordDeletion.SetLoadFields("Table ID");
-        TableCount := 0;
+        TablesWithData := 0;
         TablesOver1000 := 0;
         TablesOver100000 := 0;
-        NoOfRecs := RecordDeletion.Count();
-        CurrRec := 0;
 
-        if RecordDeletion.FindSet() then
+        TableInformation.SetRange("Company Name", CompanyName());
+        TableInformation.SetFilter("No. of Records", '>0');
+        TableInformation.SetLoadFields("Table No.", "No. of Records");
+        if TableInformation.FindSet() then
             repeat
-                CurrRec += 1;
-                UpdateProgress(ProgressDialog, CurrRec, NoOfRecs);
-
-                RecordDeletion.CalcFields("No. of Records");
-                if RecordDeletion."No. of Records" > 0 then
-                    TableCount += 1;
-                if RecordDeletion."No. of Records" > 1000 then
-                    TablesOver1000 += 1;
-                if RecordDeletion."No. of Records" > 100000 then
-                    TablesOver100000 += 1;
-            until RecordDeletion.Next() = 0;
-        TablesWithData := TableCount;
+                if not AdminToolMgt.IsTableProtected(TableInformation."Table No.") then begin
+                    TablesWithData += 1;
+                    if TableInformation."No. of Records" > 1000 then
+                        TablesOver1000 += 1;
+                    if TableInformation."No. of Records" > 100000 then
+                        TablesOver100000 += 1;
+                end;
+            until TableInformation.Next() = 0;
     end;
-
-    local procedure UpdateProgress(var ProgressDialog: Dialog; CurrRec: Integer; NoOfRecs: Integer)
+#else
     begin
-        if not GuiAllowed() then
-            exit;
-
-        if NoOfRecs <= 100 then
-            ProgressDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1)
-        else
-            if CurrRec mod (NoOfRecs div 100) = 0 then
-                ProgressDialog.Update(1, (CurrRec / NoOfRecs * 10000) div 1);
+        // The record counts of the tables are only available OnPrem.
+        TablesWithData := 0;
+        TablesOver1000 := 0;
+        TablesOver100000 := 0;
     end;
+#endif
 
     local procedure CalculateBackupStatistics(var TableBackup: Record "Table Backup")
     begin

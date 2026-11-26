@@ -91,7 +91,7 @@ page 51005 "Admin Toolbox Setup"
     var
         EnvironmentInformation: Codeunit "Environment Information";
         MyNotification: Notification;
-        OnPremMsg: Label 'It was detected that this is not an OnPrem environment. The Admin Tool Setup only contains additional functionalities for OnPrem environments.';
+        OnPremMsg: Label 'This is not an on-premises environment. The Admin Toolbox setup only provides additional functions for on-premises environments.';
     begin
         if not Rec.Get() then begin
             Rec.Init();

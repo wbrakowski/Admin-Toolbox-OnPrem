@@ -1,3 +1,5 @@
+namespace AdminToolbox;
+
 #if OnPrem
 dotnet
 {

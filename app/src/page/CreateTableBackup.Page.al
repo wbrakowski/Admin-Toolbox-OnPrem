@@ -80,7 +80,7 @@ page 51013 "Create Table Backup"
                     trigger OnValidate()
                     var
                         TableBackupMgt: Codeunit "Table Backup Mgt.";
-                        SelectTableFirstErr: Label 'Please select a table first.';
+                        SelectTableFirstErr: Label 'Select a table first.';
                     begin
                         if FilterView = '' then
                             exit;
@@ -121,9 +121,9 @@ page 51013 "Create Table Backup"
         TableBackupMgt: Codeunit "Table Backup Mgt.";
         BackupOperationType: Enum "Backup Operation Type";
         EntryNo: Integer;
-        SuccessMsg: Label 'Backup created successfully. Entry No.: %1', Comment = '%1 = Entry No.';
-        TableSelectionErr: Label 'Please select a table.';
-        FilterMissingErr: Label 'Use Filter is enabled but no filter is set. Set a filter or disable Use Filter.';
+        SuccessMsg: Label 'The backup was created successfully (entry no. %1).', Comment = '%1 = Entry No.';
+        TableSelectionErr: Label 'Select a table.';
+        FilterMissingErr: Label 'The option Use Filter is selected, but no filter is set. Set a filter or clear the option.';
     begin
         // Only create backup if user clicked OK
         if CloseAction <> Action::OK then
@@ -154,7 +154,7 @@ page 51013 "Create Table Backup"
     var
         TableBackupMgt: Codeunit "Table Backup Mgt.";
         FilterPageBuilder: FilterPageBuilder;
-        SelectTableFirstMsg: Label 'Please select a table first.';
+        SelectTableFirstMsg: Label 'Select a table first.';
     begin
         if (TableID = 0) or (TableName = '') then begin
             Message(SelectTableFirstMsg);

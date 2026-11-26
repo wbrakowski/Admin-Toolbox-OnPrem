@@ -322,8 +322,8 @@ codeunit 51005 "Table Editor Mgt."
         ConfirmManagement: Codeunit "Confirm Management";
         TableBackupMgt: Codeunit "Table Backup Mgt.";
         CancelledByUserErr: Label 'The operation was cancelled by the user.';
-        CreateBackupQst: Label 'Do you want to create a backup of the selected records before deletion?\\This is recommended for data safety.';
-        UnsupportedFieldsQst: Label 'Table %1 %2 contains field types that cannot be backed up (e.g. BLOB, Media, RecordID). They are skipped in the backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table ID, %2 = Table Name';
+        CreateBackupQst: Label 'Do you want to create a backup of the selected records before they are deleted?\\A backup is recommended so that the data can be restored if needed.';
+        UnsupportedFieldsQst: Label 'Table %1 %2 contains fields of a type that cannot be backed up (for example BLOB, Media or RecordID). These fields are skipped in the backup and cannot be restored.\\Do you want to continue?', Comment = '%1 = Table ID, %2 = Table Name';
     begin
         if not AdminToolboxSetup.GetAutoBackupBeforeDeletion() then
             exit(false);
